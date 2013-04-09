@@ -468,7 +468,10 @@ GET /bb/byowner
 < 200
 < Content-Type: application/json
 
-GET /bb/all
+Elenca tutti i B&B indicando il numero di elementi richiesti e l'offset
+
+Attualmente sembra non funzioni correttamente
+GET /bb/all{?limit,offset}
 < 200
 < Content-Type: application/json
 
