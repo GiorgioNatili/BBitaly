@@ -475,9 +475,18 @@ GET /bb/all{?limit,offset}
 < 200
 < Content-Type: application/json
 
+Indica il numero di B&B presenti all'interno del sistema
 GET /bb/allcount
 < 200
 < Content-Type: application/json
+{
+  "errors": [],
+  "data": {
+    "count": 65
+  }
+}
+
+
 
 GET /bb/countbyonwer
 < 200
