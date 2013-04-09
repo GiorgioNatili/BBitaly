@@ -1,4 +1,4 @@
-HOST: http://localhost:8080/bbitaly
+HOST: http://localhost:8080/
 
 --- BBItaly ---
 
@@ -87,6 +87,18 @@ Ottiene ottiene informazioni sull'utente corrente.
 GET /user
 < 200
 < Content-Type: application/json
+{
+  "data": {
+    "email": "mail@address.com",
+    "id": 229388,
+    "name": "First Name",
+    "role": "user",
+    "surname": "Last Name"
+  },
+  "errors": []
+}
+
+
 
 Crea una nuova utenza all'interno dell'applicativo.
 POST /user
@@ -111,17 +123,166 @@ POST /user/activate
 
 -- Information definition --
 
-GET /country
+Elenca le *country* disponibili all'interno del sistema.
+GET /location/country
 < 200
 < Content-Type: application/json
+{
+  errors: [ ],
+  data: [
+    {
+      id: 1,
+      prefix: null,
+      name: "Australia"
+    },
+    {
+      id: 2,
+      prefix: null,
+      name: "Austria"
+    },
+    {
+      id: 3,
+      prefix: null,
+      name: "Azerbaijan"
+    },
+    {
+      id: 4,
+      prefix: null,
+      name: "Anguilla"
+    },
+    {
+      id: 5,
+      prefix: null,
+      name: "Argentina"
+    },
+    {
+      id: 6,
+      prefix: null,
+      name: "Armenia"
+    }
+  ]
+}
 
-GET /region
-< 200
-< Content-Type: application/json
 
-GET /city
+Elenca le *region* preseti all'interno del sistema
+GET /location/region
 < 200
 < Content-Type: application/json
+{
+  "data": [
+    {
+      "country": {
+        "id": 29,
+        "name": "Italia",
+        "prefix": "it"
+      },
+      "id": 506,
+      "name": "Piemonte - Torino"
+    },
+    {
+      "country": {
+        "id": 29,
+        "name": "Italia",
+        "prefix": "it"
+      },
+      "id": 507,
+      "name": "Piemonte - Alessandria"
+    },
+    {
+      "country": {
+        "id": 29,
+        "name": "Italia",
+        "prefix": "it"
+      },
+      "id": 508,
+      "name": "Piemonte - Asti"
+    },
+    {
+      "country": {
+        "id": 29,
+        "name": "Italia",
+        "prefix": "it"
+      },
+      "id": 509,
+      "name": "Piemonte - Biella"
+    },
+    {
+      "country": {
+        "id": 29,
+        "name": "Italia",
+        "prefix": "it"
+      },
+      "id": 510,
+      "name": "Piemonte - Cuneo"
+    }
+  ],
+  "errors" : []
+}
+
+
+Riporta l'elenco delle città appartenti ad una *region* specificata
+GET /location/city?regionid={ID}
+< 200
+< Content-Type: application/json
+{
+  "data": [
+    {
+      "country": {
+        "id": 3,
+        "name": "Azerbaijan",
+        "prefix": null
+      },
+      "id": 1,
+      "name": "Agdam",
+      "region": {
+        "country": {
+          "id": 3,
+          "name": "Azerbaijan",
+          "prefix": null
+        },
+        "id": 1,
+        "name": "Azerbaijan"
+      }
+    },
+    {
+      "country": {
+        "id": 3,
+        "name": "Azerbaijan",
+        "prefix": null
+      },
+      "id": 2,
+      "name": "Agdash",
+      "region": {
+        "country": {
+          "id": 3,
+          "name": "Azerbaijan",
+          "prefix": null
+        },
+        "id": 1,
+        "name": "Azerbaijan"
+      }
+    },
+    {
+      "country": {
+        "id": 3,
+        "name": "Azerbaijan",
+        "prefix": null
+      },
+      "id": 3,
+      "name": "Agzhabidi",
+      "region": {
+        "country": {
+          "id": 3,
+          "name": "Azerbaijan",
+          "prefix": null
+        },
+        "id": 1,
+        "name": "Azerbaijan"
+      }
+    },
+  ]
+  "errors": []
+}
 
 
 -- Monitoring --
