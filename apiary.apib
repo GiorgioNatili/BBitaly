@@ -84,7 +84,7 @@ GET /auth/user
 -- User --
 
 Ottiene ottiene informazioni sull'utente corrente.
-GET /user?id={ID}
+GET /user{?id}
 < 200
 < Content-Type: application/json
 {
@@ -221,7 +221,7 @@ GET /location/region
 
 
 Riporta l'elenco delle città appartenti ad una *region* specificata
-GET /location/city?regionid={ID}
+GET /location/city{?regionid}
 < 200
 < Content-Type: application/json
 {
