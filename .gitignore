@@ -2,3 +2,8 @@
 /target
 catalog.xml
 bbitaly.sql
+
+# Package Files #
+*.jar
+*.war
+*.ear
