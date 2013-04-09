@@ -12,10 +12,458 @@ Booking
 Gestione delle prenotazioni.
 --
 
-Estrare una prenotazione
-GET /book
+Riporta le informazioni su di una prenotazione effettuata.
+GET /book{?id}
 < 200
 < Content-Type: application/json
+{
+  "errors": [],
+  "data": {
+    "dateStart": "2013-03-28",
+    "room": {
+      "photo": null,
+      "placeDescription": "asd",
+      "longitude": null,
+      "maxCapacity": 10,
+      "bedBrekfast": {
+        "city": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "region": {
+            "country": {
+              "prefix": "it",
+              "id": 29,
+              "name": "Italia"
+            },
+            "id": 568,
+            "name": "Lazio - Roma"
+          },
+          "id": 45572,
+          "name": "Arcinazzo Romano"
+        },
+        "longitude": 13.116371,
+        "name": "Lussuria",
+        "facility": [
+          {
+            "type": 3,
+            "id": 10,
+            "name": "Studio"
+          },
+          {
+            "type": 3,
+            "id": 18,
+            "name": "3 bagno (doccia)"
+          },
+          {
+            "type": 3,
+            "id": 21,
+            "name": "1 W.C. indipendente"
+          },
+          {
+            "type": 3,
+            "id": 11,
+            "name": "1 bagno (vasca)"
+          },
+          {
+            "type": 3,
+            "id": 19,
+            "name": "4 bagno (doccia)"
+          },
+          {
+            "type": 3,
+            "id": 12,
+            "name": "2 bagno (vasca)"
+          },
+          {
+            "type": 3,
+            "id": 14,
+            "name": "4 bagno (vasca)"
+          },
+          {
+            "type": 3,
+            "id": 15,
+            "name": "+4 bagno (vasca)"
+          }
+        ],
+        "checkout": null,
+        "checkin": null,
+        "address": "Via Ostiense 393",
+        "rank": 0,
+        "contactemail": "marcello.roehrssen@gmail.com",
+        "phone": "3289220387",
+        "assignedname": "Marcello Roehrssen di Cammerata",
+        "policy": [
+          {
+            "type": 1,
+            "id": 6,
+            "name": "Alloggio inadatto per bambini piccoli"
+          },
+          {
+            "type": 1,
+            "id": 5,
+            "name": "Non si accettano animali domestici"
+          },
+          {
+            "type": 0,
+            "id": 1,
+            "name": "Animali ammessi"
+          }
+        ],
+        "photo": "http://cdn.bedandbreakfastinitaly.com:8090/static/cover/bb/c78e5b1993d8f4bbb1a21d7af80c448c_bedandbreakfast_Lussuria.jpg",
+        "owner": {
+          "city": {
+            "country": {
+              "prefix": "it",
+              "id": 29,
+              "name": "Italia"
+            },
+            "region": {
+              "country": {
+                "prefix": "it",
+                "id": 29,
+                "name": "Italia"
+              },
+              "id": 579,
+              "name": "Campania - Napoli"
+            },
+            "id": 46434,
+            "name": "Napoli"
+          },
+          "surname": "Roehrssen di Cammerata",
+          "name": "Marcello",
+          "id": 1,
+          "role": "owner",
+          "address": "Via San Giacomo dei capri",
+          "active": true,
+          "email": "marcello.roehrssen@gmail.com"
+        },
+        "latitude": 41.87865,
+        "type": "bedandbreakfast",
+        "id": "c78e5b1993d8f4bbb1a21d7af80c448c",
+        "description": "Il B&amp;B &quot;La Terrazza&quot; si trova in un edificio storico di Napoli, da poco ristrutturato. E' situato sulla collina di Posillipo, famosa per i suoi colori ed il mix di odori che provengono dal mare, dal tufo e dalla natura incontaminata che la circonda. Vanta di una vista mozzafiato su tutto il golfo di Napoli, inoltre la struttura &Atilde;&uml; molto silenziosa, poich&Atilde;&copy; lontana dal traffico urbano ed immersa nel verde, dunque &Atilde;&uml; davvero il posto giusto per passare un piacevole soggiorno a Napoli, in  una struttura spaziosa, silenziosa ed accogliente."
+      },
+      "amount": 1,
+      "minCapacity": 1,
+      "generalDescription": "asd",
+      "address": null,
+      "latitude": null,
+      "defaultPrice": 999.0,
+      "shortDescription": "asd",
+      "id": 12
+    },
+    "price": 2997.0,
+    "bedBreakfast": {
+      "city": {
+        "country": {
+          "prefix": "it",
+          "id": 29,
+          "name": "Italia"
+        },
+        "region": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "id": 579,
+          "name": "Campania - Napoli"
+        },
+        "id": 46434,
+        "name": "Napoli"
+      },
+      "longitude": 14.223123,
+      "name": "B&B Casa Mira Napoli",
+      "facility": [
+        {
+          "type": 4,
+          "id": 36,
+          "name": "1 letto (singolo)"
+        },
+        {
+          "type": 9,
+          "id": 179,
+          "name": "Possibilit\u00e0 transfer dall'aeroporto"
+        },
+        {
+          "type": 9,
+          "id": 182,
+          "name": "Internet Wi-Fi"
+        },
+        {
+          "type": 9,
+          "id": 261,
+          "name": "Guida ristoranti"
+        },
+        {
+          "type": 9,
+          "id": 262,
+          "name": "massaggio"
+        },
+        {
+          "type": 8,
+          "id": 137,
+          "name": "Sedie e tavolo da giardino"
+        },
+        {
+          "type": 8,
+          "id": 142,
+          "name": "Asse da stiro"
+        },
+        {
+          "type": 8,
+          "id": 110,
+          "name": "Frigorifero"
+        },
+        {
+          "type": 3,
+          "id": 23,
+          "name": "3 W.C. indipendente"
+        },
+        {
+          "type": 9,
+          "id": 282,
+          "name": "Cassaforte in camera"
+        },
+        {
+          "type": 8,
+          "id": 128,
+          "name": "Lettino"
+        },
+        {
+          "type": 8,
+          "id": 156,
+          "name": "Fax"
+        },
+        {
+          "type": 8,
+          "id": 159,
+          "name": "TV via cavo / satellite"
+        },
+        {
+          "type": 9,
+          "id": 172,
+          "name": "Noleggio biciclette"
+        },
+        {
+          "type": 8,
+          "id": 143,
+          "name": "Televisione"
+        },
+        {
+          "type": 9,
+          "id": 263,
+          "name": "riscaldamento centralizzato"
+        },
+        {
+          "type": 8,
+          "id": 150,
+          "name": "Riscaldamento"
+        },
+        {
+          "type": 8,
+          "id": 104,
+          "name": "Biancheria inclusa"
+        },
+        {
+          "type": 9,
+          "id": 276,
+          "name": "Sveglia"
+        },
+        {
+          "type": 8,
+          "id": 141,
+          "name": "Ferro da stiro"
+        },
+        {
+          "type": 8,
+          "id": 175,
+          "name": "Cassaforte (in camera)"
+        },
+        {
+          "type": 11,
+          "id": 203,
+          "name": "Libri adulti"
+        },
+        {
+          "type": 8,
+          "id": 129,
+          "name": "Seggiolone"
+        },
+        {
+          "type": 8,
+          "id": 132,
+          "name": "Libri"
+        },
+        {
+          "type": 9,
+          "id": 255,
+          "name": "Guida attivit\u00e0 locali"
+        },
+        {
+          "type": 8,
+          "id": 107,
+          "name": "Placca di cottura"
+        },
+        {
+          "type": 12,
+          "id": 228,
+          "name": "Parcheggio su strada"
+        },
+        {
+          "type": 4,
+          "id": 31,
+          "name": "+2 letto (matrimoniale)"
+        },
+        {
+          "type": 4,
+          "id": 49,
+          "name": "culla"
+        },
+        {
+          "type": 14,
+          "id": 251,
+          "name": "Computer PC"
+        },
+        {
+          "type": 8,
+          "id": 126,
+          "name": "Aria condizionata"
+        },
+        {
+          "type": 12,
+          "id": 281,
+          "name": "garage convenzionato"
+        },
+        {
+          "type": 9,
+          "id": 181,
+          "name": "Internet ADSL"
+        },
+        {
+          "type": 9,
+          "id": 256,
+          "name": "Mappe locali"
+        },
+        {
+          "type": 3,
+          "id": 26,
+          "name": "Terrazza"
+        },
+        {
+          "type": 3,
+          "id": 18,
+          "name": "3 bagno (doccia)"
+        },
+        {
+          "type": 14,
+          "id": 252,
+          "name": "Telefono cellulare"
+        },
+        {
+          "type": 8,
+          "id": 147,
+          "name": "Asciugacapelli"
+        },
+        {
+          "type": 8,
+          "id": 106,
+          "name": "Cucina elettrica / gas"
+        },
+        {
+          "type": 8,
+          "id": 135,
+          "name": "Ascensore"
+        }
+      ],
+      "checkout": null,
+      "checkin": null,
+      "address": "via Giordano Bruno 169 80122",
+      "rank": 0,
+      "contactemail": "info@casamiranapoli.it",
+      "phone": "+39 3358051740",
+      "assignedname": "Gina  Sgrosso",
+      "policy": [
+        {
+          "type": 1,
+          "id": 8,
+          "name": "Proprietario residente nella stessa struttura"
+        },
+        {
+          "type": 1,
+          "id": 5,
+          "name": "Non si accettano animali domestici"
+        },
+        {
+          "type": 1,
+          "id": 7,
+          "name": "Alloggio per non fumatori"
+        },
+        {
+          "type": 1,
+          "id": 16,
+          "name": "bambini ammessi"
+        },
+        {
+          "type": 2,
+          "id": 3,
+          "name": "Fumatori"
+        }
+      ],
+      "photo": "http://cdn.bedandbreakfastinitaly.com:8090/static/cover/bb/fce8e5f2ab9142db95b7bb23082722a7_bedandbreakfast_B&B_Casa_Mira_Napoli.jpg",
+      "owner": {
+        "city": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "region": {
+            "country": {
+              "prefix": "it",
+              "id": 29,
+              "name": "Italia"
+            },
+            "id": 579,
+            "name": "Campania - Napoli"
+          },
+          "id": 46434,
+          "name": "Napoli"
+        },
+        "surname": "Sgrosso",
+        "name": "Gina",
+        "id": 196683,
+        "role": "owner",
+        "address": "via Giordano Bruno 169 80122",
+        "active": true,
+        "email": "info@casamiranapoli.it"
+      },
+      "latitude": 40.831352,
+      "type": "bedandbreakfast",
+      "id": "fce8e5f2ab9142db95b7bb23082722a7",
+      "description": "Delizioso bed &amp; breakfast a Napoli, vicino al Lungomare Caracciolo.\r\nPanoramico, silenzioso, arredato con gusto e con calore , accogliente e confortevole.\r\nIl calore di una casa , il confort di un hotel. Atmosfera conviviale, per chi vuole sentirsi a casa lontano da casa.\r\nVicinissimo alla maggior parte dei siti turistici che sono raggiungibili a piedi con una bellissima passeggiata sul Lungomare, \r\no con i mezzi : metro e stazione di Mergellina a cinque minuti. Bus sotto casa che arriva in piazza Municipio. \r\nTutte le camere con bagno privato.\r\nInternet e wifi gratuito e libero\r\nComputer a disposizione nella sala comune."
+    },
+    "dateEnd": "2013-03-31",
+    "user": {
+      "email": "dino@dino.dino",
+      "role": "owner",
+      "surname": "dino",
+      "id": 229407,
+      "name": "dino"
+    },
+    "bookDetail": {
+      "roomName": "asd",
+      "policyList": "",
+      "accomodationName": "B&B Casa Mira Napoli",
+      "id": 5,
+      "facilityList": ""
+    },
+    "id": 5
+  }
+}
+
 
 Crea una prenotazione
 POST /book
