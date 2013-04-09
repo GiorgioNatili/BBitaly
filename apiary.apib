@@ -83,22 +83,27 @@ GET /auth/user
 
 -- User --
 
-POST /user
-< 200
-< Content-Type: application/json
-
+Ottiene ottiene informazioni sull'utente corrente.
 GET /user
 < 200
 < Content-Type: application/json
 
+Crea una nuova utenza all'interno dell'applicativo.
+POST /user
+< 200
+< Content-Type: application/json
+
+Aggiorna una specifica utenza.
 POST /user/update
 < 200
 < Content-Type: application/json
 
+Cancella ua specifica utenza
 POST /user/delete
 < 200
 < Content-Type: application/json
 
+Attiva una specifica utenza.
 POST /user/activate
 < 200
 < Content-Type: application/json
