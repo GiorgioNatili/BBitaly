@@ -37,10 +37,17 @@ GET /book/byUser
 < 200
 < Content-Type: application/json
 
-Controlla una prenotazione
-GET /book/check
+Controlla la disponibilità di una *room* nell'intervallo specificato.
+GET /book/check{?id,start,end}
 < 200
 < Content-Type: application/json
+{
+  "errors": [],
+  "data": {
+    "available": true
+  }
+}
+
 
 Cancella una prenotazione
 POST /book/delete
