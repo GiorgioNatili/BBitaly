@@ -1,4 +1,4 @@
-BBiitaly
+BBitaly
 ========
 
-BBiitaly booking engine
+BBitaly booking engine
