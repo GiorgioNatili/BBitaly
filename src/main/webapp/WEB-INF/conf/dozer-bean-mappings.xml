@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+          
+    <mapping trim-strings="true"> 
+        <class-a>it.adsolut.bbitaly.model.Owner</class-a>
+        <class-b>it.adsolut.bbitaly.response.vo.Owner</class-b>
+    </mapping>  
+  
+    <mapping trim-strings="true"> 
+        <class-a>it.adsolut.bbitaly.model.BedBreakfast</class-a>
+        <class-b>it.adsolut.bbitaly.response.vo.BedBreakfast</class-b>
+        <field custom-converter-id="bbdescriptionconverter">
+            <a>description</a>
+            <b>description</b>
+        </field>
+    </mapping>  
+    
+    <mapping trim-strings="true"> 
+        <class-a>it.adsolut.bbitaly.model.Room</class-a>
+        <class-b>it.adsolut.bbitaly.response.vo.Room</class-b>
+        <field custom-converter-id="roomgeneraldescriptionconverter">
+            <a>description</a>
+            <b>generalDescription</b>
+        </field>
+        <field custom-converter-id="roomplacedescriptionconverter">
+            <a>description</a>
+            <b>placeDescription</b>
+        </field>
+        <field custom-converter-id="roomshortdescriptionconverter">
+            <a>description</a>
+            <b>shortDescription</b>
+        </field>
+    </mapping>  
+  
+    <mapping trim-strings="true"> 
+        <class-a>it.adsolut.bbitaly.model.Location</class-a>
+        <class-b>it.adsolut.bbitaly.response.vo.Location</class-b>
+    </mapping>  
+    
+    <mapping trim-strings="true"> 
+        <class-a>it.adsolut.bbitaly.model.City</class-a>
+        <class-b>it.adsolut.bbitaly.response.vo.City</class-b>
+    </mapping>  
+    
+    <mapping trim-strings="true"> 
+        <class-a>it.adsolut.bbitaly.model.Region</class-a>
+        <class-b>it.adsolut.bbitaly.response.vo.Region</class-b>
+    </mapping>
+    
+    <mapping trim-strings="true"> 
+        <class-a>it.adsolut.bbitaly.model.RoomPrice</class-a>
+        <class-b>it.adsolut.bbitaly.response.vo.RoomPrice</class-b>
+        <field custom-converter-id="datetostringconverter">
+            <a>date</a>
+            <b>date</b>
+        </field>
+        <field>
+            <a set-method="setIsOffer" get-method="isOffer">offer</a>
+            <b set-method="setIsOffer" get-method="isOffer">offer</b>
+        </field>
+        <field>
+            <a set-method="setIsBooked" get-method="isBooked">booked</a>
+            <b set-method="setIsBooked" get-method="isBooked">booked</b>
+        </field>
+    </mapping>  
+    
+</mappings>

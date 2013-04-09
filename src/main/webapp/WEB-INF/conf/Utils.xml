@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://static.springframework.org/schema/p"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://static.springframework.org/schema/tx"
+       xmlns:context="http://static.springframework.org/schema/context"
+       xmlns:ehcache="http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://static.springframework.org/schema/aop http://static.springframework.org/schema/aop/spring-aop-3.0.xsd
+        http://static.springframework.org/schema/tx http://static.springframework.org/schema/tx/spring-tx-3.0.xsd
+        http://static.springframework.org/schema/context http://static.springframework.org/schema/context/spring-context-3.0.xsd
+        http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring 
+        http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring/ehcache-spring-1.1.xsd">
+
+        
+    <bean id="gson" class="com.google.gson.Gson" />
+
+    <bean id="requestexecuter" class="it.adsolut.bbitaly.util.google.api.adapter.RequestExecuterImpl" />
+
+    <bean id="gmapgeocodeclient" class="it.adsolut.bbitaly.util.google.api.GeocodeClientImpl">
+        <property name="endpoint" value="https://maps.googleapis.com/maps/api/geocode/json" />
+        <property name="unmarshaller">
+            <bean class="it.adsolut.bbitaly.util.google.api.adapter.JsonGeocodeDataMarshallerImpl">
+                <property name="gson">
+                    <ref bean="gson" /> 
+                </property>
+            </bean>
+        </property>
+        <property name="requestExecuter">
+            <ref bean="requestexecuter" />
+        </property>
+    </bean>
+    
+    <bean id="gmapclient" class="it.adsolut.bbitaly.util.google.api.PlacesClientImpl">
+        <property name="key" value="AIzaSyChKmkEO_cPNrA9QUSLV6RC_4XpvP5B0pY" />
+        <property name="endpoint" value="https://maps.googleapis.com/maps/api/place/search/json" />
+        <property name="unmarshaller">
+            <bean class="it.adsolut.bbitaly.util.google.api.adapter.JsonPlacesDataMarshallerImpl">
+                <property name="gson">
+                    <ref bean="gson" /> 
+                </property>
+            </bean>
+        </property>
+        <property name="requestExecuter">
+            <ref bean="requestexecuter" />
+        </property>
+        <property name="requestBuilder">
+            <bean id="requestbuilder" class="it.adsolut.bbitaly.util.google.api.adapter.RequestBuilderImpl" />
+        </property>
+    </bean>
+    
+    <bean id="uploader" class="it.adsolut.bbitaly.util.file.UploaderImpl">
+        <property name="path">
+            <value type="java.lang.String">/var/www/cdn.bedandbreakfastinitaly.com/static</value>
+<!--            <value type="java.lang.String">C:\wamp\www\cdn-bellaidea</value>-->
+        </property>
+        <property name="publicPath">
+            <value type="java.lang.String">http://cdn.bedandbreakfastinitaly.com:8090/static/</value>
+<!--            <value type="java.lang.String">http://cdn.bella-idea.it/static/</value>-->
+        </property>
+        <property name="extSeparator">
+            <value>.</value>
+        </property>
+        <property name="types">
+            <map>
+                <entry key="cover">
+                    <map>
+                        <entry key="internal" value="/cover/bb/" />
+                        <entry key="external" value="cover/bb/" />
+                    </map>
+                </entry>
+                <entry key="roomcover">
+                    <map>
+                        <entry key="internal" value="/cover/room/" />
+                        <entry key="external" value="cover/room/" />
+                    </map>
+                </entry>
+                <entry key="bbgallery">
+                    <map>
+                        <entry key="internal" value="/gallery/bb/" />
+                        <entry key="external" value="gallery/bb/" />
+                    </map>
+                </entry>
+                <entry key="roomgallery">
+                    <map>
+                        <entry key="internal" value="/gallery/room/" />
+                        <entry key="external" value="gallery/room/" />
+                    </map>
+                </entry>
+                <entry key="room" value="room/" />
+            </map>
+        </property>
+    </bean> 
+
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+    
+    <bean id="dozermapper" class="org.dozer.DozerBeanMapper">
+        <property name="mappingFiles">
+            <list>
+                <value>../conf/dozer-bean-mappings.xml</value>	
+            </list>
+        </property>
+        <property name="customConvertersWithId">
+            <map>
+                <entry key="bbdescriptionconverter" value-ref="bbdescriptionconverter"/>
+                <entry key="roomgeneraldescriptionconverter" value-ref="roomgeneraldescriptionconverter"/>
+                <entry key="roomplacedescriptionconverter" value-ref="roomplacedescriptionconverter"/>
+                <entry key="roomshortdescriptionconverter" value-ref="roomshortdescriptionconverter"/>
+                <entry key="datetostringconverter" value-ref="datetostringconverter"/>
+            </map>
+        </property>
+    </bean>
+    
+    <bean id="bbdescriptionconverter" class="it.adsolut.bbitaly.response.converter.BbDescriptionConverter" 
+            p:defaultLang="it"
+            p:langAccessKey="lang"/>
+    <bean id="roomgeneraldescriptionconverter" class="it.adsolut.bbitaly.response.converter.RoomGeneralDescriptionConverter" 
+            p:defaultLang="it"
+            p:langAccessKey="lang"/>
+    <bean id="roomplacedescriptionconverter" class="it.adsolut.bbitaly.response.converter.RoomPlaceDescriptionConverter" 
+            p:defaultLang="it"
+            p:langAccessKey="lang"/>
+    <bean id="roomshortdescriptionconverter" class="it.adsolut.bbitaly.response.converter.RoomShortDescriptionConverter" 
+            p:defaultLang="it"
+            p:langAccessKey="lang"/>
+    <bean id="datetostringconverter" class="it.adsolut.bbitaly.response.converter.DateToStringConverter" />
+    
+</beans>
