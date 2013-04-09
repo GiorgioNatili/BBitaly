@@ -55,11 +55,44 @@ POST /book/activate
 
 -- Owner --
 
-POST /owner
+Riporta informazioni sull'*owner* specificato.
+GET /owner{?id}
 < 200
 < Content-Type: application/json
+{
+  "errors": [],
+  "data": {
+    "city": {
+      "country": {
+        "prefix": "it",
+        "id": 29,
+        "name": "Italia"
+      },
+      "region": {
+        "country": {
+          "prefix": "it",
+          "id": 29,
+          "name": "Italia"
+        },
+        "id": 579,
+        "name": "Campania - Napoli"
+      },
+      "id": 46434,
+      "name": "Napoli"
+    },
+    "surname": "Last Name",
+    "name": "First Name",
+    "id": 1,
+    "role": "owner",
+    "address": "This is the address",
+    "active": true,
+    "email": "mail@address.com"
+  }
+}
 
-GET /owner
+
+
+POST /owner
 < 200
 < Content-Type: application/json
 
