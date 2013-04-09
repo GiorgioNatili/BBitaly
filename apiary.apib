@@ -126,13 +126,30 @@ GET /city
 
 -- Monitoring --
 
+Entrypoint per indicare se il servizio è attivo.
 GET /status
 < 200
 < Content-Type: application/json
+{
+    "data": true,
+    "errors": []
+}
 
+Informazioni sullo status del sistema su cui gira l'applicativo.
 GET /health
 < 200
 < Content-Type: application/json
+{
+    "data": {
+        "committedVirtualMemorySize": "3536",
+        "cpuLoad": "1.0000000000000",
+        "freePhysicalMemorySize": "250",
+        "freeSwapSpaceSize": "2800",
+        "totalPhysicalMemorySize": "3943",
+        "totalSwapSpaceSize": "3813"
+    },
+    "errors": []
+}
 
 
 -- Serch --
