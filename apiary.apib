@@ -1,36 +1,302 @@
-HOST: http://www.google.com/
+HOST: http://localhost:8080/bbitaly
 
 --- BBItaly ---
 
 ---
-Welcome to the our sample API documentation. All comments can be written in (support [Markdown](http://daringfireball.net/projects/markdown/syntax) syntax)
+Documentazione delle API messe a disposizione dell'interfaccia di backed del sistema di gestione B&B.
 ---
 
 --
-Shopping Cart Resources
-The following is a section of resources related to the shopping cart
+Booking
+
+Gestione delle prenotazioni.
 --
 
-List products added into your shopping-cart. (comment block again in Markdown)
-GET /shopping-cart
+Estrare una prenotazione
+GET /book
 < 200
 < Content-Type: application/json
-{ "items": [
-{ "url": "/shopping-cart/1", "product":"2ZY48XPZ", "quantity": 1, "name": "New socks", "price": 1.25 }
-] }
 
-Save new products in your shopping cart
-POST /shopping-cart
-> Content-Type: application/json
-{ "product":"1AB23ORM", "quantity": 2 }
-< 201
-< Content-Type: application/json
-{ "status": "created", "url": "/shopping-cart/2" }
-
--- Payment Resources --
-
-This resource allows you to submit payment information to process your *shopping cart* items
-POST /payment
-{ "cc": "12345678900", "cvc": "123", "expiry": "0112" }
+Crea una prenotazione
+POST /book
 < 200
-{ "receipt": "/payment/receipt/1" }
+< Content-Type: application/json
+
+Estrare una prenotazione utilizzando come criterio di ricerca una *accomodation*
+GET /book/byAccomodation
+< 200
+< Content-Type: application/json
+
+Estrare una prenotazione utilizzando come criterio di ricerca una *room*
+GET /book/byRoom
+< 200
+< Content-Type: application/json
+
+Estrare una prenotazione utilizzando come criterio di ricerca un *user*
+GET /book/byUser
+< 200
+< Content-Type: application/json
+
+Controlla una prenotazione
+GET /book/check
+< 200
+< Content-Type: application/json
+
+Cancella una prenotazione
+POST /book/delete
+< 200
+< Content-Type: application/json
+
+Attiva una prenotazione
+POST /book/activate
+< 200
+< Content-Type: application/json
+
+
+-- Owner --
+
+POST /owner
+< 200
+< Content-Type: application/json
+
+GET /owner
+< 200
+< Content-Type: application/json
+
+POST /owner/update
+< 200
+< Content-Type: application/json
+
+POST /owner/delete
+< 200
+< Content-Type: application/json
+
+-- Authorization --
+
+GET /auth/owner
+< 200
+< Content-Type: application/json
+
+GET /auth/user
+< 200
+< Content-Type: application/json
+
+-- User --
+
+POST /user
+< 200
+< Content-Type: application/json
+
+GET /user
+< 200
+< Content-Type: application/json
+
+POST /user/update
+< 200
+< Content-Type: application/json
+
+POST /user/delete
+< 200
+< Content-Type: application/json
+
+POST /user/activate
+< 200
+< Content-Type: application/json
+
+
+-- Information definition --
+
+GET /country
+< 200
+< Content-Type: application/json
+
+GET /region
+< 200
+< Content-Type: application/json
+
+GET /city
+< 200
+< Content-Type: application/json
+
+
+-- Monitoring --
+
+GET /status
+< 200
+< Content-Type: application/json
+
+GET /health
+< 200
+< Content-Type: application/json
+
+
+-- Serch --
+
+GET /solr
+< 200
+< Content-Type: application/json
+
+GET /search
+< 200
+< Content-Type: application/json
+
+GET /semantic
+< 200
+< Content-Type: application/json
+
+GET /bycity
+< 200
+< Content-Type: application/json
+
+GET /byregion
+< 200
+< Content-Type: application/json
+
+GET /bypoi
+< 200
+< Content-Type: application/json
+
+GET /bycoords
+< 200
+< Content-Type: application/json
+
+GET /byids
+< 200
+< Content-Type: application/json
+
+-- Bed and Breakfast --
+
+GET /bb
+< 200
+< Content-Type: application/json
+
+POST /bb
+< 200
+< Content-Type: application/json
+
+POST /bb/update
+< 200
+< Content-Type: application/json
+
+POST /bb/delete
+< 200
+< Content-Type: application/json
+
+POST /bb/cover
+< 200
+< Content-Type: application/json
+
+-- B&B Gallery --
+
+GET /bb/gallery
+< 200
+< Content-Type: application/json
+
+POST /bb/gallery/delete
+< 200
+< Content-Type: application/json
+
+POST /bb/gallery/update
+< 200
+< Content-Type: application/json
+
+POST /bb/gallery
+< 200
+< Content-Type: application/json
+
+
+-- Search B&B --
+
+GET /bb/byowner
+< 200
+< Content-Type: application/json
+
+GET /bb/all
+< 200
+< Content-Type: application/json
+
+GET /bb/allcount
+< 200
+< Content-Type: application/json
+
+GET /bb/countbyonwer
+< 200
+< Content-Type: application/json
+
+GET /bb/policy
+< 200
+< Content-Type: application/json
+
+GET /bb/facility
+< 200
+< Content-Type: application/json
+
+
+-- B&B Room --
+
+POST /bb/room
+< 200
+< Content-Type: application/json
+
+GET /bb/room
+< 200
+< Content-Type: application/json
+
+GET /bb/room/byaccomodation
+< 200
+< Content-Type: application/json
+
+POST /bb/room/delete
+< 200
+< Content-Type: application/json
+
+POST /bb/room/price
+< 200
+< Content-Type: application/json
+
+GET /bb/room/price
+< 200
+< Content-Type: application/json
+
+GET /bb/room/pricetotal
+< 200
+< Content-Type: application/json
+
+POST /bb/room/cover
+< 200
+< Content-Type: application/json
+
+POST /bb/room/update
+< 200
+< Content-Type: application/json
+
+GET /bb/room/gallery
+< 200
+< Content-Type: application/json
+
+POST /bb/room/gallery
+< 200
+< Content-Type: application/json
+
+POST /bb/room/gallery/update
+< 200
+< Content-Type: application/json
+
+
+-- Translation --
+
+GET /translation/bb
+< 200
+< Content-Type: application/json
+
+POST /translation/bb
+< 200
+< Content-Type: application/json
+
+GET /translation/room
+< 200
+< Content-Type: application/json
+
+POST /translation/room
+< 200
+< Content-Type: application/json
