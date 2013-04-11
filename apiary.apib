@@ -10191,9 +10191,249 @@ GET /search/bypoi
 }
 
 
+Ricerca in funzione di coordinate geografiche.
+
+ * *latitude*: latitutine della coordinata su cui effettuare la ricerca.
+ * *longitude*: latitutine della coordinata su cui effettuare la ricerca.
+ * *start*: data d'inizio del range in cui cercare. Può non essere presente.
+ * *end*: data di fine del range in cui cercare. Può non essere presente.
+ * *radius*: Il raggio di ricerca impostato.
+
+Attualmente le date non sono gestite, quindi se impostate vengono ritornati java nel casting di oggetti.
 GET /search/bycoords
 < 200
 < Content-Type: application/json
+{
+  "errors": [],
+  "data": [
+    {
+      "city": {
+        "country": {
+          "prefix": "it",
+          "id": 29,
+          "name": "Italia"
+        },
+        "region": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "id": 508,
+          "name": "Piemonte - Asti"
+        },
+        "id": 40905,
+        "name": "Antignano"
+      },
+      "longitude": 8.13756,
+      "name": "asd",
+      "facility": [
+        {
+          "type": 1,
+          "id": 1,
+          "name": "privata"
+        }
+      ],
+      "checkout": null,
+      "checkin": null,
+      "address": "asd 80128",
+      "rank": 0,
+      "contactemail": "marcello.roehrssen1007@gmail.com",
+      "phone": "081 5601 8477",
+      "assignedname": "asd asd",
+      "policy": [
+        {
+          "type": 0,
+          "id": 1,
+          "name": "Animali ammessi"
+        }
+      ],
+      "photo": null,
+      "owner": {
+        "city": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "region": {
+            "country": {
+              "prefix": "it",
+              "id": 29,
+              "name": "Italia"
+            },
+            "id": 508,
+            "name": "Piemonte - Asti"
+          },
+          "id": 40905,
+          "name": "Antignano"
+        },
+        "surname": "asd",
+        "name": "asd",
+        "id": 196655,
+        "role": "owner",
+        "address": "asd 80128",
+        "active": true,
+        "email": "marcello.roehrssen1007@gmail.com"
+      },
+      "latitude": 44.84529,
+      "type": "bedandbreakfast",
+      "id": "a05f20b034edddf2831c158448d315d5",
+      "description": "asd"
+    },
+    {
+      "city": {
+        "country": {
+          "prefix": "it",
+          "id": 29,
+          "name": "Italia"
+        },
+        "region": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "id": 508,
+          "name": "Piemonte - Asti"
+        },
+        "id": 40907,
+        "name": "Asti"
+      },
+      "longitude": 8.206426,
+      "name": "Villa Marcello",
+      "facility": [
+        {
+          "type": 1,
+          "id": 1,
+          "name": "privata"
+        }
+      ],
+      "checkout": null,
+      "checkin": null,
+      "address": "asd asd",
+      "rank": 0,
+      "contactemail": "marcello.roehrssen1006@gmail.com",
+      "phone": "081 5601 8477",
+      "assignedname": "asd asd",
+      "policy": [
+        {
+          "type": 0,
+          "id": 1,
+          "name": "Animali ammessi"
+        }
+      ],
+      "photo": null,
+      "owner": {
+        "city": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "region": {
+            "country": {
+              "prefix": "it",
+              "id": 29,
+              "name": "Italia"
+            },
+            "id": 508,
+            "name": "Piemonte - Asti"
+          },
+          "id": 40907,
+          "name": "Asti"
+        },
+        "surname": "asd",
+        "name": "asd",
+        "id": 196654,
+        "role": "owner",
+        "address": "asd asd",
+        "active": true,
+        "email": "marcello.roehrssen1006@gmail.com"
+      },
+      "latitude": 44.900753,
+      "type": "bedandbreakfast",
+      "id": "5d809ea82c6c78be9d25bd39646b57d9",
+      "description": "dsa"
+    },
+    {
+      "city": {
+        "country": {
+          "prefix": "it",
+          "id": 29,
+          "name": "Italia"
+        },
+        "region": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "id": 508,
+          "name": "Piemonte - Asti"
+        },
+        "id": 40907,
+        "name": "Asti"
+      },
+      "longitude": 8.206426,
+      "name": "asd",
+      "facility": [
+        {
+          "type": 1,
+          "id": 1,
+          "name": "privata"
+        }
+      ],
+      "checkout": null,
+      "checkin": null,
+      "address": "asd asd",
+      "rank": 0,
+      "contactemail": "marcello.roehrssen2011@gmail.com",
+      "phone": "081 5601 8477",
+      "assignedname": "asd asd",
+      "policy": [
+        {
+          "type": 0,
+          "id": 1,
+          "name": "Animali ammessi"
+        }
+      ],
+      "photo": null,
+      "owner": {
+        "city": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "region": {
+            "country": {
+              "prefix": "it",
+              "id": 29,
+              "name": "Italia"
+            },
+            "id": 508,
+            "name": "Piemonte - Asti"
+          },
+          "id": 40907,
+          "name": "Asti"
+        },
+        "surname": "asd",
+        "name": "asd1",
+        "id": 196667,
+        "role": "owner",
+        "address": "asd asd",
+        "active": true,
+        "email": "marcello.roehrssen2011@gmail.com"
+      },
+      "latitude": 44.900753,
+      "type": "bedandbreakfast",
+      "id": "ea80f147e3ba96e0ad454a3eedd7a816",
+      "description": "asd"
+    }
+  ]
+}
+
 
 GET /search/byids
 < 200
