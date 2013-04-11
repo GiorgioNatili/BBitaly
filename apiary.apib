@@ -8880,10 +8880,51 @@ GET /owner{?id}
 }
 
 
+Inserisce un nuovo *owner* all'interno del sistema.
+
+ * *bbname*: nome dell'_owner_
+ * *surname*: cognome dell'_owner_
+ * *password*: la password dell'_owner_ che verrà creato. Provvederà il sistema alla criptazione prima dell'inserimento nella base dati.
+ * *phonenumber*: il numero di telefono dell'_owner_
+ * *email*: l'indirizzo e-mail dell'owner
+ * *address*: l'indirizzo dell'_owner_
+ * *admLev1*: l'identificativo numerico che rappresenta la City di appartenenza dell'_owner_
 
 POST /owner
 < 200
 < Content-Type: application/json
+{
+  "data": {
+    "active": true,
+    "address": "sono_fatti_miei",
+    "city": {
+      "country": {
+        "id": 3,
+        "name": "Azerbaijan",
+        "prefix": null
+      },
+      "id": 1,
+      "name": "Agdam",
+      "region": {
+        "country": {
+          "id": 3,
+          "name": "Azerbaijan",
+          "prefix": null
+        },
+        "id": 1,
+        "name": "Azerbaijan"
+      }
+    },
+    "email": "prima@prova-nuova.it",
+    "id": 360448,
+    "name": "prova",
+    "role": "owner",
+    "surname": "ancora"
+  },
+  "errors": []
+}
+
+
 
 POST /owner/update
 < 200
