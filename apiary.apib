@@ -475,8 +475,10 @@ GET /book/byAccomodation
 < 200
 < Content-Type: application/json
 
-Estrare una prenotazione utilizzando come criterio di ricerca una *room*
-GET /book/byRoom
+Estrare una prenotazione utilizzando come criterio di ricerca una *room*.
+
+L'informazione attualmente restituita ha dimensioni tali (circa 22MB di JSON minificato) per cui la fase di documentazione della stessa verrà rimandata ad una fase successiva.
+GET /book/byRoom{?rid}
 < 200
 < Content-Type: application/json
 
