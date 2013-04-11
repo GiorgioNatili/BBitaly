@@ -9064,9 +9064,24 @@ POST /user/update
 
 
 Cancella ua specifica utenza
-POST /user/delete
+
+ * *id*: l'identificativo numerico dell'utenza da rimuovere
+
+La cancellazione non rimuove l'utenza dalla banca dati ma si limita a marcarla come deleted.
+POST /user/delete{?id}
 < 200
 < Content-Type: application/json
+{
+  "data": {
+    "email": "marco@prova.com",
+    "id": 360449,
+    "name": "Marco",
+    "role": "user",
+    "surname": "Moscaritolo"
+  },
+  "errors": []
+}
+
 
 Attiva una specifica utenza.
 POST /user/activate
