@@ -8925,14 +8925,24 @@ POST /owner
 }
 
 
-
 POST /owner/update
 < 200
 < Content-Type: application/json
 
-POST /owner/delete
+
+Cancella un _owner_dal sistema. La cancellazione non elimina l'informazione dal database ma la flagga come cancellata.
+
+ * *id*: l'identificativo numerico dell'_owner_
+
+Attualmente il sistema riporta un errore:
+
+    Could not execute JDBC batch update; SQL [UPDATE owner SET deleted = true WHERE id = ?]; nested exception is org.hibernate.exception.SQLGrammarException: Could not execute JDBC batch update
+
+il che fa presumere che l'operazione non sia ancora completamente implementata.
+POST /owner/delete{?id}
 < 200
 < Content-Type: application/json
+
 
 -- Authorization --
 
