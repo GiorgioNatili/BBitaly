@@ -8925,9 +8925,51 @@ POST /owner
 }
 
 
+Permette l'aggiornamento di un *owner*:
+
+ * *bbname*: nome dell'_owner_
+ * *surname*: cognome dell'_owner_
+ * *password*: la password dell'_owner_ che verrà creato. Provvederà il sistema alla criptazione prima dell'inserimento nella base dati. NB: la password è criptata in SHA1 senza l'utilizzo di SALT.
+ * *phonenumber*: il numero di telefono dell'_owner_
+ * *email*: l'indirizzo e-mail dell'owner
+ * *address*: l'indirizzo dell'_owner_
+ * *admLev1*: l'identificativo numerico che rappresenta la City di appartenenza dell'_owner_
+
+    Attualmente se nell'aggiornamento non viene modificata la mail da un errore di utenza duplicata nonostante sia un update, quindi per far si che l'update funzioni è necessario procedere con la modifica della mail
+
 POST /owner/update
 < 200
 < Content-Type: application/json
+{
+  "errors": [],
+  "data": {
+    "city": {
+      "country": {
+        "prefix": null,
+        "id": 3,
+        "name": "Azerbaijan"
+      },
+      "region": {
+        "country": {
+          "prefix": null,
+          "id": 3,
+          "name": "Azerbaijan"
+        },
+        "id": 1,
+        "name": "Azerbaijan"
+      },
+      "id": 1,
+      "name": "Agdam"
+    },
+    "surname": "ancora_cambiata",
+    "name": "prova_cambiata",
+    "id": 360448,
+    "role": "owner",
+    "address": "sono_fatti_miei",
+    "active": true,
+    "email": "prima@prova-altra.it"
+  }
+}
 
 
 Cancella un _owner_dal sistema. La cancellazione non elimina l'informazione dal database ma la flagga come cancellata.
