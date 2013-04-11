@@ -9631,9 +9631,395 @@ GET /search/bycity
 
 Ricerca in funzione della regione.
 
+ * *id*: identificativo numerico della regione.
+ * *start*: data d'inizio del range in cui cercare. Può non essere presente.
+ * *end*: data di fine del range in cui cercare. Può non essere presente.
+
+Attualmente le date non sono gestite, quindi se impostate vengono ritornati java nel casting di oggetti.
 GET /search/byregion
 < 200
 < Content-Type: application/json
+{
+  "errors": [],
+  "data": [
+    {
+      "city": {
+        "country": {
+          "prefix": "it",
+          "id": 29,
+          "name": "Italia"
+        },
+        "region": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "id": 509,
+          "name": "Piemonte - Biella"
+        },
+        "id": 41022,
+        "name": "Andorno Micca"
+      },
+      "longitude": 7.963122,
+      "name": "asd",
+      "facility": [
+        {
+          "type": 1,
+          "id": 1,
+          "name": "privata"
+        }
+      ],
+      "checkout": null,
+      "checkin": null,
+      "address": "sdf",
+      "rank": 0,
+      "contactemail": "asd@asd5.it",
+      "phone": "asd",
+      "assignedname": "asd",
+      "policy": [
+        {
+          "type": 0,
+          "id": 1,
+          "name": "Animali ammessi"
+        }
+      ],
+      "photo": null,
+      "owner": {
+        "city": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "region": {
+            "country": {
+              "prefix": "it",
+              "id": 29,
+              "name": "Italia"
+            },
+            "id": 508,
+            "name": "Piemonte - Asti"
+          },
+          "id": 40906,
+          "name": "Aramengo"
+        },
+        "surname": "asd",
+        "name": "asd",
+        "id": 163863,
+        "role": "owner",
+        "address": "asd",
+        "active": true,
+        "email": "asd@asd1.it"
+      },
+      "latitude": 45.65265,
+      "type": "bedandbreakfast",
+      "id": "34c7dfc594742f60a70c8da10e9b1ed7",
+      "description": "qwe"
+    },
+    {
+      "city": {
+        "country": {
+          "prefix": "it",
+          "id": 29,
+          "name": "Italia"
+        },
+        "region": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "id": 509,
+          "name": "Piemonte - Biella"
+        },
+        "id": 41022,
+        "name": "Andorno Micca"
+      },
+      "longitude": 7.963122,
+      "name": "asd",
+      "facility": [
+        {
+          "type": 1,
+          "id": 1,
+          "name": "privata"
+        }
+      ],
+      "checkout": null,
+      "checkin": null,
+      "address": "sdf",
+      "rank": 0,
+      "contactemail": "asd@asd5.it",
+      "phone": "asd",
+      "assignedname": "asd",
+      "policy": [
+        {
+          "type": 0,
+          "id": 1,
+          "name": "Animali ammessi"
+        }
+      ],
+      "photo": null,
+      "owner": {
+        "city": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "region": {
+            "country": {
+              "prefix": "it",
+              "id": 29,
+              "name": "Italia"
+            },
+            "id": 508,
+            "name": "Piemonte - Asti"
+          },
+          "id": 40906,
+          "name": "Aramengo"
+        },
+        "surname": "asd",
+        "name": "asd",
+        "id": 163863,
+        "role": "owner",
+        "address": "asd",
+        "active": true,
+        "email": "asd@asd1.it"
+      },
+      "latitude": 45.65265,
+      "type": "bedandbreakfast",
+      "id": "34c7dfc594742f60a70c8da10e9b1ed7",
+      "description": "qwe"
+    },
+    {
+      "city": {
+        "country": {
+          "prefix": "it",
+          "id": 29,
+          "name": "Italia"
+        },
+        "region": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "id": 509,
+          "name": "Piemonte - Biella"
+        },
+        "id": 41024,
+        "name": "Biella"
+      },
+      "longitude": 8.05834,
+      "name": "asd",
+      "facility": [
+        {
+          "type": 1,
+          "id": 1,
+          "name": "privata"
+        }
+      ],
+      "checkout": null,
+      "checkin": null,
+      "address": "via le mani dal naso 80128",
+      "rank": 0,
+      "contactemail": "asdffdfsfdedf@asddfgs.iouiiy",
+      "phone": "081 5601 8477",
+      "assignedname": "S asd",
+      "policy": [
+        {
+          "type": 0,
+          "id": 1,
+          "name": "Animali ammessi"
+        }
+      ],
+      "photo": null,
+      "owner": {
+        "city": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "region": {
+            "country": {
+              "prefix": "it",
+              "id": 29,
+              "name": "Italia"
+            },
+            "id": 509,
+            "name": "Piemonte - Biella"
+          },
+          "id": 41024,
+          "name": "Biella"
+        },
+        "surname": "asd",
+        "name": "S",
+        "id": 196647,
+        "role": "owner",
+        "address": "via le mani dal naso 80128",
+        "active": true,
+        "email": "asdffdfsfdedf@asddfgs.iouiiy"
+      },
+      "latitude": 45.562885,
+      "type": "bedandbreakfast",
+      "id": "19a8d5f40bf411d724f53c375eda952f",
+      "description": "ASD"
+    },
+    {
+      "city": {
+        "country": {
+          "prefix": "it",
+          "id": 29,
+          "name": "Italia"
+        },
+        "region": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "id": 509,
+          "name": "Piemonte - Biella"
+        },
+        "id": 41024,
+        "name": "Biella"
+      },
+      "longitude": 8.05834,
+      "name": "asd",
+      "facility": [
+        {
+          "type": 1,
+          "id": 1,
+          "name": "privata"
+        }
+      ],
+      "checkout": null,
+      "checkin": null,
+      "address": "via le mani dal naso 80128",
+      "rank": 0,
+      "contactemail": "asdffdfsfdedf@asddfgs.iouiiy",
+      "phone": "081 5601 8477",
+      "assignedname": "S asd",
+      "policy": [
+        {
+          "type": 0,
+          "id": 1,
+          "name": "Animali ammessi"
+        }
+      ],
+      "photo": null,
+      "owner": {
+        "city": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "region": {
+            "country": {
+              "prefix": "it",
+              "id": 29,
+              "name": "Italia"
+            },
+            "id": 509,
+            "name": "Piemonte - Biella"
+          },
+          "id": 41024,
+          "name": "Biella"
+        },
+        "surname": "asd",
+        "name": "S",
+        "id": 196647,
+        "role": "owner",
+        "address": "via le mani dal naso 80128",
+        "active": true,
+        "email": "asdffdfsfdedf@asddfgs.iouiiy"
+      },
+      "latitude": 45.562885,
+      "type": "bedandbreakfast",
+      "id": "19a8d5f40bf411d724f53c375eda952f",
+      "description": "ASD"
+    },
+    {
+      "city": {
+        "country": {
+          "prefix": "it",
+          "id": 29,
+          "name": "Italia"
+        },
+        "region": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "id": 509,
+          "name": "Piemonte - Biella"
+        },
+        "id": 41024,
+        "name": "Biella"
+      },
+      "longitude": 8.05834,
+      "name": "asd",
+      "facility": [
+        {
+          "type": 1,
+          "id": 1,
+          "name": "privata"
+        }
+      ],
+      "checkout": null,
+      "checkin": null,
+      "address": "asd asd",
+      "rank": 0,
+      "contactemail": "marcello.roehrssen2017@gmail.com",
+      "phone": "081 5601 8477",
+      "assignedname": "asd asd",
+      "policy": [
+        {
+          "type": 0,
+          "id": 1,
+          "name": "Animali ammessi"
+        }
+      ],
+      "photo": null,
+      "owner": {
+        "city": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "region": {
+            "country": {
+              "prefix": "it",
+              "id": 29,
+              "name": "Italia"
+            },
+            "id": 509,
+            "name": "Piemonte - Biella"
+          },
+          "id": 41024,
+          "name": "Biella"
+        },
+        "surname": "asd",
+        "name": "asd1",
+        "id": 196673,
+        "role": "owner",
+        "address": "asd asd",
+        "active": true,
+        "email": "marcello.roehrssen2017@gmail.com"
+      },
+      "latitude": 45.562885,
+      "type": "bedandbreakfast",
+      "id": "1a7fa0d0c3b2371341f05b76e89d80a6",
+      "description": "asd"
+    }
+  ]
+}
+
 
 GET /search/bypoi
 < 200
