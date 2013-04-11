@@ -9084,9 +9084,22 @@ POST /user/delete{?id}
 
 
 Attiva una specifica utenza.
-POST /user/activate
+
+ * *id*: l'identificativo numerico dell'utenza da rimuovere
+
+POST /user/activate{?id}
 < 200
 < Content-Type: application/json
+{
+  "data": {
+    "email": "marco@prova.com",
+    "id": 360449,
+    "name": "Marco",
+    "role": "user",
+    "surname": "Moscaritolo"
+  },
+  "errors": []
+}
 
 
 -- Information definition --
