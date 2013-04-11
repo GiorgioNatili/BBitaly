@@ -9309,7 +9309,7 @@ Estrae i risultati della ricerca in base ad una stringa di ricerca specificata.
  * *end*: data di fine del range in cui cercare. Può non essere presente.
 
 *Broken API*
-GET /search/semantic
+GET /search/semantic{?name,start,end}
 < 200
 < Content-Type: application/json
 
@@ -9321,7 +9321,7 @@ Ricerca in funzione della città.
  * *end*: data di fine del range in cui cercare. Può non essere presente.
 
 Attualmente le date non sono gestite, quindi se impostate vengono ritornati java nel casting di oggetti.
-GET /search/bycity
+GET /search/bycity{?id,start,end}
 < 200
 < Content-Type: application/json
 {
@@ -9638,7 +9638,7 @@ Ricerca in funzione della regione.
  * *end*: data di fine del range in cui cercare. Può non essere presente.
 
 Attualmente le date non sono gestite, quindi se impostate vengono ritornati java nel casting di oggetti.
-GET /search/byregion
+GET /search/byregion{?id,start,end}
 < 200
 < Content-Type: application/json
 {
@@ -10031,7 +10031,7 @@ Ricerca in funzione di un PoI.
  * *radius*: Il raggio di ricerca impostato.
 
 Attualmente le date non sono gestite, quindi se impostate vengono ritornati java nel casting di oggetti.
-GET /search/bypoi
+GET /search/bypoi{?id,start,end,radius}
 < 200
 < Content-Type: application/json
 {
@@ -10200,7 +10200,7 @@ Ricerca in funzione di coordinate geografiche.
  * *radius*: Il raggio di ricerca impostato.
 
 Attualmente le date non sono gestite, quindi se impostate vengono ritornati java nel casting di oggetti.
-GET /search/bycoords
+GET /search/bycoords{?latitude,longitude,start,end,radius}
 < 200
 < Content-Type: application/json
 {
