@@ -9041,9 +9041,27 @@ POST /user
 
 
 Aggiorna una specifica utenza.
+
+ * *id*: l'identificativo numerico dell'utenza da aggiornare
+ * *name*: il nome dell'utente che si sta creando
+ * *surname*: il cognome dell'utente che si sta creando
+ * *email*: l'indirizzo e-mail dell'utente che si sta creando
+ * *password*: la password dell'utente che si sta creando. Deve essere compresa tra 8 e 18 caratteri.
+
 POST /user/update
 < 200
 < Content-Type: application/json
+{
+  "errors": [],
+  "data": {
+    "email": "marco@prova.com",
+    "role": "user",
+    "surname": "Moscaritolo",
+    "id": 360449,
+    "name": "Marco"
+  }
+}
+
 
 Cancella ua specifica utenza
 POST /user/delete
