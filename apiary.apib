@@ -468,10 +468,501 @@ GET /book{?id}
 }
 
 
-Crea una prenotazione
+Inserisce una prenotazione all'interno del sistema.
+
+ * *id*: l'identificativo alfanumerico del _B&B_ di cui si sta facendo la prenotazione.
+ * *rid*: l'identificativo numerico della _room_
+ * *uid*: l'identificativo numerico dello _user_
+ * *dayStart*: la cifra del giorno di inizio prenotazione
+ * *monthStart*: la cifra del mese di inizio prenotazione
+ * *yearStart*: la cifra dell'anno di inizio prenotazione
+ * *dayEnd*: la cifra del giorno di fine prenotazione
+ * *monthEnd*: la cifra del mese di fine prenotazione
+ * *yearEnd*: la cifra dell'anno di fine prenotazione
+ * *number*: il numero di ospiti della prenotazione
+
 POST /book
 < 200
 < Content-Type: application/json
+{
+  "errors": [],
+  "data": {
+    "dateStart": "Fri Feb 01 00:00:00 CET 2013",
+    "room": {
+      "photo": null,
+      "placeDescription": "asd",
+      "longitude": null,
+      "maxCapacity": 10,
+      "bedBrekfast": {
+        "city": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "region": {
+            "country": {
+              "prefix": "it",
+              "id": 29,
+              "name": "Italia"
+            },
+            "id": 568,
+            "name": "Lazio - Roma"
+          },
+          "id": 45572,
+          "name": "Arcinazzo Romano"
+        },
+        "longitude": 13.116371,
+        "name": "Lussuria",
+        "facility": [
+          {
+            "type": 3,
+            "id": 21,
+            "name": "1 W.C. indipendente"
+          },
+          {
+            "type": 3,
+            "id": 19,
+            "name": "4 bagno (doccia)"
+          },
+          {
+            "type": 3,
+            "id": 11,
+            "name": "1 bagno (vasca)"
+          },
+          {
+            "type": 3,
+            "id": 15,
+            "name": "+4 bagno (vasca)"
+          },
+          {
+            "type": 3,
+            "id": 12,
+            "name": "2 bagno (vasca)"
+          },
+          {
+            "type": 3,
+            "id": 18,
+            "name": "3 bagno (doccia)"
+          },
+          {
+            "type": 3,
+            "id": 14,
+            "name": "4 bagno (vasca)"
+          },
+          {
+            "type": 3,
+            "id": 10,
+            "name": "Studio"
+          }
+        ],
+        "checkout": null,
+        "checkin": null,
+        "address": "Via Ostiense 393",
+        "rank": 0,
+        "contactemail": "marcello.roehrssen@gmail.com",
+        "phone": "3289220387",
+        "assignedname": "Marcello Roehrssen di Cammerata",
+        "policy": [
+          {
+            "type": 1,
+            "id": 6,
+            "name": "Alloggio inadatto per bambini piccoli"
+          },
+          {
+            "type": 1,
+            "id": 5,
+            "name": "Non si accettano animali domestici"
+          },
+          {
+            "type": 0,
+            "id": 1,
+            "name": "Animali ammessi"
+          }
+        ],
+        "photo": "http://cdn.bedandbreakfastinitaly.com:8090/static/cover/bb/c78e5b1993d8f4bbb1a21d7af80c448c_bedandbreakfast_Lussuria.jpg",
+        "owner": {
+          "city": {
+            "country": {
+              "prefix": "it",
+              "id": 29,
+              "name": "Italia"
+            },
+            "region": {
+              "country": {
+                "prefix": "it",
+                "id": 29,
+                "name": "Italia"
+              },
+              "id": 579,
+              "name": "Campania - Napoli"
+            },
+            "id": 46434,
+            "name": "Napoli"
+          },
+          "surname": "Roehrssen di Cammerata",
+          "name": "Marcello",
+          "id": 1,
+          "role": "owner",
+          "address": "Via San Giacomo dei capri",
+          "active": true,
+          "email": "marcello.roehrssen@gmail.com"
+        },
+        "latitude": 41.87865,
+        "type": "bedandbreakfast",
+        "id": "c78e5b1993d8f4bbb1a21d7af80c448c",
+        "description": "Il B&amp;B &quot;La Terrazza&quot; si trova in un edificio storico di Napoli, da poco ristrutturato. E' situato sulla collina di Posillipo, famosa per i suoi colori ed il mix di odori che provengono dal mare, dal tufo e dalla natura incontaminata che la circonda. Vanta di una vista mozzafiato su tutto il golfo di Napoli, inoltre la struttura &Atilde;&uml; molto silenziosa, poich&Atilde;&copy; lontana dal traffico urbano ed immersa nel verde, dunque &Atilde;&uml; davvero il posto giusto per passare un piacevole soggiorno a Napoli, in  una struttura spaziosa, silenziosa ed accogliente."
+      },
+      "amount": 1,
+      "minCapacity": 1,
+      "generalDescription": "asd",
+      "address": null,
+      "latitude": null,
+      "defaultPrice": 999.0,
+      "shortDescription": "asd",
+      "id": 12
+    },
+    "price": 8991.0,
+    "bedBreakfast": {
+      "city": {
+        "country": {
+          "prefix": "it",
+          "id": 29,
+          "name": "Italia"
+        },
+        "region": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "id": 579,
+          "name": "Campania - Napoli"
+        },
+        "id": 46434,
+        "name": "Napoli"
+      },
+      "longitude": 14.238639,
+      "name": "gabriele's house",
+      "facility": [
+        {
+          "type": 8,
+          "id": 105,
+          "name": "Congelatore"
+        },
+        {
+          "type": 8,
+          "id": 110,
+          "name": "Frigorifero"
+        },
+        {
+          "type": 8,
+          "id": 106,
+          "name": "Cucina elettrica / gas"
+        },
+        {
+          "type": 1,
+          "id": 97,
+          "name": "interna"
+        },
+        {
+          "type": 12,
+          "id": 228,
+          "name": "Parcheggio su strada"
+        },
+        {
+          "type": 12,
+          "id": 144,
+          "name": "Posto auto privato"
+        },
+        {
+          "type": 3,
+          "id": 23,
+          "name": "3 W.C. indipendente"
+        },
+        {
+          "type": 11,
+          "id": 209,
+          "name": "Tavolo da biliardo"
+        },
+        {
+          "type": 9,
+          "id": 283,
+          "name": "SPA"
+        },
+        {
+          "type": 3,
+          "id": 245,
+          "name": "Doccia vapore"
+        },
+        {
+          "type": 7,
+          "id": 99,
+          "name": "Allarme"
+        },
+        {
+          "type": 8,
+          "id": 136,
+          "name": "Cantina"
+        },
+        {
+          "type": 1,
+          "id": 1,
+          "name": "privata"
+        },
+        {
+          "type": 8,
+          "id": 141,
+          "name": "Ferro da stiro"
+        },
+        {
+          "type": 3,
+          "id": 17,
+          "name": "2 bagno (doccia)"
+        },
+        {
+          "type": 9,
+          "id": 181,
+          "name": "Internet ADSL"
+        },
+        {
+          "type": 8,
+          "id": 151,
+          "name": "Stufa a legna / carbone"
+        },
+        {
+          "type": 11,
+          "id": 220,
+          "name": "radio"
+        },
+        {
+          "type": 7,
+          "id": 98,
+          "name": "Cancello / Recinzione"
+        },
+        {
+          "type": 8,
+          "id": 126,
+          "name": "Aria condizionata"
+        },
+        {
+          "type": 3,
+          "id": 11,
+          "name": "1 bagno (vasca)"
+        },
+        {
+          "type": 8,
+          "id": 107,
+          "name": "Placca di cottura"
+        },
+        {
+          "type": 12,
+          "id": 281,
+          "name": "garage convenzionato"
+        },
+        {
+          "type": 8,
+          "id": 149,
+          "name": "Ventilatore"
+        },
+        {
+          "type": 4,
+          "id": 43,
+          "name": "2 Divano letto (2 piazze)"
+        },
+        {
+          "type": 3,
+          "id": 26,
+          "name": "Terrazza"
+        },
+        {
+          "type": 8,
+          "id": 142,
+          "name": "Asse da stiro"
+        },
+        {
+          "type": 1,
+          "id": 96,
+          "name": "coperta"
+        },
+        {
+          "type": 3,
+          "id": 248,
+          "name": "Vasca riscaldata esterna"
+        },
+        {
+          "type": 14,
+          "id": 250,
+          "name": "Computer Macintosh"
+        },
+        {
+          "type": 4,
+          "id": 279,
+          "name": "+1 divano letto singolo"
+        },
+        {
+          "type": 8,
+          "id": 121,
+          "name": "Sauna"
+        },
+        {
+          "type": 4,
+          "id": 49,
+          "name": "culla"
+        },
+        {
+          "type": 9,
+          "id": 182,
+          "name": "Internet Wi-Fi"
+        },
+        {
+          "type": 8,
+          "id": 108,
+          "name": "Forno"
+        },
+        {
+          "type": 11,
+          "id": 219,
+          "name": "fonoteca"
+        },
+        {
+          "type": 3,
+          "id": 10,
+          "name": "Studio"
+        },
+        {
+          "type": 8,
+          "id": 109,
+          "name": "Forno a microonde"
+        },
+        {
+          "type": 4,
+          "id": 31,
+          "name": "+2 letto (matrimoniale)"
+        },
+        {
+          "type": 8,
+          "id": 111,
+          "name": "Fridge freezer"
+        },
+        {
+          "type": 8,
+          "id": 115,
+          "name": "Asciugabiancheria"
+        },
+        {
+          "type": 9,
+          "id": 273,
+          "name": "Legna da ardere"
+        },
+        {
+          "type": 11,
+          "id": 213,
+          "name": "Tavolo da ping-pong"
+        }
+      ],
+      "checkout": null,
+      "checkin": null,
+      "address": "via dei mille 47",
+      "rank": 0,
+      "contactemail": "lino@lino.lino",
+      "phone": "0815569021",
+      "assignedname": "gabriele cicco",
+      "policy": [
+        {
+          "type": 1,
+          "id": 7,
+          "name": "Alloggio per non fumatori"
+        },
+        {
+          "type": 0,
+          "id": 1,
+          "name": "Animali ammessi"
+        },
+        {
+          "type": 1,
+          "id": 11,
+          "name": "Acqua non potabile"
+        },
+        {
+          "type": 1,
+          "id": 13,
+          "name": "Piscina chiusa secondo la stagione"
+        },
+        {
+          "type": 1,
+          "id": 15,
+          "name": "Localit\u00e0 per naturisti"
+        },
+        {
+          "type": 2,
+          "id": 3,
+          "name": "Fumatori"
+        },
+        {
+          "type": 1,
+          "id": 9,
+          "name": "Proprietario residente in prossimit\u00e0 dell'alloggio"
+        },
+        {
+          "type": 1,
+          "id": 5,
+          "name": "Non si accettano animali domestici"
+        }
+      ],
+      "photo": "http://cdn.bedandbreakfastinitaly.com:8090/static/cover/bb/608a2a2c84c71b73ec83bb9b7feca178_bedandbreakfast_gabriele's_house_.jpg",
+      "owner": {
+        "city": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "region": {
+            "country": {
+              "prefix": "it",
+              "id": 29,
+              "name": "Italia"
+            },
+            "id": 579,
+            "name": "Campania - Napoli"
+          },
+          "id": 46434,
+          "name": "Napoli"
+        },
+        "surname": "cicco",
+        "name": "gabriele",
+        "id": 262145,
+        "role": "owner",
+        "address": "via le mani dal naso",
+        "active": true,
+        "email": "lino@lino.lino"
+      },
+      "latitude": 40.836597,
+      "type": "bedandbreakfast",
+      "id": "608a2a2c84c71b73ec83bb9b7feca178",
+      "description": "Delizioso bed &amp; breakfast a Napoli, vicino al Lungomare Caracciolo. Panoramico, silenzioso, arredato con gusto e con calore , accogliente e confortevole. Il calore di una casa , il confort di un hotel. Atmosfera conviviale, per chi vuole sentirsi a casa lontano da casa. Vicinissimo alla maggior parte dei siti turistici che sono raggiungibili a piedi con una bellissima passeggiata sul Lungomare, o con i mezzi : metro e stazione di Mergellina a cinque minuti. Bus sotto casa che arriva in piazza Municipio. Tutte le camere con bagno privato. Internet e wifi gratuito e libero Computer a disposizione nella sala comune."
+    },
+    "dateEnd": "Sun Feb 10 00:00:00 CET 2013",
+    "user": {
+      "email": "marcello1000@gmail.com",
+      "role": "user",
+      "surname": "Roehrssen",
+      "id": 229409,
+      "name": "Marcello"
+    },
+    "bookDetail": {
+      "roomName": "asd",
+      "policyList": "",
+      "accomodationName": "gabriele's house ",
+      "id": 9,
+      "facilityList": ""
+    },
+    "id": 9
+  }
+}
+
+
 
 Estrare una prenotazione utilizzando come criterio di ricerca una *accomodation*
 GET /book/byAccomodation
