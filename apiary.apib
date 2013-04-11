@@ -13,6 +13,9 @@ Gestione delle prenotazioni.
 --
 
 Riporta le informazioni su di una prenotazione effettuata.
+
+ * *id*: l'identificativo numerico della _book_ da estrarre.
+
 GET /book{?id}
 < 200
 < Content-Type: application/json
@@ -477,12 +480,17 @@ GET /book/byAccomodation
 
 Estrare una prenotazione utilizzando come criterio di ricerca una *room*.
 
+ * *rid*: l'identificativo numerico della _room_ di cui viene effettuata la ricerca.
+
 L'informazione attualmente restituita ha dimensioni tali (circa 22MB di JSON minificato) per cui la fase di documentazione della stessa verrà rimandata ad una fase successiva.
 GET /book/byRoom{?rid}
 < 200
 < Content-Type: application/json
 
 Estrare una prenotazione utilizzando come criterio di ricerca un *user*
+
+ * *uid*: l'identificativo numerico dello _user_ di cui viene effettuata la ricerca.
+
 GET /book/byUser{?uid}
 < 200
 < Content-Type: application/json
@@ -7071,6 +7079,11 @@ GET /book/byUser{?uid}
 
 
 Controlla la disponibilità di una *room* nell'intervallo specificato.
+
+ * *id*: l'identificativo numerico della _room_ su viene effettuato il controllo.
+ * *start*: la dati di inizio prenotazione nel formato YYYY-MM-DD
+ * *end*: la dati di fine prenotazione nel formato YYYY-MM-DD
+
 GET /book/check{?id,start,end}
 < 200
 < Content-Type: application/json
@@ -7091,6 +7104,9 @@ POST /book/delete
 
 
 Attiva una prenotazione
+
+ * *id*: l'identificativo numerico del _book_ di cui deve essere fatta la prenotazione.
+
 POST /book/activate{?id}
 < 200
 < Content-Type: application/json
@@ -7376,6 +7392,9 @@ POST /book/activate{?id}
 -- Owner --
 
 Riporta informazioni sull'*owner* specificato.
+
+ * *id*: l'identificativo numerico dell _owner_ a cui si vuole accedere.
+
 GET /owner{?id}
 < 200
 < Content-Type: application/json
@@ -7437,6 +7456,9 @@ GET /auth/user
 -- User --
 
 Ottiene ottiene informazioni sull'utente corrente.
+
+ * *id*: l'identificativo numerico dello _user_ a cui si vuole accedere.
+
 GET /user{?id}
 < 200
 < Content-Type: application/json
@@ -7574,6 +7596,9 @@ GET /location/region
 
 
 Riporta l'elenco delle città appartenti ad una *region* specificata
+
+ * *regionid*: l'identificativo numerico della _region_ usata per limitare i risultati di ricerca.
+
 GET /location/city{?regionid}
 < 200
 < Content-Type: application/json
@@ -7696,6 +7721,9 @@ GET /search/byids
 -- Bed and Breakfast --
 
 Estrae le informazioni disponibili sul Bad & Breakfast. L'ID è un hash alfanumerico identificativo del punto.
+
+ * *id*: l'identificativo alfanumerico di cui si vuole effettuare l'estrazione delle informazioni.
+
 GET /bb{?id}
 < 200
 < Content-Type: application/json
@@ -7823,10 +7851,14 @@ GET /bb/byowner
 
 Elenca tutti i B&B indicando il numero di elementi richiesti e l'offset
 
-Attualmente sembra non funzioni correttamente
+ * *limit*: il valore numerico intero che rappresenta il numero di risultati che devono esere forniti.
+ * *offset*: il valore numerico intero che rappresenta la posizione da cui effettuare l'estrazione dei risultati.
+
+*Attualmente sembra non funzioni correttamente*
 GET /bb/all{?limit,offset}
 < 200
 < Content-Type: application/json
+
 
 Indica il numero di B&B presenti all'interno del sistema
 GET /bb/allcount
