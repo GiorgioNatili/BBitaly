@@ -10435,9 +10435,169 @@ GET /search/bycoords
 }
 
 
-GET /search/byids
+Estrae l'elenco dei B&B con gli id forniti
+
+ * *ids*: elenco degli identificativi alfanumerici dei _B&B_ separati da virgola.
+
+GET /search/byids{?ids}
 < 200
 < Content-Type: application/json
+{
+  "errors": [],
+  "data": [
+    {
+      "city": {
+        "country": {
+          "prefix": "it",
+          "id": 29,
+          "name": "Italia"
+        },
+        "region": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "id": 508,
+          "name": "Piemonte - Asti"
+        },
+        "id": 40907,
+        "name": "Asti"
+      },
+      "longitude": 8.206426,
+      "name": "Villa Marcello",
+      "facility": [
+        {
+          "type": 1,
+          "id": 1,
+          "name": "privata"
+        }
+      ],
+      "checkout": null,
+      "checkin": null,
+      "address": "asd asd",
+      "rank": 0,
+      "contactemail": "marcello.roehrssen1006@gmail.com",
+      "phone": "081 5601 8477",
+      "assignedname": "asd asd",
+      "policy": [
+        {
+          "type": 0,
+          "id": 1,
+          "name": "Animali ammessi"
+        }
+      ],
+      "photo": null,
+      "owner": {
+        "city": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "region": {
+            "country": {
+              "prefix": "it",
+              "id": 29,
+              "name": "Italia"
+            },
+            "id": 508,
+            "name": "Piemonte - Asti"
+          },
+          "id": 40907,
+          "name": "Asti"
+        },
+        "surname": "asd",
+        "name": "asd",
+        "id": 196654,
+        "role": "owner",
+        "address": "asd asd",
+        "active": true,
+        "email": "marcello.roehrssen1006@gmail.com"
+      },
+      "latitude": 44.900753,
+      "type": "bedandbreakfast",
+      "id": "5d809ea82c6c78be9d25bd39646b57d9",
+      "description": "asd"
+    },
+    {
+      "city": {
+        "country": {
+          "prefix": "it",
+          "id": 29,
+          "name": "Italia"
+        },
+        "region": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "id": 508,
+          "name": "Piemonte - Asti"
+        },
+        "id": 40907,
+        "name": "Asti"
+      },
+      "longitude": 8.206426,
+      "name": "asd",
+      "facility": [
+        {
+          "type": 1,
+          "id": 1,
+          "name": "privata"
+        }
+      ],
+      "checkout": null,
+      "checkin": null,
+      "address": "asd asd",
+      "rank": 0,
+      "contactemail": "marcello.roehrssen2011@gmail.com",
+      "phone": "081 5601 8477",
+      "assignedname": "asd asd",
+      "policy": [
+        {
+          "type": 0,
+          "id": 1,
+          "name": "Animali ammessi"
+        }
+      ],
+      "photo": null,
+      "owner": {
+        "city": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "region": {
+            "country": {
+              "prefix": "it",
+              "id": 29,
+              "name": "Italia"
+            },
+            "id": 508,
+            "name": "Piemonte - Asti"
+          },
+          "id": 40907,
+          "name": "Asti"
+        },
+        "surname": "asd",
+        "name": "asd1",
+        "id": 196667,
+        "role": "owner",
+        "address": "asd asd",
+        "active": true,
+        "email": "marcello.roehrssen2011@gmail.com"
+      },
+      "latitude": 44.900753,
+      "type": "bedandbreakfast",
+      "id": "ea80f147e3ba96e0ad454a3eedd7a816",
+      "description": "asd"
+    }
+  ]
+}
+
 
 -- Bed and Breakfast --
 
@@ -10526,7 +10686,6 @@ GET /bb{?id}
     "description": "asdfghjkl&Atilde;&sup2;&Atilde;&nbsp;&Atilde;&sup2;lkjhgfasdfghjkllkjhgfdsdfghjkl&Atilde;&sup2;lkjhgfsdfghjklkjhgfdsdfghjklkjhgf \r\ndfghjkl&Atilde;&sup2;&Atilde;&nbsp;&Atilde;&sup2;lkjhgfddfghjkl&Atilde;&sup2;\r\nasdfghjkl&Atilde;&sup2;lkjhgfdsasdfghjkl&Atilde;&sup2;\r\nasdfghjkl&Atilde;&sup2;&Atilde;&nbsp;&Atilde;&sup2;lkjhgfdsdfghjkl&Atilde;&sup2;&Atilde;&nbsp;&Atilde;&sup2;lkjhgfdasdfghjkl&Atilde;&sup2;lkjhgfdfghjkl\r\nsdfghjkl&Atilde;&sup2;&Atilde;&nbsp;&Atilde;&sup2;lkjhgfdssdfghjkl&Atilde;&sup2;&Atilde;&nbsp;&Atilde;&sup2;lkjhgfdsdfghjkl&Atilde;&sup2;&Atilde;&nbsp;&Atilde;&sup2;lkjhgfdsdfghj fghjkjhgfdfghjklkjhgfdfghjk yuiooiuyrftyuio&Atilde;&sup2;loiuytrtyuiop&Atilde;&uml;poiuytrtyuopoiuy fghjklkjdfgliuytrtyuioiuytyuioiuyttyuio"
   }
 }
-
 
 
 POST /bb
