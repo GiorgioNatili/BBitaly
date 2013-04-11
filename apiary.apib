@@ -7089,10 +7089,288 @@ POST /book/delete
 < 200
 < Content-Type: application/json
 
+
 Attiva una prenotazione
-POST /book/activate
+POST /book/activate{?id}
 < 200
 < Content-Type: application/json
+{
+  "errors": [],
+  "data": {
+    "dateStart": "2013-01-01",
+    "room": {
+      "photo": null,
+      "placeDescription": "asd",
+      "longitude": null,
+      "maxCapacity": 10,
+      "bedBrekfast": {
+        "city": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "region": {
+            "country": {
+              "prefix": "it",
+              "id": 29,
+              "name": "Italia"
+            },
+            "id": 568,
+            "name": "Lazio - Roma"
+          },
+          "id": 45572,
+          "name": "Arcinazzo Romano"
+        },
+        "longitude": 13.116371,
+        "name": "Lussuria",
+        "facility": [
+          {
+            "type": 3,
+            "id": 18,
+            "name": "3 bagno (doccia)"
+          },
+          {
+            "type": 3,
+            "id": 15,
+            "name": "+4 bagno (vasca)"
+          },
+          {
+            "type": 3,
+            "id": 11,
+            "name": "1 bagno (vasca)"
+          },
+          {
+            "type": 3,
+            "id": 19,
+            "name": "4 bagno (doccia)"
+          },
+          {
+            "type": 3,
+            "id": 10,
+            "name": "Studio"
+          },
+          {
+            "type": 3,
+            "id": 12,
+            "name": "2 bagno (vasca)"
+          },
+          {
+            "type": 3,
+            "id": 21,
+            "name": "1 W.C. indipendente"
+          },
+          {
+            "type": 3,
+            "id": 14,
+            "name": "4 bagno (vasca)"
+          }
+        ],
+        "checkout": null,
+        "checkin": null,
+        "address": "Via Ostiense 393",
+        "rank": 0,
+        "contactemail": "marcello.roehrssen@gmail.com",
+        "phone": "3289220387",
+        "assignedname": "Marcello Roehrssen di Cammerata",
+        "policy": [
+          {
+            "type": 1,
+            "id": 5,
+            "name": "Non si accettano animali domestici"
+          },
+          {
+            "type": 1,
+            "id": 6,
+            "name": "Alloggio inadatto per bambini piccoli"
+          },
+          {
+            "type": 0,
+            "id": 1,
+            "name": "Animali ammessi"
+          }
+        ],
+        "photo": "http://cdn.bedandbreakfastinitaly.com:8090/static/cover/bb/c78e5b1993d8f4bbb1a21d7af80c448c_bedandbreakfast_Lussuria.jpg",
+        "owner": {
+          "city": {
+            "country": {
+              "prefix": "it",
+              "id": 29,
+              "name": "Italia"
+            },
+            "region": {
+              "country": {
+                "prefix": "it",
+                "id": 29,
+                "name": "Italia"
+              },
+              "id": 579,
+              "name": "Campania - Napoli"
+            },
+            "id": 46434,
+            "name": "Napoli"
+          },
+          "surname": "Roehrssen di Cammerata",
+          "name": "Marcello",
+          "id": 1,
+          "role": "owner",
+          "address": "Via San Giacomo dei capri",
+          "active": true,
+          "email": "marcello.roehrssen@gmail.com"
+        },
+        "latitude": 41.87865,
+        "type": "bedandbreakfast",
+        "id": "c78e5b1993d8f4bbb1a21d7af80c448c",
+        "description": "Il B&amp;B &quot;La Terrazza&quot; si trova in un edificio storico di Napoli, da poco ristrutturato. E' situato sulla collina di Posillipo, famosa per i suoi colori ed il mix di odori che provengono dal mare, dal tufo e dalla natura incontaminata che la circonda. Vanta di una vista mozzafiato su tutto il golfo di Napoli, inoltre la struttura &Atilde;&uml; molto silenziosa, poich&Atilde;&copy; lontana dal traffico urbano ed immersa nel verde, dunque &Atilde;&uml; davvero il posto giusto per passare un piacevole soggiorno a Napoli, in  una struttura spaziosa, silenziosa ed accogliente."
+      },
+      "amount": 1,
+      "minCapacity": 1,
+      "generalDescription": "asd",
+      "address": null,
+      "latitude": null,
+      "defaultPrice": 999.0,
+      "shortDescription": "asd",
+      "id": 12
+    },
+    "price": 30969.0,
+    "bedBreakfast": {
+      "city": {
+        "country": {
+          "prefix": "it",
+          "id": 29,
+          "name": "Italia"
+        },
+        "region": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "id": 568,
+          "name": "Lazio - Roma"
+        },
+        "id": 45572,
+        "name": "Arcinazzo Romano"
+      },
+      "longitude": 13.116371,
+      "name": "Lussuria",
+      "facility": [
+        {
+          "type": 3,
+          "id": 18,
+          "name": "3 bagno (doccia)"
+        },
+        {
+          "type": 3,
+          "id": 15,
+          "name": "+4 bagno (vasca)"
+        },
+        {
+          "type": 3,
+          "id": 11,
+          "name": "1 bagno (vasca)"
+        },
+        {
+          "type": 3,
+          "id": 19,
+          "name": "4 bagno (doccia)"
+        },
+        {
+          "type": 3,
+          "id": 10,
+          "name": "Studio"
+        },
+        {
+          "type": 3,
+          "id": 12,
+          "name": "2 bagno (vasca)"
+        },
+        {
+          "type": 3,
+          "id": 21,
+          "name": "1 W.C. indipendente"
+        },
+        {
+          "type": 3,
+          "id": 14,
+          "name": "4 bagno (vasca)"
+        }
+      ],
+      "checkout": null,
+      "checkin": null,
+      "address": "Via Ostiense 393",
+      "rank": 0,
+      "contactemail": "marcello.roehrssen@gmail.com",
+      "phone": "3289220387",
+      "assignedname": "Marcello Roehrssen di Cammerata",
+      "policy": [
+        {
+          "type": 1,
+          "id": 5,
+          "name": "Non si accettano animali domestici"
+        },
+        {
+          "type": 1,
+          "id": 6,
+          "name": "Alloggio inadatto per bambini piccoli"
+        },
+        {
+          "type": 0,
+          "id": 1,
+          "name": "Animali ammessi"
+        }
+      ],
+      "photo": "http://cdn.bedandbreakfastinitaly.com:8090/static/cover/bb/c78e5b1993d8f4bbb1a21d7af80c448c_bedandbreakfast_Lussuria.jpg",
+      "owner": {
+        "city": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "region": {
+            "country": {
+              "prefix": "it",
+              "id": 29,
+              "name": "Italia"
+            },
+            "id": 579,
+            "name": "Campania - Napoli"
+          },
+          "id": 46434,
+          "name": "Napoli"
+        },
+        "surname": "Roehrssen di Cammerata",
+        "name": "Marcello",
+        "id": 1,
+        "role": "owner",
+        "address": "Via San Giacomo dei capri",
+        "active": true,
+        "email": "marcello.roehrssen@gmail.com"
+      },
+      "latitude": 41.87865,
+      "type": "bedandbreakfast",
+      "id": "c78e5b1993d8f4bbb1a21d7af80c448c",
+      "description": "Il B&amp;B &quot;La Terrazza&quot; si trova in un edificio storico di Napoli, da poco ristrutturato. E' situato sulla collina di Posillipo, famosa per i suoi colori ed il mix di odori che provengono dal mare, dal tufo e dalla natura incontaminata che la circonda. Vanta di una vista mozzafiato su tutto il golfo di Napoli, inoltre la struttura &Atilde;&uml; molto silenziosa, poich&Atilde;&copy; lontana dal traffico urbano ed immersa nel verde, dunque &Atilde;&uml; davvero il posto giusto per passare un piacevole soggiorno a Napoli, in  una struttura spaziosa, silenziosa ed accogliente."
+    },
+    "dateEnd": "2013-02-01",
+    "user": {
+      "email": "marcello@gmail.com",
+      "role": "user",
+      "surname": "Roehrssen",
+      "id": 229388,
+      "name": "Marcello"
+    },
+    "bookDetail": {
+      "roomName": "asd",
+      "policyList": "",
+      "accomodationName": "Lussuria",
+      "id": 8,
+      "facilityList": ""
+    },
+    "id": 8
+  }
+}
 
 
 -- Owner --
