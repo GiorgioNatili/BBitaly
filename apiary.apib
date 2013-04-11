@@ -10023,9 +10023,173 @@ GET /search/byregion
 }
 
 
+Ricerca in funzione di un PoI.
+
+ * *id*: identificativo alfanumerico della _location_.
+ * *start*: data d'inizio del range in cui cercare. Può non essere presente.
+ * *end*: data di fine del range in cui cercare. Può non essere presente.
+ * *radius*: Il raggio di ricerca impostato.
+
+Attualmente le date non sono gestite, quindi se impostate vengono ritornati java nel casting di oggetti.
 GET /search/bypoi
 < 200
 < Content-Type: application/json
+{
+  "errors": [],
+  "data": [
+    {
+      "city": {
+        "country": {
+          "prefix": "it",
+          "id": 29,
+          "name": "Italia"
+        },
+        "region": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "id": 590,
+          "name": "Basilicata - Matera"
+        },
+        "id": 47301,
+        "name": "Garaguso"
+      },
+      "longitude": 16.226498,
+      "name": "asd",
+      "facility": [
+        {
+          "type": 3,
+          "id": 10,
+          "name": "Studio"
+        }
+      ],
+      "checkout": null,
+      "checkin": null,
+      "address": "asd",
+      "rank": 0,
+      "contactemail": "myMarcello@asd.as",
+      "phone": "08156018477",
+      "assignedname": "asd asd",
+      "policy": [
+        {
+          "type": 0,
+          "id": 1,
+          "name": "Animali ammessi"
+        }
+      ],
+      "photo": "http://cdn.bedandbreakfastinitaly.com:8090/static/cover/bb/bd31ccc9dbd22ab2da5c4c75b9b6a457_bedandbreakfast_asd.jpg",
+      "owner": {
+        "city": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "region": {
+            "country": {
+              "prefix": "it",
+              "id": 29,
+              "name": "Italia"
+            },
+            "id": 590,
+            "name": "Basilicata - Matera"
+          },
+          "id": 47301,
+          "name": "Garaguso"
+        },
+        "surname": "asd",
+        "name": "asd",
+        "id": 229379,
+        "role": "owner",
+        "address": "asd asd",
+        "active": true,
+        "email": "myMarcello@asd.as"
+      },
+      "latitude": 40.547653,
+      "type": "bedandbreakfast",
+      "id": "bd31ccc9dbd22ab2da5c4c75b9b6a457",
+      "description": "asd"
+    },
+    {
+      "city": {
+        "country": {
+          "prefix": "it",
+          "id": 29,
+          "name": "Italia"
+        },
+        "region": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "id": 590,
+          "name": "Basilicata - Matera"
+        },
+        "id": 47302,
+        "name": "Gorgoglione"
+      },
+      "longitude": 16.1424,
+      "name": "asd",
+      "facility": [
+        {
+          "type": 3,
+          "id": 10,
+          "name": "Studio"
+        }
+      ],
+      "checkout": null,
+      "checkin": null,
+      "address": "asd",
+      "rank": 0,
+      "contactemail": "asd@asd.asd",
+      "phone": "08156018477",
+      "assignedname": "asd asd",
+      "policy": [
+        {
+          "type": 0,
+          "id": 1,
+          "name": "Animali ammessi"
+        }
+      ],
+      "photo": "http://cdn.bedandbreakfastinitaly.com:8090/static/cover/bb/b5e6efa9a16938502c5987aaa41e0b37_bedandbreakfast_asd.jpg",
+      "owner": {
+        "city": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "region": {
+            "country": {
+              "prefix": "it",
+              "id": 29,
+              "name": "Italia"
+            },
+            "id": 590,
+            "name": "Basilicata - Matera"
+          },
+          "id": 47302,
+          "name": "Gorgoglione"
+        },
+        "surname": "asd",
+        "name": "asd",
+        "id": 229378,
+        "role": "owner",
+        "address": "asd asd",
+        "active": true,
+        "email": "asd@asd.asd"
+      },
+      "latitude": 40.39515,
+      "type": "bedandbreakfast",
+      "id": "b5e6efa9a16938502c5987aaa41e0b37",
+      "description": "asd"
+    }
+  ]
+}
+
 
 GET /search/bycoords
 < 200
