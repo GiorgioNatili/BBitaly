@@ -9300,6 +9300,13 @@ GET /health
 
 -- Serch --
 
+Estrae i risultati della ricerca in base ad una stringa di ricerca specificata.
+
+ * *name*: stringa di ricerca.
+ * *start*: data d'inizio del range in cui cercare. Può non essere presente.
+ * *end*: data di fine del range in cui cercare. Può non essere presente.
+
+*Broken API*
 GET /search/semantic
 < 200
 < Content-Type: application/json
