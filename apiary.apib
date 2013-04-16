@@ -11850,18 +11850,331 @@ GET /bb/allcount
 }
 
 
+Indica il numero di *B&B* per l'*owner* specificiato.
 
-GET /bb/countbyonwer
+ * *owner*: l'identificativo univoco dell'owner ddi cui si vuole conoscere il numero di *B&B*
+
+GET /bb/countbyonwer{?ownerid}
 < 200
 < Content-Type: application/json
+{
+  "errors": [],
+  "data": {
+    "count": 1
+  }
+}
 
+
+L'elenco delle policy disponibili per i *B&B*.
 GET /bb/policy
 < 200
 < Content-Type: application/json
+{
+  "errors": [],
+  "data": [
+    {
+      "type": 0,
+      "id": 1,
+      "name": "Animali ammessi"
+    },
+    {
+      "type": 2,
+      "id": 3,
+      "name": "Fumatori"
+    },
+    {
+      "type": 1,
+      "id": 4,
+      "name": "Si accettano animali domestici (previo accordo del proprietario)"
+    },
+    {
+      "type": 1,
+      "id": 5,
+      "name": "Non si accettano animali domestici"
+    },
+    {
+      "type": 1,
+      "id": 6,
+      "name": "Alloggio inadatto per bambini piccoli"
+    },
+    {
+      "type": 1,
+      "id": 7,
+      "name": "Alloggio per non fumatori"
+    },
+    {
+      "type": 1,
+      "id": 8,
+      "name": "Proprietario residente nella stessa struttura"
+    },
+    {
+      "type": 1,
+      "id": 9,
+      "name": "Proprietario residente in prossimit\u00e0 dell'alloggio"
+    },
+    {
+      "type": 1,
+      "id": 10,
+      "name": "Giardino inadatto per bambini piccoli"
+    },
+    {
+      "type": 1,
+      "id": 11,
+      "name": "Acqua non potabile"
+    },
+    {
+      "type": 1,
+      "id": 12,
+      "name": "Piscina a pagamento"
+    },
+    {
+      "type": 1,
+      "id": 13,
+      "name": "Piscina chiusa secondo la stagione"
+    },
+    {
+      "type": 1,
+      "id": 14,
+      "name": "\"Ch\u00e8ques vacances\" francesi accettati"
+    },
+    {
+      "type": 1,
+      "id": 15,
+      "name": "Localit\u00e0 per naturisti"
+    },
+    {
+      "type": 1,
+      "id": 16,
+      "name": "bambini ammessi"
+    },
+    {
+      "type": 1,
+      "id": 17,
+      "name": "adatto ad anziani o disabili"
+    },
+    {
+      "type": 1,
+      "id": 18,
+      "name": " accessibile per sedie a rotelle"
+    },
+    {
+      "type": 1,
+      "id": 19,
+      "name": "animali domestici ammessi"
+    }
+  ]
+}
 
+
+L'elenco delle facility disponibili all'interno dei *B&B*.
 GET /bb/facility
 < 200
 < Content-Type: application/json
+{
+  "errors": [],
+  "data": [
+    {
+      "type": 1,
+      "id": 1,
+      "name": "privata"
+    },
+    {
+      "type": 9,
+      "id": 2,
+      "name": "in camera"
+    },
+    {
+      "type": 3,
+      "id": 10,
+      "name": "Studio"
+    },
+    {
+      "type": 3,
+      "id": 11,
+      "name": "1 bagno (vasca)"
+    },
+    {
+      "type": 3,
+      "id": 12,
+      "name": "2 bagno (vasca)"
+    },
+    {
+      "type": 3,
+      "id": 13,
+      "name": "3 bagno (vasca)"
+    },
+    {
+      "type": 3,
+      "id": 14,
+      "name": "4 bagno (vasca)"
+    },
+    {
+      "type": 3,
+      "id": 15,
+      "name": "+4 bagno (vasca)"
+    },
+    {
+      "type": 3,
+      "id": 16,
+      "name": "1 bagno (doccia)"
+    },
+    {
+      "type": 3,
+      "id": 17,
+      "name": "2 bagno (doccia)"
+    },
+    {
+      "type": 3,
+      "id": 18,
+      "name": "3 bagno (doccia)"
+    },
+    {
+      "type": 3,
+      "id": 19,
+      "name": "4 bagno (doccia)"
+    },
+    {
+      "type": 3,
+      "id": 20,
+      "name": "+4 bagno (doccia)"
+    },
+    {
+      "type": 3,
+      "id": 21,
+      "name": "1 W.C. indipendente"
+    },
+    {
+      "type": 3,
+      "id": 22,
+      "name": "2 W.C. indipendente"
+    },
+    {
+      "type": 3,
+      "id": 23,
+      "name": "3 W.C. indipendente"
+    },
+    {
+      "type": 3,
+      "id": 24,
+      "name": "4 W.C. indipendente"
+    },
+    {
+      "type": 3,
+      "id": 25,
+      "name": "+4 W.C. indipendente"
+    },
+    {
+      "type": 3,
+      "id": 26,
+      "name": "Terrazza"
+    },
+    {
+      "type": 3,
+      "id": 27,
+      "name": "Loggia"
+    },
+    {
+      "type": 3,
+      "id": 28,
+      "name": "Balcone"
+    },
+    {
+      "type": 4,
+      "id": 36,
+      "name": "1 letto (singolo)"
+    },
+    {
+      "type": 4,
+      "id": 37,
+      "name": "2 letto (singolo)"
+    },
+    {
+      "type": 4,
+      "id": 38,
+      "name": "3 letto (singolo)"
+    },
+    {
+      "type": 4,
+      "id": 39,
+      "name": "+3 letto (singolo)"
+    },
+    {
+      "type": 4,
+      "id": 42,
+      "name": "1 Divano letto (2 piazze)"
+    },
+    {
+      "type": 4,
+      "id": 43,
+      "name": "2 Divano letto (2 piazze)"
+    },
+    {
+      "type": 4,
+      "id": 45,
+      "name": "1 letti a castello"
+    },
+    {
+      "type": 4,
+      "id": 46,
+      "name": "2 letti a castello"
+    },
+    {
+      "type": 4,
+      "id": 48,
+      "name": "letto supplementare"
+    },
+    {
+      "type": 4,
+      "id": 49,
+      "name": "culla"
+    },
+    {
+      "type": 1,
+      "id": 94,
+      "name": "in comune"
+    },
+    {
+      "type": 1,
+      "id": 95,
+      "name": "riscaldata"
+    },
+    {
+      "type": 1,
+      "id": 96,
+      "name": "coperta"
+    },
+    {
+      "type": 1,
+      "id": 97,
+      "name": "interna"
+    },
+    {
+      "type": 7,
+      "id": 98,
+      "name": "Cancello / Recinzione"
+    },
+    {
+      "type": 7,
+      "id": 99,
+      "name": "Allarme"
+    },
+    {
+      "type": 8,
+      "id": 102,
+      "name": "Lavastoviglie"
+    },
+    {
+      "type": 8,
+      "id": 103,
+      "name": "Lavatrice"
+    },
+    {
+      "type": 9,
+      "id": 283,
+      "name": "SPA"
+    }
+  ]
+}
 
 
 -- B&B Room --
