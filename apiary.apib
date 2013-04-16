@@ -12267,19 +12267,384 @@ GET /bb/facility
 
 -- B&B Room --
 
+Estrae le informazioni di una *room*.
+
+ * *id*: l'identificativo numerico della *room*
+
+GET /bb/room{?id}
+< 200
+< Content-Type: application/json
+{
+  "errors": [],
+  "data": {
+    "photo": null,
+    "placeDescription": "asd",
+    "longitude": null,
+    "maxCapacity": 10,
+    "bedBrekfast": {
+      "city": {
+        "country": {
+          "prefix": "it",
+          "id": 29,
+          "name": "Italia"
+        },
+        "region": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "id": 568,
+          "name": "Lazio - Roma"
+        },
+        "id": 45572,
+        "name": "Arcinazzo Romano"
+      },
+      "longitude": 13.116371,
+      "name": "Lussuria",
+      "facility": [
+        {
+          "type": 3,
+          "id": 15,
+          "name": "+4 bagno (vasca)"
+        },
+        {
+          "type": 3,
+          "id": 14,
+          "name": "4 bagno (vasca)"
+        },
+        {
+          "type": 3,
+          "id": 12,
+          "name": "2 bagno (vasca)"
+        },
+        {
+          "type": 3,
+          "id": 21,
+          "name": "1 W.C. indipendente"
+        },
+        {
+          "type": 3,
+          "id": 19,
+          "name": "4 bagno (doccia)"
+        },
+        {
+          "type": 3,
+          "id": 11,
+          "name": "1 bagno (vasca)"
+        },
+        {
+          "type": 3,
+          "id": 18,
+          "name": "3 bagno (doccia)"
+        },
+        {
+          "type": 3,
+          "id": 10,
+          "name": "Studio"
+        }
+      ],
+      "checkout": null,
+      "checkin": null,
+      "address": "Via Ostiense 393",
+      "rank": 0,
+      "contactemail": "marcello.roehrssen@gmail.com",
+      "phone": "3289220387",
+      "assignedname": "Marcello Roehrssen di Cammerata",
+      "policy": [
+        {
+          "type": 1,
+          "id": 6,
+          "name": "Alloggio inadatto per bambini piccoli"
+        },
+        {
+          "type": 1,
+          "id": 5,
+          "name": "Non si accettano animali domestici"
+        },
+        {
+          "type": 0,
+          "id": 1,
+          "name": "Animali ammessi"
+        }
+      ],
+      "photo": "http://cdn.bedandbreakfastinitaly.com:8090/static/cover/bb/c78e5b1993d8f4bbb1a21d7af80c448c_bedandbreakfast_Lussuria.jpg",
+      "owner": {
+        "city": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "region": {
+            "country": {
+              "prefix": "it",
+              "id": 29,
+              "name": "Italia"
+            },
+            "id": 579,
+            "name": "Campania - Napoli"
+          },
+          "id": 46434,
+          "name": "Napoli"
+        },
+        "surname": "Roehrssen di Cammerata",
+        "name": "Marcello",
+        "id": 1,
+        "role": "owner",
+        "address": "Via San Giacomo dei capri",
+        "active": true,
+        "email": "marcello.roehrssen@gmail.com"
+      },
+      "latitude": 41.87865,
+      "type": "bedandbreakfast",
+      "id": "c78e5b1993d8f4bbb1a21d7af80c448c",
+      "description": "Il B&amp;B &quot;La Terrazza&quot; si trova in un edificio storico di Napoli, da poco ristrutturato. E' situato sulla collina di Posillipo, famosa per i suoi colori ed il mix di odori che provengono dal mare, dal tufo e dalla natura incontaminata che la circonda. Vanta di una vista mozzafiato su tutto il golfo di Napoli, inoltre la struttura &Atilde;&uml; molto silenziosa, poich&Atilde;&copy; lontana dal traffico urbano ed immersa nel verde, dunque &Atilde;&uml; davvero il posto giusto per passare un piacevole soggiorno a Napoli, in  una struttura spaziosa, silenziosa ed accogliente."
+    },
+    "amount": 1,
+    "minCapacity": 1,
+    "generalDescription": "asd",
+    "address": null,
+    "latitude": null,
+    "defaultPrice": 999.0,
+    "shortDescription": "asd",
+    "id": 12
+  }
+}
+
+
+Entry point per l'inserimento di *room* all'interno del sistema.
+
+ * *bbid*: l'identificativo alfanumerico del *B&B*
+ * *defaultPrice*: il valore predefinito della *room* nel *B&B*
+ * *amount*: il numero di *room* disponibili
+ * *mincap*: capacità minima della *room*
+ * *maxcap*: capacità massima della *room*
+ * *placeDesc*: descrizione della location
+ * *shortDesc*: breve descrizione della *room*
+ * *generalDesc*: descrizione della *room*
+ * *lang*: codice ISO della lingua delel descrizioni
+
 POST /bb/room
 < 200
 < Content-Type: application/json
+{
+  "errors": [],
+  "data": {
+    "photo": null,
+    "placeDescription": "Lorem ipsum LONG",
+    "longitude": null,
+    "maxCapacity": 3,
+    "bedBrekfast": {
+      "city": {
+        "country": {
+          "prefix": "it",
+          "id": 29,
+          "name": "Italia"
+        },
+        "region": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "id": 579,
+          "name": "Campania - Napoli"
+        },
+        "id": 46434,
+        "name": "Napoli"
+      },
+      "longitude": 14.245273,
+      "name": "dino",
+      "facility": [
+        {
+          "type": 3,
+          "id": 10,
+          "name": "Studio"
+        }
+      ],
+      "checkout": null,
+      "checkin": null,
+      "address": "via partenope 23 Napoli",
+      "rank": 0,
+      "contactemail": "dino@dino.dino",
+      "phone": "0815569021",
+      "assignedname": "dino dino",
+      "policy": [
+        {
+          "type": 0,
+          "id": 1,
+          "name": "Animali ammessi"
+        }
+      ],
+      "photo": "http://cdn.bedandbreakfastinitaly.com:8090/static/cover/bb/e5e06a4b5d48f4da4f2eb65c7aea82c6_bedandbreakfast_dino.jpg",
+      "owner": {
+        "city": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "region": {
+            "country": {
+              "prefix": "it",
+              "id": 29,
+              "name": "Italia"
+            },
+            "id": 507,
+            "name": "Piemonte - Alessandria"
+          },
+          "id": 40753,
+          "name": "Casasco"
+        },
+        "surname": "dino",
+        "name": "dino",
+        "id": 229407,
+        "role": "owner",
+        "address": "Via le mani dal naso,  31",
+        "active": true,
+        "email": "dino@dino.dino"
+      },
+      "latitude": 40.830036,
+      "type": "bedandbreakfast",
+      "id": "e5e06a4b5d48f4da4f2eb65c7aea82c6",
+      "description": "asdfghjkl&Atilde;&sup2;&Atilde;&nbsp;&Atilde;&sup2;lkjhgfasdfghjkllkjhgfdsdfghjkl&Atilde;&sup2;lkjhgfsdfghjklkjhgfdsdfghjklkjhgf \r\ndfghjkl&Atilde;&sup2;&Atilde;&nbsp;&Atilde;&sup2;lkjhgfddfghjkl&Atilde;&sup2;\r\nasdfghjkl&Atilde;&sup2;lkjhgfdsasdfghjkl&Atilde;&sup2;\r\nasdfghjkl&Atilde;&sup2;&Atilde;&nbsp;&Atilde;&sup2;lkjhgfdsdfghjkl&Atilde;&sup2;&Atilde;&nbsp;&Atilde;&sup2;lkjhgfdasdfghjkl&Atilde;&sup2;lkjhgfdfghjkl\r\nsdfghjkl&Atilde;&sup2;&Atilde;&nbsp;&Atilde;&sup2;lkjhgfdssdfghjkl&Atilde;&sup2;&Atilde;&nbsp;&Atilde;&sup2;lkjhgfdsdfghjkl&Atilde;&sup2;&Atilde;&nbsp;&Atilde;&sup2;lkjhgfdsdfghj fghjkjhgfdfghjklkjhgfdfghjk yuiooiuyrftyuio&Atilde;&sup2;loiuytrtyuiop&Atilde;&uml;poiuytrtyuopoiuy fghjklkjdfgliuytrtyuioiuytyuioiuyttyuio"
+    },
+    "amount": 2,
+    "minCapacity": 1,
+    "generalDescription": "Lorem ipsum DESC",
+    "address": null,
+    "latitude": null,
+    "defaultPrice": 10.0,
+    "shortDescription": "Lorem ipsum SHORT",
+    "id": 15
+  }
+}
 
-GET /bb/room
+
+Webservice per l'aggiornamento di una *room*
+
+ * *id*: l'identificativo numerico della *room* da aggiornare
+ * *bbid*: l'identificativo alfanumerico del *B&B*
+ * *defaultPrice*: il valore predefinito della *room* nel *B&B*
+ * *amount*: il numero di *room* disponibili
+ * *mincap*: capacità minima della *room*
+ * *maxcap*: capacità massima della *room*
+ * *placeDesc*: descrizione della location
+ * *shortDesc*: breve descrizione della *room*
+ * *generalDesc*: descrizione della *room*
+ * *lang*: codice ISO della lingua delel descrizioni
+
+POST /bb/room/update
 < 200
 < Content-Type: application/json
+{
+  "errors": [],
+  "data": {
+    "photo": null,
+    "placeDescription": "Lorem ipsum LONG",
+    "longitude": null,
+    "maxCapacity": 3,
+    "bedBrekfast": {
+      "city": {
+        "country": {
+          "prefix": "it",
+          "id": 29,
+          "name": "Italia"
+        },
+        "region": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "id": 579,
+          "name": "Campania - Napoli"
+        },
+        "id": 46434,
+        "name": "Napoli"
+      },
+      "longitude": 14.245273,
+      "name": "dino",
+      "facility": [
+        {
+          "type": 3,
+          "id": 10,
+          "name": "Studio"
+        }
+      ],
+      "checkout": null,
+      "checkin": null,
+      "address": "via partenope 23 Napoli",
+      "rank": 0,
+      "contactemail": "dino@dino.dino",
+      "phone": "0815569021",
+      "assignedname": "dino dino",
+      "policy": [
+        {
+          "type": 0,
+          "id": 1,
+          "name": "Animali ammessi"
+        }
+      ],
+      "photo": "http://cdn.bedandbreakfastinitaly.com:8090/static/cover/bb/e5e06a4b5d48f4da4f2eb65c7aea82c6_bedandbreakfast_dino.jpg",
+      "owner": {
+        "city": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "region": {
+            "country": {
+              "prefix": "it",
+              "id": 29,
+              "name": "Italia"
+            },
+            "id": 507,
+            "name": "Piemonte - Alessandria"
+          },
+          "id": 40753,
+          "name": "Casasco"
+        },
+        "surname": "dino",
+        "name": "dino",
+        "id": 229407,
+        "role": "owner",
+        "address": "Via le mani dal naso,  31",
+        "active": true,
+        "email": "dino@dino.dino"
+      },
+      "latitude": 40.830036,
+      "type": "bedandbreakfast",
+      "id": "e5e06a4b5d48f4da4f2eb65c7aea82c6",
+      "description": "asdfghjkl&Atilde;&sup2;&Atilde;&nbsp;&Atilde;&sup2;lkjhgfasdfghjkllkjhgfdsdfghjkl&Atilde;&sup2;lkjhgfsdfghjklkjhgfdsdfghjklkjhgf \r\ndfghjkl&Atilde;&sup2;&Atilde;&nbsp;&Atilde;&sup2;lkjhgfddfghjkl&Atilde;&sup2;\r\nasdfghjkl&Atilde;&sup2;lkjhgfdsasdfghjkl&Atilde;&sup2;\r\nasdfghjkl&Atilde;&sup2;&Atilde;&nbsp;&Atilde;&sup2;lkjhgfdsdfghjkl&Atilde;&sup2;&Atilde;&nbsp;&Atilde;&sup2;lkjhgfdasdfghjkl&Atilde;&sup2;lkjhgfdfghjkl\r\nsdfghjkl&Atilde;&sup2;&Atilde;&nbsp;&Atilde;&sup2;lkjhgfdssdfghjkl&Atilde;&sup2;&Atilde;&nbsp;&Atilde;&sup2;lkjhgfdsdfghjkl&Atilde;&sup2;&Atilde;&nbsp;&Atilde;&sup2;lkjhgfdsdfghj fghjkjhgfdfghjklkjhgfdfghjk yuiooiuyrftyuio&Atilde;&sup2;loiuytrtyuiop&Atilde;&uml;poiuytrtyuopoiuy fghjklkjdfgliuytrtyuioiuytyuioiuyttyuio"
+    },
+    "amount": 2,
+    "minCapacity": 1,
+    "generalDescription": "Lorem ipsum DESC",
+    "address": null,
+    "latitude": null,
+    "defaultPrice": 15.0,
+    "shortDescription": "Lorem ipsum SHORT",
+    "id": 14
+  }
+}
+
+
+Permette di marcare come cancellata una *room* dal sistema.
+
+ * *id*: l'identificativo numerico della *room* da rimuovere
+
+Attualmente il sistema non funziona correttamente, in quanto viene indicata l'operazione di cancellazione attraverso una custom operation. Tale operation -però- fa uso della tabella *room* mentre l'entity utilizza la tabella *Room* e MySQL ha tabelle case sensitive (nel caso si utilizzi InnoDB con table per file).
+Fixare modificando _it.adsolut.bbitaly.model.Room_ nella _@SQLDelete_
+POST /bb/room/delete
+< 200
+< Content-Type: application/json
+
+
 
 GET /bb/room/byaccomodation
-< 200
-< Content-Type: application/json
-
-POST /bb/room/delete
 < 200
 < Content-Type: application/json
 
@@ -12299,9 +12664,6 @@ POST /bb/room/cover
 < 200
 < Content-Type: application/json
 
-POST /bb/room/update
-< 200
-< Content-Type: application/json
 
 GET /bb/room/gallery
 < 200
