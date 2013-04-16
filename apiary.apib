@@ -11139,21 +11139,686 @@ POST /bb/cover{?id}
 
 -- B&B Gallery --
 
-GET /bb/gallery
-< 200
-< Content-Type: application/json
+Estrae informazioni relative alla galllery del *B&B*
 
-POST /bb/gallery/delete
-< 200
-< Content-Type: application/json
+ * *id*: identificatore alfanumerico del *B&B* di cui si vuole estrarre la gallery.
 
-POST /bb/gallery/update
+GET /bb/gallery{?id}
 < 200
 < Content-Type: application/json
+{
+  "errors": [],
+  "data": {
+    "accomodation": {
+      "city": {
+        "country": {
+          "prefix": "it",
+          "id": 29,
+          "name": "Italia"
+        },
+        "region": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "id": 579,
+          "name": "Campania - Napoli"
+        },
+        "id": 46434,
+        "name": "Napoli"
+      },
+      "longitude": 14.202561,
+      "name": "La Terrazza",
+      "facility": [
+        {
+          "type": 3,
+          "id": 20,
+          "name": "+4 bagno (doccia)"
+        },
+        {
+          "type": 3,
+          "id": 19,
+          "name": "4 bagno (doccia)"
+        },
+        {
+          "type": 11,
+          "id": 213,
+          "name": "Tavolo da ping-pong"
+        },
+        {
+          "type": 3,
+          "id": 15,
+          "name": "+4 bagno (vasca)"
+        },
+        {
+          "type": 1,
+          "id": 1,
+          "name": "privata"
+        },
+        {
+          "type": 1,
+          "id": 97,
+          "name": "interna"
+        },
+        {
+          "type": 7,
+          "id": 99,
+          "name": "Allarme"
+        },
+        {
+          "type": 8,
+          "id": 130,
+          "name": "Giochi per bambini"
+        },
+        {
+          "type": 14,
+          "id": 250,
+          "name": "Computer Macintosh"
+        },
+        {
+          "type": 9,
+          "id": 283,
+          "name": "SPA"
+        },
+        {
+          "type": 3,
+          "id": 23,
+          "name": "3 W.C. indipendente"
+        },
+        {
+          "type": 4,
+          "id": 38,
+          "name": "3 letto (singolo)"
+        },
+        {
+          "type": 8,
+          "id": 141,
+          "name": "Ferro da stiro"
+        },
+        {
+          "type": 11,
+          "id": 207,
+          "name": "lettore CD"
+        },
+        {
+          "type": 11,
+          "id": 217,
+          "name": "Pianoforte"
+        },
+        {
+          "type": 9,
+          "id": 255,
+          "name": "Guida attivit\u00e0 locali"
+        },
+        {
+          "type": 3,
+          "id": 21,
+          "name": "1 W.C. indipendente"
+        },
+        {
+          "type": 3,
+          "id": 245,
+          "name": "Doccia vapore"
+        },
+        {
+          "type": 3,
+          "id": 18,
+          "name": "3 bagno (doccia)"
+        },
+        {
+          "type": 11,
+          "id": 210,
+          "name": "videoregistratore"
+        },
+        {
+          "type": 8,
+          "id": 107,
+          "name": "Placca di cottura"
+        },
+        {
+          "type": 9,
+          "id": 2,
+          "name": "in camera"
+        },
+        {
+          "type": 4,
+          "id": 279,
+          "name": "+1 divano letto singolo"
+        },
+        {
+          "type": 14,
+          "id": 252,
+          "name": "Telefono cellulare"
+        },
+        {
+          "type": 8,
+          "id": 147,
+          "name": "Asciugacapelli"
+        },
+        {
+          "type": 11,
+          "id": 214,
+          "name": "Videoteca"
+        },
+        {
+          "type": 9,
+          "id": 181,
+          "name": "Internet ADSL"
+        },
+        {
+          "type": 8,
+          "id": 136,
+          "name": "Cantina"
+        },
+        {
+          "type": 8,
+          "id": 123,
+          "name": "Barbecue in pietra"
+        },
+        {
+          "type": 11,
+          "id": 219,
+          "name": "fonoteca"
+        },
+        {
+          "type": 8,
+          "id": 127,
+          "name": "Telefono"
+        },
+        {
+          "type": 9,
+          "id": 256,
+          "name": "Mappe locali"
+        },
+        {
+          "type": 11,
+          "id": 209,
+          "name": "Tavolo da biliardo"
+        },
+        {
+          "type": 9,
+          "id": 267,
+          "name": "sala fitness"
+        },
+        {
+          "type": 1,
+          "id": 96,
+          "name": "coperta"
+        },
+        {
+          "type": 8,
+          "id": 121,
+          "name": "Sauna"
+        },
+        {
+          "type": 8,
+          "id": 115,
+          "name": "Asciugabiancheria"
+        },
+        {
+          "type": 8,
+          "id": 128,
+          "name": "Lettino"
+        },
+        {
+          "type": 4,
+          "id": 43,
+          "name": "2 Divano letto (2 piazze)"
+        },
+        {
+          "type": 8,
+          "id": 149,
+          "name": "Ventilatore"
+        },
+        {
+          "type": 4,
+          "id": 37,
+          "name": "2 letto (singolo)"
+        },
+        {
+          "type": 12,
+          "id": 144,
+          "name": "Posto auto privato"
+        },
+        {
+          "type": 8,
+          "id": 110,
+          "name": "Frigorifero"
+        },
+        {
+          "type": 9,
+          "id": 262,
+          "name": "massaggio"
+        },
+        {
+          "type": 4,
+          "id": 49,
+          "name": "culla"
+        },
+        {
+          "type": 9,
+          "id": 282,
+          "name": "Cassaforte in camera"
+        },
+        {
+          "type": 8,
+          "id": 103,
+          "name": "Lavatrice"
+        },
+        {
+          "type": 9,
+          "id": 179,
+          "name": "Possibilit\u00e0 transfer dall'aeroporto"
+        },
+        {
+          "type": 8,
+          "id": 104,
+          "name": "Biancheria inclusa"
+        },
+        {
+          "type": 3,
+          "id": 27,
+          "name": "Loggia"
+        },
+        {
+          "type": 7,
+          "id": 98,
+          "name": "Cancello / Recinzione"
+        },
+        {
+          "type": 3,
+          "id": 14,
+          "name": "4 bagno (vasca)"
+        },
+        {
+          "type": 8,
+          "id": 102,
+          "name": "Lavastoviglie"
+        },
+        {
+          "type": 4,
+          "id": 48,
+          "name": "letto supplementare"
+        },
+        {
+          "type": 1,
+          "id": 95,
+          "name": "riscaldata"
+        }
+      ],
+      "checkout": null,
+      "checkin": null,
+      "address": "Via Francesco Petrarca 75",
+      "rank": 0,
+      "contactemail": "marcello.roehrssen@gmail.com",
+      "phone": "+39 081 7691556",
+      "assignedname": "Marcello Roehrssen di Cammerata",
+      "policy": [
+        {
+          "type": 1,
+          "id": 6,
+          "name": "Alloggio inadatto per bambini piccoli"
+        },
+        {
+          "type": 1,
+          "id": 7,
+          "name": "Alloggio per non fumatori"
+        },
+        {
+          "type": 1,
+          "id": 14,
+          "name": "\"Ch\u00e8ques vacances\" francesi accettati"
+        },
+        {
+          "type": 1,
+          "id": 18,
+          "name": " accessibile per sedie a rotelle"
+        },
+        {
+          "type": 2,
+          "id": 3,
+          "name": "Fumatori"
+        },
+        {
+          "type": 1,
+          "id": 17,
+          "name": "adatto ad anziani o disabili"
+        }
+      ],
+      "photo": "http://cdn.bedandbreakfastinitaly.com:8090/static/cover/bb/3ffd687bffc8444e7e4c8438377c40cd_bedandbreakfast_La_Terrazza.jpg",
+      "owner": {
+        "city": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "region": {
+            "country": {
+              "prefix": "it",
+              "id": 29,
+              "name": "Italia"
+            },
+            "id": 579,
+            "name": "Campania - Napoli"
+          },
+          "id": 46434,
+          "name": "Napoli"
+        },
+        "surname": "Roehrssen di Cammerata",
+        "name": "Marcello",
+        "id": 1,
+        "role": "owner",
+        "address": "Via San Giacomo dei capri",
+        "active": true,
+        "email": "marcello.roehrssen@gmail.com"
+      },
+      "latitude": 40.812263,
+      "type": "bedandbreakfast",
+      "id": "3ffd687bffc8444e7e4c8438377c40cd",
+      "description": "Il B&amp;B &quot;La Terrazza&quot; si trova in un edificio storico di Napoli, da poco ristrutturato. E' situato sulla collina di Posillipo, famosa per i suoi colori ed il mix di odori che provengono dal mare, dal tufo e dalla natura incontaminata che la circonda. Vanta di una vista mozzafiato su tutto il golfo di Napoli, inoltre la struttura &Atilde;&uml; molto silenziosa, poich&Atilde;&copy; lontana dal traffico urbano ed immersa nel verde, dunque &Atilde;&uml; davvero il posto giusto per passare un piacevole soggiorno a Napoli, in  una struttura spaziosa, silenziosa ed accogliente."
+    },
+    "id": 38,
+    "photos": [
+      {
+        "url": "http://cdn.bedandbreakfastinitaly.com:8090/static/gallery/bb/1c02936239c16dcfd0fd977cc3335f12_bedandbreakfast_La_Terrazza.jpg",
+        "id": 186,
+        "displayOrder": 5
+      },
+      {
+        "url": "http://cdn.bedandbreakfastinitaly.com:8090/static/gallery/bb/40b8efd1453ade54c63d916deea03857_bedandbreakfast_La_Terrazza.jpg",
+        "id": 185,
+        "displayOrder": 4
+      },
+      {
+        "url": "http://cdn.bedandbreakfastinitaly.com:8090/static/gallery/bb/c5fbb1d462996db0c9979eb9938fb2fe_bedandbreakfast_La_Terrazza.jpg",
+        "id": 184,
+        "displayOrder": 3
+      },
+      {
+        "url": "http://cdn.bedandbreakfastinitaly.com:8090/static/gallery/bb/c02f0e24c8182afbed9afff767907bcb_bedandbreakfast_La_Terrazza.jpg",
+        "id": 182,
+        "displayOrder": 1
+      },
+      {
+        "url": "http://cdn.bedandbreakfastinitaly.com:8090/static/gallery/bb/54d25487ecc8a21b84963db2f8c62a97_bedandbreakfast_La_Terrazza.jpg",
+        "id": 187,
+        "displayOrder": 6
+      },
+      {
+        "url": "http://cdn.bedandbreakfastinitaly.com:8090/static/gallery/bb/f005b1af4c2a40ded8304bf601b04d3f_bedandbreakfast_La_Terrazza.jpg",
+        "id": 183,
+        "displayOrder": 2
+      }
+    ]
+  }
+}
 
-POST /bb/gallery
+
+Permette la creazione di una gallery con l'inserimento di un'immagine legata ad un *B&B*
+
+ * *id*: l'identificativo univoco del *B&B* di cui si sta caricando l'immagine.
+ * *file*: il file immagine che si sta caricando nella piattaforma.
+
+Attualmente il file viene caricato nella cartella:
+
+ * */var/www/cdn.bedandbreakfastinitaly.com/static/cover/bb/* (configurabile nel file: _./src/main/webapp/WEB-INF/conf/Utils.xml_)
+
+L'immagine caricata viene poi resa accessibile attraverso l'accesso con l'URL:
+
+ * *http://cdn.bedandbreakfastinitaly.com:8090/static/cover/bb/* (configurabile nel file: _./src/main/webapp/WEB-INF/conf/Utils.xml_)
+
+Il nome del file viene di destinazione viene generato a runtime in fase di salvataggio attraverso la concatenazione dell'ID del *B&B*, il nomee del *B&B* stesso e con una sostituzione degli spazi con *_*.
+
+La POST deve essere effettuata specificando il _multipart/form-data_ nella request.
+
+POST /bb/gallery{?id}
 < 200
 < Content-Type: application/json
+{
+  "errors": [],
+  "data": {
+    "accomodation": {
+      "city": {
+        "country": {
+          "prefix": "es",
+          "id": 28,
+          "name": "Spagna"
+        },
+        "region": {
+          "country": {
+            "prefix": "es",
+            "id": 28,
+            "name": "Spagna"
+          },
+          "id": 652,
+          "name": "Val\u00c3\u00a8ncia"
+        },
+        "id": 62781,
+        "name": "Roma"
+      },
+      "longitude": null,
+      "name": "Nome del BB",
+      "facility": [
+        {
+          "type": 1,
+          "id": 1,
+          "name": "privata"
+        },
+        {
+          "type": 3,
+          "id": 11,
+          "name": "1 bagno (vasca)"
+        },
+        {
+          "type": 3,
+          "id": 10,
+          "name": "Studio"
+        }
+      ],
+      "checkout": null,
+      "checkin": null,
+      "address": "via del Nonloso",
+      "rank": 0,
+      "contactemail": "info@nontelodico2.it",
+      "phone": "+393330303030",
+      "assignedname": "Mario Rossi",
+      "policy": [
+        {
+          "type": 1,
+          "id": 8,
+          "name": "Proprietario residente nella stessa struttura"
+        },
+        {
+          "type": 1,
+          "id": 10,
+          "name": "Giardino inadatto per bambini piccoli"
+        }
+      ],
+      "photo": "http://cdn.bedandbreakfastinitaly.com:8090/static/cover/bb/b43840e12b2c2ebc16e2bc336ac13b12_bedandbreakfast_Nome_del_BB.jpg",
+      "owner": {
+        "city": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "region": {
+            "country": {
+              "prefix": "it",
+              "id": 29,
+              "name": "Italia"
+            },
+            "id": 506,
+            "name": "Piemonte - Torino"
+          },
+          "id": 40403,
+          "name": "Almese"
+        },
+        "surname": "asd",
+        "name": "asd",
+        "id": 163854,
+        "role": "owner",
+        "address": "asd",
+        "active": true,
+        "email": "tech3@adsolut.it"
+      },
+      "latitude": null,
+      "type": "bedandbreakfast",
+      "id": "b43840e12b2c2ebc16e2bc336ac13b12",
+      "description": "Questa \u00e8 una prova"
+    },
+    "id": 49,
+    "photos": [
+      {
+        "url": "http://cdn.bedandbreakfastinitaly.com:8090/static/gallery/bb/f4dc4c3a5109aeb3e4dd1045ce873ad8_bedandbreakfast_Nome_del_BB.jpg",
+        "id": 250,
+        "displayOrder": 2
+      },
+      {
+        "url": "http://cdn.bedandbreakfastinitaly.com:8090/static/gallery/bb/933cc6f71a61694db238a091448a5658_bedandbreakfast_Nome_del_BB.jpg",
+        "id": 249,
+        "displayOrder": 1
+      }
+    ]
+  }
+}
+
+
+Entry point che permette di cancellare puntualmente singole immagini dala gallery di un *B&B*.
+
+ * *id*: l'identificativo numerico della fotografia che si intende eliminare.
+
+POST /bb/gallery/delete{?id}
+< 200
+< Content-Type: application/json
+{
+  "data": {
+    "displayOrder": 2,
+    "id": 183,
+    "url": "http://cdn.bedandbreakfastinitaly.com:8090/static/gallery/bb/f005b1af4c2a40ded8304bf601b04d3f_bedandbreakfast_La_Terrazza.jpg"
+  },
+  "errors": []
+}
+
+
+Entry point che permette di aggiornare la gallery di un *B&B*, riordinando o aggiungendo immagini.
+
+ * *id*: l'identificativo alfanumerico del *B&B*.
+ * *pids*: l'elenco degli identificativi delle immagini che devono essere presenti nella gallery nell'ordine adeguato.
+
+POST /bb/gallery/update{?id,pids}
+< 200
+< Content-Type: application/json
+{
+  "errors": [],
+  "data": {
+    "accomodation": {
+      "city": {
+        "country": {
+          "prefix": "es",
+          "id": 28,
+          "name": "Spagna"
+        },
+        "region": {
+          "country": {
+            "prefix": "es",
+            "id": 28,
+            "name": "Spagna"
+          },
+          "id": 652,
+          "name": "Val\u00c3\u00a8ncia"
+        },
+        "id": 62781,
+        "name": "Roma"
+      },
+      "longitude": null,
+      "name": "Nome del BB",
+      "facility": [
+        {
+          "type": 1,
+          "id": 1,
+          "name": "privata"
+        },
+        {
+          "type": 3,
+          "id": 11,
+          "name": "1 bagno (vasca)"
+        },
+        {
+          "type": 3,
+          "id": 10,
+          "name": "Studio"
+        }
+      ],
+      "checkout": null,
+      "checkin": null,
+      "address": "via del Nonloso",
+      "rank": 0,
+      "contactemail": "info@nontelodico2.it",
+      "phone": "+393330303030",
+      "assignedname": "Mario Rossi",
+      "policy": [
+        {
+          "type": 1,
+          "id": 10,
+          "name": "Giardino inadatto per bambini piccoli"
+        },
+        {
+          "type": 1,
+          "id": 8,
+          "name": "Proprietario residente nella stessa struttura"
+        }
+      ],
+      "photo": "http://cdn.bedandbreakfastinitaly.com:8090/static/cover/bb/b43840e12b2c2ebc16e2bc336ac13b12_bedandbreakfast_Nome_del_BB.jpg",
+      "owner": {
+        "city": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "region": {
+            "country": {
+              "prefix": "it",
+              "id": 29,
+              "name": "Italia"
+            },
+            "id": 506,
+            "name": "Piemonte - Torino"
+          },
+          "id": 40403,
+          "name": "Almese"
+        },
+        "surname": "asd",
+        "name": "asd",
+        "id": 163854,
+        "role": "owner",
+        "address": "asd",
+        "active": true,
+        "email": "tech3@adsolut.it"
+      },
+      "latitude": null,
+      "type": "bedandbreakfast",
+      "id": "b43840e12b2c2ebc16e2bc336ac13b12",
+      "description": "Questa \u00e8 una prova"
+    },
+    "id": 49,
+    "photos": [
+      {
+        "url": "http://cdn.bedandbreakfastinitaly.com:8090/static/gallery/bb/f4dc4c3a5109aeb3e4dd1045ce873ad8_bedandbreakfast_Nome_del_BB.jpg",
+        "id": 250,
+        "displayOrder": 2
+      },
+      {
+        "url": "http://cdn.bedandbreakfastinitaly.com:8090/static/gallery/bb/933cc6f71a61694db238a091448a5658_bedandbreakfast_Nome_del_BB.jpg",
+        "id": 249,
+        "displayOrder": 1
+      }
+    ]
+  }
+}
 
 
 -- Search B&B --
