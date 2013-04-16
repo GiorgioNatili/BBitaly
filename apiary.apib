@@ -12425,7 +12425,7 @@ Entry point per l'inserimento di *room* all'interno del sistema.
  * *generalDesc*: descrizione della *room*
  * *lang*: codice ISO della lingua delel descrizioni
 
-POST /bb/room
+POST /bb/room{?bbid,defaultPrice,amount,mincap,maxcap,placeDesc,shortDesc,generalDesc,lang}
 < 200
 < Content-Type: application/json
 {
@@ -12535,7 +12535,7 @@ Webservice per l'aggiornamento di una *room*
  * *generalDesc*: descrizione della *room*
  * *lang*: codice ISO della lingua delel descrizioni
 
-POST /bb/room/update
+POST /bb/room/update{?id,bbid,defaultPrice,amount,mincap,maxcap,placeDesc,shortDesc,generalDesc,lang}
 < 200
 < Content-Type: application/json
 {
@@ -12638,21 +12638,46 @@ Permette di marcare come cancellata una *room* dal sistema.
 
 Attualmente il sistema non funziona correttamente, in quanto viene indicata l'operazione di cancellazione attraverso una custom operation. Tale operation -però- fa uso della tabella *room* mentre l'entity utilizza la tabella *Room* e MySQL ha tabelle case sensitive (nel caso si utilizzi InnoDB con table per file).
 Fixare modificando _it.adsolut.bbitaly.model.Room_ nella _@SQLDelete_
-POST /bb/room/delete
+POST /bb/room/delete{?id}
 < 200
 < Content-Type: application/json
 
+
+Indica il costo della *room* per il periodo indicato.
+
+ * *id*: i'identificativo numerico della *room* di cui si vuole conoscere il costo.
+ * *dayStart*: il giorno di inizio del calcolo del costo
+ * *dayEnd*: il giorno di fine del calcolo del costo
+ * *monthStart*: il mese di inizio del calcolo del costo
+ * *monthEnd*: il mese di fine del calcolo del costo
+ * *yearStart*: l'anno di inizio del calcolo del costo
+ * *yearEnd*: l'anno di fine del calcolo del costo
+
+Attualmente sembra che l'API non determini il costo e ritorni sempre un valore nullo.
+GET /bb/room/price{?id,dayStart,dayEnd,monthStart,monthEnd,yearStart,yearEnd}
+< 200
+< Content-Type: application/json
+{
+  "data": [],
+  "errors": []
+}
+
+
+Setta il costo della *room*
+
+ * *roomId*: l'identificativo numerico della *room*
+ * *year*: l'anno di validità del prezzo
+ * *month*: il mese di validità del prezzo
+ * *price*: il prezzo da impostare
+ * *isOffer*: valore identificativo numerico (0 o 1) che indica se si tratta di un'offerta
+
+A causa di problemi di casting sul valore del *price* semprerebbe non possibile effettuare l'inserimento dei valori di price.
+POST /bb/room/price{?roomId,year,month,price,isOffer}
+< 200
+< Content-Type: application/json
 
 
 GET /bb/room/byaccomodation
-< 200
-< Content-Type: application/json
-
-POST /bb/room/price
-< 200
-< Content-Type: application/json
-
-GET /bb/room/price
 < 200
 < Content-Type: application/json
 
@@ -12663,7 +12688,6 @@ GET /bb/room/pricetotal
 POST /bb/room/cover
 < 200
 < Content-Type: application/json
-
 
 GET /bb/room/gallery
 < 200
