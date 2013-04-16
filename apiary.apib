@@ -12677,9 +12677,109 @@ POST /bb/room/price{?roomId,year,month,price,isOffer}
 < Content-Type: application/json
 
 
+Ritorna le *room* disponibili nel *B&B*.
+
+ * *id*: L'identificativo alfanumerico del *B&B*
+ * *lang*: L'identificativo ISO della lingua
+
 GET /bb/room/byaccomodation
 < 200
 < Content-Type: application/json
+{
+  "errors": [],
+  "data": [
+    {
+      "photo": null,
+      "placeDescription": "sdfdfdgjfghjfghffhfgghfhgfghfhgfhfghgfhgff",
+      "longitude": null,
+      "maxCapacity": 4,
+      "bedBrekfast": {
+        "city": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "region": {
+            "country": {
+              "prefix": "it",
+              "id": 29,
+              "name": "Italia"
+            },
+            "id": 579,
+            "name": "Campania - Napoli"
+          },
+          "id": 46434,
+          "name": "Napoli"
+        },
+        "longitude": 14.245273,
+        "name": "dino",
+        "facility": [
+          {
+            "type": 3,
+            "id": 10,
+            "name": "Studio"
+          }
+        ],
+        "checkout": null,
+        "checkin": null,
+        "address": "via partenope 23 Napoli",
+        "rank": 0,
+        "contactemail": "dino@dino.dino",
+        "phone": "0815569021",
+        "assignedname": "dino dino",
+        "policy": [
+          {
+            "type": 0,
+            "id": 1,
+            "name": "Animali ammessi"
+          }
+        ],
+        "photo": "http://cdn.bedandbreakfastinitaly.com:8090/static/cover/bb/e5e06a4b5d48f4da4f2eb65c7aea82c6_bedandbreakfast_dino.jpg",
+        "owner": {
+          "city": {
+            "country": {
+              "prefix": "it",
+              "id": 29,
+              "name": "Italia"
+            },
+            "region": {
+              "country": {
+                "prefix": "it",
+                "id": 29,
+                "name": "Italia"
+              },
+              "id": 507,
+              "name": "Piemonte - Alessandria"
+            },
+            "id": 40753,
+            "name": "Casasco"
+          },
+          "surname": "dino",
+          "name": "dino",
+          "id": 229407,
+          "role": "owner",
+          "address": "Via le mani dal naso,  31",
+          "active": true,
+          "email": "dino@dino.dino"
+        },
+        "latitude": 40.830036,
+        "type": "bedandbreakfast",
+        "id": "e5e06a4b5d48f4da4f2eb65c7aea82c6",
+        "description": "asdfghjkl&Atilde;&sup2;&Atilde;&nbsp;&Atilde;&sup2;lkjhgfasdfghjkllkjhgfdsdfghjkl&Atilde;&sup2;lkjhgfsdfghjklkjhgfdsdfghjklkjhgf \r\ndfghjkl&Atilde;&sup2;&Atilde;&nbsp;&Atilde;&sup2;lkjhgfddfghjkl&Atilde;&sup2;\r\nasdfghjkl&Atilde;&sup2;lkjhgfdsasdfghjkl&Atilde;&sup2;\r\nasdfghjkl&Atilde;&sup2;&Atilde;&nbsp;&Atilde;&sup2;lkjhgfdsdfghjkl&Atilde;&sup2;&Atilde;&nbsp;&Atilde;&sup2;lkjhgfdasdfghjkl&Atilde;&sup2;lkjhgfdfghjkl\r\nsdfghjkl&Atilde;&sup2;&Atilde;&nbsp;&Atilde;&sup2;lkjhgfdssdfghjkl&Atilde;&sup2;&Atilde;&nbsp;&Atilde;&sup2;lkjhgfdsdfghjkl&Atilde;&sup2;&Atilde;&nbsp;&Atilde;&sup2;lkjhgfdsdfghj fghjkjhgfdfghjklkjhgfdfghjk yuiooiuyrftyuio&Atilde;&sup2;loiuytrtyuiop&Atilde;&uml;poiuytrtyuopoiuy fghjklkjdfgliuytrtyuioiuytyuioiuyttyuio"
+      },
+      "amount": 1,
+      "minCapacity": 1,
+      "generalDescription": "sdsdfdfgdfgh",
+      "address": null,
+      "latitude": null,
+      "defaultPrice": 80.0,
+      "shortDescription": "rsfdffgfg",
+      "id": 13
+    }
+  ]
+}
+
 
 GET /bb/room/pricetotal
 < 200
