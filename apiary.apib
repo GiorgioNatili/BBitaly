@@ -10688,21 +10688,454 @@ GET /bb{?id}
 }
 
 
-POST /bb
-< 200
-< Content-Type: application/json
+Consente l'inserimento di un *B&B* attraverso i campi:
 
-POST /bb/update
-< 200
-< Content-Type: application/json
+ * *propertytname*: Il nome della proprietà che deve essere inserita.
+ * *type*: il tipo di proprietà. E' un codice alfanumerico.
+ * *assignedname*: Il nome dell'assegnatario della proprietà.
+ * *phonenumber*: Il numero telefonico di contatto.
+ * *personalemail*: L'indirizzo e-mail di contatto della proprietà.
+ * *facilitiesId*: Un array dei codici alfanumerici delle *facilities* della proprietà.
+ * *policiesId*:  Un array dei codici delle *policies* della proprietà.
+ * *directContact*: Un flag booleano che indica se la proprietà può essere contattata direttamenete.
+ * *ownerid*: Il codice identificativo numerico dell'*owner* della proprietà.
+ * *description*: La descrizioned della proprietà.
+ * *address*: Una stringa contentne l'indirizzo della proprietà.
+ * *cityid*: L'identificativo numeroco della *city* in cui si trova la proprietà.
+ * *lang*: Il codice ISO della lingua della proprietà.
 
-POST /bb/delete
-< 200
-< Content-Type: application/json
+Attualmente se il geocoding dell'indirizzo fallisce, il sistema cerca di inserire latitudine e longitudine come valori null, ma questi non sono consentiti dallo schema del database che ha dei constrain "not null" su questi campi, andando quindi ad impedire il salvataggio del datoescatenando quindi un'eccezione e ritornando errore nell'inserimento.
 
-POST /bb/cover
+POST /bb{?propertytname,type,assignedname,phonenumber,personalemail,facilitiesId,policiesId,directContact,ownerid,description,address,cityid,lang}
 < 200
 < Content-Type: application/json
+{
+  "data": {
+    "address": "via del Nonloso",
+    "assignedname": "Mario Rossi",
+    "checkin": null,
+    "checkout": null,
+    "city": {
+      "country": {
+        "id": 28,
+        "name": "Spagna",
+        "prefix": "es"
+      },
+      "id": 62781,
+      "name": "Roma",
+      "region": {
+        "country": {
+          "id": 28,
+          "name": "Spagna",
+          "prefix": "es"
+        },
+        "id": 652,
+        "name": "ValÃ¨ncia"
+      }
+    },
+    "contactemail": "info@nontelodico2.it",
+    "description": "Questa è una prova",
+    "facility": [
+      {
+        "id": 10,
+        "name": "Studio",
+        "type": 3
+      },
+      {
+        "id": 11,
+        "name": "1 bagno (vasca)",
+        "type": 3
+      },
+      {
+        "id": 1,
+        "name": "privata",
+        "type": 1
+      }
+    ],
+    "id": "b43840e12b2c2ebc16e2bc336ac13b12",
+    "latitude": null,
+    "longitude": null,
+    "name": "Nome del BB",
+    "owner": {
+      "active": true,
+      "address": "asd",
+      "city": {
+        "country": {
+          "id": 29,
+          "name": "Italia",
+          "prefix": "it"
+        },
+        "id": 40403,
+        "name": "Almese",
+        "region": {
+          "country": {
+            "id": 29,
+            "name": "Italia",
+            "prefix": "it"
+          },
+          "id": 506,
+          "name": "Piemonte - Torino"
+        }
+      },
+      "email": "tech3@adsolut.it",
+      "id": 163854,
+      "name": "asd",
+      "role": "owner",
+      "surname": "asd"
+    },
+    "phone": "+393330303030",
+    "photo": null,
+    "policy": [
+      {
+        "id": 10,
+        "name": "Giardino inadatto per bambini piccoli",
+        "type": 1
+      },
+      {
+        "id": 8,
+        "name": "Proprietario residente nella stessa struttura",
+        "type": 1
+      }
+    ],
+    "rank": 0,
+    "type": "bedandbreakfast"
+  },
+  "errors": []
+}
+
+
+Entry point per le operazioni di aggiornamento dei dati del B&B.
+
+ * *id*: L?identificativo alfanumerico del B&B.
+ * *propertytname*: Il nome della proprietà che deve essere inserita.
+ * *type*: il tipo di proprietà. E' un codice alfanumerico.
+ * *assignedname*: Il nome dell'assegnatario della proprietà.
+ * *phonenumber*: Il numero telefonico di contatto.
+ * *personalemail*: L'indirizzo e-mail di contatto della proprietà.
+ * *facilitiesId*: Un array dei codici alfanumerici delle *facilities* della proprietà.
+ * *policiesId*:  Un array dei codici delle *policies* della proprietà.
+ * *directContact*: Un flag booleano che indica se la proprietà può essere contattata direttamenete.
+ * *ownerid*: Il codice identificativo numerico dell'*owner* della proprietà.
+ * *description*: La descrizioned della proprietà.
+ * *address*: Una stringa contentne l'indirizzo della proprietà.
+ * *cityid*: L'identificativo numeroco della *city* in cui si trova la proprietà.
+ * *lang*: Il codice ISO della lingua della proprietà.
+
+Anche in questo caso è necessario che vengano fornite coordinate valide dal B&B se la tabella non viene modificata per consentire latitudine e longitudine nulle.
+POST /bb/update{?id,propertytname,type,assignedname,phonenumber,personalemail,facilitiesId,policiesId,directContact,ownerid,description,address,cityid,lang}
+< 200
+< Content-Type: application/json
+{
+  "errors": [],
+  "data": {
+    "city": {
+      "country": {
+        "prefix": "es",
+        "id": 28,
+        "name": "Spagna"
+      },
+      "region": {
+        "country": {
+          "prefix": "es",
+          "id": 28,
+          "name": "Spagna"
+        },
+        "id": 652,
+        "name": "Val\u00c3\u00a8ncia"
+      },
+      "id": 62781,
+      "name": "Roma"
+    },
+    "longitude": null,
+    "name": "Nome del BB molto diverso",
+    "facility": [
+      {
+        "type": 3,
+        "id": 11,
+        "name": "1 bagno (vasca)"
+      },
+      {
+        "type": 3,
+        "id": 10,
+        "name": "Studio"
+      },
+      {
+        "type": 1,
+        "id": 1,
+        "name": "privata"
+      }
+    ],
+    "checkout": null,
+    "checkin": null,
+    "address": "via del Nonloso",
+    "rank": 0,
+    "contactemail": "info@nontelodico2.it",
+    "phone": "+393330303030",
+    "assignedname": "Mario Rossi",
+    "policy": [
+      {
+        "type": 1,
+        "id": 10,
+        "name": "Giardino inadatto per bambini piccoli"
+      },
+      {
+        "type": 1,
+        "id": 8,
+        "name": "Proprietario residente nella stessa struttura"
+      }
+    ],
+    "photo": null,
+    "owner": {
+      "city": {
+        "country": {
+          "prefix": "it",
+          "id": 29,
+          "name": "Italia"
+        },
+        "region": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "id": 506,
+          "name": "Piemonte - Torino"
+        },
+        "id": 40403,
+        "name": "Almese"
+      },
+      "surname": "asd",
+      "name": "asd",
+      "id": 163854,
+      "role": "owner",
+      "address": "asd",
+      "active": true,
+      "email": "tech3@adsolut.it"
+    },
+    "latitude": null,
+    "type": "bedandbreakfast",
+    "id": "b43840e12b2c2ebc16e2bc336ac13b12",
+    "description": "Questa \u00e8 una prova"
+  }
+}
+
+
+Webservice che permette la cancellazione di un *B&B* presente all'interno della piattaforma.
+
+ * *id*: l'identificativo alfanumerico del B&B che si sta cancellando.
+
+POST /bb/delete{?id}
+< 200
+< Content-Type: application/json
+{
+  "errors": [],
+  "data": {
+    "city": {
+      "country": {
+        "prefix": "es",
+        "id": 28,
+        "name": "Spagna"
+      },
+      "region": {
+        "country": {
+          "prefix": "es",
+          "id": 28,
+          "name": "Spagna"
+        },
+        "id": 652,
+        "name": "Val\u00c3\u00a8ncia"
+      },
+      "id": 62781,
+      "name": "Roma"
+    },
+    "longitude": null,
+    "name": "Nome del BB molto diverso",
+    "facility": [
+      {
+        "type": 1,
+        "id": 1,
+        "name": "privata"
+      },
+      {
+        "type": 3,
+        "id": 10,
+        "name": "Studio"
+      },
+      {
+        "type": 3,
+        "id": 11,
+        "name": "1 bagno (vasca)"
+      }
+    ],
+    "checkout": null,
+    "checkin": null,
+    "address": "via del Nonloso",
+    "rank": 0,
+    "contactemail": "info@nontelodico2.it",
+    "phone": "+393330303030",
+    "assignedname": "Mario Rossi",
+    "policy": [
+      {
+        "type": 1,
+        "id": 10,
+        "name": "Giardino inadatto per bambini piccoli"
+      },
+      {
+        "type": 1,
+        "id": 8,
+        "name": "Proprietario residente nella stessa struttura"
+      }
+    ],
+    "photo": null,
+    "owner": {
+      "city": {
+        "country": {
+          "prefix": "it",
+          "id": 29,
+          "name": "Italia"
+        },
+        "region": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "id": 506,
+          "name": "Piemonte - Torino"
+        },
+        "id": 40403,
+        "name": "Almese"
+      },
+      "surname": "asd",
+      "name": "asd",
+      "id": 163854,
+      "role": "owner",
+      "address": "asd",
+      "active": true,
+      "email": "tech3@adsolut.it"
+    },
+    "latitude": null,
+    "type": "bedandbreakfast",
+    "id": "b43840e12b2c2ebc16e2bc336ac13b12",
+    "description": "Questa \u00e8 una prova"
+  }
+}
+
+
+Permette l'inserimento di un'immagine legata ad un *B&B*
+
+ * *id*: l'identificativo univoco del *B&B* di cui si sta caricando l'immagine.
+ * *file*: il file immagine che si sta caricando nella piattaforma.
+
+Attualmente il file viene caricato nella cartella:
+
+ * */var/www/cdn.bedandbreakfastinitaly.com/static/cover/bb/* (configurabile nel file: _./src/main/webapp/WEB-INF/conf/Utils.xml_)
+
+L'immagine caricata viene poi resa accessibile attraverso l'accesso con l'URL:
+
+ * *http://cdn.bedandbreakfastinitaly.com:8090/static/cover/bb/* (configurabile nel file: _./src/main/webapp/WEB-INF/conf/Utils.xml_)
+
+Il nome del file viene di destinazione viene generato a runtime in fase di salvataggio attraverso la concatenazione dell'ID del *B&B*, il nomee del *B&B* stesso e con una sostituzione degli spazi con *_*.
+
+La POST deve essere effettuata specificando il _multipart/form-data_ nella request.
+
+POST /bb/cover{?id}
+< 200
+< Content-Type: application/json
+{
+  "data": {
+    "address": "via del Nonloso",
+    "assignedname": "Mario Rossi",
+    "checkin": null,
+    "checkout": null,
+    "city": {
+      "country": {
+        "id": 28,
+        "name": "Spagna",
+        "prefix": "es"
+      },
+      "id": 62781,
+      "name": "Roma",
+      "region": {
+        "country": {
+          "id": 28,
+          "name": "Spagna",
+          "prefix": "es"
+        },
+        "id": 652,
+        "name": "ValÃ¨ncia"
+      }
+    },
+    "contactemail": "info@nontelodico2.it",
+    "description": "Questa è una prova",
+    "facility": [
+      {
+        "id": 1,
+        "name": "privata",
+        "type": 1
+      },
+      {
+        "id": 11,
+        "name": "1 bagno (vasca)",
+        "type": 3
+      },
+      {
+        "id": 10,
+        "name": "Studio",
+        "type": 3
+      }
+    ],
+    "id": "b43840e12b2c2ebc16e2bc336ac13b12",
+    "latitude": null,
+    "longitude": null,
+    "name": "Nome del BB",
+    "owner": {
+      "active": true,
+      "address": "asd",
+      "city": {
+        "country": {
+          "id": 29,
+          "name": "Italia",
+          "prefix": "it"
+        },
+        "id": 40403,
+        "name": "Almese",
+        "region": {
+          "country": {
+            "id": 29,
+            "name": "Italia",
+            "prefix": "it"
+          },
+          "id": 506,
+          "name": "Piemonte - Torino"
+        }
+      },
+      "email": "tech3@adsolut.it",
+      "id": 163854,
+      "name": "asd",
+      "role": "owner",
+      "surname": "asd"
+    },
+    "phone": "+393330303030",
+    "photo": "http://cdn.bedandbreakfastinitaly.com:8090/static/cover/bb/b43840e12b2c2ebc16e2bc336ac13b12_bedandbreakfast_Nome_del_BB.jpg",
+    "policy": [
+      {
+        "id": 8,
+        "name": "Proprietario residente nella stessa struttura",
+        "type": 1
+      },
+      {
+        "id": 10,
+        "name": "Giardino inadatto per bambini piccoli",
+        "type": 1
+      }
+    ],
+    "rank": 0,
+    "type": "bedandbreakfast"
+  },
+  "errors": []
+}
+
 
 -- B&B Gallery --
 
