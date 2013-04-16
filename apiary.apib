@@ -11823,9 +11823,97 @@ POST /bb/gallery/update{?id,pids}
 
 -- Search B&B --
 
+Ritorna tutti i *B&B* di proprietà dell'*owner* specificato.
+
+ * *ownerid*: L'identificativo univoco dell'*owner* di cui si vogliono avere i risultati.
+ * *limit*: Il numero di risultati daritornare.
+ * *offset*: L'offset dei risultati
+ * *lang*: L'identificativo ISO della lingua richiesta.
+
 GET /bb/byowner
 < 200
 < Content-Type: application/json
+{
+  "errors": [],
+  "data": [
+    {
+      "city": {
+        "country": {
+          "prefix": "it",
+          "id": 29,
+          "name": "Italia"
+        },
+        "region": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "id": 513,
+          "name": "Piemonte - Vercelli"
+        },
+        "id": 41520,
+        "name": "Alice Castello"
+      },
+      "longitude": 8.105563,
+      "name": "asd",
+      "facility": [
+        {
+          "type": 1,
+          "id": 1,
+          "name": "privata"
+        }
+      ],
+      "checkout": null,
+      "checkin": null,
+      "address": "via Petriere, Acquara, Massalubrense 80128",
+      "rank": 0,
+      "contactemail": "marcello.roehrssen1012@gmail.com",
+      "phone": "081 5601 8477",
+      "assignedname": "asd asd",
+      "policy": [
+        {
+          "type": 0,
+          "id": 1,
+          "name": "Animali ammessi"
+        }
+      ],
+      "photo": null,
+      "owner": {
+        "city": {
+          "country": {
+            "prefix": "it",
+            "id": 29,
+            "name": "Italia"
+          },
+          "region": {
+            "country": {
+              "prefix": "it",
+              "id": 29,
+              "name": "Italia"
+            },
+            "id": 513,
+            "name": "Piemonte - Vercelli"
+          },
+          "id": 41520,
+          "name": "Alice Castello"
+        },
+        "surname": "asd",
+        "name": "asd1",
+        "id": 196663,
+        "role": "owner",
+        "address": "via Petriere, Acquara, Massalubrense 80128",
+        "active": true,
+        "email": "marcello.roehrssen1017@gmail.com"
+      },
+      "latitude": 45.360382,
+      "type": "bedandbreakfast",
+      "id": "cee60099fa6b6f4518ed9e2975cb76af",
+      "description": "asd"
+    }
+  ]
+}
+
 
 Elenca tutti i B&B indicando il numero di elementi richiesti e l'offset
 
