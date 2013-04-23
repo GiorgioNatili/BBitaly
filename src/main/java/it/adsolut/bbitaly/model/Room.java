@@ -23,7 +23,7 @@ import org.hibernate.annotations.Where;
  * @author marcello
  */
 @Entity(name = "Room")
-@SQLDelete(sql="UPDATE room SET deleted = true WHERE id = ?")
+@SQLDelete(sql="UPDATE Room SET deleted = true WHERE id = ?")
 @Where(clause="deleted is null")
 public class Room {
 
