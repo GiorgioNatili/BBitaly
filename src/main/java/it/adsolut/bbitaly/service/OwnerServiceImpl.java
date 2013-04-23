@@ -111,7 +111,7 @@ public class OwnerServiceImpl extends TranslatableService implements OwnerServic
         Owner oldOwner = ownerDao.findByiD(ownerUpdateRequest.getOwnerid());
         Owner o = ownerDao.findByEmail(ownerUpdateRequest.getEmail());
         if (null != o) {
-            if (o.getId() != ownerUpdateRequest.getOwnerid()) {
+            if (!o.getId().equals(ownerUpdateRequest.getOwnerid())) {
                 ownerUpdateResponse.addError(Code.Owner.ALREADY_EXIST);
             }
         }
