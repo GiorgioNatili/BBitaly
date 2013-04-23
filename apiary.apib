@@ -8976,14 +8976,39 @@ Cancella un _owner_dal sistema. La cancellazione non elimina l'informazione dal 
 
  * *id*: l'identificativo numerico dell'_owner_
 
-Attualmente il sistema riporta un errore:
-
-    Could not execute JDBC batch update; SQL [UPDATE owner SET deleted = true WHERE id = ?]; nested exception is org.hibernate.exception.SQLGrammarException: Could not execute JDBC batch update
-
-il che fa presumere che l'operazione non sia ancora completamente implementata.
 POST /owner/delete{?id}
 < 200
 < Content-Type: application/json
+{
+  "errors": [], 
+  "data": {
+    "city": {
+      "country": {
+        "prefix": "it", 
+        "id": 29, 
+        "name": "Italia"
+      }, 
+      "region": {
+        "country": {
+          "prefix": "it", 
+          "id": 29, 
+          "name": "Italia"
+        }, 
+        "id": 510, 
+        "name": "Piemonte - Cuneo"
+      }, 
+      "id": 41111, 
+      "name": "Bagnolo Piemonte"
+    }, 
+    "surname": "asd", 
+    "name": "asd", 
+    "id": 163861, 
+    "role": "owner", 
+    "address": "asd", 
+    "active": true, 
+    "email": "gabry@bbitaly.com"
+  }
+}
 
 
 -- Authorization --

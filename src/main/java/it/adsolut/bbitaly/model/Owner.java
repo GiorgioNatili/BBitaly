@@ -16,7 +16,7 @@ import org.hibernate.annotations.Where;
  * @author marcello
  */
 @Entity(name = "Owner")
-@SQLDelete(sql="UPDATE owner SET deleted = true WHERE id = ?")
+@SQLDelete(sql="UPDATE Owner SET deleted = true WHERE id = ?")
 @Where(clause="deleted is null")
 public class Owner extends User {
 
