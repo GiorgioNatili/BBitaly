@@ -334,7 +334,11 @@ public class BbController {
             ModelMap map) {
         RoomResponse roomDeleteResponse = new RoomResponse(dozermapper);
         if (!results.hasErrors()) {
-            roomDeleteResponse = roomService.delete(roomDeleteRequest, roomDeleteResponse);
+        	try {
+                roomDeleteResponse = roomService.delete(roomDeleteRequest, roomDeleteResponse);
+        	} catch (Exception e) {
+        		// FIXME: temporary fix
+        	}
         } else {
             roomDeleteResponse.addError(results.getAllErrors());
         }
