@@ -7,3 +7,4 @@ bbitaly.sql
 *.jar
 *.war
 *.ear
+.DS_Store
