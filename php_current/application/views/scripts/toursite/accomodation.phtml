@@ -1,0 +1,59 @@
+<div id="userbadge-tip" class="tip-container">
+    <div class="tip">
+        <div class="tip-body">
+        <?php echo l('Click here to perform logout and to update your personal information')?>
+        </div>
+        <div class="tip-footer">
+            <a class="skip" href="#" onclick="wizard.clear(true);return false;">skip</a>
+            <a class="next" href="#" onclick="$(window).trigger('wizard.next');return false;">next</a>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<div id="addaccomodation-tip" class="tip-container">
+    <div class="tip">
+        <div class="tip-body">
+        <?php echo l('click here to add a new accomodation')?>
+        </div>
+        <div class="tip-footer">
+            <a class="skip" href="#" onclick="wizard.clear(true);return false;">skip</a>
+            <a class="next" href="#" onclick="$(window).trigger('wizard.next');return false;">next</a>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<div id="accomodationcontainer-tip" class="tip-container">
+    <div class="tip">
+        <div class="tip-body">
+        <?php echo l('On the left-side here you can view your accomdoation detail.')?>
+        <br />
+        <?php echo l('Use the right-side menu:')?>
+            <ul>
+                <li><b><?php echo l('room')?></b> - you can view room belonging to your accomoadtion</li>
+                <li><b><?php echo l('info')?></b> - you can view you accomodation info</li>
+                <li><b><?php echo l('delete')?></b> - you can delete you accomdoation</li>
+            </ul>
+        </div>
+        <div class="tip-footer">
+            <a class="skip" href="#" onclick="wizard.clear(true);return false;">skip</a>
+            <a class="next" href="#" onclick="$(window).trigger('wizard.next');return false;">next</a>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<div id="leftmenu-tip" class="tip-container">
+    <div class="tip">
+        <div class="tip-body">
+        <?php echo l('click on this menu to:')?>
+            <ul>
+                <li><?php echo l('to view your accomodation list')?></li>
+                <li><?php echo l('to view your booking details')?></li>
+            </ul>
+        </div>
+        <div class="tip-footer">
+            <a class="skip" href="#" onclick="wizard.clear(true);return false;">skip</a>
+            <a class="next" href="#" onclick="$(window).trigger('wizard.next');return false;">next</a>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="wcenter-outer-container">
+    <div class="wcenter-outer">
+        <div class="wcenter-inner">
+            <div id="stepslist">
+                <ul class="clearfix" data-tab-container="#tabContent">
+                    <li id="contacts" class=""><a href="<?php echo $this->url(array('action' => 'bbupdate')) ?>"><?php echo l('info') ?></a></li>
+                    <li id="contacts" class=""><a href="<?php echo $this->url(array('action' => 'photogallery')) ?>"><?php echo l('foto') ?></a></li>
+                    <li id="contacts" class=""><a href="<?php echo $this->url(array('action' => 'updatepolicy')) ?>"><?php echo l('servizi e policy') ?></a></li>
+                    <li id="contacts" class=""><a href="<?php echo $this->url(array('action' => 'translation')) ?>"><?php echo l('descrizioni') ?></a></li>
+                    <li id="contacts" class="active"><a href="<?php echo $this->url(array('action' => 'prices')) ?>"><?php echo l('prezzo') ?></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="height: 50px"></div>
+<?php
+echo $this->partial(
+        'block/calendar.phtml', array(
+            'editable'   => true,
+            'cMonth'     => $this->cMonth,
+            'cYear'      => $this->cYear,
+            'data'       => $this->data,
+            'dayPartial' => 'block/room-price-day.phtml'
+        )
+);
+?>

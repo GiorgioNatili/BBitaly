@@ -1,0 +1,27 @@
+<form data-success-message="<?php echo l('login avvenuto correttamente') ?>" 
+      data-error-container="errors-login" 
+      data-submit-type="ajax" 
+      action="<?php
+echo $this->url(array(
+    'subdomain' => APPLICATION_SUBDOMAIN,
+    'language' => $this->language,
+    'controller' => 'system',
+    'action' => 'authuser',
+    'format' => 'json'), null, true)
+?>" class="validate" style="width:457px;" method="POST">
+    <fieldset>
+        <p class="float-left margin-right20 width450 margin-bottom10">
+            <label class="grey text-left capitalize"><?php echo l('email') ?></label>
+            <input type="text" class="required email width450 input" name="email"/>
+        </p>
+        <p class="float-left margin-right20  width450 margin-bottom10">
+            <label class="grey text-left capitalize"><?php echo l('password') ?></label>
+            <input type="password" class="required width450 input" name="password"/>
+        </p>
+        <p class="float-left margin-right20 width450 margin-bottom10">
+            <label class="grey text-left capitalize"></label>
+            <input type="hidden" name="redirecturl" value="<?php echo $this->redirect_url?>"/>
+            <input value="<?php echo l('entra')?>" type="submit" class="submit button required input"/>
+        </p>
+    </fieldset>
+</form>

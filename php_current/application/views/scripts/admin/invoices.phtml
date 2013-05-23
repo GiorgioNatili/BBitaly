@@ -1,0 +1,138 @@
+<?php
+echo $this->adminLeftcolumn(array(
+    'books' => array(
+        'action' => 'books',
+        'active' => false,
+        'label' => l('Prenotazioni')
+    ),
+    'accomodations' => array(
+        'action' => 'accomodation',
+        'active' => true,
+        'label' => l('I miei annunci')
+    ),
+    'configuration' => array(
+        'action' => 'settings',
+        'active' => false,
+        'label' => l('Configurazioni')
+    )
+));
+?>
+<div class="wcenter-outer-container clearfix">
+    <div class="wcenter-outer">
+        <div class="wcenter-inner">
+            <?php
+            $url = array(
+//                'settings' => array(
+//                    'url' => $this->url(array('action' => 'invoice', 't' => '0')),
+//                    'active' => false,
+//                    'label' => l('fatture saldate')
+//                ),
+                'seo' => array(
+                    'url' => $this->url(array('action' => 'invoice', 't' => '1')),
+                    'active' => true,
+                    'label' => l('fatture pendenti')
+                )
+            );?>
+            <?php
+            echo $this->adminLeftcolumn($url);
+            ?>
+        </div>
+    </div>
+</div>
+<?php if (!empty($this->invoiceData)): ?>
+    <div style="height: 40px;"></div>
+    <a href="<?php echo $this->url(array('m' => $this->month - 1)); ?>">mese precedente</a> fattura del mese <?php echo $this->month ?> <a href="<?php echo $this->url(array('m' => $this->month + 1)); ?>">mese successivo</a>
+    <div style="height: 40px;"></div>
+    <div id="invoice_table" class="page">
+        <table class="full-width-column list">
+            <thead>
+                <tr class="head">
+                    <td class="first number content">
+                        <?php echo l('numero') ?>
+                    </td>
+                    <td class="content">
+                        <?php echo l('titolare prenotazione') ?>
+                    </td>
+                    <td class="center content">
+                        <?php echo l('emissione') ?>
+                    </td>
+                    <td class="center content">
+                        <?php echo l('iva incl') ?>
+                    </td>
+                    <td class="center content">
+                        <?php echo l('iva escl') ?>
+                    </td>
+                    <td class="center content">
+                        <?php echo l('commissione') ?>
+                    </td>
+                    <td class="center content">
+                        <?php echo l('Prezzo') ?>
+                    </td>
+                    <td class="last content">
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (!empty($this->invoiceData)): ?>
+                    <?php $alreadyViewed = array(); ?>
+                    <?php foreach ($this->result as $bookStruct): ?>
+                        <tr><td class="separator"></td></tr>
+                        <?php $data = Zend_Json::decode($bookStruct->data); ?>
+                        <tr class="body pending">
+                            <td class="bold number content first">
+                                <?php echo sprintf("%04d", $bookStruct->id) ?>
+                            </td>
+                            <td class="bold content string">
+                                <span><?php echo $data['salutation'] ?> <?php echo $data['invoice_name'] ?></span>
+                            </td>
+                            <td class="bold content center"><?php echo Zend_Date::now()->addMonth(1)->toString("d, M Y") ?></td>
+                            <td class="bold content center">&euro; <?php echo number_format($bookStruct->price, 2) ?></td>
+                            <td class="bold content center">&euro; <?php echo number_format($bookStruct->price / 1.21, 2) ?></td>
+                            <td class="bold content center">&euro; <?php echo number_format($bookStruct->price / 0.1, 2) ?></td>
+                            <td class="center content bold green">
+                                <span class="price"><?php echo number_format($bookStruct->price, 2) ?>&nbsp;&euro;</span>
+                            </td>
+                            <td class="last content">
+                                <?php
+                                    $showinfos = addslashes($bookStruct->data);
+                                ?>
+                                <a class="button accept" href="#" data-card='<?php echo $showinfos ?>'><?php echo l('dettagli') ?></a>
+                            </td>
+                        </tr>
+                    <?php endforeach ?>
+                <?php endif ?>
+            </tbody>
+        </table>
+    </div>
+    <div class="add clearfix">
+        <div>
+            <a href="<?php echo $this->url(array('action' => 'downloadinvoice')) ?>"><?php echo l('scarica la fattura del mese corrente') ?></a>
+        </div>
+    </div>
+    <script>
+        $(function() {
+            $('[data-card]').click(function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+                if ($(this).attr('data-card') != "{}") {
+                    console.log('asd2');
+                    var data = $.parseJSON($(this).attr('data-card').replace(/\\"/g, '"'));
+                    var message = "<b>Intestatario</b>: "+data.cc_owner+"<br />\n\
+                <b>Numero carta</b>: "+data.invoice_cc+"<br />\n\
+                <b>CVV/CCC</b>: "+data.cc_security+"<br />\n\
+                <b>Scadenza</b>: "+data.cc_expire;
+                    $.confirm({
+                        'title'     : 'Ecco i dati',
+                        'message'   : message,
+                        'buttons'   : {
+                            'Conferma'   : {
+                                'class' : 'confirm'
+                            }
+                        }
+                    });
+                }
+                return false;
+            })
+        })
+    </script>
+<?php endif; ?>

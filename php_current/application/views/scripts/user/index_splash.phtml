@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <?php echo $this->headTitle() ?>
+        <meta content="" name="description" />        
+        <meta content="" name="keywords" />        
+        <meta name="language" content="it" />
+        <meta name="copyright" content="© 2012 www.adsolut.it - All Rights Reserved" />
+        <link rel="icon" type="image/vnd.microsoft.icon" href="/images/favicon.ico?<?php echo rand(1, 99999999) ?>" />
+        <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?<?php echo rand(1, 99999999) ?>" />
+        <link href='http://fonts.googleapis.com/css?family=Imprima' rel='stylesheet' type='text/css' />
+        <link rel="stylesheet" href="/css/style.css" type="text/css" media="screen" />
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="/js/jquery.mousewheel.js"></script>
+        <script type="text/javascript" src="/js/jquery.cycle.js"></script>
+        <script type="text/javascript" src="/js/jquery.jscrollpane.min.js"></script>
+        <script type="text/javascript" src="/js/jqeury.easing.1.3.js"></script>
+        <script type="text/javascript" src="/js/facebox.js"></script>
+        <script type="text/javascript" src="/js/validate.js"></script>
+        <script type="text/javascript" src="/js/jquery.spritely.js"></script>
+        <script type="text/javascript" src="/js/jquery.idTabs.min.js"></script>
+        <script type="text/javascript" src="/js/jquery.selectbox-0.2.min.js"></script>
+        <script type="text/javascript" src="/js/raphael.js"></script>
+        <script type="text/javascript" src="/js/AllerDisplay_400.font.js"></script>
+        <script type="text/javascript" src="/js/ready.js"></script>
+        <?php echo $this->headScript() ?>
+        <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+            {lang: 'it'}
+        </script>
+        <script type="text/javascript" src="<?php echo $this->url(array('controller' => 'configuration', 'action' => 'js', 'subdomain' => APPLICATION_SUBDOMAIN)) ?>"></script>
+        <script type="text/javascript">
+            var baseUrl = '<?php echo $this->url(array('subdomain' => 'admin'), null, true) ?>';
+<?php echo $this->placeholder("execScript"); ?>
+        </script>
+        <script type="text/javascript">
+
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-37294262-1']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+
+        </script>
+        <style>
+            @font-face {
+                font-family: 'aller_display';
+                src: url('/css/allerdisplay-webfont.eot');
+                src: url('/css/allerdisplay-webfont.eot?#iefix') format('embedded-opentype'),
+                    url('/css/allerdisplay-webfont.woff') format('woff'),
+                    url('/css/allerdisplay-webfont.ttf') format('truetype'),
+                    url('/css/allerdisplay-webfont.svg#aller_displayregular') format('svg');
+                font-weight: normal;
+                font-style: normal;
+
+            }
+            * {outline:0;border:0}
+            body {min-width: 500px;background: #EEE;}
+            #content {width:100%;padding:0;min-height:100%;height: auto !important;height: 100%;margin-bottom:-90px;}
+            #marker_holder {position: absolute;top: 0;right: 0;height: 100%;width: 100%;}
+            #marker_mask, #slider {position: absolute;z-index: 100;height: 100%;right: 0;top: 0;}
+            #slider {z-index:99;height: 80%;}
+            #slider img, #marker_mask img{max-height: 100%;display: block;float: right;}
+            #slider img {position: absolute;right: 0;margin-left: -15px;}
+            #footer{background: url('/images/footer-splash.jpg') repeat; height: 64px;width: 100%;z-index:100}
+            #left {max-width:980px;position: absolute;bottom:0;left:30px;height: auto;z-index:101;margin-bottom: 64px}
+            #logo {width:294px;height:123px;background: url(/images/logo-big.png) center center no-repeat;position:static;margin-bottom:35px;margin-left:-12px}
+            #title h1 {height: 150px;font-family: 'aller_display';font-size:115px;color:#94a7b0;margin-left: -7px;}
+            #description-holder {max-width: 745px;width: 524px;}
+            #description {font-family: "georgia";font-style: italic;color:#67757b;width: 100%;background: #eee;padding:15px 15px 15px 0;border-radius: 0 10px 10px 0;}
+            #form {margin-left: -30px;padding: 30px;background: #ddd;border-radius:0 10px 0 0;width:509px}
+            .submit {margin-top:30px!important}
+            #social-pages {margin-left: 30px;padding-top: 22px}
+            #fb-like,#gp-like {background:none!important}
+            #fb-like {width:97px!important;}
+            #gp-like {width:67px!important;}
+            .copy {float: right;line-height: 64px;margin-right: 30px;color: #999;font-size: 12px;font-style: italic}
+            .copy a {color: #999!important;text-decoration: none!important}
+            .copy a:hover {text-decoration: underline!important}
+            #footer{position: absolute;bottom:0}
+        </style>
+        <script>
+            $(function() {
+                var attr = {
+                    fill:"<?php if($this->ok == 'o'):?>#6ab023<?php else:?>#94a7b0<?php endif;?>",
+                    "stroke-linecap": 'round',
+                    "stroke":"white",
+                    "stroke-linejoin":'mitter',
+                    'stroke-width':5,
+                    "font-size" : 115,
+                    "font-family":"aller_display",
+                    "height":175,
+                    "width":175,
+                    "opacity":1,
+                    "text-anchor":"start",
+                    'letter-spacing':'-5',
+                    'text-shadow': "0 0 8px "
+                };
+                var r = Raphael($('#title h1').get(0),800,175);
+                var t = r.print(-30,20,"<?php if($this->ok == 'o'):?>ora fai parte<?php else:?>benvenuto<?php endif;?>",r.getFont("AllerDisplay"),115,"middle",-0.1).attr(attr);
+                var t2 = r.print(-30,90,"<?php if($this->ok == 'o'):?>del team<?php else:?>su bbitaly<?php endif;?>",r.getFont("AllerDisplay"),115,"middle",-0.1).attr(attr);
+                r.set().push(t).push(t2);
+            })
+            
+            $(function(){
+                $('#slider img:gt(0)').hide();
+                setInterval(function(){
+                    $('#slider img:first-child').fadeOut("slow")
+                    .next('img').fadeIn("slow")
+                    .end()
+                    .appendTo('#slider');}, 
+                4000);
+                $('form').validate();
+            });
+        </script>
+    </head>
+    <body>
+        <div id="canvas">
+            <div id="content">
+                <div id="marker_holder">
+                    <div id="marker_mask">
+                        <img src="/images/markermask.png">
+                    </div>
+                    <div id="slider">
+                        <img src="/images/001.jpg" />
+                        <img src="/images/002.jpg" />
+                    </div>
+                </div>     
+                <div id="left">
+                    <div id="logo"></div>
+                    <div id="title">
+                        <h1></h1>
+                        <div id="description-holder">
+                            <div id="description">
+                                <?php if($this->ok == 'o'):?>
+                                La registrazione della tua struttura &egrave; avvenuta con successo.<br />
+                                A breve riceverai una email di conferma.
+                                <?php else:?>
+                                Completa l'iscrizione guidata inserendo semplicemente la tua email ed inizia a far parte del network.
+                                In pochi minuti potrai far conoscere la tua struttura a milioni di utenti!
+                                <?php endif;?>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="form" <?php if($this->ok == 'o'):?>style="opacity:0"<?php endif;?>>
+                        <form method="post" action="<?php echo $this->url(array('controller' => 'admin', 'action' => "bbcreate")) ?>">
+                            <p>
+                                <input type="text" name="email" class="required email" placeholder="inserisci la tua email" />
+                            </p>
+                            <input class="submit" type="submit" value="completa l'iscrizione" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="footer">
+                <footer>
+                    <div id="social-pages" class="float-left clearfix">
+                        <ul>
+                            <li id="fb-like"><iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FBed-And-Breakfast-in-Italy%2F228921990498383&amp;send=false&amp;layout=button_count&amp;width=97&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21&amp;appId=233646893428965" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:97px; height:21px;" allowTransparency="true"></iframe></li>
+                            <li id="gp-like"><div class="g-plusone" data-size="medium" data-href="https://plus.google.com/u/0/b/103711838752058855961/103711838752058855961/posts"></div></li>
+                            <li id="facebook-page"><a data-block target="_blank" href="https://www.facebook.com/pages/Bed-And-Breakfast-in-Italy/228921990498383"></a></li>
+                            <li id="googleplus-page"><a data-block target="_blank" href="https://plus.google.com/u/0/b/103711838752058855961/103711838752058855961/posts"></a></li>
+                            <li id="twitter-page"><a data-block target="_blank" href="https://twitter.com/BBItaly"></a></li>
+                            <li id="pinterest-page"><a data-block target="_blank" href="https://pinterest.com/bbitaly/"></a></li>
+                        </ul>
+                    </div>
+                    <div class="copy">
+                        Copyright &copy; 2012 BBItaly &reg; / tutti i diritti sono riservati. <a target="_blank" href="http://www.adsolut.it">web agency napoli</a>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </body>
+</html>

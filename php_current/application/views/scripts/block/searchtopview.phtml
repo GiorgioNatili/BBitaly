@@ -1,0 +1,35 @@
+<div style="width:500px;">
+    <table style="width:500px;">
+        <tr>
+            <th class="bordered"><?php echo l('keyword') ?></th>
+<!--            <th><?php echo l('label') ?></th>-->
+            <th></th>
+        </tr>
+        <?php foreach ($this->data as $item): ?>
+            <tr>
+                <td>
+                    <?php echo $item->keyword ?>
+                </td>
+<!--                <td>
+                    <?php //foreach ($item['label']->label as $label): ?>
+                    <?php //die(print_r($label));?>
+                        <?php //echo @$label->lang ?> : <?php //echo @$label->label ?><br />
+                    <?php //endforeach; ?>
+                </td>-->
+                <?php if ($item->position == 'bc') :?>
+                <td>
+                    <?php echo l("bottom center")?>
+                </td>
+                <?php elseif ($item->position == 'br') :?>
+                <td>
+                    <?php echo l("bottom right")?>
+                </td>
+                <?php elseif ($item->position == 'bl') :?>
+                <td>
+                    <?php echo l("bottom right")?>
+                </td>
+                <?php endif;?>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+</div>

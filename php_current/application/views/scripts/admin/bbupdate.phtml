@@ -1,0 +1,154 @@
+<div class="wcenter-outer-container">
+    <div class="wcenter-outer">
+        <div class="wcenter-inner">
+            <div id="stepslist">
+                <ul class="clearfix" data-tab-container="#tabContent">
+                    <li id="contacts" class="active"><a href="<?php echo $this->url(array('action' => 'bbupdate')) ?>"><?php echo l('info') ?></a></li>
+                    <li id="contacts" class=""><a href="<?php echo $this->url(array('action' => 'photogallery')) ?>"><?php echo l('foto') ?></a></li>
+                    <li id="contacts" class=""><a href="<?php echo $this->url(array('action' => 'updatepolicy')) ?>"><?php echo l('servizi e policy') ?></a></li>
+                    <li id="contacts" class=""><a href="<?php echo $this->url(array('action' => 'translation')) ?>"><?php echo l('descrizioni') ?></a></li>
+                    <li id="contacts" class=""><a href="<?php echo $this->url(array('action' => 'prices')) ?>"><?php echo l('prezzo') ?></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="height: 50px"></div>
+<div class="wcenter-outer-container clearfix subtabs">
+    <?php
+    echo $this->adminLeftcolumn(array(
+        'settings' => array(
+            'action' => 'bbupdate',
+            'active' => false,
+            'label' => l('info di base')
+        ),
+        'saved' => array(
+            'action' => 'roomupdate',
+            'active' => false,
+            'label' => l('info aggiuntive')
+        )
+    ));
+    ?>
+</div>
+<div class="info-container" style="width:685px">
+    <?php if ($this->status == 'error'): ?>
+        <?php echo $this->partial('block/error.phtml', array('errors' => $this->errors)); ?>
+    <?php endif; ?>
+    <form class="validate form-essential" method="post" action="<?php echo $this->url(array('action' => 'bbupdateprocess')); ?>">
+        <fieldset class="essential" style="width: 440px;margin: 0 auto;">
+            <p>
+                <label><?php echo l('Tipologia struttura') ?></label>
+                <select id="type" name="type" class="required">
+                    <option value="bedbreakfast" <?php echo $this->accomodation->type == 'bedbreakfast' ? 'selected="selected"' : '' ?>><?php echo l('Bed and Breakfast') ?></option>
+                    <option value="hotel" <?php echo $this->accomodation->type == 'hotel' ? 'selected="selected"' : '' ?>><?php echo l('Hotel') ?></option>
+                    <option value="Appartamento" <?php echo $this->accomodation->type == 'Appartamento' ? 'selected="selected"' : '' ?>><?php echo l('Appartamento') ?></option>
+                    <option value="monolocale" <?php echo $this->accomodation->type == 'monolocale' ? 'selected="selected"' : '' ?>><?php echo l('monolocale') ?></option>
+                    <option value="Chalet" <?php echo $this->accomodation->type == 'Chalet' ? 'selected="selected"' : '' ?>><?php echo l('Chalet/baita') ?></option>
+                    <option value="villa" <?php echo $this->accomodation->type == 'villa' ? 'selected="selected"' : '' ?>><?php echo l('Casa/villa') ?></option>
+                    <option value="Dimora_tipica" <?php echo $this->accomodation->type == 'Dimora_tipica' ? 'selected="selected"' : '' ?>><?php echo l('Dimora tipica') ?></option>
+                    <option value="Rustico" <?php echo $this->accomodation->type == 'Rustico' ? 'selected="selected"' : '' ?>><?php echo l('Rustico') ?></option>
+                    <option value="Agriturismo" <?php echo $this->accomodation->type == 'Agriturismo' ? 'selected="selected"' : '' ?>><?php echo l('Agriturismo') ?></option>
+                    <option value="mobil_home" <?php echo $this->accomodation->type == 'mobil_home' ? 'selected="selected"' : '' ?>><?php echo l('Mobil home') ?></option>
+                    <option value="Barca" <?php echo $this->accomodation->type == 'Barca' ? 'selected="selected"' : '' ?>><?php echo l('Barca a vela') ?></option>
+                    <option value="yatch" <?php echo $this->accomodation->type == 'yatch' ? 'selected="selected"' : '' ?>><?php echo l('Yacht') ?></option>
+                </select>
+            </p>
+            <p><label form="assignedname"><?php echo l('Nome del responsabile') ?></label><input id="assignedname" class="required" name="assignedname" type="text" name="#" value="<?php echo $this->accomodation->assignedname ?>" /></p>
+            <p><label for="propertyname"><?php echo l('nome della struttura') ?></label><input name="propertytname" class="required" id="propertytname" type="text" name="#" value="<?php echo $this->accomodation->name ?>"/></p>
+            <p><label for="phonenumber "><?php echo l('numero di telefono') ?></label><input name="phonenumber" class="required" id="phonenumber" type="text" name="#" value="<?php echo $this->accomodation->phone ?>" /></p>
+            <p><label fro="personalemail"><?php echo l('email di contatto') ?></label><input name="personalemail" class="required" id="personalemail" type="text" name="#" value="<?php echo $this->accomodation->contactemail ?>"/></p>
+            <p>
+                <input type="hidden" value="29" name="countryid"/>
+                <label><?php echo l('Provincia') ?></label>
+                <select data-source="<?php echo $this->url(array('subdomain' => 'www', 'controller' => 'system', 'action' => 'city', 'format' => 'json')) ?>" data-target="owner_city" id="owner_region" name="region" class="required">
+                    <option value="">--</option>
+                    <option value="579">Campania - Napoli</option>
+                    <option value="605">Sardegna - Cagliari</option>
+                    <?php foreach ($this->regions as $region): ?>
+                        <option value="<?php echo $region->id ?>" <?php if ($region->id == $this->accomodation->city->region->id): ?>selected="selected"<?php endif; ?>><?php echo $region->name ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </p>
+            <p>
+                <input type="hidden" name="desclang" value="<?php echo $this->currentLang ?>" />
+                <input type="hidden" name="description" value="<?php echo $this->accomodation->description ?>" />
+                <label><?php echo l('Comune') ?>&nbsp;</label>
+                <select id="owner_city" name="cityid" class="required">
+                    <option value="">--</option>
+                    <?php foreach ($this->cities as $city): ?>
+                        <option value="<?php echo $city->id ?>" <?php if ($city->id == $this->accomodation->city->id): ?>selected="selected"<?php endif; ?>><?php echo $city->name ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </p>
+            <p>
+                <label><?php echo l('indirizzo') ?></label>
+                <input name="address" id="owner_address" class="required" type="text"  value="<?php echo $this->accomodation->address ?>" />
+            </p>
+            <p>
+                <input type="submit" class="submit" value="<?php echo l('Invia') ?>"/>
+            </p>
+        </fieldset>
+        <fieldset class="facility" style="display:none">
+            <h2>
+                <?php echo l('Servizi') ?>
+            </h2>
+            <?php $title = '' ?>
+            <?php $tabs = '' ?>
+            <?php foreach ($this->facility as $name => $facility): ?>
+
+                <?php
+                $title .= "<li>";
+                $title .= "<a href='#f" . $name . "'>";
+                $title .= $this->facility($name);
+                $title .= "</a>";
+                $title .= "</li>";
+                ?>
+
+                <?php $i = 0 ?>
+                <?php $tabs .= '' ?>
+                <?php $tabs .= '<div id="f' . $name . '">' ?>
+                <?php foreach ($facility as $option): ?>
+                    <?php $tabs .= '<span class="checkbox">' ?>
+                    <?php $tabs .= '<input type="checkbox"' . (($option['selected'] || $i == 0) ? 'checked="checked"' : '') . ' value="' . $option['id'] . '" name="facilitiesId[]" /><label>' . $option['name'] . '</label>'; ?>
+                    <?php $tabs .= '</span>'; ?>
+                    <?php if (++$i % 2 == 0): ?>
+                        <?php //$tabs .= '<br class="clear" />' ?>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+                <?php $tabs .= '</div>'; ?>
+            <?php endforeach; ?>
+            <label class="title">
+                <div class="clear"></div>
+                <?php echo '<ul>' . $title . '</ul>' ?>
+            </label>
+            <div class="clear"></div>
+            <?php echo $tabs ?>
+            </p>
+        </fieldset>
+        <fieldset class="policy" style="display:none">
+            <h2>
+                <?php echo l('Policy') ?>
+            </h2>
+            <?php foreach ($this->policy as $name => $policy): ?>
+                <?php $i = 0 ?>
+                <?php foreach ($policy as $option): ?>
+                    <span class="checkbox" style="width:auto">
+                        <input type="checkbox" <?php if ($option['selected'] || $i == 0): ?>checked="checked"<?php endif; ?> value="<?php echo $option['id'] ?>" name="policyId[]" /><label><?php echo $option['name'] ?></label>
+                    </span>
+                    <br class="clear" />
+                    <?php if (++$i % 2 == 0): ?>
+                        <!--                        <br class="clear" />-->
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            <?php endforeach; ?>
+            </p>
+        </fieldset>
+    </form>
+</div>
+<div class="clear"></div>
+<script type="text/javascript"> 
+    $("fieldset.facility ul").idTabs(); 
+    $(function() {
+        $('.form-essential').forms();
+    })
+</script>

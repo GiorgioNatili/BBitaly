@@ -1,0 +1,59 @@
+<?php
+echo $this->adminLeftcolumn(array(
+    'books' => array(
+        'action' => 'books',
+        'active' => false,
+        'label' => l('Prenotazioni')
+    ),
+    'accomodations' => array(
+        'action' => 'accomodation',
+        'active' => true,
+        'label' => l('I miei annunci')
+    ),
+    'configuration' => array(
+        'action' => 'settings',
+        'active' => false,
+        'label' => l('Configurazioni')
+    )
+));
+?>
+<div id="addaccomodation" class="add clearfix">
+    <div>
+        <a href="<?php echo $this->url(array('action' => 'bbcreate', 'id' => null)) ?>"><?php echo l('Aggiungi alloggio') ?></a>
+    </div>
+</div>
+<div style="height: 40px;"></div>
+<?php if (count($this->items) > 0): ?>
+    <?php $i = 1; ?>
+    <?php foreach ($this->items as $item): ?>
+        <div <?php echo $i == 1 ? "id='accomodationcontainer'" : ''; ?> class="accomodation-container clearfix">
+            <div class="accomodation">
+                <div class="photo">
+                    <?php echo $this->writeImage(array('src' => $item->photo, 'width' => 90, 'height' => 90)); ?>
+                </div>
+                <div class="info">
+                    <h3>
+                        <?php echo $item->name ?>
+                    </h3>
+                    <div class="clear"></div>
+                    <p class="address">
+                        <?php echo $item->address . " " . $item->city->name . " / " . $item->city->region->name ?>
+                    </p>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="options">
+                <a class="update" href="<?php echo $this->url(array('subdomain' => APPLICATION_SUBDOMAIN, 'action' => 'detail', 'controller' => 'casavacanza', 'id' => $item->id, 'language' => $this->language),null, true) ?>"><?php echo l('info') ?></a>
+                <a class="delete" rel="ajax" href="<?php echo $this->url(array('action' => 'deletebb', 'id' => $item->id)) ?>"><?php echo l('delete') ?></a>
+                <a class="invoice" href="<?php echo $this->url(array('action' => 'invoice', 'id' => $item->id)) ?>"><?php echo l('fatture') ?></a>
+                <a class="addroom" href="<?php echo $this->url(array('action' => 'roomcreate', 'id' => $item->id)) ?>"><?php echo l('aggiungi camere') ?></a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    <?php endforeach ?>
+<?php else: ?>
+    <div style="box-sizing:border-box;background:url(/images/error_icon.png) 30px center no-repeat #faf2c3;padding:15px 100px;border-radius:15px;margin-top:30px;border: 1px solid #ccc;text-align: left;width:100%;">
+        <span style="font-family:'Calibri-bold';color:#333;font-size:22px">Avviso</span><br />
+        <span>non hai ancora creato nessuna struttura creane una cliccando su <b>aggiungi alloggio</b> qui sopra</span>
+    </div>
+<?php endif; ?>

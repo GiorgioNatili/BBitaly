@@ -1,0 +1,71 @@
+<div style="height: 20px;"></div>
+<div class="section ac">
+    <h3>Status del server</h3>
+    <div>
+        <label class="float-left margin-right20" style="text-align: right;width:100px;line-height: 20px;">server</label>
+        <div class="float-left">
+            <?php $color = 'red'?>
+            <?php $title = 'down!'?>
+            <?php if ($this->status == true) :?>
+                <?php $color = 'green'?>
+                <?php $title = 'up and running'?>
+            <?php endif?>
+            <div class="float-left" style="border-radius:10px;height: 20px;width: 20px;background: <?php echo $color?>" title="<?php echo $title?>"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div style="height: 20px;"></div>
+    <div>
+        <label class="float-left margin-right20" style="text-align: right;width:100px;line-height: 20px;">memoria JVM</label>
+        <div class="float-left">
+            <b><?php echo $this->data->committedVirtualMemorySize ?> Mb</b>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div style="height: 20px;"></div>
+    <div>
+        <label class="float-left margin-right20" style="text-align: right;width:100px;line-height: 20px;">memoria </label>
+        <?php
+        $max = 800;
+        $used = $this->data->totalPhysicalMemorySize - $this->data->freePhysicalMemorySize;
+        $percentage = ($max / $this->data->totalPhysicalMemorySize) * $used;
+        ?>
+        <div class="float-left relative" style="text-align: center;height: 20px;width:<?php echo $max ?>px;background: #D0DCA4;border:1px solid #8AA81C">
+            <div style="height: 20px;width:<?php echo $percentage ?>px;background: #8AA81C">
+            </div>
+            <div class="absolute bold font12" style="top:0;left:25%;line-height: 20px;">
+                <?php echo $used ?> Mb / <?php echo $this->data->totalPhysicalMemorySize ?> Mb
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div style="height: 20px;"></div>
+    <div>
+        <label class="float-left margin-right20" style="text-align: right;width:100px;line-height: 20px;">carico CPU </label>
+        <div class="float-left relative" style="text-align: center;height: 20px;width:<?php echo $max ?>px;background: #D0DCA4;border:1px solid #8AA81C">
+            <div style="height: 20px;width:<?php echo $this->data->cpuLoad ?>px;background: #8AA81C">
+            </div>
+            <div class="absolute bold font12" style="top:0;left:25%;line-height: 20px;">
+                <?php echo number_format(($this->data->cpuLoad)/10, 1) ?> %
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div style="height: 20px;"></div>
+    <div>
+        <label class="float-left margin-right20" style="text-align: right;width:100px;line-height: 20px;">swap</label>
+        <?php
+        $used2 = $this->data->totalSwapSpaceSize - $this->data->freeSwapSpaceSize;
+        $percentage = ($max / $this->data->totalSwapSpaceSize) * $used2;
+        ?>
+        <div class="float-left relative" style="text-align: center;height: 20px;width:<?php echo $max ?>px;background: #D0DCA4;border:1px solid #8AA81C">
+            <div style="height: 20px;width:<?php echo $percentage ?>px;background: #8AA81C">
+            </div>
+            <div class="absolute bold font12" style="top:0;left:25%;line-height: 20px;">
+                <?php echo $used2 ?> Mb / <?php echo $this->data->totalSwapSpaceSize ?> Mb
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div style="height: 20px;"></div>

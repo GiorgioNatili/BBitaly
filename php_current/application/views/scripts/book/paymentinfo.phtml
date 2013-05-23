@@ -1,0 +1,136 @@
+<form action="<?php echo $this->url(array('action' => 'confirm'))?>" method="post">
+    <div id="invoiceTab" class="tab">
+        <div class="desc">
+            Il sistma VerySign Secured<sup>&REG;</sup> garantisce la gestione dei tuoi dati in maniera completamente protetta.
+        </div>
+        <div class="full-width-column title">
+            <h2 class="nomargin"><?php echo l('Anagrafica') ?></h2>
+        </div>
+        <div class="half-width-column">
+            <p>
+                <label form="invoice_title">
+                    <?php echo l('titolo') ?>
+                </label>
+                <select id="invoice_title" class="required" name="invoice[salutation]" type="text">
+                    <option><?php echo l('Sig.') ?></option>
+                    <option><?php echo l('Sig.ra') ?></option>
+                </select>
+            </p>
+            <p>
+                <label for="invoice_name">
+                    <?php echo l('nome e cognome') ?>
+                </label>
+                <input class="required" name="invoice[invoice_name]" id="invoice_name" type="text"/>
+            </p>
+            <p>
+                <label for="invoice_surname">
+                    <?php echo l('Codice fiscale / partita i.v.a.') ?>
+                </label>
+                <input class="required" name="invoice[invoice_vat]" id="invoice_surname" type="text"/>
+            </p>
+            <p>
+                <label for="invoice_email">
+                    <?php echo l('email') ?>
+                </label>
+                <input class="required"  name="invoice[invoice_email]" id="invoice_email" type="text"/>
+            </p>
+        </div>
+        <div class="half-width-column">
+            <p>
+                <label><?php echo l('Provincia') ?></label>
+            <p id="invoice_region_holder">
+                <select class="required" tabindex="5" data-holder="#invoice_region_holder" name="invoice[invoice_owner_region]" data-source="http://demo.bella-idea.com/it/system/city" data-target="#invoice_owner_city" id="invoice_owner_region" name="invoice_region" class="required">
+                    <?php foreach ($this->regions as $regions): ?>
+                        <option value="<?php echo $regions->id ?>"><?php echo $regions->name ?></option>
+                    <?php endforeach ?>
+                </select>
+            </p>
+            </p>
+            <p>
+                <label><?php echo l('Comune') ?>&nbsp;</label>
+            <p id="invoice_city_holder">
+                <select tabindex="4" data-holder="#invoice_city_holder" name="invoice[invoice_owner_city]" id="invoice_owner_city" name="invoice_city" class="required"></select>
+            </p>
+            </p>
+            <p>
+                <label for="invoice_address">
+                    <?php echo l('indirizzo') ?>
+                </label>
+                <input name="invoice[invoice_address]" class="" id="invoice_address" type="text"/>
+            </p>
+            <p>
+                <label for="invoice_zip">
+                    <?php echo l('C.A.P. / zip code') ?>
+                </label>
+                <input class="" name="invoice[invoice_zip]" id="invoice_zip" type="text"/>
+            </p>
+        </div>
+        <div class="clear"></div>
+        <div class="full-width-column title">
+            <h2><?php echo l('Carta di Credito') ?></h2>
+        </div>
+        <div class="clear"></div>
+        <div class="half-width-column">
+            <p>
+                <label for="invoice_cc">
+                    <?php echo l('numero della carta di credito') ?>
+                </label>
+                <input class="" name="invoice[invoice_cc]" id="invoice_cc" type="text"/>
+            </p>
+            <p>
+                <label for="cc_owner">
+                    <?php echo l('intestatario della carta di credito') ?>
+                </label>
+                <input class="" name="invoice[cc_owner]" id="cc_owner" type="text"/>
+            </p>
+            <p>
+                <label for="personalemail">
+                    <?php echo l('accettiamo le seguenti carte di credito') ?>
+                </label>
+                <img src="/images/ccaccepted.png" />
+            </p>
+        </div>
+        <div class="half-width-column">
+
+            <p>
+                <label for="cc_expire">
+                    <?php echo l('data di scadenza della carta di credto') ?>
+                </label>
+                <input name="invoice[cc_expire]" class="" id="cc_expire" type="text"/>
+            </p>
+            <p>
+                <label for="cc_security">
+                    <?php echo l('CVC / CVV / CID') ?>
+                </label>
+                <input name="invoice[cc_security]" class="" id="cc_security" type="text"/>
+            </p>
+            <p>
+                <br />
+                <br />
+                <img src="/images/verysign.png" />
+            </p>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <?php
+    $books = $this->book;
+    unset($books['action']);
+    unset($books['controller']);
+    unset($books['module']);
+    unset($books['language']);
+    unset($books['subdomain']);
+    ?>
+    <?php foreach ($books as $name => $book): ?>
+        <input name="<?php echo $name?>" type="hidden" value="<?php echo $book?>"/>
+    <?php endforeach;?>
+    <div class="clear"></div>
+    <div style="height:30px"></div>
+    <input type="submit" class="button" style="font-size:30px;font-family:'Signika Negative';width: 300px;cursor:pointer;margin:20px auto;display:block;float:none;padding:0;height: 88px;border:1px solid #4a7b18;width:488px;background:url(/images/button-490px.png) center center no-repeat" value="<?php echo l('conferma la prenotazione') ?>" />
+
+</form>
+<div class="clear"></div>
+<script>
+    $(function(){
+        $('form').forms();
+    })
+</script>

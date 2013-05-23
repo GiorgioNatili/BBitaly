@@ -1,0 +1,1122 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Bbitaly\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-11-09 13:42+0100\n"
+"PO-Revision-Date: 2012-11-09 17:12+0100\n"
+"Last-Translator: Marcello Roehrssen <m.roehrssen@adsolut.it>\n"
+"Language-Team: Adsolut s.r.l. <m.roehrssen@adsolut.it>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;l\n"
+"X-Poedit-Basepath: C:\\wamp\\www\\bella-idea.com\n"
+"X-Poedit-Language: Italian\n"
+"X-Poedit-Country: ITALY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: application\n"
+
+#: application/controllers/AdminController.php:61
+msgid "login fallito: email o password errati"
+msgstr "login failed: email or password is incorrect"
+
+#: application/controllers/AdminController.php:89
+#: application/controllers/AdminController.php:479
+msgid "errore durante la cancellazione"
+msgstr "error deleting"
+
+#: application/controllers/AdminController.php:189
+msgid "Cancellazione non avvenuta a causa di:"
+msgstr "Cancellation is made ​​on account of:"
+
+#: application/controllers/AdminController.php:191
+msgid "Cancellazione avvenuta con successo"
+msgstr "Cancellation successful"
+
+#: application/controllers/AdminController.php:205
+#: application/controllers/AdminController.php:509
+msgid "update non avvenuta a causa di:"
+msgstr "update void due to:"
+
+#: application/controllers/AdminController.php:207
+#: application/controllers/AdminController.php:511
+msgid "modifica avvenuta con successo"
+msgstr "change successful"
+
+#: application/controllers/AdminController.php:624
+msgid "an error occurred"
+msgstr "an error occurred"
+
+#: application/controllers/BookController.php:107
+msgid "Error: request forgery detected"
+msgstr "Error: request forgery detected"
+
+#: application/controllers/CmsController.php:20
+msgid "titolo1"
+msgstr "titolo1"
+
+#: application/controllers/CmsController.php:21
+msgid "paragraph1"
+msgstr "paragraph1"
+
+#: application/controllers/CmsController.php:24
+msgid "chi siamo"
+msgstr "about us"
+
+#: application/controllers/CmsController.php:25
+msgid "chi siamo corpo"
+msgstr "Chi siamoBella Idea è un sito internet specializzato nell’affitto di case vacanza tra privati. Non è un’agenzia di viaggi on line né un’agenzia immobiliare, bensì una vetrina gratuita nata dalla nostra passione per i viaggi e dalla volontà di voler condividere tale passione e agevolare chi, come noi, ama scoprire posti sempre nuovi.Lo scopo di tale vetrina è, da una parte, aiutare chi desidera realizzare una vacanza a compiere la propria scelta in piena libertà tra tante proposte e servizi e, dall’altra, dare supporto a chi possiede una struttura, una bella idea per l’appunto, a trovare viaggiatori interessati. Noi non siamo intermediari: viaggiatori e ideatori, ovvero affittuari e proprietari, saranno in contatto diretto tra loro, così da poter creare un rapporto di fiducia e non solo un rapporto economico. Il primo contatto tra viaggiatori e ideatori avviene tramite i social network. Sui social network sarà facile per i viaggiatori contattare anche altri viaggiatori e potersi così confrontare tra loro.Ad ogni bella idea pubblicata, i viaggiatori potranno visualizzare anche tutte le idee correlate geograficamente a quella struttura, in modo da poter creare un pacchetto personalizzato tra le varie proposte pubblicate. Il viaggio dei vostri sogni è davvero a portata di mouse! Le idee da pubblicare possono essere inserite facilmente e gratuitamente sia come idea principale (struttura ricettiva) sia come idea correlata (tutti i servizi d’interesse turistico).Una parte del sito, dedicata agli eventi, espone tutte quelle idee di breve durata e di particolare interesse (mostre, stage, spettacoli teatrali, ma anche offerte particolari per strutture ricettive e servizi di breve durata); in un’altra sezione del sito,”Idee Regalo”, si possono trovare idee da regalare di tutti i tipi: dagli oggetti d’arte alle torte fatte a mano, dai gioielli artigianali all’oggettistica.Il nostro sito, realizzato anche grazie al supporto di esperti in nuove tecnologie, web marketing e comunicazione multimediale, vuole sì proporsi come una vetrina on-line, ma mira anche a divenire un importante punto d’incontro virtuale tra chi mette a disposizione le proprie belle idee e chi le cerca.Trasparenza ed affidabilità sono certamente due delle nostre prerogative e siamo certi che questi due aspetti contribuiranno a fornire un servizio di qualità sia ai proprietari che agli affittuari."
+
+#: application/controllers/CmsController.php:28
+msgid "contatti"
+msgstr "contacts"
+
+#: application/controllers/CmsController.php:29
+msgid "contatti corpo"
+msgstr "asd"
+
+#: application/controllers/CmsController.php:32
+msgid "condizioni d'uso"
+msgstr "terms of use"
+
+#: application/controllers/CmsController.php:33
+msgid "condizioni d'uso corpo"
+msgstr "Noi di Bella Idea siamo perfettamente consapevoli della fiducia che riponi in noi e della nostra responsabilità di proteggere la tua privacy. Parte della nostra responsabilità prevede la comunicazione delle informazioni che raccogliamo quando utilizzi i nostri prodotti e servizi, perché le raccogliamo e come le utilizziamo per migliorare la tua esperienza.Abbiamo 5 princìpi sulla privacy che descrivono il nostro approccio alle informazioni sulla privacy e sugli utenti per tutti i nostri prodotti:Utilizzare le informazioni sull’utente per offrire prodotti e servizi di valore.Sviluppare prodotti che soddisfino elevati standard di privacy.Rendere trasparente la raccolta dei dati personali.Offrire agli utenti opzioni efficaci per proteggere la loro privacy.Essere amministratori responsabili delle informazioni in nostro possesso.Questo Centro sulla privacy è stato creato per fornirti informazioni di facile comprensione relative ai nostri prodotti e alle nostre norme, per consentirti di scegliere in modo più consapevole quali prodotti utilizzare, come utilizzarli e quali informazioni fornirci.	"
+
+#: application/controllers/CmsController.php:36
+msgid "normativa sulla privacy"
+msgstr "Privacy Policy"
+
+#: application/controllers/CmsController.php:37
+msgid "normativa sulla privacy corpo"
+msgstr ""
+"1. La presente legge garantisce che il trattamento dei dati personali si svolga nel rispetto dei diritti, delle libertà fondamentali, nonché della dignità delle persone fisiche, con particolare riferimento alla riservatezza e all’identità personale; garantisce altresì i diritti delle persone giuridiche e di ogni altro ente o associazione.\n"
+"\n"
+"2. Ai fini della presente legge si intende:\n"
+"\n"
+"a) per “banca di dati”, qualsiasi complesso di dati personali, ripartito in una o più unità dislocate in uno o più siti, organizzato secondo una pluralità di criteri determinati tali da facilitarne il trattamento;\n"
+"b) per “trattamento”, qualunque operazione o complesso di operazioni, svolti con o senza l’ausilio di mezzi elettronici o comunque automatizzati, concernenti la raccolta, la registrazione, l’organizzazione, la conservazione, l’elaborazione, la modificazione, la selezione, l’estrazione, il raffronto, l’utilizzo, l’interconnessione, il \n"
+"blocco, la comunicazione, la diffusione, la cancellazione e la distruzione di dati;\n"
+"c) per “dato personale”, qualunque informazione relativa a persona fisica, persona giuridica, ente od associazione, identificati o identificabili, anche indirettamente, mediante riferimento a qualsiasi altra informazione, ivi compreso un numero di identificazione personale;\n"
+"d) per “titolare”, la persona fisica, la persona giuridica, la pubblica amministrazione e qualsiasi altro ente, associazione od organismo cui competono le decisioni in ordine alle finalità ed alle modalità del trattamento di dati personali, ivi compreso il profilo della sicurezza;\n"
+"e) per “responsabile”, la persona fisica, la persona giuridica, la pubblica amministrazione e qualsiasi altro ente, associazione od organismo preposti dal titolare al trattamento di dati personali;\n"
+"f) per “interessato”, la persona fisica, la persona giuridica, l’ente o l’associazione cui si riferiscono i dati personali;\n"
+"g) per “comunicazione”, il dare conoscenza dei dati personali a uno o più soggetti determinati diversi dall’interessato, in qualunque forma, anche mediante la loro messa a disposizione o consultazione;\n"
+"h) per “diffusione”, il dare conoscenza dei dati personali a soggetti indeterminati, in qualunque forma, anche mediante la loro messa a disposizione o consultazione;\n"
+"i) per “dato anonimo”, il dato che in origine, o a seguito di trattamento, non può essere associato ad un interessato identificato o identificabile;\n"
+"l) per “blocco”, la conservazione di dati personali con sospensione temporanea di ogni altra operazione del trattamento;\n"
+"m) per “Garante”, l’autorità istituita ai sensi dell’articolo 30\n"
+"	"
+
+#: application/controllers/SystemController.php:50
+#: application/controllers/SystemController.php:82
+msgid "Ci spiace la struttura non è disponibile"
+msgstr "Sorry the structure is not available"
+
+#: application/controllers/SystemController.php:64
+msgid "Congratulazioni la struttura è libera"
+msgstr "Congratulations the structure is free"
+
+#: application/controllers/SystemController.php:73
+msgid "Prenota"
+msgstr "Book"
+
+#: application/controllers/SystemController.php:182
+msgid "ancora un ultimo passaggio..."
+msgstr "one last step ..."
+
+#: application/controllers/SystemController.php:182
+msgid "Controlla la tua e-mail! Troverai un messaggio di benvenuto nella casella di posta da te indicata nel modulo di registrazione. Nel caso in cui non dovessi ricevere il nostro messaggio entro 24 ore, controlla anche la posta indesiderata. In caso di ulteriori ritardi, contatta il nostro staff all'indirizzo:"
+msgstr "Check your e-mail! You will find a welcome message in the mailbox you indicated on the registration form. In case you do not receive our message within 24 hours, check out the spam. In case of further delay, please contact our staff at:"
+
+#: application/views/layouts/default.phtml:36
+msgid "logout"
+msgstr "logout"
+
+#: application/views/layouts/default.phtml:45
+msgid "case vacanza, affitto ville, appartamenti vacanze"
+msgstr "holiday homes, rental villas, apartments"
+
+#: application/views/layouts/default.phtml:55
+msgid "inserisci quì la località"
+msgstr "insert location here"
+
+#: application/views/layouts/default.phtml:59
+msgid "arrivi"
+msgstr "arrivals"
+
+#: application/views/layouts/default.phtml:63
+msgid "partenze"
+msgstr "departures"
+
+#: application/views/layouts/default.phtml:68
+msgid "cerca"
+msgstr "search"
+
+#: application/views/layouts/default.phtml:75
+msgid "Pubblica la tua struttura vacanza"
+msgstr "Advertise your business holiday"
+
+#: application/views/layouts/default.phtml:77
+msgid "Pubblica la tua idea"
+msgstr "Share your idea"
+
+#: application/views/layouts/default.phtml:78
+msgid "Pubblicizza <b>gratis</b> la tua villa, il tuo appartamento o la tua attività sul nostro sito! Iscriviti a Bella Idea!"
+msgstr "Advertise free your house, your apartment or your activities on our site! Subscribe to Good Idea!"
+
+#: application/views/layouts/default.phtml:108
+msgid "&COPY; 2011 Bella Idea. Tutti i diritti riservati."
+msgstr "&COPY; 2011 Bella Idea. All rights reserved."
+
+#: application/views/layouts/default.phtml:110
+msgid "Condizioni d'uso"
+msgstr "Terms of use"
+
+#: application/views/layouts/default.phtml:111
+msgid "Normativa sulla privacy"
+msgstr "Privacy Policy"
+
+#: application/views/layouts/default.phtml:113
+msgid "Bella Idea non è responsabile per il contenuto su altri siti web. Tasse e spese non incluse nelle offerte."
+msgstr "Bella Idea is not responsible for content on external Web sites. Taxes, fees not included for deals content."
+
+#: application/views/layouts/default.phtml:117
+msgid "Accedi a bella idea"
+msgstr "Sign in bella idea"
+
+#: application/views/layouts/default.phtml:119
+msgid "login"
+msgstr "login"
+
+#: application/views/layouts/default.phtml:123
+msgid "owner login"
+msgstr "owner login"
+
+#: application/views/layouts/default.phtml:127
+msgid "Follow us"
+msgstr "Follow us"
+
+#: application/views/layouts/default.phtml:146
+msgid "qualche altra cosa"
+msgstr "asd"
+
+#: application/views/layouts/default.phtml:147
+msgid "Chi siamo"
+msgstr "about us"
+
+#: application/views/layouts/default.phtml:148
+msgid "belle idee"
+msgstr "belle idee"
+
+#: application/views/layouts/default.phtml:152
+msgid "web agency napoli"
+msgstr "web agency napoli"
+
+#: application/views/scripts/account/index.phtml:4
+msgid "ripilogo account"
+msgstr "Account summary"
+
+#: application/views/scripts/account/index.phtml:8
+msgid "update"
+msgstr "update"
+
+#: application/views/scripts/account/index.phtml:11
+msgid "prenotazioni"
+msgstr "reservations"
+
+#: application/views/scripts/account/index.phtml:15
+msgid "nome struttura"
+msgstr "accomodation name"
+
+#: application/views/scripts/account/index.phtml:16
+msgid "data"
+msgstr "date"
+
+#: application/views/scripts/account/index.phtml:17
+msgid "prezzo"
+msgstr "price"
+
+#: application/views/scripts/account/update.phtml:7
+msgid "informazioni aggiornate con successo"
+msgstr "information successfully updated"
+
+#: application/views/scripts/account/update.phtml:10
+msgid "nome"
+msgstr "name"
+
+#: application/views/scripts/account/update.phtml:11
+msgid "cognome"
+msgstr "surname"
+
+#: application/views/scripts/account/update.phtml:12
+msgid "email"
+msgstr "email"
+
+#: application/views/scripts/account/update.phtml:13
+msgid "password"
+msgstr "password"
+
+#: application/views/scripts/account/update.phtml:14
+msgid "conferma password"
+msgstr "confirm password"
+
+#: application/views/scripts/account/update.phtml:15
+msgid "invia"
+msgstr "Required fieldssend"
+
+#: application/views/scripts/account/update.phtml:16
+msgid "campi obbligatori"
+msgstr "Required fields"
+
+#: application/views/scripts/admin/accomodation.phtml:3
+msgid "Aggiungi nuova struttura ricettiva"
+msgstr "Add new accommodation"
+
+#: application/views/scripts/admin/accomodation.phtml:24
+msgid "camere"
+msgstr "rooms"
+
+#: application/views/scripts/admin/accomodation.phtml:25
+#: application/views/scripts/admin/bbupdate.phtml:3
+msgid "info"
+msgstr "info"
+
+#: application/views/scripts/admin/accomodation.phtml:26
+msgid "delete"
+msgstr "delete"
+
+#: application/views/scripts/admin/bbcreate.phtml:8
+#: application/views/scripts/admin/bbupdate.phtml:22
+msgid "Informazioni essenziali"
+msgstr "essential Information"
+
+#: application/views/scripts/admin/bbcreate.phtml:11
+#: application/views/scripts/admin/bbupdate.phtml:15
+msgid "If you don't have time to complete the everything on this page, you can just fill out this basic information and send it to us. We'll call you back to help you complete the process."
+msgstr "If you don't have time to complete the everything on this page, you can just fill out this basic information and send it to us. We'll call you back to help you complete the process."
+
+#: application/views/scripts/admin/bbcreate.phtml:13
+#: application/views/scripts/admin/bbupdate.phtml:41
+msgid "Nome del responsabile"
+msgstr "Name of the accomodation chief"
+
+#: application/views/scripts/admin/bbcreate.phtml:14
+#: application/views/scripts/admin/bbupdate.phtml:42
+msgid "nome della struttura"
+msgstr "accomodation name"
+
+#: application/views/scripts/admin/bbcreate.phtml:15
+#: application/views/scripts/admin/bbupdate.phtml:43
+msgid "numero di telefono"
+msgstr "telephone number"
+
+#: application/views/scripts/admin/bbcreate.phtml:16
+#: application/views/scripts/admin/bbupdate.phtml:44
+msgid "email di contatto"
+msgstr "contact email"
+
+#: application/views/scripts/admin/bbcreate.phtml:18
+#: application/views/scripts/admin/bbupdate.phtml:47
+msgid "Provincia"
+msgstr "state"
+
+#: application/views/scripts/admin/bbcreate.phtml:27
+#: application/views/scripts/admin/bbupdate.phtml:60
+msgid "Comune"
+msgstr "city"
+
+#: application/views/scripts/admin/bbcreate.phtml:36
+#: application/views/scripts/admin/bbupdate.phtml:69
+msgid "indirizzo"
+msgstr "address"
+
+#: application/views/scripts/admin/bbcreate.phtml:42
+msgid "descrizione struttra"
+msgstr "description structure"
+
+#: application/views/scripts/admin/bbcreate.phtml:45
+#: application/views/scripts/admin/bbupdate.phtml:25
+msgid "Tipologia struttura"
+msgstr "structure"
+
+#: application/views/scripts/admin/bbcreate.phtml:47
+msgid "bedbreakfast"
+msgstr "Bed and Breakfast"
+
+#: application/views/scripts/admin/bbcreate.phtml:48
+msgid "hotel"
+msgstr "hotel"
+
+#: application/views/scripts/admin/bbcreate.phtml:62
+msgid "Lingua"
+msgstr "language"
+
+#: application/views/scripts/admin/bbcreate.phtml:76
+#: application/views/scripts/admin/bbupdate.phtml:75
+msgid "Servizi"
+msgstr "Servizi"
+
+#: application/views/scripts/admin/bbcreate.phtml:84
+msgid "Piscina"
+msgstr "pool"
+
+#: application/views/scripts/admin/bbcreate.phtml:87
+msgid "Frigobar"
+msgstr "mini-bar"
+
+#: application/views/scripts/admin/bbcreate.phtml:90
+msgid "Struttura"
+msgstr "accomodation"
+
+#: application/views/scripts/admin/bbcreate.phtml:93
+msgid "Letti"
+msgstr "beds"
+
+#: application/views/scripts/admin/bbcreate.phtml:96
+msgid "Mq abitabili"
+msgstr "sqm habitable"
+
+#: application/views/scripts/admin/bbcreate.phtml:99
+msgid "Mq giardino"
+msgstr "Square meter garden"
+
+#: application/views/scripts/admin/bbcreate.phtml:102
+msgid "Sicurezza"
+msgstr "security"
+
+#: application/views/scripts/admin/bbcreate.phtml:105
+msgid "Attrezzature"
+msgstr "facility"
+
+#: application/views/scripts/admin/bbcreate.phtml:108
+msgid "Servizi addizionali"
+msgstr "additional services"
+
+#: application/views/scripts/admin/bbcreate.phtml:111
+msgid "Cucina"
+msgstr "kitchen"
+
+#: application/views/scripts/admin/bbcreate.phtml:114
+msgid "Svago"
+msgstr "fun"
+
+#: application/views/scripts/admin/bbcreate.phtml:117
+msgid "Esterno"
+msgstr "external"
+
+#: application/views/scripts/admin/bbcreate.phtml:120
+msgid "Idromassaggio"
+msgstr "whirlpool"
+
+#: application/views/scripts/admin/bbcreate.phtml:123
+msgid "Computer"
+msgstr "Computer"
+
+#: application/views/scripts/admin/bbcreate.phtml:126
+msgid "Servizi generali"
+msgstr "General Services"
+
+#: application/views/scripts/admin/bbcreate.phtml:146
+#: application/views/scripts/admin/bbupdate.phtml:112
+msgid "Policy"
+msgstr "Policy"
+
+#: application/views/scripts/admin/bbcreate.phtml:163
+msgid "send"
+msgstr "send"
+
+#: application/views/scripts/admin/bbupdate.phtml:4
+msgid "foto"
+msgstr "photo"
+
+#: application/views/scripts/admin/bbupdate.phtml:5
+msgid "descrizioni"
+msgstr "descriptions"
+
+#: application/views/scripts/admin/bbupdate.phtml:27
+msgid "Bed and Breakfast"
+msgstr "Bed and Breakfast"
+
+#: application/views/scripts/admin/bbupdate.phtml:28
+msgid "Hotel"
+msgstr "Hotel"
+
+#: application/views/scripts/admin/bbupdate.phtml:29
+msgid "Appartamento"
+msgstr "apartment"
+
+#: application/views/scripts/admin/bbupdate.phtml:30
+msgid "monolocale"
+msgstr "studio flat"
+
+#: application/views/scripts/admin/bbupdate.phtml:31
+msgid "Chalet/baita"
+msgstr "Chalet"
+
+#: application/views/scripts/admin/bbupdate.phtml:32
+msgid "Casa/villa"
+msgstr "House / Villa"
+
+#: application/views/scripts/admin/bbupdate.phtml:33
+msgid "Dimora tipica"
+msgstr "Mansion"
+
+#: application/views/scripts/admin/bbupdate.phtml:34
+msgid "Rustico"
+msgstr "country"
+
+#: application/views/scripts/admin/bbupdate.phtml:35
+msgid "Agriturismo"
+msgstr "Farmhouse"
+
+#: application/views/scripts/admin/bbupdate.phtml:36
+msgid "Mobil home"
+msgstr "Mobil home"
+
+#: application/views/scripts/admin/bbupdate.phtml:37
+msgid "Barca a vela"
+msgstr "Sailing boat"
+
+#: application/views/scripts/admin/bbupdate.phtml:38
+msgid "Yacht"
+msgstr "Yacht"
+
+#: application/views/scripts/admin/bbupdate.phtml:129
+msgid "Invia"
+msgstr "Send"
+
+#: application/views/scripts/admin/books.phtml:5
+msgid "accomodation"
+msgstr "accomodation"
+
+#: application/views/scripts/admin/books.phtml:8
+msgid "room"
+msgstr "room"
+
+#: application/views/scripts/admin/books.phtml:11
+msgid "date"
+msgstr "date"
+
+#: application/views/scripts/admin/books.phtml:14
+msgid "user"
+msgstr "user"
+
+#: application/views/scripts/admin/books.phtml:17
+msgid "persons"
+msgstr "persons"
+
+#: application/views/scripts/admin/books.phtml:20
+msgid "price"
+msgstr "price"
+
+#: application/views/scripts/admin/configuration.phtml:3
+#: application/views/scripts/admin/savedsearch.phtml:3
+#: application/views/scripts/admin/settings.phtml:3
+msgid "Accomodation list"
+msgstr "Accomodation list"
+
+#: application/views/scripts/admin/configuration.phtml:4
+#: application/views/scripts/admin/savedsearch.phtml:4
+#: application/views/scripts/admin/settings.phtml:4
+msgid "Site configuration"
+msgstr "Site configuration"
+
+#: application/views/scripts/admin/configuration.phtml:5
+#: application/views/scripts/admin/savedsearch.phtml:5
+#: application/views/scripts/admin/settings.phtml:5
+msgid "saved search"
+msgstr "saved search"
+
+#: application/views/scripts/admin/configuration.phtml:10
+msgid "choose title pattern"
+msgstr "choose title pattern"
+
+#: application/views/scripts/admin/configuration.phtml:11
+#: application/views/scripts/admin/savedsearch.phtml:16
+#: application/views/scripts/admin/savedsearch.phtml:30
+#: application/views/scripts/admin/savedsearch.phtml:65
+msgid "configuration set!"
+msgstr "configuration set!"
+
+#: application/views/scripts/admin/configuration.phtml:13
+msgid "page"
+msgstr "page"
+
+#: application/views/scripts/admin/configuration.phtml:15
+msgid "home"
+msgstr "home"
+
+#: application/views/scripts/admin/configuration.phtml:16
+msgid "profiled search"
+msgstr "profiled search"
+
+#: application/views/scripts/admin/configuration.phtml:17
+msgid "accomodation detail"
+msgstr "accomodation detail"
+
+#: application/views/scripts/admin/configuration.phtml:21
+msgid "title pattern"
+msgstr "title pattern"
+
+#: application/views/scripts/admin/configuration.phtml:25
+msgid "keyword pattern"
+msgstr "keyword pattern"
+
+#: application/views/scripts/admin/configuration.phtml:29
+msgid "description"
+msgstr "description"
+
+#: application/views/scripts/admin/configuration.phtml:40
+msgid "Avalaible placeholder"
+msgstr "Avalaible placeholder"
+
+#: application/views/scripts/admin/configuration.phtml:44
+msgid "the name of the accomodation"
+msgstr "the name of the accomodation"
+
+#: application/views/scripts/admin/configuration.phtml:47
+msgid "the province belongs to the accomodation"
+msgstr "the province belongs to the accomodation"
+
+#: application/views/scripts/admin/configuration.phtml:50
+msgid "the city belongs to the accomodation"
+msgstr "the city belongs to the accomodation"
+
+#: application/views/scripts/admin/configuration.phtml:53
+msgid "the type of the accomodation"
+msgstr "the type of the accomodation"
+
+#: application/views/scripts/admin/configuration.phtml:59
+msgid "the keyword used for search (only profiled search)"
+msgstr "the keyword used for search (only profiled search)"
+
+#: application/views/scripts/admin/login.phtml:13
+msgid "accedi"
+msgstr "login"
+
+#: application/views/scripts/admin/login.phtml:13
+msgid "Hai dimenticato la password?"
+msgstr "Forgot your password?"
+
+#: application/views/scripts/admin/photogallery.phtml:19
+msgid "upload gallery four your accomodation"
+msgstr "upload gallery four your accomodation"
+
+#: application/views/scripts/admin/photogallery.phtml:23
+msgid "upload cover for your accomodation"
+msgstr "upload cover for your accomodation"
+
+#: application/views/scripts/admin/prices.phtml:6
+#: application/views/scripts/admin/roomphotogallery.phtml:13
+#: application/views/scripts/admin/roomtranslation.phtml:5
+#: application/views/scripts/admin/roomupdate.phtml:42
+msgid "prezzi"
+msgstr "prices"
+
+#: application/views/scripts/admin/room.phtml:3
+msgid "Aggiungi nuova stanza"
+msgstr "Add a new room"
+
+#: application/views/scripts/admin/roomcreate.phtml:8
+#: application/views/scripts/admin/roomupdate.phtml:62
+msgid "caratteristiche della camera"
+msgstr "features of the room"
+
+#: application/views/scripts/admin/roomcreate.phtml:11
+msgid "prezzo di base "
+msgstr "basic price"
+
+#: application/views/scripts/admin/roomcreate.phtml:12
+#: application/views/scripts/admin/roomupdate.phtml:56
+msgid "(inserisci il solo valore numerico. Sul sito i prezzi saranno sempre espressi in euro)"
+msgstr "(Please enter only numeric value. prices on the website will always be expressed in euro)"
+
+#: application/views/scripts/admin/roomcreate.phtml:14
+msgid "Questo prezzo comparirà nel calendario della tua camera. Per eventuali variazioni legate al periodo potrai sempre effettuare le dovute modifiche nella sezione calendario."
+msgstr "This price will appear in the calendar of your structure. For any changes related to the period you can always make the appropriate changes in the calendar section."
+
+#: application/views/scripts/admin/roomcreate.phtml:16
+#: application/views/scripts/admin/roomupdate.phtml:65
+msgid "quantità di camere di questo tipo"
+msgstr "amount of rooms of this type"
+
+#: application/views/scripts/admin/roomcreate.phtml:17
+msgid "capienza minima"
+msgstr "minimum capacity"
+
+#: application/views/scripts/admin/roomcreate.phtml:18
+msgid "capienza massima"
+msgstr "maximum capacity"
+
+#: application/views/scripts/admin/roomcreate.phtml:22
+msgid "descrizione camera"
+msgstr "appartament description"
+
+#: application/views/scripts/admin/roomcreate.phtml:33
+msgid "dai una descrizione breve della camera"
+msgstr "write a short description of the room"
+
+#: application/views/scripts/admin/roomcreate.phtml:35
+#: application/views/scripts/admin/roomtranslation.phtml:26
+#, php-format
+msgid "massimo %s caratteri. Es: \"camera matrimoniale delux\""
+msgstr "maximum %s characters. Ex: \"double room deluxe \""
+
+#: application/views/scripts/admin/roomcreate.phtml:38
+msgid "dai una descrizione lunga della camera"
+msgstr "write a long description of the room"
+
+#: application/views/scripts/admin/roomcreate.phtml:40
+#: application/views/scripts/admin/roomtranslation.phtml:31
+#, php-format
+msgid "massimo %s caratteri. Es: \"camera molto bella situata al 4° piano della struttura con vista sul mare, doppi servizi e salottino in stile liberty\""
+msgstr "maximum %s characters. Ex:  \"very nice room on the 4th floor of the hotel with sea view, two bathrooms and sitting in Art Nouveau style \""
+
+#: application/views/scripts/admin/roomcreate.phtml:43
+msgid "dai una descrizione dell'esterno della camera"
+msgstr "write a description of the exterior of the appartament"
+
+#: application/views/scripts/admin/roomcreate.phtml:45
+#: application/views/scripts/admin/roomtranslation.phtml:36
+#, php-format
+msgid "massimo %s caratteri. Es: \"panoramica, con vista sul vesuvio\""
+msgstr "maximum %s characters. Ex:  \"side, overlooking the Golde Gate \""
+
+#: application/views/scripts/admin/roomtranslation.phtml:9
+#: application/views/scripts/admin/translation.phtml:8
+msgid "Traduzioni"
+msgstr "Translations"
+
+#: application/views/scripts/admin/roomtranslation.phtml:11
+#: application/views/scripts/admin/translation.phtml:10
+msgid "inserisci qui la descrizione della tua struttura ricettiva, nei linguaggi indicati"
+msgstr "Enter here the description of your accommodation, in the languages ​​mentioned"
+
+#: application/views/scripts/admin/roomtranslation.phtml:24
+msgid "room name"
+msgstr "room name"
+
+#: application/views/scripts/admin/roomtranslation.phtml:29
+msgid "place description"
+msgstr "place description"
+
+#: application/views/scripts/admin/roomtranslation.phtml:34
+msgid "general description"
+msgstr "general description"
+
+#: application/views/scripts/admin/roomupdate.phtml:53
+msgid "Prezzo di base"
+msgstr "Base Price"
+
+#: application/views/scripts/admin/roomupdate.phtml:58
+msgid "Questo prezzo comparirà nella \"sezione prezzi\" della tua camera. Per eventuali variazioni legate al periodo potrai sempre effettuare le dovute modifiche nella \"sezione prezzi\"."
+msgstr "This price will appear in the  \"section prices \" of your apartment tab. For any changes related to the period you can always make the appropriate changes in the  \"section prices \"."
+
+#: application/views/scripts/admin/roomupdate.phtml:70
+msgid "capienza massima di persone"
+msgstr "capacity"
+
+#: application/views/scripts/admin/savedsearch.phtml:18
+#: application/views/scripts/admin/savedsearch.phtml:32
+#: application/views/scripts/admin/savedsearch.phtml:67
+msgid "label"
+msgstr "label"
+
+#: application/views/scripts/admin/savedsearch.phtml:20
+#: application/views/scripts/admin/savedsearch.phtml:34
+#: application/views/scripts/admin/savedsearch.phtml:69
+msgid "keyword"
+msgstr "keyword"
+
+#: application/views/scripts/admin/savedsearch.phtml:22
+#: application/views/scripts/admin/savedsearch.phtml:36
+#: application/views/scripts/admin/savedsearch.phtml:77
+msgid "show existent search"
+msgstr "show existent search"
+
+#: application/views/scripts/admin/savedsearch.phtml:46
+msgid "title"
+msgstr "title"
+
+#: application/views/scripts/admin/savedsearch.phtml:50
+msgid "uploader"
+msgstr "uploader"
+
+#: application/views/scripts/admin/savedsearch.phtml:54
+#: application/views/scripts/admin/savedsearch.phtml:71
+msgid "position"
+msgstr "position"
+
+#: application/views/scripts/admin/savedsearch.phtml:56
+#: application/views/scripts/admin/savedsearch.phtml:73
+msgid "right"
+msgstr "right"
+
+#: application/views/scripts/admin/savedsearch.phtml:57
+#: application/views/scripts/admin/savedsearch.phtml:74
+msgid "center"
+msgstr "center"
+
+#: application/views/scripts/admin/savedsearch.phtml:58
+#: application/views/scripts/admin/savedsearch.phtml:75
+msgid "left"
+msgstr "left"
+
+#: application/views/scripts/admin/settings.phtml:15
+msgid "contactemail"
+msgstr "contactemail"
+
+#: application/views/scripts/admin/settings.phtml:18
+msgid "owner email"
+msgstr "owner email"
+
+#: application/views/scripts/admin/settings.phtml:21
+msgid "city"
+msgstr "city"
+
+#: application/views/scripts/admin/settings.phtml:24
+msgid "address"
+msgstr "address"
+
+#: application/views/scripts/admin/settings.phtml:27
+msgid "operation"
+msgstr "operation"
+
+#: application/views/scripts/block/calendar.phtml:50
+msgid "Lunedì"
+msgstr "Monday"
+
+#: application/views/scripts/block/calendar.phtml:51
+msgid "Martedì"
+msgstr "Tuesday"
+
+#: application/views/scripts/block/calendar.phtml:52
+msgid "Mercoledì"
+msgstr "Wednesday"
+
+#: application/views/scripts/block/calendar.phtml:53
+msgid "Giovedì"
+msgstr "Thursday"
+
+#: application/views/scripts/block/calendar.phtml:54
+msgid "Venerdì"
+msgstr "Friday"
+
+#: application/views/scripts/block/calendar.phtml:55
+msgid "Sabato"
+msgstr "Saturday"
+
+#: application/views/scripts/block/calendar.phtml:56
+msgid "Domenica"
+msgstr "Sunday"
+
+#: application/views/scripts/block/calendar.phtml:97
+msgid "salva"
+msgstr "save"
+
+#: application/views/scripts/block/gallery.phtml:2
+msgid "salva le modifiche"
+msgstr "save changes"
+
+#: application/views/scripts/block/loginform.phtml:1
+msgid "login avvenuto correttamente"
+msgstr "login was successful"
+
+#: application/views/scripts/block/loginform.phtml:24
+msgid "entra"
+msgstr "login"
+
+#: application/views/scripts/block/registrationuserform.phtml:1
+msgid "iscrizione avvenuta con successo"
+msgstr "registration was successful"
+
+#: application/views/scripts/block/registrationuserform.phtml:14
+msgid "name"
+msgstr "name"
+
+#: application/views/scripts/block/registrationuserform.phtml:18
+msgid "surname"
+msgstr "name"
+
+#: application/views/scripts/block/registrationuserform.phtml:26
+msgid "confirm password"
+msgstr "confirm password"
+
+#: application/views/scripts/block/registrationuserform.phtml:36
+msgid "registrati"
+msgstr "sign in"
+
+#: application/views/scripts/block/room-price-day.phtml:12
+msgid "offer"
+msgstr "offer"
+
+#: application/views/scripts/block/searchtopview.phtml:20
+msgid "bottom center"
+msgstr "bottom center"
+
+#: application/views/scripts/block/searchtopview.phtml:24
+#: application/views/scripts/block/searchtopview.phtml:28
+msgid "bottom right"
+msgstr "bottom right"
+
+#: application/views/scripts/block/uploader.phtml:2
+msgid "seleziona i file da caricare"
+msgstr "select the files to upload"
+
+#: application/views/scripts/block/userbadge.phtml:6
+msgid "Esci"
+msgstr "logout"
+
+#: application/views/scripts/block/userbadge.phtml:8
+#: application/views/scripts/block/userbadge.phtml:10
+msgid "modifica"
+msgstr "update"
+
+#: application/views/scripts/book/confirm.phtml:4
+msgid "La tua prenotazione è stata effettuata con successo!"
+msgstr "Your booking was made successfully!"
+
+#: application/views/scripts/book/confirm.phtml:6
+msgid "Sarai contattato a breve per email dal nostro staff!"
+msgstr "You will be contacted shortly by email from our staff!"
+
+#: application/views/scripts/book/confirm.phtml:9
+msgid "Ti ringraziamo per aver scelto Bella-idea.com!"
+msgstr "Thank you for choosing Bella-idea.com!"
+
+#: application/views/scripts/book/confirm.phtml:11
+msgid "Lo staff"
+msgstr "the staff"
+
+#: application/views/scripts/book/confirm.phtml:15
+msgid "Torna alla home"
+msgstr "Back to home"
+
+#: application/views/scripts/book/index.phtml:2
+msgid "prenotazione"
+msgstr "booking"
+
+#: application/views/scripts/book/index.phtml:14
+msgid "data di arrivo"
+msgstr "arrival"
+
+#: application/views/scripts/book/index.phtml:15
+msgid "data di partenza"
+msgstr "departure"
+
+#: application/views/scripts/book/index.phtml:26
+msgid "Riepilogo dati"
+msgstr "summary data"
+
+#: application/views/scripts/book/index.phtml:40
+msgid "conferma la prenotazione"
+msgstr "confirm the reservation"
+
+#: application/views/scripts/casavacanza/detail.phtml:54
+msgid "cerca altre idee nei paraggi"
+msgstr "look around for other ideas"
+
+#: application/views/scripts/casavacanza/detail.phtml:78
+msgid "arrivo"
+msgstr "arrival"
+
+#: application/views/scripts/casavacanza/detail.phtml:82
+msgid "partenza"
+msgstr "departure"
+
+#: application/views/scripts/casavacanza/detail.phtml:100
+msgid "La casa vacanza"
+msgstr "The apartment"
+
+#: application/views/scripts/casavacanza/detail.phtml:104
+msgid "Location"
+msgstr "Location"
+
+#: application/views/scripts/casavacanza/detail.phtml:112
+msgid "policy"
+msgstr "policy"
+
+#: application/views/scripts/casavacanza/detail.phtml:125
+msgid "facility"
+msgstr "facility"
+
+#: application/views/scripts/configuration/js.phtml:3
+msgid "Campo obbligatorio"
+msgstr "required field"
+
+#: application/views/scripts/configuration/js.phtml:4
+msgid "Controlla questo campo"
+msgstr "Check this field"
+
+#: application/views/scripts/configuration/js.phtml:5
+msgid "Inserisci un indirizzo email valido"
+msgstr "Please enter a valid email address"
+
+#: application/views/scripts/configuration/js.phtml:6
+msgid "Inserisci un indirizzo web valido"
+msgstr "Please enter a valid web address"
+
+#: application/views/scripts/configuration/js.phtml:7
+msgid "Inserisci una data valida"
+msgstr "Please enter a valid date"
+
+#: application/views/scripts/configuration/js.phtml:8
+msgid "Inserisci una data valida (ISO)"
+msgstr "Please enter a valid date (ISO)"
+
+#: application/views/scripts/configuration/js.phtml:9
+msgid "Inserisci un numero valido"
+msgstr "Enter a valid number"
+
+#: application/views/scripts/configuration/js.phtml:10
+msgid "Inserisci solo numeri"
+msgstr "Enter only numbers"
+
+#: application/views/scripts/configuration/js.phtml:11
+msgid "Inserisci un numero di carta di credito valido"
+msgstr "Please enter a valid credit card number"
+
+#: application/views/scripts/configuration/js.phtml:12
+msgid "Il valore non corrisponde"
+msgstr "The value does not match"
+
+#: application/views/scripts/configuration/js.phtml:13
+msgid "Inserisci un valore con un&apos;estensione valida"
+msgstr "Enter a value with a valid extension"
+
+#: application/views/scripts/configuration/js.phtml:14
+msgid "Non inserire pi&ugrave; di {0} caratteri"
+msgstr "Do not insert more than {0} characters"
+
+#: application/views/scripts/configuration/js.phtml:15
+msgid "Inserisci almeno {0} caratteri"
+msgstr "Please enter at least {0} characters"
+
+#: application/views/scripts/configuration/js.phtml:16
+msgid "Inserisci un valore compreso tra {0} e {1} caratteri"
+msgstr "Please enter a value between {0} and {1} characters"
+
+#: application/views/scripts/configuration/js.phtml:17
+msgid "Inserisci un valore compreso tra {0} e {1}"
+msgstr "Please enter a value between {0} and {1}"
+
+#: application/views/scripts/configuration/js.phtml:18
+msgid "Inserisci un valore minore o uguale a {0}"
+msgstr "Enter a value less than or equal to {0}"
+
+#: application/views/scripts/configuration/js.phtml:19
+msgid "Inserisci un valore maggiore o uguale a {0}"
+msgstr "Enter a value greater than or equal to {0}"
+
+#: application/views/scripts/configuration/js.phtml:23
+msgid "\\\"Password\\\" e \\\"conferma password\\\" devono coincidere"
+msgstr "\"Password\" and \"Confirm password\" must match"
+
+#: application/views/scripts/configuration/js.phtml:24
+msgid "login fallito"
+msgstr "login failed"
+
+#: application/views/scripts/configuration/js.phtml:25
+msgid "Email già in uso"
+msgstr "Email already in use"
+
+#: application/views/scripts/index/index.phtml:13
+#: application/views/scripts/index/index.phtml:44
+#: application/views/scripts/search/index.phtml:19
+msgid "vai all'offerta"
+msgstr "Go to the offer"
+
+#: application/views/scripts/search/index.phtml:47
+msgid "there are no accomodation with this name"
+msgstr "there are no accomodation with this name"
+
+#: application/views/scripts/search/index.phtml:50
+msgid "Locations"
+msgstr "Locations"
+
+#: application/views/scripts/search/index.phtml:58
+msgid "Cities"
+msgstr "Cities"
+
+#: application/views/scripts/toursite/accomodation.phtml:4
+msgid "Click here to perform logout and to update your personal information"
+msgstr "Click here to perform logout and to update your personal information"
+
+#: application/views/scripts/toursite/accomodation.phtml:16
+msgid "click here to add a new accomodation"
+msgstr "click here to add a new accomodation"
+
+#: application/views/scripts/toursite/accomodation.phtml:28
+msgid "On the left-side here you can view your accomdoation detail."
+msgstr "On the left-side here you can view your accomdoation detail."
+
+#: application/views/scripts/toursite/accomodation.phtml:30
+msgid "Use the right-side menu:"
+msgstr "Use the right-side menu:"
+
+#: application/views/scripts/toursite/accomodation.phtml:47
+msgid "click on this menu to:"
+msgstr "click on this menu to:"
+
+#: application/views/scripts/toursite/accomodation.phtml:49
+msgid "to view your accomodation list"
+msgstr "to view your accomodation list"
+
+#: application/views/scripts/toursite/accomodation.phtml:50
+msgid "to view your booking details"
+msgstr "to view your booking details"
+
+#: application/views/scripts/user/index.phtml:5
+msgid "Per poter proseguire con la prenotazione devi prima registrarti o loggarti"
+msgstr "To continue with your reservation you must first register or login"
+
+#: application/views/scripts/user/index.phtml:9
+msgid "Per poter accedere alla pagina è necessario essere loggati"
+msgstr "In order to access this page you must be logged"
+
+#: application/views/scripts/user/index.phtml:16
+msgid "Sei già registrato? Entra!"
+msgstr "Already a member? Log in!"
+
+#: application/views/scripts/user/index.phtml:20
+msgid "non hai un account? registrati!"
+msgstr "do not have an account? sign up!"
+
+#: application/views/scripts/user/owner.phtml:3
+msgid "Aggiungi la tua Idea!"
+msgstr "add your idea"
+
+#: application/views/scripts/user/owner.phtml:5
+msgid ""
+"Bella Idea è un portale di prenotazione online che ti permette di pubblicizzare la tua idea!\n"
+"Se vuoi rendere disponibile all'affitto la tua villa, il tuo appartamento, la tua casa vacanza, o pubblicizzare le tue attività, iscriviti gratuitamente sul nostro sito: potrai aggiungere i tuoi annunci e godere di tutta la visibilità offerta dalla rete!\n"
+"Una volta completata l'iscrizione, il nostro staff ti contatterà per aiutarti nell'inserimento dei tuoi annunci!"
+msgstr ""
+"Bella Idea is an online booking site that allows you to promote your idea!If you want to make available to rent your house, your apartment, or advertise your business, sign up for free on our website: you can add your ads and enjoy all the visibility offered by web \n"
+" Once registration is completed, our staff will contact you to help you in filling your ad!"
+
+#: application/views/scripts/user/owner.phtml:10
+msgid "Compila il modulo per iscriverti gratuitamente a Bella Idea!"
+msgstr "Complete the form to sign up for free Bella Idea!"
+
+#: application/views/scripts/user/owner.phtml:11
+msgid "hai già un account? clicca qui per entrare:"
+msgstr "you already have an account? click here to enter:"
+
+#: application/views/scripts/user/owner.phtml:29
+msgid "Nazione"
+msgstr "State"
+
+#: application/views/scripts/user/owner.phtml:56
+msgid "Numero di telefono"
+msgstr "phone number"
+
+#: application/views/scripts/user/owner.phtml:74
+msgid "Congratulazioni!"
+msgstr "Congratulation!"
+
+#: application/views/scripts/user/owner.phtml:100
+msgid "torna alla home"
+msgstr "return home"
+

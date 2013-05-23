@@ -1,0 +1,141 @@
+
+<?php
+$cMonth = $this->cMonth;
+$cYear = $this->cYear;
+
+$prev_year = $cYear;
+$next_year = $cYear;
+$prev_month = $cMonth - 1;
+$next_month = $cMonth + 1;
+
+if ($prev_month == 0) {
+    $prev_month = 12;
+    $prev_year = $cYear - 1;
+}
+if ($next_month == 13) {
+    $next_month = 1;
+    $next_year = $cYear + 1;
+}
+?>
+<div class="page">
+    <div class="calendar-header">
+        <table>
+            <tr>
+                <td align="center" width="122px">
+                    <a class="prev" href="<?php echo $this->url(array('month' => $prev_month, 'year' => $prev_year)) ?>" style="color:#FFFFFF">Previous</a>
+                </td>
+                <td align="center">
+                    <?php
+                    switch(date("F", mktime(0, 0, 0, $cMonth))) {
+                        case 'January':
+                            $month = l('Gennaio');
+                            break;
+                        case 'February':
+                            $month = l('Febraio');
+                            break;
+                        case 'March':
+                            $month = l('Marzo');
+                            break;
+                        case 'April':
+                            $month = l('Aprile');
+                            break;
+                        case 'May':
+                            $month = l('Maggio');
+                            break;
+                        case 'June':
+                            $month = l('Giugno');
+                            break;
+                        case 'July':
+                            $month = l('Luglio');
+                            break;
+                        case 'August':
+                            $month = l('Agosto');
+                            break;
+                        case 'September':
+                            $month = l('Settembre');
+                            break;
+                        case 'October':
+                            $month = l('Ottobre');
+                            break;
+                        case 'November':
+                            $month = l('Novembre');
+                            break;
+                        case 'December':
+                            $month = l('Dicembre');
+                            break;
+                    }
+                    ?>
+                    <strong class="title"><?php echo $month . ' ' . $cYear; ?></strong>
+                </td>
+                <td align="center" width="122px">
+                    <a class="next" href="<?php echo $this->url(array('month' => $next_month, 'year' => $next_year)) ?>" style="color:#FFFFFF">Next</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="separator clearfix"></div>
+<div class="page">
+    <?php if ($this->editable): ?>
+        <form class="validate" method="POST" 
+          data-submit-type="ajax" 
+          data-error-container="error_handler" 
+          data-success-message="<?php echo l('informazioni aggiornate con successo')?>" 
+          action="<?php echo $this->url(array('action' => 'pricesubmit', 'format' => 'json'))?>">
+            <input type="hidden" value="<?php echo $cMonth?>" name="month" />
+            <input type="hidden" value="<?php echo $cYear?>" name="year" />
+        <?php endif; ?>
+        <div class="calendar-body">
+            <ul style="width:862px;">
+                <li class="dayTitle"><?php echo l('Lunedì')?></li>
+                <li class="dayTitle"><?php echo l('Martedì')?></li>
+                <li class="dayTitle"><?php echo l('Mercoledì')?></li>
+                <li class="dayTitle"><?php echo l('Giovedì')?></li>
+                <li class="dayTitle"><?php echo l('Venerdì')?></li>
+                <li class="dayTitle"><?php echo l('Sabato')?></li>
+                <li class="dayTitle"><?php echo l('Domenica')?></li>
+                <?php
+                $timestamp = mktime(0, 0, 0, $cMonth, 1, $cYear);
+                $maxday = date("t", $timestamp);
+                $thismonth = getdate($timestamp);
+                $startday = $thismonth['wday'];
+                for ($i = 0; $i < ($maxday + $startday); $i++) {
+                    $day = $i - $startday + 1;
+                    if ($i == 0) {
+                        $nDay = date("N", mktime(0,0,0, $cMonth, 1, $cYear));
+                        for ($d = 1; $d < $nDay; $d++) {
+                            echo "<li class='daySpacer'></li>";
+                        }
+                    }
+                    $class = '';
+//                    if ((($i + 1) % 7) == 0) {
+//                        $class = "class='last'";
+//                    }
+                    if ($i < $startday) {
+                        echo "";
+                    } else {
+                        
+                        echo "<li {$class}>" . $this->partial($this->dayPartial, array(
+                            'id',
+                            'day' => $day,
+                            'editable' => $this->editable,
+                            'month' => $cMonth,
+                            'year' => $cYear,
+                            'price' => isset($this->data[$cYear."/".$cMonth."/".$day]) ? $this->data[$cYear."/".$cMonth."/".$day]->price : 0,
+                            'booked' => false,
+                            'isOffer' => isset($this->data[$cYear."/".$cMonth."/".$day]) ? $this->data[$cYear."/".$cMonth."/".$day]->offer : false)) . "</li>";
+                    }
+                    if (($i % 7) == 6) {
+                        echo "";
+                    }
+                }
+                ?>
+            </ul>
+            <div class="clear"></div>
+        </div>
+        <?php if ($this->editable): ?>
+            <input type="submit" value="<?php echo l('salva') ?>" />
+<div class="clear"></div>
+        </form>
+    <?php endif; ?>
+</div>

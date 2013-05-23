@@ -1,0 +1,32 @@
+<script>
+    $(function() {
+        $( "#gallery-container" ).sortable({
+            placeholder: "gallery-highlight"
+        });
+        $( "#gallery-container" ).disableSelection();
+    });
+</script>
+<?php
+echo $this->tabsWriter(array(
+    l('info') => array('class' => 'info', 'url' => $this->url(array('action' => 'bbupdate'))),
+    l('foto') => array('class' => 'gallery', 'active' => true, 'url' => $this->url(array('action' => 'photogallery'))),
+    l('servizi e policy') => array('class' => 'info', 'url' => $this->url(array('action' => 'updatepolicy'))),
+    l('descrizioni') => array('class' => 'translation', 'active' => false, 'url' => $this->url(array('action' => 'translation'))),
+    l('prezzo') => array('class' => 'translation', 'active' => false, 'url' => $this->url(array('action' => 'translation')))
+))
+?>
+<div id="subTabs">
+    <ul>
+        <li><a href="<?php echo $this->url(array('action'=>'photogallery'))?>"><?php echo l('foto di base') ?></a></li>
+        <li><a href="<?php echo $this->url(array('action'=>'roomphotogallery'))?>"><?php echo l('foto aggiuntive') ?></a></li>
+    </ul>
+    <div class="clear"></div>
+</div>
+<div class="info-container">
+    <fieldset>
+        <?php echo $this->uploader("upload", 'refreshPhotoList', 3, 'room-gallery') ?>
+    </fieldset>
+</div>
+<div id="photocontainerstatic" class="info-container" data-id="<?php echo $this->bbid ?>">
+    <?php echo $this->partial('block/gallery.phtml', array('id' => $this->bbid, 'type' => $this->type, 'photos' => $this->photos, 'errors' => $this->errors)) ?>
+</div>

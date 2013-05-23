@@ -1,0 +1,8 @@
+<div id="languages">
+    <?php foreach ($this->languages as $lang => $active):?>
+    <?php //die(print_r(get_class_methods($this)));?>
+    <?php //die(print_r($this->getVars()));?>
+        <div><a <?php if ($active):?>class="active"<?php endif;?>id="<?php echo $lang?>" href="<?php echo $this->url(array('language' => $lang)) ?>"><?php echo $lang?></a></div>
+    <?php endforeach?>
+    <div class="clear"></div>
+</div>

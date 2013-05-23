@@ -1,0 +1,129 @@
+<div style="height: 244px;"></div>
+<form action="<?php echo $this->url(array('language' => $this->language, 'subdomain' => APPLICATION_SUBDOMAIN, 'controller' => 'book', 'action' => 'paymentinfo'), null, true) ?>" method="post">
+    <div class="section ac">
+        <div>
+            <div style="width: 621px;height: 131px;margin: 0 auto;background: #e1efd3;border-radius: 20px;position: relative;padding-top: 80px;">
+                <div style="left: 50%;top: -184px;position: absolute;float: left;margin-left: -200px;border: 10px solid white;box-shadow: 0 2px 5px 0px rgba(23,23,21,.35);width: 400px;height: 260px;background: black;">
+                    <?php echo $this->writeImage(array('src' => $this->accomodation->photo, 'width' => 400, 'height' => 260)) ?>
+                </div>
+                <h3 style="color:#333;font-size: 22px;font-family:arial;font-weight:normal;margin:29px 0 0"><?php echo $this->accomodation->type ?>&nbsp;<?php echo $this->accomodation->name ?></h3>
+                <h4 style="color: #aeaeae;font-size: 14px;font-family: arial;font-weight: normal;margin: 5px 0;"><?php echo $this->accomodation->address ?>,&nbsp;<?php echo $this->accomodation->city->name ?></h4>
+                <div style="background: url(/images/summary-shadow.png) center center no-repeat;width: 641px;height: 51px;position: absolute;left: 50%;margin-left: -321px;bottom: -25px;"></div>
+                <div style="background: url(/images/placeholder-shadow.png);width: 36px;height: 10px;position: absolute;left: 50%;bottom: -31px;"></div>
+                <div style="background:url(/images/placeholder.png) center center no-repeat;width:70px;height: 80px;position:absolute;left: 50%;margin-left:-33px;bottom: -32px;"></div>
+            </div>
+        </div>
+        <div style="height: 80px;"></div>
+        <div style="background:#eaedef;width:450px;margin:0 auto;position: relative;border-radius:20px;padding:20px;">
+            <div class="apex" style="margin-left:-70px;"></div>
+            <table id="recap" style="border-radius:20px;background:#f5f6f7;border-collapse: collapse;width: 100%;">
+                <tr>
+                    <td colspan="3"><h3 style="margin-top:0"><?php echo l('Riepilogo dati') ?></h3></td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="separe">
+                        <div></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="icon">
+                        <img src="/images/checkin.png" />
+                    </td>
+                    <td class="value">
+                        <?php echo l('checkin') ?>
+                    </td>
+                    <td class="content">
+                        <?php echo $this->datestart->format('l, d/m/Y') ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="separe">
+                        <div></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="icon">
+                        <img src="/images/checkout.png" />
+                    </td>
+                    <td class="value">
+                        <?php echo l('checkout') ?>
+                    </td>
+                    <td class="content">
+                        <?php echo $this->dateend->format('l, d/m/Y') ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="separe">
+                        <div></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="icon">
+                        <img src="/images/persons.png" />
+                    </td>
+                    <td class="value">
+                        <?php echo l('persone') ?>
+                    </td>
+                    <td class="content">
+                        <?php echo $this->persons; ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="separe">
+                        <div></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="icon">
+                        <img src="/images/night.png" />
+                    </td>
+                    <td class="value">
+                        <?php echo l('notti') ?>
+                    </td>
+                    <td class="content">
+                        <?php echo $this->datestart->diff($this->dateend)->format('%a'); ?>
+                    </td>
+                </tr>
+            </table>
+            <div style="background:#E8EED2;border:3px solid #c3dfa7;text-align: center;margin-top:30px;border-radius:15px;" class="clearfix">
+                <span class="bold" style="float:left;width:50%;line-height:70px;font-size:18px;color:#6ab023;text-shadow:0 1px white"><?php echo l('totale') ?></span>
+                <span class="bold" style="float:left;width:50%;line-height:70px;font-size: 36px;color:#6ab023;font-family:'Signika Negative'">&euro; <?php echo $this->price ?></span>
+            </div>
+            <div style="height: 20px;"></div>
+
+            <input name="terms" type="checkbox" value="1" id="terms" /><label for="terms" style="float: right;font-family: 'arial';font-size: 14px;color: #666;width: 400px;margin: 0;"><?php echo l('Accetto i termini di cancellazione, le regole della casa, le condizioni di rimborso all\'ospite e i termini del servizio.') ?></label>
+            <input name="id" type="hidden" value="<?php echo $this->accomodation->id ?>" />
+            <input name="rid" type="hidden" value="<?php echo $this->room ?>" />
+            <input name="uid" type="hidden" value="<?php echo $this->currentuser->id ?>" />
+            <input name="number" type="hidden" value="0" />
+            <input name="datestart" type="hidden" value="<?php echo $this->datestart->format('Y-m-d') ?>" />
+            <input name="dateend" type="hidden" value="<?php echo $this->dateend->format('Y-m-d') ?>" />
+            <input name="price" type="hidden" value="<?php echo $this->price ?>" />
+            <div style="height: 20px;"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <input type="submit" class="button" style="font-size:30px;font-family:'Signika Negative';width: 300px;cursor:pointer;margin:20px auto;display:block;float:none;padding:0;height: 88px;border:1px solid #4a7b18;width:488px;background:url(/images/button-490px.png) center center no-repeat" value="<?php echo l('conferma la prenotazione') ?>" />
+</form>
+<style>
+    #recap tr{
+        width:100%;
+    }
+    #recap td{
+        text-align: center;width:50%;height:50px;padding:10px;
+    }
+    #recap td.separe{width:100%;height:2px;padding:10px;padding:0}
+    #recap td.separe div{margin:0 15px;background:url(/images/separe.png) left bottom repeat-x;height: 2px;}
+    #recap td.icon {
+        width: 25px
+    }
+    #recap td.value {
+        font-size: 18px;color:#94a7b0;font-weight: bold;padding-left:0;width:auto;
+    }
+    #recap td.content {
+        font-size: 18px;color:#333;font-weight: bold;text-align: left;width:225px;
+    }
+    #recap td.value {
+        text-align: left
+    }
+</style>

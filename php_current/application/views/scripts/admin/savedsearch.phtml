@@ -1,0 +1,157 @@
+<?php
+echo $this->adminLeftcolumn(array(
+    'books' => array(
+        'action' => 'books',
+        'active' => false,
+        'label' => l('Prenotazioni')
+    ),
+    'accomodations' => array(
+        'action' => 'accomodation',
+        'active' => false,
+        'label' => l('I miei annunci')
+    ),
+    'configuration' => array(
+        'action' => 'settings',
+        'active' => true,
+        'label' => l('Configurazioni')
+    )
+));
+?>
+<div class="wcenter-outer-container clearfix">
+    <div class="wcenter-outer">
+        <div class="wcenter-inner">
+            <?php
+            echo $this->adminLeftcolumn(array(
+                'settings' => array(
+                    'action' => 'settings',
+                    'active' => false,
+                    'label' => l('BB in evidenza')
+                ),
+                'seo' => array(
+                    'action' => 'configuration',
+                    'active' => false,
+                    'label' => l('S.E.O.')
+                ),
+                'saved' => array(
+                    'action' => 'savedsearch',
+                    'active' => true,
+                    'label' => l('Ricerche salvate')
+                ),
+                'cms' => array(
+                    'action' => 'cms',
+                    'active' => false,
+                    'label' => l('CMS')
+                )
+            ));
+            ?>
+        </div>
+    </div>
+</div>
+<div class="page savedsearch">
+    <div id="sitethumb">
+        <div>
+            <table style="width:100%">
+                <tr>
+                    <td colspan="4"><a href="<?php echo $this->url(array('a' => null, 'id' => null)) ?>">crea nuovo</a></td>
+                </tr>
+                <?php foreach ($this->search as $search) : ?>
+                    <tr>
+                        <td style="width:200px"><?php echo $search->date ?></td>
+                        <?php $data = Zend_Json::decode($search->text) ?>
+                        <td style="width:200px"><?php echo html_entity_decode($data['title']) ?></td>
+                        <td style="padding:15px">
+                            <div style="height:50px;overflow:hidden">
+                                <?php echo html_entity_decode($data['desc']) ?>
+                            </div>
+                            <div style="text-align: center">
+                                <a class="show-more" href="#">mostra tutto</a>
+                            </div>
+                        </td>
+                        <td>
+                            <a href="<?php echo $this->url(array('a' => 'delete', 'id' => $search->id)) ?>">cancella</a>
+                            <br />
+                            <br />
+                            <a href="<?php echo $this->url(array('a' => 'update', 'id' => $search->id)) ?>">modifica</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4"><div style="border-bottom:1px solid #000"></div></td>
+                    </tr>
+                <?php endforeach; ?>
+                <tr>
+                    <td colspan="4"><a href="<?php echo $this->url(array('a' => null, 'id' => null)) ?>">crea nuovo</a></td>
+                </tr>
+            </table>
+        </div>
+        <div id="bottom" class="addsearch hidden">
+            <div class="page info-container">
+                <?php $data2 = array('id' => '', 'title' => null, 'address' => null, 'keyword' => null, 'desc' => null); ?>
+                <?php if (isset($this->row->text)): ?>
+                    <?php $data2 = Zend_Json::decode($this->row->text); ?>
+                <?php endif; ?>
+                <form  enctype='multipart/form-data' class="validate" method="post" action="<?php echo $this->url(array('action' => 'profiledsearch')) ?>">
+                    <p>
+                        <label for="title"><?php echo l('titolo') ?></label>
+                        <input id="title" value="<?php echo $data2['title'] ?>" class="required" type="text" name="title"/>
+                    </p>
+                    <p>
+                        <label for="label"><?php echo l('indirizzo') ?></label>
+                        <input id="label" type="text" value="<?php echo $data2['address'] ?>" name="address"/>
+                    </p>
+                    <p>
+                        <label for="keyword"><?php echo l('chiave di ricerca') ?></label>
+                        <input id="keyword" type="text" value="<?php echo $data2['keyword'] ?>" class="required" name="keyword"/>
+                    </p>
+                    <p>
+                        <label for="keyword"><?php echo l('descrizione') ?></label>
+                        <textarea class="ckeditor"  name="desc"><?php echo $data2['desc'] ?></textarea>
+                    </p>
+                    <p>
+                        <label for="uploader"><?php echo l('piccola homa') ?></label>
+                        <input id="uploader" type="file" name="cover"/>
+                    </p>
+                    <p>
+                        <label for="uploader"><?php echo l('copertina grande') ?></label>
+                        <input id="uploader" type="file" name="cover_big"/>
+                    </p>
+                    <p>
+                        <label for="uploader"><?php echo l('slide1 grande') ?></label>
+                        <input id="uploader" type="file" name="slide1"/>
+                    </p>
+                    <p>
+                        <label for="uploader"><?php echo l('slide2 grande') ?></label>
+                        <input id="uploader" type="file" name="slide2"/>
+                    </p>
+                    <p>
+                        <label for="uploader"><?php echo l('slide3 grande') ?></label>
+                        <input id="uploader" type="file" name="slide3"/>
+                    </p>
+                    <br />
+                    <p>
+                        <input id="uploader" type="hidden" name="id" value="<?php echo $data2['id'] ?>"/>
+                        <input type="submit"/>
+                    </p>
+
+                    <div class="clear"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+<script>
+    $(function() {
+        $('.show-more').bind('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if ($(this).parent().prev().css('height') == '50px') {
+                $(this).parent().prev().stop(true,true).animate({height:'250px'})
+                $(this).parent().prev().css('overflow', auto);
+            } else {
+                $(this).parent().prev().stop(true,true).animate({height:'50px'})
+                $(this).parent().prev().css('overflow', 'hidden');
+            }
+            return false;
+        })
+    })
+</script>

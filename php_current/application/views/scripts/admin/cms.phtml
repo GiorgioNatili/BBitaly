@@ -1,0 +1,132 @@
+<?php
+echo $this->adminLeftcolumn(array(
+    'books' => array(
+        'action' => 'books',
+        'active' => false,
+        'label' => l('Prenotazioni')
+    ),
+    'accomodations' => array(
+        'action' => 'accomodation',
+        'active' => false,
+        'label' => l('I miei annunci')
+    ),
+    'configuration' => array(
+        'action' => 'settings',
+        'active' => true,
+        'label' => l('Configurazioni')
+    )
+));
+?>
+<div class="wcenter-outer-container clearfix">
+    <div class="wcenter-outer">
+        <div class="wcenter-inner">
+            <?php
+            echo $this->adminLeftcolumn(array(
+                'settings' => array(
+                    'action' => 'settings',
+                    'active' => false,
+                    'label' => l('BB in evidenza')
+                ),
+                'seo' => array(
+                    'action' => 'configuration',
+                    'active' => false,
+                    'label' => l('S.E.O.')
+                ),
+                'saved' => array(
+                    'action' => 'savedsearch',
+                    'active' => false,
+                    'label' => l('Ricerche salvate')
+                ),
+                'cms' => array(
+                    'action' => 'cms',
+                    'active' => true,
+                    'label' => l('CMS')
+                )
+            ));
+            ?>
+        </div>
+    </div>
+</div>
+<div>
+    <table style="width:100%">
+        <tr>
+            <td colspan="4"><a href="<?php echo $this->url(array('a' => null, 'id' => null, 'a' => 'create')) ?>">crea nuovo</a></td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div style="border-bottom:1px solid #333;height:30px;"></div>
+            </td>
+        </tr>
+        <?php if ($this->cms) : ?>
+            <?php foreach ($this->cms as $cm): ?>
+                <tr>
+                    <td style="width:70%;"><?php echo $cm->label ?></td>
+                    <td style="width:20%;"><?php echo $cm->position ?></td>
+                    <td style="text-align:right">
+                        <a class="confirm" href="<?php echo $this->url(array('a' => 'delete', 'id' => $cm->id)) ?>">cancella</a>
+                        <br />
+                        <a href="<?php echo $this->url(array('a' => 'update', 'id' => $cm->id)) ?>">modifica</a>
+                        <br />
+                        <?php if ($cm->active == 0) :?>
+                        <a href="<?php echo $this->url(array('a' => 'activate', 'id' => $cm->id)) ?>">attiva</a>
+                        <?php else:?>
+                        <a href="<?php echo $this->url(array('a' => 'deactivate', 'id' => $cm->id)) ?>">disattiva</a>
+                        <?php endif;?>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4"><div style="border-bottom:1px solid #000"></div></td>
+                </tr>
+            <?php endforeach ?>
+        <?php endif ?>
+    </table>
+    <?php if ($this->action == 'edit'): ?>
+        <div style="height: 40px;"></div>
+        <form action="<?php echo $this->url(array('a' => 'createprocess')) ?>" method="post">
+            <table style="width:100%">
+                <tr>
+                    <td>Titolo</td>
+                    <td><input type="text" name="label" value="<?php echo $this->page->label ?>"/></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><div style="height: 10px;"></div></td>
+                </tr>
+                <tr>
+                    <td>posizione</td>
+                    <td>
+                        <select name="position">
+                            <option <?php echo (strtolower($this->page->position) == 'footer' ? 'selected' : '')?>>footer</option>
+                            <option <?php echo (strtolower($this->page->position) == 'fatture' ? 'selected' : '')?>>fatture</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><div style="height: 10px;"></div></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <textarea class="ckeditor"  name="text"><?php echo $this->page->text ?></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><div style="height: 10px;"></div></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center"><input type="submit" VALUE="crea" /></td>
+                </tr>
+            </table>
+        </form>
+    <?php endif; ?>
+</div>
+<script>
+    $(function() {
+        $('body').on('click','a.confirm', function(e) {
+            var r=confirm("Sei sicuro di voler cancellare la voce selezionata?\n\n la modifica sarà IRREVERSIBILE \n\n quindi non rompere le palle dopo");
+            if (r == false) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }
+        });
+    })
+</script>

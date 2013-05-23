@@ -1,0 +1,11 @@
+<?php if ($this->pageCount): ?>
+    <div class="paginationControl">
+        <!-- Numbered page links -->
+        <?php foreach ($this->pagesInRange as $page): ?>
+            <a <?php if ($page == $this->current): ?>class="current"<?php endif; ?>href="<?php echo $this->url(array('page' => $page)); ?>">
+                <?php echo $page; ?>
+            </a>
+        <?php endforeach; ?>
+        <div class="clear"></div>
+    </div>
+<?php endif; ?>

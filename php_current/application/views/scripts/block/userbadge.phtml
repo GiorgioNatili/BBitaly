@@ -1,0 +1,13 @@
+<div id="userbadge">
+    <div class="usericon-white"></div>
+    <div id="username"><?php echo $this->user->name?> <?php echo $this->user->surname?></div>
+    <div id="useraddress"><?php echo $this->user->address?>, <?php echo $this->user->city->name?></div>
+    <div id="userupdate">
+        <a class="logout" href="<?php echo $this->url(array('action' => 'logout'))?>"><?php echo l('Esci')?></a>
+        <?php if ($this->islogged): ?>
+        <a class="update" data-href="<?php echo $this->url(array('action' => 'userupdate','format' => 'json'))?>" href="#"><?php echo l('modifica')?></a>
+        <?php else: ?>
+        <a data-href="" onclick="document.location.reload();return false" href="#"><?php echo l('modifica')?></a>
+        <?php endif;?>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+<div class="tabs-container">
+    <ul>
+        <?php foreach ($this->tabs as $tabname => $tab):?>
+        <li class="<?php echo $tab['class']?>"><a <?php if (isset($tab['active']) && $tab['active']):?>class="active"<?php endif;?> href="<?php echo $tab['url']?>"><?php echo $tabname?></a></li>
+        <?php endforeach;?>
+    </ul>
+</div>

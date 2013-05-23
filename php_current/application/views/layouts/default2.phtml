@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            <?php echo $this->headTitle(); ?>
+            <?php echo $this->headMeta(); ?>
+            <meta name="language" content="<?php echo $this->language ?>" />
+            <meta name="copyright" content="© 2012 www.adsolut.it - All Rights Reserved" />
+            <link rel="icon" type="image/vnd.microsoft.icon" href="/images/favicon.ico?<?php echo rand(1, 99999999) ?>" />
+            <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?<?php echo rand(1, 99999999) ?>" />
+            <link rel="stylesheet" href="/css/style.css" type="text/css" media="screen" />
+            <link rel="stylesheet" href="/css/jquery-ui-1.8.20.custom.css" type="text/css" media="screen" />
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
+            <script type="text/javascript" src="/js/jquery.mousewheel.js"></script>
+            <script type="text/javascript" src="/js/jquery.jscrollpane.min.js"></script>
+            <script type="text/javascript" src="/js/jquery.corner.js"></script>
+            <script type="text/javascript" src="/js/jquery.cycle.js"></script>
+            <script type="text/javascript" src="/js/jquery.selectbox-0.2.min.js"></script>
+            <script type="text/javascript" src="/js/facebox.js"></script>
+            <script type="text/javascript" src="/js/validate.js"></script>
+            <script type="text/javascript" src="/js/ready.js"></script>
+            <?php echo $this->headScript() ?>
+            <script type="text/javascript" src="<?php echo $this->url(array('controller' => 'configuration', 'action' => 'js', 'subdomain' => 'www')) ?>"></script>
+            <script>
+                
+                $.datepicker.regional['<?php echo $this->language ?>'] = {
+                    dayNamesMin: [ '<?php echo l("Dom") ?>', '<?php echo l("Lun") ?>', '<?php echo l("Mar") ?>', '<?php echo l("Mer") ?>', '<?php echo l("Gio") ?>', '<?php echo l("Ven") ?>', '<?php echo l("Sab") ?>' ],
+                    monthNames: [ '<?php echo l("Gennaio") ?>', '<?php echo l("Febbraio") ?>', '<?php echo l("Marzo") ?>', '<?php echo l("Aprile") ?>', '<?php echo l("Maggio") ?>', '<?php echo l("Giugno") ?>', '<?php echo l("Luglio") ?>', '<?php echo l("Agosto") ?>', '<?php echo l("Settembre") ?>', '<?php echo l("Ottobre") ?>', '<?php echo l("Novembre") ?>', '<?php echo l("Dicembre") ?>' ]
+                }
+                $.datepicker.setDefaults($.datepicker.regional['<?php echo $this->language ?>']);
+            </script>
+            <script type="text/javascript">
+                var baseUrl = '<?php echo $this->url(array('subdomain' => 'www'), null, true) ?>';
+<?php echo $this->placeholder("execScript"); ?>
+            function showAdvancedSearch() {
+                console.log($('#utils-top').css('height'));
+                if ($('#utils-top').css('height') == "140px") {
+                    $('#utils-top').animate({height:"219px"},100);
+                    $('body').animate({paddingTop:"300px"},100);
+                    $('#header').animate({height:"300px"},100);
+                    $('#adS').fadeIn('fast');
+                } else {
+                    $('#utils-top').animate({height:"140px"},100);
+                    $('body').animate({paddingTop:"216px"},100);
+                    $('#header').animate({height:"216px"},100);
+                    $('#adS').fadeOut('fast');
+                }
+            }
+            $(function() {
+                $(".cSelect").selectbox({effect: "fade"});
+            })
+            </script>
+    </head>
+    <body>
+        <div id="header">
+            <div class="content">
+                <div id="upper-band">
+                    <?php echo $this->languagesMenu() ?>
+                    <?php if (Zend_Auth::getInstance()->hasIdentity()): ?>
+                        <div id="welcome-user" class="font-gray float-right font12 margin-right20">
+                            ciao <a href="<?php echo $this->url(array('language' => $this->language, 'subdomain' => 'www', 'controller' => 'account', 'action' => 'index'), null, true) ?>" class="bold font-gray"><?php echo $this->currentuser->name ?> <?php echo $this->currentuser->surname ?></a> /
+                            <a rel="ajax" rel-method="GET" href="<?php echo $this->url(array('language' => $this->language, 'subdomain' => 'www', 'controller' => 'system', 'action' => 'logout'), null, true) ?>" class="font-gray"><?php echo l('logout') ?></a>
+                        </div>
+                    <?php endif; ?>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+                <div id="logo">
+                    <h1 style="position:relative;height: 100%;">
+                        <a style="display:block;position:absolute;top:0;left:0;width:100%;height: 100%;" href="<?php echo $this->url(array('subdomain' => 'www'), null, true) ?>">
+                            <img src="/images/logo.png" alt="<?php echo l('case vacanza, affitto ville, appartamenti vacanze') ?>"/>
+                        </a>
+                    </h1>
+                </div>
+                <div id="utils">
+                    <div id="utils-top">
+                        <div id="search">
+                            <form class="validate" action="<?php echo $this->url(array('subdomain' => 'www', 'language' => $this->language, 'controller' => 'search', 't' => 'b'), null, true) ?>" method="GET">
+                                <fieldset>
+                                    <p class="fullwidth" style="position: relative">
+                                        <label for="keyword" class="over" style="position:absolute;left:3px"><?php echo l('cerca la tua idea') ?></label>
+                                        <input id="keyword" class="keyword fullwidth required" type="text" name="keyword" />
+                                    </p>
+                                    <p class="float-left input margin20" style="height: 70px;">
+                                        <label><?php echo l('arrivo') ?></label>
+                                        <input id="datestart" rel-date="dateend" class="date dStart date-icon required" type="text" name="datestart" />
+                                    </p>
+                                    <p class="float-left input margin20" style="height: 70px;">
+                                        <label><?php echo l('partenza') ?></label>
+                                        <input id="dateend" rel-date="datestart" class="date dEnd date-icon required" type="text" name="dateend" />
+                                    </p>
+                                    <p class="float-left input" style="height: 70px;">
+                                        <label>&nbsp;</label>
+                                        <input id="submit" type="submit" value="<?php echo l('cerca') ?>"/>
+                                    </p>
+                                    <div class="clear"></div>
+                                    <p class="fullwidth" style="position:relative;text-align: right;height: auto;">
+                                        <a style="position: absolute;top: 6px;left: 0px;font-size: 12px;text-decoration: none;color: #8AA81C;font-weight: bold;" href="#" onclick="showAdvancedSearch();return false;">
+                                        <?php echo l('mostra/nascondi ricerca avanzata')?>
+                                        </a>
+                                    </p>
+                                    <div id="adS" class="fullwidth" style="margin-top:15px;display:none">
+                                        <p class="float-left input margin20">
+                                            <label><?php echo l('numero persone') ?></label>
+                                            <select class="cSelect">
+                                                <?php for ($i = 0; $i <= 10; $i++): ?>
+                                                    <option value="<?php echo $i?>"><?php echo $i?></option>
+                                                <?php endfor;?>
+                                                <option value="10+">10+</option>
+                                            </select>
+                                        </p>
+                                        <p class="float-left input margin20">
+                                            <label><?php echo l('fasce di prezzo') ?></label>
+                                            <select class="cSelect">
+                                                <option>aa</option>
+                                                <option>aa</option>
+                                                <option>aa</option>
+                                                <option>aa</option>
+                                            </select>
+                                        </p>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div id="banner-signup">
+                            <a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'owner')) ?>"><?php echo l('Pubblica la tua struttura vacanza') ?></a>
+                            <p>
+                                <span id="title"><?php echo l('Pubblica la tua idea') ?></span>
+                                <span id="banner-text"><?php echo l('Pubblicizza <b>gratis</b> la tua villa, il tuo appartamento o la tua attività sul nostro sito! Iscriviti a Bella Idea!') ?></span>
+
+                            </p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div id="menu">
+                        <ul>
+                            <?php foreach ($this->layout()->menu as $item): ?>
+                                <li><h2><a href="<?php echo $this->url(array('subdomain' => $item->keyword, 'language' => 'it', 'controller' => 'casavacanza'), null, true) ?>"><?php echo $item->label->label ?></a></h2></li>
+                            <?php endforeach; ?>
+                        </ul>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div id="body">
+            <div  class="content">
+                <?php echo $this->layout()->content ?>
+            </div>
+        </div>
+        <div id="footer">
+            <div class="content">
+                <div class="section float-left">
+                    <div class="logo-white"></div>
+                    <p>
+                        <br />
+                        <br />
+                        <?php echo l('&COPY; 2011 Bella Idea. Tutti i diritti riservati.') ?><br />
+                        <br />
+                        <a href="<?php echo $this->url(array('controller' => 'cms', 'action' => 'condizioni uso', 'language' => $this->language, 'subdomain' => 'www', 'p' => 4), null, true); ?>"><?php echo l('Condizioni d\'uso') ?></a><br />
+                        <a href="<?php echo $this->url(array('controller' => 'cms', 'action' => 'normativa sulla privacy', 'language' => $this->language, 'subdomain' => 'www', 'p' => 5), null, true); ?>"><?php echo l('Normativa sulla privacy') ?></a> di Bella Idea<br />
+                        <br />
+                        <?php echo l('Bella Idea non è responsabile per il contenuto su altri siti web. Tasse e spese non incluse nelle offerte.') ?>
+                    </p>
+                </div>
+                <div class="section float-left">
+                    <div class="title"><?php echo l('Accedi a bella idea') ?></div>
+                    <div class="row bordered">
+                        <a class="button" href="<?php echo $this->url(array('subdomain' => 'www', 'controller' => 'user', 'action' => 'index')) ?>"><?php echo l('login') ?></a>
+
+                    </div>
+                    <div class="row">
+                        <a class="button yellow" href="<?php echo $this->url(array('subdomain' => 'admin', 'language' => $this->language, 'controller' => 'admin', 'action' => 'login'), null, true) ?>"><?php echo l('owner login') ?></a>
+                    </div>
+                </div>
+                <div class="section float-left">
+                    <div class="title" style="margin-bottom: 27px;"><?php echo l('Seguici') ?></div>
+                    <div class="row bordered">
+                        <span class="social">
+                            <a href="https://www.facebook.com/bella.idea.9" target="_blank"><img src="/images/facebook.png" />&nbsp;&nbsp;&nbsp;facebook</a>
+                        </span>
+                        &nbsp;&nbsp;&nbsp;
+                        <span class="social">
+                            <a href="http://pinterest.com/bellaidea1/" target="_blank"><img src="/images/pinterest.png" />&nbsp;&nbsp;&nbsp;pinterest</a>
+                        </span>
+                    </div>
+                </div>
+                <div class="section float-left last">
+                    <div class="title">
+                        <iframe src="//www.facebook.com/plugins/likebox.php?href=https://www.facebook.com/bella.idea.9&amp;width=224&amp;height=258&amp;colorscheme=light&amp;show_faces=true&amp;border_color&amp;stream=false&amp;header=false&amp;appId=283322855071011" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:224px; height:160px;background-color: white"></iframe>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div id="footer-detail">
+                    <div class="float-left">
+<!--                        <a href="<?php echo $this->url(array('controller' => 'cms', 'action' => 'qualche altra cosa', 'language' => $this->language, 'subdomain' => 'www', 'p' => 1), null, true); ?>"><?php echo l('qualche altra cosa') ?></a>&nbsp|&nbsp-->
+                        <a href="<?php echo $this->url(array('controller' => 'cms', 'action' => 'chi+siamo', 'language' => $this->language, 'subdomain' => 'www', 'p' => 2), null, true); ?>"><?php echo l('Chi siamo') ?></a>&nbsp|&nbsp
+<!--                        <a href=""><?php echo l('belle idee') ?></a>&nbsp|&nbsp-->
+                        <a href="<?php echo $this->url(array('controller' => 'cms', 'action' => 'contatti', 'language' => $this->language, 'subdomain' => 'www', 'p' => 3), null, true); ?>"><?php echo l('contatti') ?></a>
+                    </div>
+                    <div class="float-right">
+                        <a href="http://www.adsolut.it"><?php echo l('web agency napoli') ?></a>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="//assets.pinterest.com/js/pinit.js"></script>
+    </body>
+</html>

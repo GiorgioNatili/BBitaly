@@ -1,0 +1,87 @@
+<?php 
+echo $this->adminLeftcolumn(array(
+    'books' => array(
+        'action' => 'books',
+        'active' => true,
+        'label'  => l('Prenotazioni')
+    ),
+    'accomodations' => array(
+        'action' => 'accomodation',
+        'active' => false,
+        'label'  => l('I miei annunci')
+    ),
+    'configuration' => array(
+        'action' => 'settings',
+        'active' => false,
+        'label'  => l('Configurazioni')
+    )
+));
+?>
+<div class="page">
+    <table class="full-width-column list">
+        <thead>
+            <tr class="head">
+                <td class="first string content" style="width:400px;">
+                    <?php echo l('Struttura') ?>
+                </td>
+    <!--            <td class="acc_room head">
+                <?php echo l('room') ?>
+                </td>-->
+                <td class="center content date">
+                    <img src="/images/arrivals.png" title="<?php echo l('arrivi') ?>"/>
+                </td>
+                <td class="center content date">
+                    <img src="/images/departure.png" title="<?php echo l('partenze') ?>"/>
+                </td>
+                <td class="center content int">
+                    <img src="/images/nights.png" title="<?php echo l('notti') ?>"/>
+                </td>
+<!--                <td class="center content int">
+                    <img src="/images/persons.png" title="<?php echo l('# persone') ?>"/>
+                </td>-->
+                <td class="last center content">
+                    <?php echo l('Prezzo') ?>
+                </td>
+<!--                <td class="last content">
+                </td>-->
+            </tr>
+        </thead>
+        <tbody>
+            <?php $alreadyViewed = array(); ?>
+            <?php foreach ($this->books as $bookStruct): ?>
+                <?php foreach ($bookStruct as $book): ?>
+                    <?php if (isset($alreadyViewed[$book->id])): ?>
+                        <?php continue; ?>
+                    <?php else: ?>
+                        <?php $alreadyViewed[$book->id] = 1 ?>
+                    <?php endif ?>
+                    <?php if ($book->bookDetail != null): ?>
+                        <tr><td class="separator"></td></tr>
+                        <?php
+                        $start = new DateTime($book->dateStart);
+                        $end = new DateTime($book->dateEnd);
+                        $diff = $end->diff($start);
+                        ?>
+                        <tr class="body pending">
+                            <td class="bold content string first">
+                                <?php echo $book->bookDetail->accomodationName ?>
+                                <span><?php echo $book->bedBreakfast->address ?>,<?php echo $book->bedBreakfast->city->name?></span>
+                            </td>
+                            <td class="bold content center"><?php echo $start->format("d, M Y") ?></td>
+                            <td class="bold content center"><?php echo $end->format("d, M Y") ?></td>
+                            <td class="bold content center"><?php echo $diff->format("%d"); ?></td>
+<!--                            <td class="bold content center">#</td>-->
+                            <td class="last center content bold green">
+                                <span class="price"><?php echo number_format($book->price, 2) ?>&nbsp;&euro;</span>
+                            </td>
+<!--                            <td class="last content">
+                                <a class="button accept" href=""><?php echo l('accetta')?></a>
+                                <a class="button reject" href=""><?php echo l('respingi')?></a>
+                            </td>-->
+                        </tr>
+                    <?php endif; ?>
+                <?php endforeach ?>
+            <?php endforeach ?>
+        </tbody>
+    </table>
+</div>

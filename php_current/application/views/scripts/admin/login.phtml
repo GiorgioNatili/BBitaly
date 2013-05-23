@@ -1,0 +1,20 @@
+<?php if ($this->loginmessage): ?>
+    <div style="box-sizing:border-box;background:url(/images/error_icon.png) 30px center no-repeat #faf2c3;padding:15px 100px;border-radius:15px;margin-top:30px;border: 1px solid #ccc;text-align: left;width:100%;">
+        <span style="font-family:'Calibri-bold';color:#333;font-size:22px">Errore</span><br />
+        <span><?php echo $this->loginmessage ?></span>
+    </div>
+<?php endif; ?>
+<div id="loginform">
+    <div class="apex"></div>
+    <div class="clear"></div>
+    <form class="form" action="<?php echo $this->url(array('controller' => 'admin', 'action' => 'loginprocess')) ?>" method="POST">
+        <fieldset>
+            <p id="email_p" class="relative"><label for="email" class="absolute"><?php echo l('email') ?></label><input id="email" type="text" name="mail" /></p>
+            <p id="password_p" class="relative"><label for="password" class="absolute"><?php echo l('password') ?></label><input id="password" type="password" name="password" /></p>
+            <p id="submit_p"><input id="send" type="submit" class="submit" value="<?php echo l('accedi') ?>" /></p>
+        </fieldset>
+    </form>
+</div>
+<div id="return_home" style="text-align: center;width:450px;margin:0 auto;">
+    <a class="submit" style="text-decoration: none" href="<?php echo $this->url(array('subdomain'=>'stanging','controller' => 'user', 'action' => 'owner'), null, true) ?>">non hai un account? iscriviti!</a>
+</div>
