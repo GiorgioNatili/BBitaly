@@ -1,0 +1,149 @@
+@charset "utf-8";
+/* CSS Document */
+#wrapper{ width: 100%; margin: 0 auto;}
+
+#header-bg{
+    background: url("../images/top_gradient.png") repeat-x scroll left top transparent;
+    height: 100px;
+    margin-bottom: 0;
+    position: relative;
+	width:100%;
+}
+
+#canvas {
+    height: auto !important;
+    margin-bottom: 22px;
+    min-height: 100%;
+	width:100%;
+}
+.usefullinks{width:1100px;margin: 0 auto;}
+
+
+
+
+
+.ul-header li{float:left; padding:0px 30px 0px 0px; list-style:none; }
+
+
+
+
+.Selectlang a {background:url(../images/Langiage-icon.png) no-repeat scroll left center transparent;}
+
+
+
+.login-utente a{background:url(../images/Accendi-icon.png) no-repeat scroll left center transparent;}
+.login-albergatore a{background:url(../images/Registrati-icon.png)  no-repeat scroll left center transparent;}
+
+
+
+.usefullinks a { 
+    color: #94A7B0;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 21px;
+    padding: 4px 0 3px 26px;
+    text-decoration: none;
+    text-shadow: 0 1px white;
+    text-transform: uppercase;
+}
+
+.logo_img{float:left;}
+
+.socila-icons{ float:left; }
+
+#block-fblikebutton-fblikebutton-static-block{float:left; }
+
+#block-google-plusone-google-plusone-block{float:left; }
+
+
+
+#language-menu li a {
+    background: none repeat scroll 0 0 transparent;
+    color: #666666;
+    display: block;
+    font-size: 12px;
+    font-weight: normal;
+    padding: 0;
+    text-transform: lowercase;
+}
+
+
+/******************************************************************* This is Slider area Css****************************************************************************************/
+
+.views-field-counter{display:none;}
+
+#views_slideshow_controls_text_pause_homes-page{display:none;}
+
+#views_slideshow_controls_text_previous_homes-page a{background:url(../images/arrow-calednar-left.png) no-repeat scroll center center transparent;
+display: block;
+    height: 42px;
+    margin: -21px 10px 10px;
+    position: absolute;
+    top: 120%;
+    width: 24px;
+    z-index: 4;
+	left:0;
+}
+#views_slideshow_controls_text_previous_homes-page a{font-size:0px;}
+
+
+
+#views_slideshow_controls_text_next_homes-page{background:url(../images/arrow-calednar-right.png) no-repeat scroll center center transparent;
+ display: block;
+    height: 42px;
+    margin: -21px 10px 10px;
+    position: absolute;
+    top: 120%;
+    width: 24px;
+    z-index: 4;
+	right: 0;
+}
+ 
+#views_slideshow_controls_text_next_homes-page a{font-size:0px;}
+.field-content a{display:none;}
+.contextual-links-region #page-title{ display:none;}
+
+
+
+/*******************************************************************************************************************************************************************************/
+/* content */
+
+
+
+
+
+/***************************************************************************************************** footer ******************************************************************/
+
+#footer{
+width:100%;
+margin:auto;
+height:182px;
+position:relative;
+background-color:#e4e9eb;}
+#footer_wrap{
+width:960px;
+margin:auto;
+}
+#list{float:right;
+width: 288px;}
+#list ul{margin-top:-45px;font-size: 18px;}
+#list li{
+
+padding: 5px 0;
+list-style: none;
+width: auto;
+text-align: right;
+border-bottom: 1px solid #bcc8cd;
+border-top: 1px solid #fff;
+}
+#copyright{color: #94a7b0;
+font-size: 12px;}
+#copyright a{color: #94a7b0;
+}#list a
+{
+text-decoration: none;
+font-size: 14px;
+font-weight: bold;
+text-shadow: 0 1px 1px #fff;
+color: #94a7b0;}
+
