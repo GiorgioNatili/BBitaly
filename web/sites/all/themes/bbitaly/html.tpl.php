@@ -42,11 +42,11 @@
  *
  * @ingroup themeable
  */
-?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
-  "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php print $language->language; ?>" version="XHTML+RDFa 1.0" dir="<?php print $language->dir; ?>"<?php print $rdf_namespaces; ?>>
+?>
+<!DOCTYPE html>
+<html>
 
-<head profile="<?php print $grddl_profile; ?>">
+<head>
   <?php print $head; ?>
   <title><?php print $head_title; ?></title>
   <?php print $styles; ?>
@@ -54,7 +54,9 @@
  
  <!-- this is external style sheet <link href="css/style.css" rel="stylesheet" type="text/css">-->
 
-
+<!--[if IE 7]>
+  <link type="text/css" rel="stylesheet" media="all" href="css/ie7-and-down.css" />
+<![endif]-->
   
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>

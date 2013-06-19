@@ -6,8 +6,9 @@ screenshot = screenshot.png
 
 
 stylesheets[all][] = css/style.css
-;stylesheets[all][] = css/common.css
-;stylesheets[all][] = css/links.css
+stylesheets-conditional[IE 7][all][] = css/ie7-and-down.css
+stylesheets-conditional [IE][all][] = ie7-and-down.css 
+;stylesheets[all][] = css/ie8.css
 ;stylesheets[all][] = css/typography.css
 ;stylesheets[all][] = css/forms.css
 ;stylesheets[all][] = css/drupal.css
@@ -27,6 +28,7 @@ stylesheets[all][] = css/style.css
 
 regions[header] = Header
 regions[content] = Content
+regions[content1] = Content1
 regions[footer] = Footer
 regions[topbar] = Topbar
 
