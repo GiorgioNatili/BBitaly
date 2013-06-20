@@ -9,7 +9,7 @@
 }
 
 #header-bg{
-    background: url("../images/top_gradient.png") repeat-x scroll left top transparent;
+    background: url("../images/top-gradient.png") repeat-x scroll left top transparent;
     height: 100px;
     margin-bottom: 0;
     position: relative;
@@ -63,9 +63,9 @@ background: none repeat scroll 0 0 transparent;
     border-radius: 25px 25px 25px 25px;
     height: 0px;
   
-    padding: 0 0 0 75px;
+    padding: 0 0 0 0px;
     position: absolute;
-    top: 262px;
+    top: 232px;
 	
 }
 .skin-default{position:relative;}
@@ -290,9 +290,9 @@ border-left: 1px solid #D4DCDF;
 #views_slideshow_controls_text_previous_homes-page a{background:url(../images/arrow-calednar-left.png) no-repeat scroll center center transparent;
 display: block;
     height: 42px;
-    margin: -21px 10px 10px;
+    margin: 1px 10px 10px;
     position: absolute;
-    top: 60%;
+    top: 50%;
     width: 24px;
     z-index: 4;
 	left:0;
@@ -304,9 +304,9 @@ display: block;
 #views_slideshow_controls_text_next_homes-page{background:url(../images/arrow-calednar-right.png) no-repeat scroll center center transparent;
  display: block;
     height: 42px;
-    margin: -21px 10px 10px;
+    margin: 1px 10px 10px;
     position: absolute;
-    top: 60%;
+    top: 50%;
     width: 24px;
     z-index: 4;
 	right: 0;
@@ -333,7 +333,7 @@ border-bottom:1px solid #CED2D5;
 #wrapper2{
 width:980px;
 margin:0 auto;
-
+margin-top:40px;
 }
 .contents{
 width:980px;
@@ -380,18 +380,28 @@ border-radius: 0px 15px 15px 0px;
 
 }
 .date{float:left;width:350px;height:111px;}
-.icon1{float:right;width:25px;height:111px;margin-top:44px;}
+.icon1{float:right;width:25px;height:111px;margin-top:46px;}
 .content2{
 width:980px;
 margin:0 auto;
 height:117px;
 border-radius: 15px;
-margin-top:10px;
+margin-top:20px;
 margin-bottom:10px;
 }
+.images img{height:117px;
+width:490px;}
+.content2:hover
+{
+border:3px solid #019FDE;
+border-radius:16px 16px 16px 16px;
+box-shadow:0px 2px 6px #C8CECC;
+
+}
+.back1:hover{background-color:#CCECF9;}
 .back1{
 width:494px;
-background-color:#CCECF9;
+background-color:#E6F5FC;
 height:117px;
 float:right;
 border-radius: 0px 15px 15px 0px;
@@ -403,18 +413,43 @@ border-radius: 0px 15px 15px 0px;
 	font-size:26px;
 	color:#333333;
 	font-weight:bold;
+	margin-top:8px;
 }
 
-.dal {margin-left:15px;margin-bottom:5px;
+.dal {margin-left:15px;
+
 font-family:Arial;
 	font-size:16px;
 	color:#333333;
-	font-weight:bold;}
+	margin-top:5px;}
 
-.dal b{font-family:Arial;
+.al{font-family:Arial;
 	font-size:16px;
 	color:#333333;
-	font-weight:bold;}
+	}
+	.startdate{font-family:Arial;
+	font-size:16px;
+	padding-right:2px;
+	padding-left:4px;
+	color:#333333;font-weight:bold;
+}
+.rent{font-family:Arial;
+	font-size:14px;
+	color:#333333;
+	font-weight:bold;margin-left:15px;
+}
+.checkindate
+{margin-top:10px;}
+.checkoutdate{margin-top: 5px;}
+	.enddate{font-family:Arial;
+	font-size:16px;
+	color:#333333;
+	font-weight:bold;padding-right:2px;
+	padding-left:4px;}
+	.structure{font-family:Arial;
+	font-size:14px;
+	color:#333333;
+	}
 	
  .bolds{font-family:Arial;
 	font-size:14px !important;
@@ -435,9 +470,10 @@ width:980px;
 margin:0 auto;
 height:400px;
 margin-top:50px;}
-.room_gallery{float:right;border:2px solid #C1E0A5;width:435px;padding:14px;border-radius:10px;height:265px;margin-top: 8px;}
+.room_gallery{position:relative;float:right;border:3px solid #C1E0A5;width:435px;padding:14px;border-radius:16px;height:265px;margin-top: 8px;}
 .conti{text-align:center;padding-top:40px;font-size:18px;color:#FFF;font-family:Arial;font-weight:bold;font-style:italic;}
-.content3 img{padding-left:125px;}
+.conti img{}
+.content3 img{padding-left:125px;padding-top: 18px;}
 .room2{
 float:left;
 width:510px;
@@ -446,11 +482,16 @@ height:315px;
 .room_gallery:hover{
  
 border: 3px solid #69B024;
-box-shadow: 0px 0px 10px #CBC9CA;
+box-shadow: 0px 4px 10px #CBC9CA;
  
  
 }
-
+.room :hover .room_gallery{border: 3px solid #69B024;
+box-shadow: 0px 4px 10px #CBC9CA;
+}
+.room :hover .box1{
+ background-color:#69B022;box-shadow:2px 4px 10px #CBC9CA;
+}
 .room3{
 float:left;
 width:485px;
@@ -493,10 +534,10 @@ margin-bottom:10px;
 background-color:#EEEEEE;height:45px;position:relative;top:-30px;float:left;}
 .box1{width:475px;
 height:40px;
-background-color:#C3DEA7;border-radius:14px;margin-left:-15px;margin-top:5px;behavior:url(/sites/all/themes/bbitaly/css/PIE.htc);}
+background-color:#C3DEA7;border-radius:17px;margin-left:-15px;margin-top: 46px;}
 .box2{width:475px;
-height:40px;
-background-color:#EC99A3;border-radius:14px;margin-left:-15px;margin-top:5px;float:left;}
+height:40px;margin-top: 46px;
+background-color:#EC99A3;border-radius:17px;margin-left:-15px;float:left;}
 .but{text-align:center;padding-top:10px;}
 .text3{margin-left:5px;float:left;width:320px;height:100px;position:relative;color:#aeaeae;font-family:Arial;top:7px;font-size:14px; font-style:normal;}
 .copyicon{
@@ -508,15 +549,19 @@ top:7px;
 
 .press{padding:10px;}
 .border{border:solid #D9DADC;}
-.button1{width:240px;border-radius:10px;margin-left:98px;
-background-color:#EEEEEE;height:45px;}
-.button2{width:150px;border-radius:15px;margin-left:120px;
-background-color:#EEEEEE;height:45px;}
+.button1{width:240px;border-radius:18px;margin-left:98px;
+background-color:#EEEEEE;height:45px;position: absolute;
+top:267px;left:0px;}
+.button2{width:150px;border-radius:18px;margin-left:120px;
+background-color:#EEEEEE;height:45px;position: absolute;
+top: 267px;}
 .content4 img {
 padding-left: 125px;
+padding-top:18px;
 }
 .content5 img {
 padding-left: 125px;
+padding-top:18px;
 }
 .heart{float:left;
 position:absolute;top: 0px;
@@ -529,8 +574,8 @@ font-family:calibiri;
 font-size:24px;
 font-weight:bold;
 text-align: center;
-top: 25px;}
-.redroom1{float:right;border:2px solid #EF98A0;width:435px;padding:14px;border-radius:10px;height:265px;margin-top: 8px;position:relative;}
+top: 20px;}
+.redroom1{float:right;border:3px solid #EF98A0;width:435px;padding:14px;border-radius:10px;height:265px;margin-top: 8px;position:relative;}
 
 .bedroom{position:relative;}
 
@@ -538,15 +583,17 @@ top: 25px;}
 
 .likeicon1{float:right;width:70px;height:50px;}
 .praes{float:left;}
-.para{float:right;width:94px;height:20px;color:#6ab023;border-right: 1px solid #D9DADC;padding-right: 8px;font-family:calibri; font-size:24px; font-weight:bold;}
-.para1{float:right;width:30px;height:50px;color:#CF0014;margin-top:5px;}
+.para{float:right;width:94px;height:28px;color:#6ab023;border-right: 1px solid #D9DADC;padding-right: 8px;font-family:calibri; font-size:24px; font-weight:bold;}
+.para1{float:right;width:30px;height:50px;color:#CD010D;margin-top:5px;font-weight: bold;}
 .box2 p{color:#FFFEFF;text-align:center;line-height: 40px;}
-.box1 p{color:#FFFEFF;text-align:center;font-family:calibri;font-weight:bold;font-size:18px;}
-.box1:hover{
- background-image:url('../images/frattamaggiore-titel-actev-box-bg');
+.box1 p{color:#FFFEFF;text-align:center;font-family:calibri;font-weight:bold;font-size:18px;padding-top: 9px;}
+.box2:hover{
+ background-color:#D00018;box-shadow:2px 4px 10px #CBC9CA;
 }
-.redroom1:hover{border:3px solid #CD011C;
+
+.room:hover .redroom1{border:3px solid #CD011C;
  box-shadow:0px 0px 10px #CBC9CA;}
+ .room:hover .box2{background-color:#D00018;box-shadow:2px 4px 10px #CBC9CA;}
 /***************************************************************************************************** footer ******************************************************************/
 
 #footer{
@@ -590,7 +637,7 @@ color: #94a7b0;
 .footer-con section{
 	color: #94a7b0;
 	font-family:Arial;
-	font-size:14px;
+	font-size:12px;
 	}
  .foote-img {
     background: url(../images/footer-logo.png) no-repeat scroll left center transparent;
@@ -676,7 +723,7 @@ color: #94a7b0;
 	float:left;
     margin-right: 121px;
     padding-top: 34px;
-	margin-left: 85px;
+	margin-left: 27px;
 }
 
 #list{

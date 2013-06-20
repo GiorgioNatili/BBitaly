@@ -144,17 +144,17 @@
         <div class=" form clearfix">
             <form action="#" method="post" class="clearfix">
                 <div class="item inline text"><input  type="text" name="location" class="location" placeholder="Cerca la località"/></div>
-                <div class="item inline checkin"><input  type="text" name="checkin" class="datepicker checkin" value="checkin"/></div>
-                <div class="item inline checkout"><input  type="text" name="checkout" class="datepicker checkout" value="checkout"/></div>
+                <div class="item inline checkin"><input  type="text" name="checkin" class="datepicker checkin"   id="datepicker" value="checkin"/></div>
+                <div class="item inline checkout"><input  type="text" name="checkout" class="datepicker checkout"  id="datepicker1" value="checkout"/></div>
                 <div class="item inline persons">
                     <div class="holder">
-                        <div class="selectHolder">Persone</div>
+                        <div id="selectHolder" class="selectHolder">Persone</div>
                         <select name="persons">
 						
 						<?php
 						
 							for ($i=1;$i<=6;$i++) {
-								echo "<option value='$i'>$i</option>";
+								echo "<option id='m' selected='selected' value='$i'>$i</option>";
 							}
 						
 						?>
@@ -176,48 +176,50 @@
   
   
   
-  
+ 
   <div id="wrappers">
+  
+  
 <div class="contents">
-<a href="">
+<a href="#tabs-1">
 <div class="frst">
 <img alt="" src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/ltinerari-icon.png"/>
 <h2>Itinerari consigliati</h2>
 </div>
 </a>
-
-
-<a href="">
+<a href="#tabs-2">
 <div class="frst" style="border:none;">
 <img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/bb-in-icon.png" alt=""/>
 <h2 class="text">B&amp;B in evidenza</h2>
 </div>
 </a>
-<a href="">
+<a href="#tabs-3">
 <div class="frst" style="border:none;">
 <img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/bb-piu-icon.png" alt=""/>
 <h2 class="text">B&amp;B piu popolari</h2>
 </div>
 </a>
 </div>
+
 </div>
+
 <div id="wrapper2">
 
-<div class="content1">
+<div class="content2">
 
 <a href="">
 
 <div class="images">
 <img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/blog_image_1.png" alt=""/>
 </div>
-<div class="back">
+<div class="back1">
 <div class="middle"></div>
 <div class="date">
 
 <h2 class="nome">Nome dell'itinerario 001
 </h2>
-<p class="dal">da1:<b>12/09/2012</b> al:<b>20/09/2012</b><br/>
-<b>999 </b>structure prenotate</p>
+<div class="checkindate"><span class="dal">dal:</span><span class="startdate">12/09/2012</span><span class="al"> al:</span><span class="enddate">20/09/2012</span></div>
+<div class="checkoutdate"><span class="rent">999 </span><span class="structure">structure prenotate</span></div>
 </div>
 <div class="icon1">
 <img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/image-r-arrow-icon.png" alt=""/>
@@ -230,15 +232,15 @@
 <div class="content2">
 <a href="">
 <div class="images">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/blog_image_2.png" alt=""/>
+<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/blog-image-2.png" alt=""/>
 </div>
 <div class="back1">
 <div class="date">
 
 <h2 class="nome">Nome dell'itinerario 001
 </h2>
-<p class="dal">da1:<b>12/09/2012</b>al:<b>20/09/2012</b><br/>
-<b>999</b> structure prenotate</p>
+<div class="checkindate"><span class="dal">dal:</span><span class="startdate">12/09/2012</span><span class="al"> al:</span><span class="enddate">20/09/2012</span></div>
+<div class="checkoutdate"><span class="rent">999 </span><span class="structure">structure prenotate</span></div>
 </div>
 <div class="icon1">
 <img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/image-r-arrow-icon.png" alt=""/>
@@ -250,15 +252,15 @@
 <div class="content2">
 <a href="">
 <div class="images">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/blog_image_3.png" alt=""/>
+<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/blog-image-3.png" alt=""/>
 </div>
 <div class="back1">
 <div class="date">
 
 <h2 class="nome">Nome dell'itinerario 001
 </h2>
-<p class="dal">da1:<b>12/09/2012</b> al:<b>20/09/2012</b><br/>
-<b>999</b> structure prenotate</p>
+<div class="checkindate"><span class="dal">dal:</span><span class="startdate">12/09/2012</span><span class="al"> al:</span><span class="enddate">20/09/2012</span></div>
+<div class="checkoutdate"><span class="rent">999 </span><span class="structure">structure prenotate</span></div>
 </div>
 <div class="icon1">
 <img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/image-r-arrow-icon.png" alt=""/>
@@ -269,15 +271,15 @@
 <div class="content2">
 <a href="">
 <div class="images">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/blog_image_4.png" alt=""/>
+<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/blog-image-4.png" alt=""/>
 </div>
 <div class="back1">
 <div class="date">
 
 <h2 class="nome">Nome dell'itinerario 001
 </h2>
-<p class="dal">da1:<b>12/09/2012</b> al:<b>20/09/2012</b><br/>
-<b>999</b> structure prenotate</p>
+<div class="checkindate"><span class="dal">dal:</span><span class="startdate">12/09/2012</span><span class="al"> al:</span><span class="enddate">20/09/2012</span></div>
+<div class="checkoutdate"><span class="rent">999 </span><span class="structure">structure prenotate</span></div>
 </div>
 <div class="icon1">
 <img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/image-r-arrow-icon.png" alt=""/>
@@ -290,15 +292,15 @@
 <div class="content2">
 <a href="">
 <div class="images">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/blog_image_5.png" alt=""/>
+<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/blog-image-5.png" alt=""/>
 </div>
 <div class="back1">
 <div class="date">
 
 <h2 class="nome">Nome dell'itinerario 001
 </h2>
-<p class="dal">da1:<b>12/09/2012</b> al:<b>20/09/2012</b><br/>
-<b>999</b> structure prenotate</p>
+<span class="dal">dal:</span><span class="startdate">12/09/2012</span><span class="al"> al:</span><span class="enddate">20/09/2012</span><br/>
+<span class="rent">999 </span><span class="structure">structure prenotate</span>
 </div>
 <div class="icon1">
 <img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/image-r-arrow-icon.png" alt=""/>
@@ -313,43 +315,10 @@
 
 <div class="room">
 
-<!--
-<div class="room2">
-<a href="">
-<div class="room3">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/content_display_image_1.png" alt=""/>
-</div></a>
-<div class="button">
-<div class="press">
-<div class="likeicon">
-<div class="praes"><img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/praes-icon.png" alt=""/></div>
-<div class="para"><p>999,00 &euro;</p></div>
-</div>
-<div class="likeicon1">
-<div class="praes">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/like-icon.png" alt=""/>
-</div>
-<div class="para1">
-<p>78</p>
 
-</div>
-</div>
-</div>
-</div>
-<div class="box">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/frattamaggiore-titel-actev-box-bg.png" alt=""/>
-</div>
-<div id="copyicon">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/frattamaggiore-icon - Copy.png" alt=""/>
-
-</div>
-
-<div class="text3">Frattamaggiore localita molto lunga /Napoli
-</div>
-</div>-->
 <div class="room_gallery" style="float:left;">
 <a href="">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/content_display_image_1.png" alt=""/>
+<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/content-display-image-1.png" alt=""/>
 </a><div class="button1">
 <div class="press">
 <div class="likeicon">
@@ -361,7 +330,7 @@
 <img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/like-icon.png" alt=""/>
 </div>
 <div class="para1">
-<p>78</p>
+<p>99</p>
 
 </div>
 </div>
@@ -374,13 +343,13 @@
 <img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/frattamaggiore-icon-copy.png" alt=""/>
 
 </div>
-<div class="text3">Frattamaggiore localita molto lunga /Napoli
+<div class="text3">Frattamaggiore localita molto lunga /<b>Napoli</b>
 </div>
 </div>
 
 <div class="room_gallery">
 <a href="">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/content_display_image_2.png" alt=""/>
+<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/content-display-image-2.png" alt=""/>
 </a><div class="button1">
 <div class="press">
 <div class="likeicon">
@@ -392,20 +361,20 @@
 <img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/like-icon.png" alt=""/>
 </div>
 <div class="para1">
-<p>78</p>
+<p>85</p>
 
 </div>
 </div>
 </div>
 </div>
 <div class="box1">
-<p>Nome della struttura ricettiva molto lungo lunghissimo</p>
+<p>Nome della struttura ricettiva</p>
 </div>
 <div class="copyicon">
 <img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/frattamaggiore-icon-copy.png" alt=""/>
 
 </div>
-<div class="text3">Frattamaggiore localita molto lunga /Napoli
+<div class="text3">Frattamaggiore localita molto lunga /<b>Napoli</b>
 </div>
 </div>
 
@@ -421,7 +390,7 @@
 <div style="float:left;" class="room_gallery">
 <a href="">
 
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/content_display_image_3.png" alt=""/>
+<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/content-display-image-3.png" alt=""/>
 </a>
 <div class="button1">
 <div class="press">
@@ -447,14 +416,14 @@
 <img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/frattamaggiore-icon-copy.png" alt=""/>
 
 </div>
-<div class="text3">Frattamaggiore localita molto lunga /Napoli
+<div class="text3">Frattamaggiore localita molto lunga /<b>Napoli</b>
 </div>
 </div>
 
 
 
 <div class="room_gallery">
-<a href=""><img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/content_display_image_4.png" alt=""/>
+<a href=""><img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/content-display-image-4.png" alt=""/>
 </a><div class="button1">
 <div class="press">
 <div class="likeicon">
@@ -466,7 +435,7 @@
 <img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/like-icon.png" alt=""/>
 </div>
 <div class="para1">
-<p>78</p>
+<p>43</p>
 
 </div>
 </div>
@@ -479,7 +448,7 @@
 <img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/frattamaggiore-icon-copy.png" alt=""/>
 
 </div>
-<div class="text3">Frattamaggiore localita molto lunga /Napoli
+<div class="text3">Frattamaggiore localita molto lunga /<b>Napoli</b>
 </div>
 </div>
 </div>
@@ -494,44 +463,16 @@
 <!--3rd-->
 
 <div class="room">
-<!--
-<div class="room2">
-<div class="roomroom">
-<a href=""><img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/content2_display_image_1.png" alt=""/>
-</div></a>
-<div class="red">
 
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/red-color-rank-icon.png" alt=""/>
-</div>
-<div class="button2">
-<div class="press">
-<div class="likeicon">
-<div class="praes"><img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/praes-icon.png" alt=""/></div>
-<div class="para" style="border:none;"><p>999,00 &euro;</p>
-</div>
-</div>
-</div>
-</div>
-<div class="box">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/red-color-titel-actev-box-bg.png" alt=""/>
-</div>
-<div class="copyicon">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/frattamaggiore-icon- copy.png" alt=""/>
-
-</div>
-
-<div class="text3">Frattamaggiore localita molto lunga /Napoli
-</div>
-</div>-->
 <div class="redroom1" style="float:left;">
 <a href="">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/content2_display_image_1.png" alt=""/>
+<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/content2-display-image-1.png" alt=""/>
 </a>
 <div class="heart">
 
-<!--<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/red-color-rank-icon.png" alt=""/>-->
+
 <div class="price">
-78
+158
 </div>
 </div>
 
@@ -550,7 +491,7 @@
 <img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/frattamaggiore-icon-copy.png" alt=""/>
 
 </div>
-<div class="text3">Frattamaggiore localita molto lunga /Napoli
+<div class="text3">Frattamaggiore localita molto lunga /<b>Napoli</b>
 </div>
 </div>
 
@@ -559,7 +500,7 @@
 
 <div class="redroom1">
 <a href="">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/content2_display_image_2.png" alt=""/>
+<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/content2-display-image-2.png" alt=""/>
 </a>
 <div class="heart">
 <div class="price">
@@ -582,7 +523,7 @@
 <img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/frattamaggiore-icon-copy.png" alt=""/>
 
 </div>
-<div class="text3">Frattamaggiore localita molto lunga /Napoli
+<div class="text3">Frattamaggiore localita molto lunga /<b>Napoli</b>
 </div>
 </div>
 
@@ -595,13 +536,13 @@
 <div style="float:left;" class="redroom1">
 <a href="">
 <div class="bedroom">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/content2_display_image_3.png" alt=""/>
+<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/content2-display-image-3.png" alt=""/>
 </div>
 </a>
 <div class="heart">
 
 <div class="price">
-78
+19
 </div>
 </div>
 <div class="button2">
@@ -619,7 +560,7 @@
 <img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/frattamaggiore-icon-copy.png" alt=""/>
 
 </div>
-<div class="text3">Frattamaggiore localita molto lunga /Napoli
+<div class="text3">Frattamaggiore localita molto lunga /<b>Napoli</b>
 </div>
 </div>
 
@@ -628,12 +569,12 @@
 
 <div class="redroom1">
 <a href=""><div class="bedroom">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/content2_display_image_4.png" alt=""/>
+<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/content2-display-image-4.png" alt=""/>
 </div></a>
 <div class="heart">
 
 <div class="price">
-78
+5
 </div>
 </div>
 <div class="button2">
@@ -651,7 +592,7 @@
 <img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/frattamaggiore-icon-copy.png" alt=""/>
 
 </div>
-<div class="text3">Frattamaggiore localita molto lunga /Napoli
+<div class="text3">Frattamaggiore localita molto lunga /<b>Napoli</b>
 </div>
 </div>
 
@@ -681,7 +622,7 @@
 </div>
 <div class="footer-con">
                         <section>
-                            Copyright © 2012 BBItaly <sup>®</sup><br/>
+                            Copyright © 2013 bedebreakfastinitaly.com<sup>TM</sup><br/>
                             Tutti i diritti riservati.<br/> 
                             <br /><a href="">web agency napoli</a>
                         </section>
@@ -717,10 +658,10 @@
 					<div id="list">
 					<ul>
 					
-					<li><a href="#">Chi siamo</a></li>
-					<li><a href="#">Termini e condizioni d'uso</a></li>
-                    <li><a href="#">Privacys</a></li>
-					<li><a href="#">Contatti</a></li>
+					<li><a href="#">chi siamo</a></li>
+					<li><a href="#">termini e condizioni d'uso</a></li>
+                    <li><a href="#">privacy</a></li>
+					<li><a href="#">contatti</a></li>
 					</ul>
 					
 					</div>

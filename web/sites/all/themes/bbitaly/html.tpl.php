@@ -51,12 +51,40 @@
   <title><?php print $head_title; ?></title>
   <?php print $styles; ?>
   <?php print $scripts; ?>
- 
+  
+   <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <script>
+  jQuery(function() {
+    jQuery( "#tabs" ).tabs();
+  });
+  </script>
  <!-- this is external style sheet <link href="css/style.css" rel="stylesheet" type="text/css">-->
 
 <!--[if IE 7]>
   <link type="text/css" rel="stylesheet" media="all" href="css/ie7-and-down.css" />
 <![endif]-->
+
+<script>
+$(function() {
+$( "#datepicker" ).datepicker();
+$( "#datepicker1" ).datepicker();
+});
+</script>
+
+
+<script>
+$("#m").change(function () {
+  var str = "";
+  $("select option:selected").each(function () {
+        str += $(this).text() + " ";
+      });
+  $("selectHolder").text(str);
+})
+.trigger('change');
+</script>
   
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>
