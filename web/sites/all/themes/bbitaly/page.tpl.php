@@ -1,11 +1,7 @@
-﻿<?php
-
+<?php
 /**
  * @file
- * Default theme implementation to display a single Drupal page.
- *
- * The doctype, html, head and body tags are not in this template. Instead they
- * can be found in the html.tpl.php template in this directory.
+ * Zen theme's implementation to display a single Drupal page.
  *
  * Available variables:
  *
@@ -33,6 +29,7 @@
  *   site, if they have been configured.
  * - $secondary_menu (array): An array containing the Secondary menu links for
  *   the site, if they have been configured.
+ * - $secondary_menu_heading: The title of the menu used by the secondary links.
  * - $breadcrumb: The breadcrumb trail for the current page.
  *
  * Page content (in order of occurrence in the default page.tpl.php):
@@ -56,619 +53,151 @@
  *   comment/reply/12345).
  *
  * Regions:
+ * - $page['header']: Items for the header region.
+ * - $page['navigation']: Items for the navigation region, below the main menu (if any).
  * - $page['help']: Dynamic help text, mostly for admin pages.
  * - $page['highlighted']: Items for the highlighted content region.
  * - $page['content']: The main content of the current page.
  * - $page['sidebar_first']: Items for the first sidebar.
  * - $page['sidebar_second']: Items for the second sidebar.
- * - $page['header']: Items for the header region.
  * - $page['footer']: Items for the footer region.
+ * - $page['bottom']: Items to appear at the bottom of the page below the footer.
  *
  * @see template_preprocess()
  * @see template_preprocess_page()
+ * @see zen_preprocess_page()
  * @see template_process()
- * @see html.tpl.php
- *
- * @ingroup themeable
+ 
  */
+ 
+ 
 ?>
 
+<div id="page">
 
-  <div id="wrapper">
-  <div id="header-bg">
- 
-  <div id="navigation">
-  
-  <div class="usefullinks">
-  <div class="logo_img">
-  <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo">
-  <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-  </a>
-  </div>
-  <div class="header-align">
-      <ul class="ul-header">
-      <li class="login-utente">
-      <a href="#">Accedi</a>
-      </li>
-      <li class="login-albergatore">
-      <a href="#">Registrati</a>
-      </li>
-	  <li class="Selectlang">
-      <a id="lang-menu-item" href="#">select language</a>
-      </li>
-	  
-	  
-      
-      </ul>
-      
-				
-					
-	
-	</div>
-	<div class="socila-icons">
-	
-	<?php print render($page['header']); ?>
-	</div>
-	</div>
-	
-	
-	
-	
-	</div> 
-	</div>
-  </div>
-  
-  
-  
-  
-  <div id="page-wrapper">
-  
-  
-    <div id="sidebar"><?php if($page['sidebar_first']) { print render($page['sidebar_first']); } ?></div>
-	
-    <div id="content">
-	
-      <?php // print $messages; ?>
-	  
-      <h1><?php if($title) { print $title; } ?></h1>
-      <div class="tabs"><?php if ($tabs) { print render($tabs); } ?></div>
+  <header id="header" role="banner">
+
+    <?php if ($logo): ?>
+      <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" /></a>
+    <?php endif; ?>
+
+    <?php if ($site_name || $site_slogan): ?>
+      <hgroup id="name-and-slogan">
+        <?php if ($site_name): ?>
+          <h1 id="site-name">
+            <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
+          </h1>
+        <?php endif; ?>
+
+        <?php if ($site_slogan): ?>
+          <h2 id="site-slogan"><?php print $site_slogan; ?></h2>
+        <?php endif; ?>
+      </hgroup><!-- /#name-and-slogan -->
+    <?php endif; ?>
+
+    <?php if ($secondary_menu): ?>
+      <nav id="secondary-menu" role="navigation">
+        <?php print theme('links__system_secondary_menu', array(
+          'links' => $secondary_menu,
+          'attributes' => array(
+            'class' => array('links', 'inline', 'clearfix'),
+          ),
+          'heading' => array(
+            'text' => $secondary_menu_heading,
+            'level' => 'h2',
+            'class' => array('element-invisible'),
+          ),
+        )); ?>
+      </nav>
+    <?php endif; ?>
+
+    <?php print render($page['header']); ?>
+
+  </header>
+
+  <div id="main">
+
+    <div id="content" class="column" role="main">
+      <?php print render($page['highlighted']); ?>
+      <?php print $breadcrumb; ?>
+      <a id="main-content"></a>
+      <?php print render($title_prefix); ?>
+      <?php if ($title): ?>
+        <h1 class="title" id="page-title"><?php print $title; ?></h1>
+      <?php endif; ?>
+      <?php print render($title_suffix); ?>
+      <?php print $messages; ?>
+      <?php print render($tabs); ?>
       <?php print render($page['help']); ?>
-      <ul class="action-links"><?php if($action_links) { print render($action_links); } ?>
-	  </ul>
-	   <?php print render($page['content']); ?>
-	  <div id="newsearch">
-        <div>
-            <span id="claim">Il tuo bed and breakfast in Italia! </span><br />
-            <span id="summary">Qui troverai la vacanza che cercavi tra le 999.000 località e  le 999.000 strutture ricettive.</span><br />
-        </div>
-        <div class=" form clearfix">
-            <form action="#" method="post" class="clearfix">
-                <div class="item inline text"><input  type="text" name="location" class="location" placeholder="Cerca la località"/></div>
-                <div class="item inline checkin"><input  type="text" name="checkin" class="datepicker checkin"   id="datepicker" value="checkin"/></div>
-                <div class="item inline checkout"><input  type="text" name="checkout" class="datepicker checkout"  id="datepicker1" value="checkout"/></div>
-                <div class="item inline persons">
-                    <div class="holder">
-                        <div id="selectHolder" class="selectHolder">Persone</div>
-                        <select name="persons">
-						
-						<?php
-						
-							for ($i=1;$i<=6;$i++) {
-								echo "<option id='m' selected='selected' value='$i'>$i</option>";
-							}
-						
-						?>
+      <?php if ($action_links): ?>
+        <ul class="action-links"><?php print render($action_links); ?></ul>
+      <?php endif; ?>
+      <?php print render($page['content']); ?>
+      <?php print $feed_icons; ?>
+    </div><!-- /#content -->
 
-                                                    </select>
-                    </div>
-                </div>
-                <div class="item sub">
-                    <input type="submit"/>
-                </div>
-            </form>
-        </div>
-    </div>
-    
-	  
-	 
-    </div>
-  </div>
+    <div id="navigation">
+
+      <?php if ($main_menu): ?>
+        <nav id="main-menu" role="navigation">
+          <?php
+          // This code snippet is hard to modify. We recommend turning off the
+          // "Main menu" on your sub-theme's settings form, deleting this PHP
+          // code block, and, instead, using the "Menu block" module.
+          // @see http://drupal.org/project/menu_block
+          print theme('links__system_main_menu', array(
+            'links' => $main_menu,
+            'attributes' => array(
+              'class' => array('links', 'inline', 'clearfix'),
+            ),
+            'heading' => array(
+              'text' => t('Main menu'),
+              'level' => 'h2',
+              'class' => array('element-invisible'),
+            ),
+          )); ?>
+        </nav>
+      <?php endif; ?>
+
+      <?php print render($page['navigation']); ?>
+
+    </div><!-- /#navigation -->
+
+    <?php
+      // Render the sidebars to see if there's anything in them.
+      $sidebar_first  = render($page['sidebar_first']);
+      $sidebar_second = render($page['sidebar_second']);
+    ?>
+
+    <?php if ($sidebar_first || $sidebar_second): ?>
+      <aside class="sidebars">
+        <?php print $sidebar_first; ?>
+        <?php print $sidebar_second; ?>
+      </aside><!-- /.sidebars -->
+    <?php endif; ?>
+
+  </div><!-- /#main -->
   
-  
-  
- 
-  <div id="wrappers">
-  
-  
-<div class="contents">
-<a href="#tabs-1">
-<div class="frst">
-<img alt="" src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/ltinerari-icon.png"/>
-<h2>Itinerari consigliati</h2>
-</div>
-</a>
-<a href="#tabs-2">
-<div class="frst" style="border:none;">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/bb-in-icon.png" alt=""/>
-<h2 class="text">B&amp;B in evidenza</h2>
-</div>
-</a>
-<a href="#tabs-3">
-<div class="frst" style="border:none;">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/bb-piu-icon.png" alt=""/>
-<h2 class="text">B&amp;B piu popolari</h2>
-</div>
-</a>
-</div>
-
-</div>
-
-<div id="wrapper2">
-
-<div class="content2">
-
-<a href="">
-
-<div class="images">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/blog_image_1.png" alt=""/>
-</div>
-<div class="back1">
-<div class="middle"></div>
-<div class="date">
-
-<h2 class="nome">Nome dell'itinerario 001
-</h2>
-<div class="checkindate"><span class="dal">dal:</span><span class="startdate">12/09/2012</span><span class="al"> al:</span><span class="enddate">20/09/2012</span></div>
-<div class="checkoutdate"><span class="rent">999 </span><span class="structure">structure prenotate</span></div>
-</div>
-<div class="icon1">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/image-r-arrow-icon.png" alt=""/>
-</div>
-</div>
-<div class="right"></div></a>
-</div>
-
-
-<div class="content2">
-<a href="">
-<div class="images">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/blog-image-2.png" alt=""/>
-</div>
-<div class="back1">
-<div class="date">
-
-<h2 class="nome">Nome dell'itinerario 001
-</h2>
-<div class="checkindate"><span class="dal">dal:</span><span class="startdate">12/09/2012</span><span class="al"> al:</span><span class="enddate">20/09/2012</span></div>
-<div class="checkoutdate"><span class="rent">999 </span><span class="structure">structure prenotate</span></div>
-</div>
-<div class="icon1">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/image-r-arrow-icon.png" alt=""/>
-</div>
-</div></a>
-</div>
-
-
-<div class="content2">
-<a href="">
-<div class="images">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/blog-image-3.png" alt=""/>
-</div>
-<div class="back1">
-<div class="date">
-
-<h2 class="nome">Nome dell'itinerario 001
-</h2>
-<div class="checkindate"><span class="dal">dal:</span><span class="startdate">12/09/2012</span><span class="al"> al:</span><span class="enddate">20/09/2012</span></div>
-<div class="checkoutdate"><span class="rent">999 </span><span class="structure">structure prenotate</span></div>
-</div>
-<div class="icon1">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/image-r-arrow-icon.png" alt=""/>
-</div>
-</div></a>
-</div>
-
-<div class="content2">
-<a href="">
-<div class="images">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/blog-image-4.png" alt=""/>
-</div>
-<div class="back1">
-<div class="date">
-
-<h2 class="nome">Nome dell'itinerario 001
-</h2>
-<div class="checkindate"><span class="dal">dal:</span><span class="startdate">12/09/2012</span><span class="al"> al:</span><span class="enddate">20/09/2012</span></div>
-<div class="checkoutdate"><span class="rent">999 </span><span class="structure">structure prenotate</span></div>
-</div>
-<div class="icon1">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/image-r-arrow-icon.png" alt=""/>
-</div>
-</div></a>
-</div>
-
-
-
-<div class="content2">
-<a href="">
-<div class="images">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/blog-image-5.png" alt=""/>
-</div>
-<div class="back1">
-<div class="date">
-
-<h2 class="nome">Nome dell'itinerario 001
-</h2>
-<span class="dal">dal:</span><span class="startdate">12/09/2012</span><span class="al"> al:</span><span class="enddate">20/09/2012</span><br/>
-<span class="rent">999 </span><span class="structure">structure prenotate</span>
-</div>
-<div class="icon1">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/image-r-arrow-icon.png" alt=""/>
-</div>
-</div></a>
-</div>
-<div class="content3">
-<p class="conti">Sfoglia altri contenuti...</p>
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/down-arrow-icon.png" alt=""/>
-
-</div>
-
-<div class="room">
-
-
-<div class="room_gallery" style="float:left;">
-<a href="">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/content-display-image-1.png" alt=""/>
-</a><div class="button1">
-<div class="press">
-<div class="likeicon">
-<div class="praes"><img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/praes-icon.png" alt=""/></div>
-<div class="para"><p>999,00 &euro;</p></div>
-</div>
-<div class="likeicon1">
-<div class="praes">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/like-icon.png" alt=""/>
-</div>
-<div class="para1">
-<p>99</p>
-
-</div>
-</div>
-</div>
-</div>
-<div class="box1">
-<p>Nome della struttura ricettiva molto lungo lunghissimo</p>
-</div>
-<div class="copyicon">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/frattamaggiore-icon-copy.png" alt=""/>
-
-</div>
-<div class="text3">Frattamaggiore localita molto lunga /<b>Napoli</b>
-</div>
-</div>
-
-<div class="room_gallery">
-<a href="">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/content-display-image-2.png" alt=""/>
-</a><div class="button1">
-<div class="press">
-<div class="likeicon">
-<div class="praes"><img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/praes-icon.png" alt=""/></div>
-<div class="para"><p>999,00 &euro;</p></div>
-</div>
-<div class="likeicon1">
-<div class="praes">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/like-icon.png" alt=""/>
-</div>
-<div class="para1">
-<p>85</p>
-
-</div>
-</div>
-</div>
-</div>
-<div class="box1">
-<p>Nome della struttura ricettiva</p>
-</div>
-<div class="copyicon">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/frattamaggiore-icon-copy.png" alt=""/>
-
-</div>
-<div class="text3">Frattamaggiore localita molto lunga /<b>Napoli</b>
-</div>
-</div>
-
-</div>
-
-
-<!-- scd-->
-
-
-<div class="room">
-
-
-<div style="float:left;" class="room_gallery">
-<a href="">
-
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/content-display-image-3.png" alt=""/>
-</a>
-<div class="button1">
-<div class="press">
-<div class="likeicon">
-<div class="praes"><img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/praes-icon.png" alt=""/></div>
-<div class="para"><p>999,00 &euro;</p></div>
-</div>
-<div class="likeicon1">
-<div class="praes">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/like-icon.png" alt=""/>
-</div>
-<div class="para1">
-<p>78</p>
-
-</div>
-</div>
-</div>
-</div>
-<div class="box1">
-<p>Nome della struttura ricettiva molto lungo lunghissimo</p>
-</div>
-<div class="copyicon">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/frattamaggiore-icon-copy.png" alt=""/>
-
-</div>
-<div class="text3">Frattamaggiore localita molto lunga /<b>Napoli</b>
-</div>
-</div>
-
-
-
-<div class="room_gallery">
-<a href=""><img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/content-display-image-4.png" alt=""/>
-</a><div class="button1">
-<div class="press">
-<div class="likeicon">
-<div class="praes"><img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/praes-icon.png" alt=""/></div>
-<div class="para"><p>999,00 &euro;</p></div>
-</div>
-<div class="likeicon1">
-<div class="praes">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/like-icon.png" alt=""/>
-</div>
-<div class="para1">
-<p>43</p>
-
-</div>
-</div>
-</div>
-</div>
-<div class="box1">
-<p>Nome della struttura ricettiva molto lungo lunghissimo</p>
-</div>
-<div class="copyicon">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/frattamaggiore-icon-copy.png" alt=""/>
-
-</div>
-<div class="text3">Frattamaggiore localita molto lunga /<b>Napoli</b>
-</div>
-</div>
-</div>
-
-
-<div class="content5">
-<p class="conti">Sfoglia altri contenuti...</p>
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/down-arrow-icon.png" alt=""/>
-
-</div>
-
-<!--3rd-->
-
-<div class="room">
-
-<div class="redroom1" style="float:left;">
-<a href="">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/content2-display-image-1.png" alt=""/>
-</a>
-<div class="heart">
-
-
-<div class="price">
-158
-</div>
-</div>
-
-<div class="button2">
-<div class="press">
-<div class="likeicon">
-<div class="praes"><img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/praes-icon.png" alt=""/></div>
-<div class="para" style="border:none;"><p>999,00 &euro;</p></div>
-</div>
-</div>
-</div>
-<div class="box2">
-<p>Nome della struttura ricettiva molto lungo lunghissimo</p>
-</div>
-<div class="copyicon">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/frattamaggiore-icon-copy.png" alt=""/>
-
-</div>
-<div class="text3">Frattamaggiore localita molto lunga /<b>Napoli</b>
-</div>
-</div>
-
-
-
-
-<div class="redroom1">
-<a href="">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/content2-display-image-2.png" alt=""/>
-</a>
-<div class="heart">
-<div class="price">
-78
-</div>
-
-</div>
-<div class="button2">
-<div class="press">
-<div class="likeicon">
-<div class="praes"><img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/praes-icon.png" alt=""/></div>
-<div class="para" style="border:none;"><p>999,00 &euro;</p></div>
-</div>
-</div>
-</div>
-<div class="box2">
-<p>Nome della struttura ricettiva molto lungo lunghissimo</p>
-</div>
-<div class="copyicon">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/frattamaggiore-icon-copy.png" alt=""/>
-
-</div>
-<div class="text3">Frattamaggiore localita molto lunga /<b>Napoli</b>
-</div>
-</div>
-
-
-</div>
-
-<!--4rd-->
-
-<div class="room">
-<div style="float:left;" class="redroom1">
-<a href="">
-<div class="bedroom">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/content2-display-image-3.png" alt=""/>
-</div>
-</a>
-<div class="heart">
-
-<div class="price">
-19
-</div>
-</div>
-<div class="button2">
-<div class="press">
-<div class="likeicon">
-<div class="praes"><img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/praes-icon.png" alt=""/></div>
-<div class="para" style="border:none;"><p>999,00 &euro;</p></div>
-</div>
-</div>
-</div>
-<div class="box2">
-<p>Nome della struttura ricettiva molto lungo lunghissimo</p>
-</div>
-<div class="copyicon">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/frattamaggiore-icon-copy.png" alt=""/>
-
-</div>
-<div class="text3">Frattamaggiore localita molto lunga /<b>Napoli</b>
-</div>
-</div>
-
-
-
-
-<div class="redroom1">
-<a href=""><div class="bedroom">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/content2-display-image-4.png" alt=""/>
-</div></a>
-<div class="heart">
-
-<div class="price">
-5
-</div>
-</div>
-<div class="button2">
-<div class="press">
-<div class="likeicon">
-<div class="praes"><img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/praes-icon.png" alt=""/></div>
-<div class="para" style="border:none;"><p>999,00 &euro;</p></div>
-</div>
-</div>
-</div>
-<div class="box2">
-<p>Nome della struttura ricettiva molto lungo lunghissimo</p>
-</div>
-<div class="copyicon">
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/frattamaggiore-icon-copy.png" alt=""/>
-
-</div>
-<div class="text3">Frattamaggiore localita molto lunga /<b>Napoli</b>
-</div>
-</div>
-
-
-</div>
-
-
-
-
-<div class="content4">
-<p class="conti">Sfoglia altri contenuti...</p>
-<img src="<?php $path = drupal_get_path('theme', 'bbitaly'); echo $path;?>/images/down-arrow-icon.png" alt=""/>
-
-</div>
-  
- 
-  
-  </div>
-  
-  
-  <!-- /.section, /#footer -->
-	<div id="footer">
-<div id="footer_wrap">
-<div id="copyright">
-<div class="foote-img">
-&nbsp;
-</div>
-<div class="footer-con">
-                        <section>
-                            Copyright © 2013 bedebreakfastinitaly.com<sup>TM</sup><br/>
-                            Tutti i diritti riservati.<br/> 
-                            <br /><a href="">web agency napoli</a>
-                        </section>
-                        
-                        </div>
-                    </div>
-                    
-                    <div id="social-pages">
-<ul>
-<li id="facebook-page">
-<a href="https://www.facebook.com/pages/Bed-And-Breakfast-in-Italy/228921990498383" target="_blank" data-block="">
-&nbsp;
-</a>
-</li>
-<li id="googleplus-page">
-<a href="https://plus.google.com/u/0/b/103711838752058855961/103711838752058855961/posts" target="_blank" data-block="">
-&nbsp;
-</a>
-</li>
-<li id="twitter-page">
-<a href="https://twitter.com/BBItaly" target="_blank" data-block="">
-&nbsp;
-</a>
-</li>
-<li id="pinterest-page">
-<a href="https://pinterest.com/bbitaly/" target="_blank" data-block="">
-&nbsp;
-</a>
-</li>
-</ul>
-</div>
-					
-					<div id="list">
-					<ul>
-					
-					<li><a href="#">chi siamo</a></li>
-					<li><a href="#">termini e condizioni d'uso</a></li>
-                    <li><a href="#">privacy</a></li>
-					<li><a href="#">contatti</a></li>
-					</ul>
-					
-					</div>
-					
-					
-</div>
-</div>
-  
+  <!-- /#slider-->
   
 
+<?php print render($page['searchtab']); ?>
+<?php print render($page['itinerary']); ?>
+<?php print render($page['moreitinerary']); ?>
+<?php print render($page['highlightedregion']); ?>
+<?php print render($page['readmorehighlighted']); ?>
+<?php print render($page['mostpopular']); ?>
+<?php print render($page['readmorepopular']); ?>
+
+<?php print render($page['facebookregion']); ?>
+
+<?php print render($page['registrationregion']); ?>
+
+<?php print render($page['footer']); ?>
+
+
+
+
+</div><!-- /#page -->
+
+<?php print render($page['bottom']); ?>

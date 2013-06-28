@@ -1,0 +1,348 @@
+#page,.region-bottom
+{
+  max-width:100%!important;
+}
+
+#header,#content,#navigation,.region-sidebar-first,.region-sidebar-second,#footer
+{
+  padding-left:0!important;
+  padding-right:0!important;
+}
+
+.views-slideshow-controls-text-previous
+{
+  background:url(../images/arrow-calednar-left.png) no-repeat scroll 0 0 transparent;
+  display:block;
+  height:42px;
+  position:absolute;
+  top:50%;
+  width:24px;
+  z-index:4;
+  left:0;
+  font-size:0;
+  margin:1px 10px 10px;
+}
+
+.views-slideshow-controls-text-next
+{
+  background:url(../images/arrow-calednar-right.png) no-repeat scroll 0 0 transparent;
+  display:block;
+  height:42px;
+  position:absolute;
+  top:50%;
+  width:24px;
+  z-index:4;
+  font-size:0;
+  right:0;
+  margin:1px 10px 10px;
+}
+
+.views-slideshow-controls-text-pause
+{
+  display:none;
+}
+
+#header-middle,#content-middle
+{
+  width:980px;
+  margin:0 auto;
+}
+
+#logo-div,.region-header
+{
+  display:inline;
+}
+
+#header
+{
+  background-color:#e4e9eb;
+}
+
+#block-views-slidershow-block
+{
+  clear:both;
+  height:630px;
+  overflow:auto;
+}
+
+ul.menu li.first
+{
+  background:url(../images/accendi-icon.png) no-repeat scroll left center transparent!important;
+}
+
+ul.menu li.last
+{
+  background:url(../images/registrati-icon.png) no-repeat scroll left center transparent!important;
+}
+
+ul.menu li.first a,ul.menu li.last a
+{
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:14px;
+  color:#94a7b0;
+  padding-left:30px;
+}
+
+ul.menu li.leaf
+{
+  list-style:none!important;
+  float:left;
+  width:auto;
+  margin-left:15px;
+  margin-top:15px;
+}
+
+ul.menu
+{
+  list-style:none;
+  overflow:auto;
+  width:350px;
+}
+
+.region-itinerary .field-content img
+{
+  float:left;
+
+}
+
+.views-field
+{
+  margin-top:0;
+}
+
+#wrapper
+{
+  width:980px!important;
+  margin:0 auto;
+}
+
+
+
+.itinerary:hover
+{
+  border:3px solid #019FDE;
+  box-shadow:2px 4px 6px #C8CECC;
+  width:980px;
+  height:117px;
+  border-radius:15px;
+  margin:20px auto 10px;
+}
+
+.itinerary-images {
+	 display:inline;
+}
+
+.itinerary-images img
+{
+  width:486px;
+  height:117px;
+ 
+}
+
+.itinerary-details
+{
+  width:494px;
+  background-color:#E6F5FC;
+  height:117px;
+  float:right;
+  border-radius:0 15px 15px 0;
+}
+
+.route
+{
+  font-family:Calibri;
+  font-size:26px;
+  color:#333;
+  font-weight:700;
+  margin:0;
+}
+
+.from-date
+{
+  margin-left:15px;
+  font-family:Arial,sans-serif;
+  font-size:16px;
+  color:#333;
+  margin-top:5px;
+}
+
+.to-date
+{
+  font-family:Arial,sans-serif;
+  font-size:16px;
+  color:#333;
+}
+
+.startdate
+{
+  font-family:Arial,sans-serif;
+  font-size:16px;
+  padding-right:2px;
+  padding-left:4px;
+  color:#333;
+  font-weight:700;
+}
+
+.rent
+{
+  font-family:Arial,sans-serif;
+  font-size:14px;
+  color:#333;
+  font-weight:700;
+  margin-left:15px;
+}
+
+.checkindate
+{
+  margin-top:10px;
+}
+
+.checkoutdate
+{
+  margin-top:5px;
+}
+
+.enddate
+{
+  font-family:Arial,sans-serif;
+  font-size:16px;
+  color:#333;
+  font-weight:700;
+  padding-right:2px;
+  padding-left:4px;
+}
+
+.structure
+{
+  font-family:Arial,sans-serif;
+  font-size:14px;
+  color:#333;
+}
+.view-content .row-1 .row-first
+{
+margin:0 auto;
+
+width:980px !important;
+height:117px !important;
+}
+.row-1 .row-first{
+width:980px !important;
+height:117px !important;
+border:3px solid #019FDE;
+}
+.row-1 .row-first,.col-first
+{
+  width:980px !important;
+  margin:0 auto !important;
+ height:117px;
+}
+.col-first .views-field-field-routes-images
+
+{
+     float: left;
+    height: 117px;
+    width: 490px;
+}
+.region-itinerary .field-content,.itinerary
+{
+  width:980px;
+ 
+
+  
+}
+.view-content .views-field-field-route-title{
+float:right;
+width:350px;
+}
+.view-content .views-field-field-route-dal{
+float:right;
+width:350px;
+}
+.view-content .views-field-field-route-to{
+float:right;
+width:350px;
+}
+
+.itinerary:hover .itinerary-details,.itinerary-details:hover
+{
+  background-color:#CCECF9;
+  box-shadow:2px 4px 6px #C8CECC;
+}
+
+#edit-lang-dropdown-select_title
+{
+  width:132px !important;
+  position:absolute !important;
+}
+
+.row-1
+{
+ height: 117px !important;
+    width: 980px !important;
+	background-color:#E6F5FC;
+	border:3px solid #ffffff;
+	border-radius: 15px;
+}
+.row-1:hover
+{
+border:3px solid #019FDE;
+border-radius:15px;
+background-color:#CCECF9;
+  box-shadow:2px 4px 6px #C8CECC;
+}
+
+
+
+
+.row-2,.row-4,.row-5
+{
+ height: 117px !important;
+    width: 980px !important;
+	background-color:#E6F5FC;
+	border:3px solid #ffffff;
+	border-radius: 15px;
+	margin-top:20px;
+		margin-bottom:20px;
+}
+.row-3{
+
+height: 117px !important;
+    width: 980px !important;
+	background-color:#E6F5FC;
+	border:3px solid #ffffff;
+	border-radius: 15px;
+	margin-top:20px;
+		margin-bottom:20px;
+background:url('../images/image-r-arrow-icon.png');
+background-repeat:no-repeat;
+
+}
+.row-2:hover
+{
+border:3px solid #019FDE;
+border-radius:15px;
+background-color:#CCECF9;
+  box-shadow:2px 4px 6px #C8CECC;
+}
+
+.row-3:hover
+{
+border:3px solid #019FDE;
+border-radius:15px;
+background-color:#CCECF9;
+  box-shadow:2px 4px 6px #C8CECC;
+}
+.row-4:hover
+{
+border:3px solid #019FDE;
+border-radius:15px;
+background-color:#CCECF9;
+  box-shadow:2px 4px 6px #C8CECC;
+}
+.row-5:hover
+{
+border:3px solid #019FDE;
+border-radius:15px;
+background-color:#CCECF9;
+  box-shadow:2px 4px 6px #C8CECC;
+}
