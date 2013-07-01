@@ -193,8 +193,9 @@
 
 <?php print render($page['registrationregion']); ?>
 
+<div class="footer-region">
 <?php print render($page['footer']); ?>
-
+</div>
 
 
 

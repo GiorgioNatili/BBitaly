@@ -89,22 +89,32 @@
 	</div>
 
   </header>
-
+<div class="content-region">
 <?php print render($page['content']); ?> 
-<?php print render($page['searchtab']); ?>
+</div>
 
+<div id="searchtab-border"></div>
+<div id="searchtab">
+<?php print render($page['searchtab']); ?>
+</div>
 
 	<div id="content-middle">
 
 		
 		<?php print render($page['itinerary']); ?>
+		
 		<?php print render($page['moreitinerary']); ?>
+		<div id="itinerary">
 		<?php print render($page['highlightedregion']); ?>
+		</div>
 		<?php print render($page['readmorehighlighted']); ?>
+		<div id="mostpopular">
 		<?php print render($page['mostpopular']); ?>
+		</div>
 		<?php print render($page['readmorepopular']); ?>
 	</div>
-
+<div class="footer-region">
 <?php print render($page['footer']); ?>
+</div>
 
 </div><!-- /#page -->

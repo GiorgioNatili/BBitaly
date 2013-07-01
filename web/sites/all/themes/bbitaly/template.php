@@ -254,3 +254,16 @@ if (count($split_url) > 1) {
  }
 }
 }
+
+function bbitaly1_preprocess_html(&$variables) {
+  $options = array(
+    'group' => JS_THEME,
+  );
+  drupal_add_js(drupal_get_path('theme', 'bbitaly1'). '/js/script.js', $options);
+  drupal_add_library('system','ui.datepicker');
+  drupal_add_js('jQuery(document).ready(function(){
+
+  
+
+	});', 'inline');
+}
