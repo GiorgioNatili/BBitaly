@@ -93,10 +93,10 @@
 <?php print render($page['content']); ?> 
 </div>
 
-<div id="searchtab-border"></div>
+<div id="searchtab-border">
 <div id="searchtab">
 <?php print render($page['searchtab']); ?>
-</div>
+</div></div>
 
 	<div id="content-middle">
 

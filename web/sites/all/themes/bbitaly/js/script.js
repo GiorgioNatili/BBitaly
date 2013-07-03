@@ -10,6 +10,7 @@
 // wrapping it with an "anonymous closure". See:
 // - http://drupal.org/node/1446420
 // - http://www.adequatelygood.com/2010/3/JavaScript-Module-Pattern-In-Depth
+
 (function ($, Drupal, window, document, undefined) {
 	Drupal.behaviors.myBehavior = {
 		attach: function (context, settings) {
@@ -24,6 +25,7 @@
 			});
 		}
 	}
+ 
 
 	jQuery("#edit-submitted-new-select").change(function() {
 		var select=$(this).val();
@@ -38,5 +40,14 @@
 			$("#webform-component-new-select").text(select+type);
 		}
 	});
-
+	  
 })(jQuery, Drupal, this, this.document);
+
+
+jQuery(document).ready(function(){
+  
+   jQuery("#edit-submitted-new-textfield").val("Cerca la localita");
+   jQuery("#edit-submitted-start-date").val("check-in");
+   jQuery("#edit-submitted-end-date").val("check-out");
+   
+   });
