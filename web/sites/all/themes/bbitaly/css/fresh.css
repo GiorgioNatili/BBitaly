@@ -314,7 +314,7 @@ padding:12px 10px 10px 10px;
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {border:none;   background: url("images/ui-bg_glass_65_ffffff_1x400.png") repeat-x scroll 50% 50% #FFFFFF;}
 
 
-.ui-tabs .ui-tabs-nav{height:50px;margin:0 auto;padding-top:22px; border-bottom: 1px solid #CED2D5;border-radius:none !important;}
+.ui-tabs .ui-tabs-nav{height:50px;margin:0 auto;padding-top:22px; border-bottom: 1px solid #CED2D5 !important;border-radius:none !important;}
 
 
 #quicktabs-testtab .ui-corner-all{
@@ -623,6 +623,7 @@ footer .block {
 
 #block-views-footer-region1-block {
 	height: 100px;
+
     width: 400px;
 	
 }
@@ -1215,7 +1216,7 @@ line-height: 26px;*/
 
 .views-slideshow-controls-text-next {
 	position: relative;
-	top:206px;
+	top:208px;
 
 }
 
@@ -1354,7 +1355,7 @@ left: 70px;
 margin: 0 auto;
 }
 
-.views-field-field-testimonialimage {
+.views-field-field-testimonial-image {
 	margin-top: -296px;
 	margin-left: 430px;
 }
@@ -1365,6 +1366,11 @@ margin-left: 486px;
 width: 115px;
 }
 
+.ui-tabs .ui-tabs-nav{padding-top:22px !important}
+.ui-widget-content{border:none !important;}
+.ui-widget-header{border:none !important;}
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {border:none !important; }
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {border:none !important; }
 
 
 
