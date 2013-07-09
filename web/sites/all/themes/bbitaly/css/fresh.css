@@ -28,11 +28,9 @@
   display:block;
   height:42px;
   position:absolute;
-
   width:24px;
   z-index:4;
   font-size:0;
-
   margin:1px 10px 10px;
   left:1290px;
 }
@@ -129,7 +127,7 @@ ul.menu
 
 .route
 {
-  font-family:Calibri;
+  font-family: Calibri, sans-serif;
   font-size:26px;
   color:#333;
   font-weight:700;
@@ -314,7 +312,7 @@ padding:12px 10px 10px 10px;
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {border:none;   background: url("images/ui-bg_glass_65_ffffff_1x400.png") repeat-x scroll 50% 50% #FFFFFF;}
 
 
-.ui-tabs .ui-tabs-nav{height:50px;margin:0 auto;padding-top:22px; border-bottom: 1px solid #CED2D5 !important;border-radius:none !important;}
+.ui-tabs .ui-tabs-nav{height:50px;margin:0 auto;padding-top:22px; border-bottom: 1px solid #CED2D5;border-radius:none !important;}
 
 
 #quicktabs-testtab .ui-corner-all{
@@ -623,12 +621,11 @@ footer .block {
 
 #block-views-footer-region1-block {
 	height: 100px;
-
     width: 400px;
 	
 }
 
-body.front .block-webform {
+body.front .block-webform  {
 	position:absolute;
 }
 
@@ -756,7 +753,14 @@ body.front .block-webform {
 }
 
 
-body.front .block-webform {
+body.front .block-webform  {
+	display: block;
+    margin-left: 186px;
+    margin-top: 36px;
+    z-index: 10;
+	
+}
+body.front .node-webform  {
 	display: block;
     margin-left: 186px;
     margin-top: 36px;
@@ -764,20 +768,29 @@ body.front .block-webform {
 	
 }
 
-body.front .block-webform form {
+body.front .block-webform  form {
 	background: url("../images/searchbar.png") no-repeat scroll 0 0 transparent;
     height: 69px;
     width: 1001px;
 	
 }
 
-body.front .block-webform h2 {
+body.front .block-webform  h2 {
 	color:white;
 	font-size:48px;
 	font-weight:bold;
 	font-style:italic;
 	font-family: Calibri, sans-serif;
 }
+body.front .node-webform  h2 {
+	color:white;
+	font-size:48px;
+	font-weight:bold;
+	font-style:italic;
+	font-family: Calibri, sans-serif;
+}
+
+
 
 #block-views-slidershow-block {
 	z-index:-1;
@@ -1216,21 +1229,34 @@ line-height: 26px;*/
 
 .views-slideshow-controls-text-next {
 	position: relative;
-	top:208px;
+	top:206px;
 
 }
 
-body.front .block-webform {
+body.front .block-webform  {
 	
    width:100%;
    margin-left:0px;
 	
 }
 
-body.front .block-webform h2,body.front .block-webform form  {
+body.front .node-webform  {
+	
+   width:100%;
+   margin-left:0px;
+	
+}
+body.front .node-webform  h2,body.front .node-webform  form  {
 	margin:0 auto;
 }
-body.front .block-webform h2 {
+
+body.front .block-webform  h2,body.front .block-webform  form  {
+	margin:0 auto;
+}
+body.front .block-webform  h2 {
+	width:960px;
+}
+body.front .node-webform  h2 {
 	width:960px;
 }
 
@@ -1355,7 +1381,7 @@ left: 70px;
 margin: 0 auto;
 }
 
-.views-field-field-testimonial-image {
+.views-field-field-testimonialimage {
 	margin-top: -296px;
 	margin-left: 430px;
 }
@@ -1366,11 +1392,373 @@ margin-left: 486px;
 width: 115px;
 }
 
-.ui-tabs .ui-tabs-nav{padding-top:22px !important}
-.ui-widget-content{border:none !important;}
-.ui-widget-header{border:none !important;}
-.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {border:none !important; }
-.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {border:none !important; }
 
+/**************************************** register page css ****************************************/
+
+
+#block-quicktabs-register
+{
+    margin: 0 0 0 306px;
+    width: 970px;
+	
+}
+#webform-component-nome, #webform-component-e-mail
+{
+	float:left;
+	 color: #99A7B1;
+	 margin-top: 5px;
+	
+}
+#webform-component-cognome, #webform-component-conferma-e-mail
+{
+	float:right;
+	color: #99A7B1;
+	margin-top: 5px;
+
+}
+
+
+#webform-component-new-checkboxes
+{
+ float: left;
+     margin-bottom: 145px;
+    margin-left: 260px;
+    width: 470px;
+	margin-top: 0;
+}
+
+#quicktabs-tabpage-register-0 .form-wrapper
+{
+   float: left;
+	 margin: 280px 0 0 -58px;
+    padding: 10px;
+    position: absolute;
+}
+
+#quicktabs-tabpage-register-0 .form-wrapper input
+{
+	 background: url("../images/Registrati-Button.png") no-repeat scroll 0 0 transparent;
+    border: medium none;
+    height: 57px;
+    width: 217px;
+	color:transparent;
+}
+
+.item-list
+{
+	margin-bottom: 30px;
+    margin-left: 145px;
+}
+
+
+.item-list ul .first{
+	background: url("../images/Viaggiatore-Icon.png") no-repeat scroll 2% 50% transparent;
+    border-bottom: 5px solid #D4DCDF;
+    margin: 0 0 0 24px !important;
+     padding-bottom: 15px;
+    padding-left: 50px;
+    padding-top: 20px;
+    width: 251px;
+}
+
+.item-list ul .last{
+	background: url("../images/albergatore-Icon.png") no-repeat scroll 2% 50% transparent;
+    border-bottom: 5px solid #D4DCDF;
+    margin: 0 0 0 24px !important;
+	padding-bottom: 15px;
+    padding-left: 50px;
+    padding-top: 20px;
+    width: 251px;
+}
+
+.quicktabs-tabs li.active:nth-child(1)
+{
+	 background: url("../images/Viaggiatore-Actev-Icon.png") no-repeat scroll 2% 50% transparent;
+	 border-bottom: 5px solid #8EA5B0;
+}
+.quicktabs-tabs li.active:nth-child(1) a {
+    color: #8EA5B0 !important;
+}
+.quicktabs-tabs li.active:nth-child(2)
+{
+	 background: url("../images/albergatore-Actev-Icon.png") no-repeat scroll 2% 50% transparent;
+	 border-bottom: 5px solid #8EA5B0;
+}
+.quicktabs-tabs li.active:nth-child(2) a {
+    color: #8EA5B0 !important;
+}
+
+.quicktabs-tabs li a
+{
+	color: #D4DCDF !important;
+    font-family: Arial;
+    font-size: 22px;
+    font-weight: 600;
+	text-decoration: none;
+}
+h2.block-title {
+    display: none;
+}
+#block-webform-client-block-72
+{
+	  background-color: #ECEDF1;
+    padding: 25px;
+   border-radius: 15px 15px 15px 15px;
+  
+}
+
+#quicktabs-tabpage-register-0
+{
+	 padding-top: 39px;
+   background: url("../images/Register-Box-Top-Arrow.png") no-repeat scroll 32% 99% transparent;
+}
+
+#webform-component-nome .form-text, #webform-component-cognome .form-text, #webform-component-e-mail .form-text, #webform-component-conferma-e-mail .form-text
+{
+  border: 1px solid #AEB6BA;
+    height: 38px;
+    margin-top: 10px;
+    width: 430px;
+} 
+#quicktabs-tabpage-register-0 input[type=checkbox] {
+	 /*display:none;*/
+	background-color:#066;
+}
+
+#webform-component-new-checkboxes .option
+{
+	color:#909194;
+	font-weight: 500;
+	font-size: 14px;
+}
+
+#webform-component-new-checkboxes .option a
+{
+	color:#FA996F;
+	font-weight: 500;
+}
+
+#quicktabs-tabpage-register-0 .form-checkbox
+{
+	display:none
+}
+
+#quicktabs-tabpage-register-0 .form-checkbox + label:before 
+{
+	background-image: url("../images/Accetto-Icon.png");
+    background-repeat: no-repeat;
+    border: medium none;
+    content: "    ";
+    cursor: pointer;
+    height: 19px;
+    margin-right: 22px;
+    margin-top: 10px;
+    padding: 0 30px 20px 0;
+    width: 19px;
+	}
+
+
+#quicktabs-tabpage-register-0 input[type="checkbox"]:checked + label:before
+{
+	background-image: url("../images/Accetto-Actev-Icon.png");
+}
+#quicktabs-tabpage-register-0 .form-item-submitted-new-checkboxes-1 label a:nth-child(1)
+{
+	 margin-left: 54px;
+}
+
+/*register2*/
+#webform-component-info-account--nome, #webform-component-info-account--e-mail, #webform-component-informazioni-struttura--nome-della-struttura, #webform-component-informazioni-struttura--tipologia-strutura, #webform-component-informazioni-struttura--nr-minimo-di-persone, #webform-component-informazioni-struttura--nr-massimo-di-persone 
+{
+	float:left;
+	 margin-top: -10px;
+
+}
+
+#webform-component-info-account--cognome, #webform-component-info-account--conferma-e-mail, #webform-component-informazioni-struttura--prezzo-base
+{
+	float:right;
+	 margin-top: -10px;
+}
+#webform-component-info-account input
+{
+	border: 1px solid #AEB6BA;
+    height: 38px;
+    margin-top: 10px;
+    width: 430px;
+	 color: #94A7B0;
+}
+#webform-component-indirizzo .webform-component-textfield input
+{
+	border: 1px solid #AEB6BA;
+    height: 38px;
+    margin-top: 10px;
+    width: 430px;
+	 color: #94A7B0;
+}
+#webform-component-informazioni-struttura--nome-della-struttura input
+{
+	border: 1px solid #AEB6BA;
+    height: 38px;
+    margin-top: 10px;
+width: 900px;
+ color: #94A7B0;
+}
+#webform-component-informazioni-struttura--tipologia-strutura .form-select
+{
+	border: 1px solid #AEB6BA;
+    height: 38px;
+    margin-top: 10px;
+	 color: #94A7B0;
+	 width: 250px;
+	 line-height: 38px;
+}
+#webform-component-informazioni-struttura--nr-minimo-di-persone input
+{
+	border: 1px solid #AEB6BA;
+    height: 38px;
+    margin-top: 10px;
+	 width: 200px;
+	  color: #94A7B0;
+}
+#webform-component-informazioni-struttura--nr-massimo-di-persone input
+{
+	border: 1px solid #AEB6BA;
+    height: 38px;
+    margin-top: 10px;
+	 width: 200px;
+	  color: #94A7B0;
+}
+
+#webform-component-informazioni-struttura--prezzo-base input
+{
+	border: 1px solid #AEB6BA;
+    height: 38px;
+    margin-top: 10px;
+  width: 155px;
+   color: #94A7B0;
+}
+
+#webform-component-informazioni-struttura--nr-minimo-di-persone
+{
+	 margin-left: 30px;
+}
+#webform-component-informazioni-struttura--nr-massimo-di-persone
+{
+	 margin-left: 30px;
+}
+#quicktabs-tabpage-register-1 .block
+{
+	 background-color: #ECEDF1;
+    border-radius: 15px 15px 15px 15px;
+    padding: 25px;
+}
+#quicktabs-tabpage-register-1 {
+    background: url("../images/Register-Box-Top-Arrow.png") no-repeat scroll 66% 99% transparent;
+    padding-top: 39px;
+}
+fieldset {
+	border:none !important;
+}
+#quicktabs-tabpage-register-1 .fieldset-legend
+{
+	    color: #94A8B1;
+    font-size: 24px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+#quicktabs-tabpage-register-1 .form-item .option
+{
+margin-left: 0;
+}
+
+#quicktabs-tabpage-register-1 .fieldset-wrapper {
+    margin-top: 10px;
+}
+#quicktabs-tabpage-register-1 .form-checkboxes
+{
+margin-left: 273px;
+    margin-top: 25px;
+ width: 448px;
+}
+#edit-actions--3 .form-submit
+{
+margin-left: 377px;
+	 background: url("../images/accedi-Button.png") no-repeat scroll 0 0 transparent;
+    border: medium none;
+    color: transparent;
+    height: 57px;
+    width: 217px;
+}
+#webform-component-indirizzo--insirisci-l-indirizzo-della-tua-struttura  .fieldset-legend
+{
+ font-size: 14px;
+    font-style: italic;
+    font-weight: normal;
+ text-transform: capitalize;
+	 	
+}
+.form-item label {
+	font-size:18px;
+	font-weight:normal;
+}
+
+#quicktabs-tabpage-register-1 .form-checkbox
+{
+	display:none
+}
+
+#quicktabs-tabpage-register-1 .form-checkbox + label:before 
+{
+	background: url("../images/Accetto-Icon.png") no-repeat scroll 0% 0% transparent;
+    border: medium none;
+    content: "    ";
+    cursor: pointer;
+    height: 19px;
+    margin-right: 11px;
+    margin-top: 10px;
+    padding: 0 30px 20px 0;
+    width: 19px;
+}
+
+
+#quicktabs-tabpage-register-1 input[type="checkbox"]:checked + label:before
+{
+	background-image: url("../images/Accetto-Actev-Icon.png");
+	 background-repeat: no-repeat;
+    border: medium none;
+    content: "    ";
+    cursor: pointer;
+    height: 19px;
+    margin-right: 11px;
+    margin-top: 10px;
+    padding: 0 30px 20px 0;
+    width: 19px;
+}
+#quicktabs-tabpage-register-1 .form-type-checkbox label
+{
+	font-size:14px;
+}
+
+#quicktabs-tabpage-register-1 .option a
+{
+	color: #FA996F;
+	font-size:14px;
+}
+#quicktabs-tabpage-register-1 .option a:nth-child(1)
+{
+	margin-left:40px;
+}
+
+#webform-component-indirizzo
+{
+	background: url("../images/samplemap.png") no-repeat scroll 99% 16% transparent;
+}
+
+
+#dropdown-login .dropdown {
+height:auto !important;
+}
 
 

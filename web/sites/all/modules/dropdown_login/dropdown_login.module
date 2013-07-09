@@ -1,0 +1,78 @@
+<?php
+
+// $Id$
+
+/**
+ * @file
+ * Dropdown Login
+ */
+
+/**
+ * Implementation of hook_init
+ */
+
+function dropdown_login_init() {
+  drupal_add_css(drupal_get_path('module', 'dropdown_login') . '/theme/dropdown_login.css');
+  drupal_add_js(drupal_get_path('module', 'dropdown_login') . '/theme/dropdown_login.js');
+}
+
+/**
+ * Implementation of hook_block
+ */
+
+function dropdown_login_block_info() {
+  $blocks['login_dropdown'] = array(
+    'info' => t('Dropdown Login'),
+  );
+  return $blocks;
+}
+
+function dropdown_login_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'login_dropdown':
+      $items = array();
+      $block['content'] = get_dropdown();
+      break;
+  }
+  return $block;
+}
+
+/**
+ * Function for dropdown
+ */
+
+function get_dropdown() {  
+  // Call global user object
+  global $user;
+  
+  // Values for if user is logged out
+  if ($user->uid == 0):
+    $linktext = '<span><span>Login</span></span>';
+    $link = 'user';
+    $linkclass = 'login';
+  
+  // Values for if user is logged in
+  else:
+    $linktext = '<span>Logout</span>';
+    $link = 'user/logout';
+    $linkclass = 'logout';
+  endif;
+  
+  // Code output for the drop-down button
+  $output = '<div id="dropdown-login">';
+  $output .= l($linktext, $link, array('attributes' => array('class' => array($linkclass, 'button')), 'html' => TRUE));
+  
+  // Drop-down mark-up for a logged-out user
+  if ($user->uid == 0):
+    $output .= '<div class="dropdown">';
+    $output .= render(drupal_get_form('user_login'));
+	// $output .= render (drupal_get_form('user_pass'));
+    $output .= '</div>';
+  endif;
+  
+  $output .= '</div>';
+  
+  return $output;
+}

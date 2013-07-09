@@ -224,6 +224,9 @@ function bbitaly1_preprocess_block(&$variables, $hook) {
   //}
 }
 // */
+
+
+
 function bbitaly1_preprocess_page(&$vars,$hook)
 {
 unset($vars['page']['content']['system_main']['default_message']);
@@ -267,3 +270,5 @@ function bbitaly1_preprocess_html(&$variables) {
 
 	});', 'inline');
 }
+
+
