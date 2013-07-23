@@ -1,0 +1,4 @@
+name = reg_accomodation_owner
+description = Creates a registration form for accomodation_owner
+core = 7.x
+package = Custom

@@ -1,0 +1,236 @@
+<?php
+/**
+ * Implements hook_block_info().
+ *
+ * This function tells drupal about our block.
+ *
+ 
+ */
+function traveller_block_info() {
+        // Create an array that will hold our blocks
+        $blocks = array();
+ 
+        // Create a key in our $blocks array that
+        // defines our block.  Note that the key in
+        // this array can be anything.  For this
+        // tutorial, we  use 'tellafriend_form'.
+        $blocks['traveller_form'] = array(
+                // 'info' is what you will see when viewing the blocks admin page.
+                // Note that we use the t() (translate) function which lets drupal
+                // translate any text passed in if needed.
+                'info' => t('traveller'),
+                // 'cache' how this block will be cached
+                'cache' => DRUPAL_CACHE_GLOBAL,
+        );
+ 
+        // Note, if you wanted to define multiple blocks, you 
+        // could simply define more blocks just like above.
+ 
+        // Finally, we return the $blocks array.
+        return $blocks;
+}
+ 
+/**
+ * Implements hook_block_view().
+ * 
+ * This function tells drupal how to define our block when viewed.
+ *
+ *
+ */
+ 
+function traveller_block_view($delta = '') {
+        // Create an array that will be returned as our block
+        $block = array();
+ 
+        // Since hook_block_view is called for every block,
+        // Drupal passes in $delta (the key of the blocks defined
+        // in hook_block_info.  In our case, we're checking for
+        // $delta to be 'tellafriend_form'.
+        switch($delta) {
+                case 'traveller_form':
+                        // Since this $delta matches our case, we'll define
+                        // the subject and contents.
+ 
+                        // 'subject' can be blank ('') or anything you wish to define.
+                        $block['subject'] = t('Tell A Friend');
+ 
+                        // 'content' are just that, the contents of the block.
+                        // In our case, we will be showing a form.
+                        // We use drupal_get_form() to return a drupal-built form.
+                        // Note that the parameter passed to drupal_get_form is the name
+                        // of the function we will build below to define our form.
+                        // This can be any function name we define below.
+                        $block['content'] = drupal_get_form('traveller_form');
+                break;
+        }
+ 
+        // Finally, we return the $block array.
+        return $block;
+}
+ 
+/**
+ * Define the form to be returned.
+ *
+ * Note that drupal passes in two parameters,
+ * $form - which holds all of the elements of the form
+ * $form_state - a special array of settings & values needed by Drupal
+ */
+function traveller_form($form, &$form_state) {
+        // Now the fun begins.  For this simple example,
+        // we will only provide two form elements.
+        // 1. an input for the friend's email address
+        // 2. a submit button
+        // You can add as much or as little to this form as
+        // needed.  See the forms api for all possible elements.
+ 
+      /*  $form['friends_email'] = array(
+                // #type tells drupal what kind of element to build
+                '#type' => 'textfield',
+                // we want this field to be required
+                '#required' => TRUE,
+                // The "label" for this field
+                '#title' => t("Your friend's email address"),
+                // Optional description
+                '#description' => t('Must be a valid email address'),
+        );*/
+		
+		$form['name']=array(
+			 '#type' => 'textfield',
+			  '#required' => TRUE,
+			  '#title' => t("Name"),
+			  '#size' => '40',
+			  '#prefix' => '<span class="title_traveller_form">INFO ACCOUNT</span>',
+		);
+		
+		$form['surname']=array(
+			 '#type' => 'textfield',
+			  '#required' => TRUE,
+			  '#title' => t("Surname"),
+			  '#size' => '40',
+		);
+		
+		$form['E-mail']=array(
+			 '#type' => 'textfield',
+			  '#required' => TRUE,
+			  '#title' => t("E-mail"),
+			  '#size' => '40',
+		);
+		
+		$form['confirm_email']=array(
+			 '#type' => 'textfield',
+			  '#required' => TRUE,
+			  '#title' => t("Confirm E-mail"),
+			  '#size' => '40',
+		);
+		/*
+		$form['accetto']=array(
+				'#type'=>'checkbox',
+				'#required' => TRUE,
+				'#title' => t("Acceto i termini cancellazione,le regole della casa,le condizioni di rimborso all'opsite e i termini del servizio"),
+				'#attributes'=>array(
+					'class'=>array('clearfix'),
+				),
+		
+		);
+		*/
+ 
+        $form['submit'] = array(
+                '#type' => 'submit',
+                // #value is the text to display inside the button
+                '#value' => t('save changes'),
+				'#attributes' => array(
+					'class' => array('clearfix'),								
+				),
+				"#ajax" => array(
+						  "callback" => "traveller_form_callback", 
+						  "wrapper" => "quicktabs-tabpage-register-0", 
+						  "effect" => "fade",
+						),
+        );
+ 
+        return $form;
+}
+
+function traveller_form_callback($form, &$form_state) {
+	
+	/*form['name']['attributes']['class']= 'red-background'*/
+	
+	if(!empty($form_state['executed'])){
+			return '<div id="quicktabs-tabpage-register-0" class="quicktabs-tabpage-success"><div id="block-traveller-traveller-form" class="block block-traveller-success first odd" style="background-color:#D4E6BE"><div class="registersuccess" style="display: table-cell;">'.t("Congratulation!").'<br><p>'.t("Now you can book on <b>BBITALY your holidays</b>!").'<br>'.'Have a good trip!'.'</p>'.'<a class="homepage_link" href="http://crtvecode.com/bbnew">'.t("Back to homepage").'</a><br>'.'<p id="mail_notofication">'.t("Shortly recieve an email with your username and password needed to access the portal as hotelier").'</p>'.'</div></div></div>';
+	  }
+
+  return '<div id="quicktabs-tabpage-register-0" class="quicktabs-tabpage"><div id="block-traveller-traveller-form" class="block block-traveller first odd">'.drupal_render($form).'</div></div>';
+}
+
+
+	
+ 
+/*
+ * Define a validation function that drupal will
+ * automatically call when the submit button is pressed.
+ *
+ * For this example, I will use the valid_email_address()
+ * function to verify that the email address looks
+ * proper.  If it's not, we'll use form_set_error()
+ * function to tell drupal we didn't pass validation.
+ */
+function traveller_form_validate($form, &$form_state) {
+        // Drupal stows away all of the form elements into
+        // $form_state['values'].  We find our 'friends_email'
+        // element and assign it to a variable for easy
+        // reference.
+        $email = $form_state['values']['E-mail'];
+		$confirm_mail=$form_state['values']['confirm_email'];
+ 
+        // If it's not a valid email, set an error.
+        if(valid_email_address($email) == 0) {
+                // form_set_error() tells drupal that it should not proceed.
+                // The first parameter is the form element that didn't pass
+                // validation.  The second is the message to tell the user.
+                form_set_error('E-mail', t('<span style="color:blue">Not a valid email address</span>'));
+        }
+		
+		if($email!=$confirm_mail){
+			form_set_error('confirm_email',t('<span style="color:blue">Invalid confirm E-mail</span>'));
+		}
+}
+
+
+/*
+ * Define a submit funciton that drupal will
+ * automatically call when submit is pressed (and all validators pass)
+ */
+function traveller_form_submit($form, &$form_state) {
+		drupal_set_message(t('Thanks for registering in bbitaly'));
+		
+	$edit = array(
+    'name' => $form_state['values']['name'],
+    'surname' => $form_state['values']['surname'],
+	'pass'=> user_password(8),
+    'mail' => $form_state['values']['E-mail'],
+    'init' => $form_state['values']['confirm_email'],
+    'status' => 1,
+    'access' => REQUEST_TIME,
+	$roles = array('5' => 'Traveller'),
+    'roles' => $roles,
+  );
+  
+     $account = new stdClass();
+     $account->is_new = TRUE;
+    user_save($account,$edit);
+}
+
+/**
+ * Implements hook_mail().
+ */
+/*function traveller_mail($key, &$message, $params) {
+        // Get the url for this site
+        global $base_url;
+        // Set the subject for this email.
+        $message['subject'] = t('bbitaly');
+       // Set the body. Note how we use a token in the t() function to hold our
+        // link (!link) and then tell drupal the !link = $base_url.
+        $message['body'][] = t("Hello,\nYour friend thought you might like this site.  Please click the link below to visit.\n\n!link", array('!link' => $base_url));
+}*/
+?>
+ 

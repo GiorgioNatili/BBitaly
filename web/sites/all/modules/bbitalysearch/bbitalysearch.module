@@ -1,0 +1,198 @@
+<?php
+function bbitalysearch_block_info() {
+        $blocks[' bbitalysearch_form'] = array(
+		'info' => t('bbitalysearch'),
+		'cache' => DRUPAL_CACHE_GLOBAL,
+        );
+	return $blocks;
+}
+
+function bbitalysearch_block_view($delta = '') {      
+        $block = array();
+	switch($delta) {
+		case ' bbitalysearch_form':
+			$block['subject']=t('bbitalysearch');
+			$block['content']=drupal_get_form('bbitalysearch_form');
+			break;
+	}
+	return $block;
+}
+
+function bbitalysearch_form($form, &$form_state) {
+	$form['location'] = array(
+		'#type' => 'textfield',
+		'#required' => TRUE,
+		'#prefix'=>'<div id="bbitalysearch-form">',
+	);
+
+	$form['datefrom'] = array(
+		'#type' => 'textfield',
+		'#required' => TRUE
+	);
+
+	$form['dateto'] = array(
+		'#type' => 'textfield',
+		'#required' => TRUE
+	);
+
+	$form['nopersons']=array(
+		'#type'=>'select',
+		'#required' => TRUE,
+		'#options'=>array(
+			1=>t('1'),
+			2=>t('2'),
+			3=>t('3'),
+			4=>t('4'),
+			5=>t('5'),
+			6=>t('6'),
+			7=>t('7')
+		)
+	);
+
+	$form['submit'] = array(
+                '#type' => 'submit',
+                '#value' => t('Submit'),
+				'#suffix'=>'</div>',
+		'#ajax'=>array(
+			'callback'=>"bbitalysearch_form_callback",
+			'wrapper'=>"bbitalysearch-form",
+			'effect'=>'fade'
+		)
+        );
+ 
+	return $form;
+}
+
+function bbitalysearch_form_callback($form, &$form_state){
+	if(!empty($form_state['executed'])){
+	$commands = array();
+
+		/*** suggested itinerary *****/
+		$itinerarystring="<div id='itineraryresults' class='views-row'>".t('Search Results for ').$form_state['values']['location']."<br>";
+		
+		$result = db_query("SELECT * FROM {node} n, {field_data_field_iti_from} f,{field_data_field_iti_image} i,{ field_data_field_iti_to} t,{field_data_field_iti_structure_book} b,{field_data_field_structure_book} bk,file_managed fm where n.type=:type and f.entity_id=n.nid and i.entity_id=n.nid and field_iti_image_fid=fm.fid and t.entity_id=n.nid and b.entity_id=n.nid and bk.entity_id=n.nid", array(':type' => 'suggested_itinerary'));
+		if ($result) {
+			while ($row = $result->fetchAssoc()) {
+				$itinerarystring .= "<div class='views-row'>".
+												"<div class='views-field-field-iti-image'><img src='http://crtvecode.com/bbnew/sites/default/files/".$row['filename']."'/></div>".
+												"<div class='views-field-title'>".$row['title']."</div>".
+												"<div class='views-field-field-iti-from'>"."<span class='from-txt'>".t('from:')."</span>".$row['field_iti_from_value']."</div>".
+												"<div class='views-field-field-iti-to'>"."<span class='to-txt'>".t('to:')."</span>".$row['field_iti_to_value']."</div>".
+												"<div class='views-field-field-iti-structure-book'>".$row['field_iti_structure_book_value']."</div>".
+												"<div class='views-field-field-structure-book'>".$row['field_structure_book_value']."</div>".
+										"</div>";
+			}
+		}
+		$itinerarystring .= '</div>';
+
+	$commands[] = ajax_command_replace('.view-itinerari-tab',$itinerarystring);
+
+		/************************************/
+
+
+		/*** evidence *****/
+	$evidencestring ="<div id='evidenceresults'>".t('Search Results for ').$form_state['values']['location']."<br>";
+	
+	
+	
+
+		$result2 = db_query("SELECT * FROM {node} n1, {field_data_field_evidence_cost} f, {field_data_field_evidence_image} i1,{field_data_field_evidence_heart} h, {field_data_field_evidence_below_titles} t, {file_managed} fm where n1.type = :type and i1.entity_id=n1.nid and i1.field_evidence_image_fid=fm.fid and f.entity_id=n1.nid and h.entity_id=n1.nid and t.entity_id=n1.nid", array(':type' => 'evidence'));
+		if ($result2) {
+			$i=0;
+			while ($row2 = $result2->fetchAssoc()) {
+				if($i==0)
+				{
+				$evidencestring .= "<div class='view-content'><table class='views-view-grid cols-2'><tbody><tr class='row-1 row-first'>";
+				$evidencestring .= "<td class='col-1 col-first'><div class='views-field views-field-field-evidence-image'><div class='field-content'><img src='http://crtvecode.com/bbnew/sites/default/files/".$row2['filename']."'/></div></div>"."<div class='views-field views-field-field-evidence-cost'><div class='field-content'>".$row2['field_evidence_cost_value']."</div></div>"."<div class='views-field views-field-field-evidence-heart'><div class='field-content'>".$row2['field_evidence_heart_value']."</div></div>"."<div class='views-field views-field-field-evidence-titles'><div class='field-content'>".$row2['title']."</div></div>"."<div class='views-field views-field-field-evidence-below-titles'><div class='field-content'>".$row2['field_evidence_below_titles_value']."</div></div>"."</td>";
+				
+				$i=$i+1;
+				}
+				else{
+				$evidencestring .= "<td class='col-1 col-first'><div class='views-field views-field-field-evidence-image'><div class='field-content'><img src='http://crtvecode.com/bbnew/sites/default/files/".$row2['filename']."'/></div></div>"."<div class='views-field views-field-field-evidence-cost'><div class='field-content'>".$row2['field_evidence_cost_value']."</div></div>"."<div class='views-field views-field-field-evidence-heart'><div class='field-content'>".$row2['field_evidence_heart_value']."</div></div>"."<div class='views-field views-field-field-evidence-titles'><div class='field-content'>".$row2['title']."</div></div>"."<div class='views-field views-field-field-evidence-below-titles'><div class='field-content'>".$row2['field_evidence_below_titles_value']."</div></div>"."</td>";
+				$evidencestring .= "</tr></tbody></table></div>";
+				$i=0;
+				}
+				
+			}
+		}
+		
+		else{
+				return 'search is not successful';
+		}
+		
+		$evidencestring .= '</div>';
+		$commands[] = ajax_command_replace('.view-highlighted-tab',$evidencestring);
+		
+		
+		
+
+		/************************************/
+		
+			/*** Popular *****/
+	$popularstring ="<div id='popularresults'>".t('Search Results for ').$form_state['values']['location']."<br>";
+	
+	
+	
+
+		$result3 = db_query("SELECT * FROM {node} n, { field_data_field_popular_images} i,{field_data_field_popular_heart} h, {field_data_field_popular_below} t,{ field_data_field_popular_titles} f, {file_managed} fm where n.type = :type and i.entity_id=n.nid and i.field_popular_images_fid=fm.fid and h.entity_id=n.nid and t.entity_id=n.nid and f.entity_id=n.nid", array(':type' =>'popular'));
+		if ($result3) {
+			$i=0;
+			while ($row2 = $result3->fetchAssoc()) {
+				if($i==0)
+				{
+					$popularstring .= "<div class='view-content'><table class='views-view-grid cols-2'><tbody><tr class='row-1 row-first'><td class='col-1 col-first'><div class='views-field views-field-field-popular-images'><div class='field-content'><img src='http://crtvecode.com/bbnew/sites/default/files/".$row2['filename']."'/></div></div>"."<div class='views-field views-field-field-popular-heart'><div class='field-content'>".
+										$row2['field_popular_heart_value']."</div></div>"."<div class='views-field views-field-field-popular-cost'><div class='field-content'>".
+										$row2['field_popular_cost_value']."</div></div>"."<div class='views-field views-field-field-popular-titles'><div class='field-content'>".
+										
+										$row2['field_popular_titles_value']."</div></div>"."<div class='views-field views-field-field-popular-below'><div class='field-content'>".
+										$row2['field_popular_below_value']."</div><div>"."</td>";
+					$i=$i+1;
+				}
+				else
+				{
+					$popularstring .= "<td class='col-1 col-first'><div class='views-field views-field-field-popular-images'><div class='field-content'><img src='http://crtvecode.com/bbnew/sites/default/files/".$row2['filename']."'/></div></div>"."<div class='views-field views-field-field-popular-heart'><div class='field-content'>".
+										$row2['field_popular_heart_value']."</div></div>"."<div class='views-field views-field-field-popular-cost'><div class='field-content'>".
+										$row2['field_popular_cost_value']."</div></div>"."<div class='views-field views-field-field-popular-titles'><div class='field-content'>".
+										
+										$row2['field_popular_titles_value']."</div></div>"."<div class='views-field views-field-field-popular-below'><div class='field-content'>".
+										$row2['field_popular_below_value']."</div><div>"."</td>";
+					$popularstring .= "</tr></tbody></table></div>";
+					$i=0;
+				}
+			}
+		}
+		
+/*else{
+				return 'search is not successful';
+		}*/
+		
+		$popularstring .= '</div>';
+		$commands[] = ajax_command_replace('.view-popular-tab',$popularstring);
+		
+		
+		
+
+		/************************************/
+
+		//$form_state['input'] = array();
+		//$form_state['rebuild'] = TRUE;
+
+
+		$commands[] = ajax_command_replace('#bbitalysearch-form', drupal_render($form));
+		return array('#type' => 'ajax', '#commands' =>$commands);
+	} 
+	return $form;
+}
+ 
+function bbitalysearch_form_validate($form, &$form_state) {
+	if ($form_state['values']['location'] == "") {
+		form_set_error('Location : ', t('Location is empty'));
+	}
+        
+}
+
+function bbitalysearch_form_submit($form, &$form_state) {
+	
+}
+ 
+?>

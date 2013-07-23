@@ -1,0 +1,87 @@
+.inner_banner_image {
+	width : 100%;
+	margin : 0px auto;
+
+}
+
+.inner_iti_from {
+	float: left;
+	color: #85969e;
+	font-size: 36px;
+	font-weight: bold;
+	font-family: Calibri;
+	margin: 30px 0px 0px 350px;
+	width: 250px;
+
+}
+
+.inner_iti_to {
+	font-size: 36px;
+	color: #85969e;
+	font-size: 36px;
+	font-weight: bold;
+	font-family: Calibri;
+	margin-top: 30px;
+
+}
+
+.inner_iti_structure_book {
+	float: left;
+margin-right: 5px;
+font-weight: bold;
+margin: 30px 0px 0px 350px;
+width: 50px;
+}
+
+.inner_structure_book {
+margin-top: 30px;
+}
+
+.inner_description {
+	
+margin-top: 30px;
+margin: 10px auto 0px auto;
+width: 880px;
+}
+
+.inner_short_desc {
+font-weight: bold;
+margin-top: 30px;
+
+margin: 10px auto 0px auto;
+width: 880px;
+}
+
+.inner_map_image {
+margin-top: 30px;
+	border-radius: 7px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+	border:15px solid #CCECF9;
+	background-color: #CCECF9;
+
+
+margin: 10px auto 0px auto;
+width: 880px;
+}
+
+.inner_map_title {
+
+}
+
+.inner_check_in {
+
+}
+
+.inner_check_out {
+
+}
+
+.inner_persons {
+
+}
+
+.inner_button {
+margin: 170px auto 30px auto;
+width: 530px;
+}
