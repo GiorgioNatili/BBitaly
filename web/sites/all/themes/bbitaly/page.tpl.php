@@ -87,8 +87,25 @@
 		<?php print render($page['header']); ?>
 
 	</div>
-
+	
   </header>
+  
+  <?php
+
+//print $node->nid;
+
+if($node->nid==82)
+{
+	print '<div id="wrapper_traveller">';
+}
+
+if($node->nid==81)
+{
+	print '<div id="wrapper_accommodation">';
+}
+
+?>
+
 
     <div id="content" class="column" role="main">
       <?php print render($page['highlighted']); ?>
@@ -96,7 +113,10 @@
       <a id="main-content"></a>
       <?php // print render($title_prefix); ?>
       <?php if ($title): ?>
-        <h1 class="title" id="page-title"><?php // print $title; ?></h1>
+        <h1 class="title" id="page-title"><?php if($node->nid==79) { ?>
+		<div class="fbtext">Not registered yet? </div><div class="fbtext2">Connect with facebook</div><div class="fbtext3">We will not publish anything without your permission</div>
+		<?php } ?>
+		<?php // print $title; ?></h1>
       <?php endif; ?>
       <?php print render($title_suffix); ?>
       <?php print $messages; ?>
@@ -108,6 +128,12 @@
       <?php print render($page['content']); ?>
       <?php print $feed_icons; ?>
     </div><!-- /#content -->
+<?php
+	if($node->nid==82 || $node->nid==81)
+{
+	print '</div>';
+}
+?>
 
     <div id="navigation">
 
@@ -150,9 +176,12 @@
     <?php endif; ?>
 
   </div><!-- /#main -->
-  
+ <div class="maincontent">
+ 
+<?php print render($page['searchtab']); ?></div>
   <!-- /#slider-->
-  
+  <div class="mainpage">
+
 
 <?php print render($page['searchtab']); ?>
 <?php print render($page['itinerary']); ?>

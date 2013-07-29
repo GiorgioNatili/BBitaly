@@ -310,10 +310,10 @@ padding:12px 10px 10px 10px;
 .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {border:none;   background: url("images/ui-bg_glass_65_ffffff_1x400.png") repeat-x scroll 50% 50% #FFFFFF;}
 
 
-.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {border:none;   background: url("images/ui-bg_glass_65_ffffff_1x400.png") repeat-x scroll 50% 50% #FFFFFF;}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {border:none;   background: url("images/ui-bg_glass_65_ffffff_1x400.png") repeat-x scroll 50% 50% #FFFFFF;text-align: center;}
 
 
-.ui-tabs .ui-tabs-nav{height:50px;margin:0 auto;padding-top:22px; border-bottom:1px solid #CED2D5;border-radius:none !important;}
+.ui-tabs .ui-tabs-nav{height:50px;margin:0 auto;padding-top:22px; border-bottom:1px solid #CED2D5;border-radius:none !important;padding-left: 95px !important;}
 
 
 #quicktabs-testtab .ui-corner-all{
@@ -333,8 +333,16 @@ border-radius:none !important;
 	 border-bottom: 8px solid #009EE0 !important;
 	 height:40px;
 	}
+.ui-tabs-nav li:nth-child(1).ui-state-active a
+{
+	color: #009DE6 !important;
+	text-decoration: none;
+}
 
-.ui-tabs-nav li a { padding-left:39px !important; }
+.ui-tabs-nav li a { padding-left:39px !important; 
+color: #C5D0D4 !important;
+font-weight: 900;
+}
 
 .ui-tabs-nav li:nth-child(2)
 {
@@ -347,6 +355,13 @@ border-radius:none !important;
 	 border-bottom: 8px solid #64A521 !important;
 	 height:40px;
 }
+
+.ui-tabs-nav li:nth-child(2).ui-state-active a
+{
+	color: #67AA22 !important;
+}
+
+
 .ui-tabs{
 padding:0px !important;
 }
@@ -362,10 +377,16 @@ background:url(../images/bb-piu-actew-icon.png) no-repeat scroll 0 0 transparent
  border-bottom: 8px solid #D00019 !important;
 	 height:40px;
 }
+
+
+.ui-tabs-nav li:nth-child(3).ui-state-active a
+{
+	color: #CD0018 !important;
+}
+
 .ui-tabs .ui-tabs-nav li{
 padding-left:25px !important;
-width:285px !important;
-
+margin-right: 25px !important;
 }
 
 
@@ -885,13 +906,13 @@ height: auto !important;
 	
 	
 	#block-bbitalysearch-bbitalysearch-form {
-margin-top: -459px;
-overflow: auto;
+margin-top: 140px;
 width: 100%;
+position: absolute;
 }
 
 .content-region {
-overflow : auto;
+
 width : 100%;
 }
 	
@@ -1322,6 +1343,12 @@ left: 70px;
     padding-right: 8px;
 }
 
+#block-quicktabs-testtab #evidenceresults .row-1 .col-first:nth-child(1) {
+    padding-left: 0px !important;
+    padding-right: 8px;
+}
+
+
 #block-quicktabs-testtab  .row-1 .col-last {
     padding-left: 30px;
     padding-right: 8px;
@@ -1364,6 +1391,7 @@ left: 70px;
 
 .ui-tabs .ui-tabs-panel {
     padding: 0;
+	width: 100%;
 }
 
 #mostpopular .row-3 .col-first {
@@ -1725,7 +1753,7 @@ margin-left: 377px;
  text-transform: capitalize;
 	 	
 }
-.form-item label {
+#quicktabs-tabpage-register-1 .form-item label {
 	font-size:18px;
 	font-weight:normal;
 	line-height: 15px !important;
@@ -2621,7 +2649,7 @@ clear: both;
 	
 	#block-dropdown-login-login-dropdown {
 		margin-left: 13px;
-		margin-top: 23px;
+		margin-top: 40px;
 		padding-left: 20px;
 	}
 	ul.menu li.leaf {
@@ -4184,11 +4212,14 @@ border: 3px solid #FFFFFF;
 border-radius: 15px;
 }
 
+#itineraryresults .views-row:hover {
+	border-color: #019CDA;
+}
 #itineraryresults .views-field-field-iti-image {
 
 
 float: left;
-width: 55%;
+width: 52%;
 overflow: auto;
 
 }
@@ -4236,7 +4267,7 @@ overflow: auto;
 font-family: Arial, Helvetica, sans-serif;
 font-size: 15px;
 padding:0px !important;
-width: 30%;
+width: 32%;
 font-family: Arial, Helvetica, sans-serif;
 font-size: 15px;
 font-weight: bold;
@@ -4263,3 +4294,503 @@ padding:0px !important;
 
 
 /*********************************************************************************/
+
+/**************************css for innerpage itineraries******************************/
+
+.itineraries_title {
+
+width: 62%;
+margin: 20px auto;
+}
+
+.itineraries_title .title {
+
+font-size: 30px;
+font-weight: bold;
+color: green;
+}
+
+.view-innerpage-itineraries {
+
+width: 100%;
+margin: 0 auto;
+}
+
+.view-innerpage-itineraries .view-content {
+
+width: 100%;
+margin: 0 auto;
+}
+
+.view-innerpage-itineraries .view-content .views-row {
+width: 60%;
+margin: 20px auto;
+background-color: #E6F5FC;
+overflow: auto;
+border: 3px solid #FFFFFF;
+border-radius: 15px;
+}
+
+
+.view-innerpage-itineraries .view-content .views-row .views-field-field-iti-image {
+float: left;
+width: 55%;
+overflow: auto;
+}
+
+.view-innerpage-itineraries .view-content .views-row .views-field-title {
+
+font-size: 26px;
+overflow: auto;
+width: 40%;
+font-family: Calibri, sans-serif;
+font-weight: bold;
+height: 40px;
+margin: 10px auto 0px auto;
+padding: 0px !important;
+}
+
+.view-innerpage-itineraries .view-content .views-field-field-iti-from {
+
+display: block;
+overflow: auto;
+padding: 0px !important;
+width: 14%;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 15px;
+font-weight: bold;
+margin-right: 1%;
+}
+
+.view-innerpage-itineraries .view-content .views-field-field-iti-from span {
+
+margin-right: 5%;
+font-weight: normal !important;
+}
+
+.view-innerpage-itineraries .view-content .views-field-field-iti-to span {
+
+font-weight: normal !important;
+}
+
+.view-innerpage-itineraries .view-content .views-field-field-iti-to {
+
+float: left;
+overflow: auto;
+padding: 0px !important;
+width: 30%;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 15px;
+font-weight: bold;
+}
+
+
+.view-innerpage-itineraries .view-content .views-field-field-iti-structure-book{
+
+float: left;
+overflow: auto;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 15px;
+padding: 0px !important;
+width: 3%;
+font-weight: bold;
+}
+
+
+.view-innerpage-itineraries .view-content .views-field-field-structure-book{
+
+float: left;
+overflow: auto;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 15px;
+padding: 0px !important;
+}
+
+/**************************css for innerpage itineraries******************************/
+
+
+/**************************css for innerpage favorities******************************/
+
+.favorities_title {
+
+width: 62%;
+margin: 20px auto;
+}
+
+.favorities_title .title {
+
+font-size: 30px;
+font-weight: bold;
+color: green;
+}
+
+.view-innerpage-favorities {
+width: 100%;
+
+}
+
+.view-innerpage-favorities .view-content {
+width: 62%;
+margin: 0 auto;
+}
+
+.view-innerpage-favorities .view-content .views-row-odd  {
+width: 50%;
+margin: 25px auto;
+float: left;
+}
+
+.view-innerpage-favorities .view-content .views-row-even  {
+width: 50%;
+margin: 25px auto;
+float: left;
+}
+
+.view-innerpage-favorities .view-content .views-row .views-field-title {
+display: none;
+float: left;
+font-size: 26px;
+overflow: auto;
+padding-bottom: 10px;
+padding-left: 10px;
+padding-top: 15px;
+width: 465px;
+font-family: Calibri, sans-serif;
+font-weight: bold;
+}
+
+.view-innerpage-favorities .view-content .views-row .views-field-field-evidence-image {
+border: 3px solid #C3DEA7;
+width: 429px;
+padding: 18px;
+border-radius: 15px;
+height: 260px;
+}
+
+.view-innerpage-favorities .view-content .views-row .views-field-field-evidence-cost {
+background: url("../images/round-box-left.png") no-repeat scroll 0 0 transparent;
+border-radius: 0 0 0 0;
+color: #6AAE25;
+display: inline;
+float: left;
+height: 34px;
+position: relative;
+text-align: center;
+width: 145px;
+margin-top: -28px;
+margin-left: 104px;
+padding-top: 10px;
+padding-left: 21px;
+}
+
+.view-innerpage-favorities .view-content .views-row .views-field-field-evidence-heart {
+background: url("../images/round-box-right.png") no-repeat scroll 0 0 transparent;
+border-radius: 0 0 0 0;
+clear: right;
+color: #6AAE25;
+display: inline;
+float: left;
+height: 34px;
+margin-top: -28px;
+overflow: auto;
+position: relative;
+width: 100px;
+padding-top: 10px;
+padding-left: 54px;
+}
+
+.view-innerpage-favorities .view-content .views-row .views-field-field-evidence-titles {
+border-radius: 20px;
+height: 40px;
+width: 467px;
+background-color: #C3DEA7;
+font-size: 14px;
+color: #ffffff;
+line-height: 40px;
+text-align: center;
+clear: both;
+margin-top: 30px;
+position: absolute;
+}
+
+.view-innerpage-favorities .view-content .views-row .views-field-field-evidence-below-titles {
+background: url("../images/frattamaggiore-icon.png") no-repeat scroll 0 0 transparent;
+color: #C5C5C5;
+margin-top: 72px;
+padding-left: 19px;
+}
+
+.view-innerpage-favorities .view-content .views-row .views-field-field-evidence-main-title {
+
+display: none;
+}
+/**************************css for innerpage favorities******************************/
+
+
+/**************************css for innerpage popular******************************/
+
+.popular_title {
+
+width: 62%;
+margin: 20px auto;
+}
+
+.popular_title .title {
+
+font-size: 30px;
+font-weight: bold;
+color: green;
+}
+
+.view-innerpage-popular {
+width: 100%;
+
+}
+
+.view-innerpage-popular .view-content {
+width: 62%;
+margin: 0 auto;
+}
+
+.view-innerpage-popular .view-content .views-row-odd  {
+width: 50%;
+margin: 25px auto;
+float: left;
+}
+
+.view-innerpage-popular .view-content .views-row-even  {
+width: 50%;
+margin: 25px auto;
+float: left;
+}
+
+.view-innerpage-popular .view-content .views-row .views-field-title {
+display: none;
+}
+
+.view-innerpage-popular .view-content .views-row .views-field-field-popular-images {
+border: 3px solid #EF98A0;
+width: 429px;
+padding: 18px;
+border-radius: 15px;
+height: 260px;
+}
+
+.view-innerpage-popular .view-content .views-row .views-field-field-popular-heart {
+float: left;
+position: relative;
+background-image: url('../images/red-color-rank-icon.png');
+width: 80px;
+height: 76px;
+background-repeat: no-repeat;
+left: 6px;
+bottom: 300px;
+text-align: center;
+padding-top: 19px;
+color: #ffffff;
+}
+
+.view-innerpage-popular .view-content .views-row .views-field-field-popular-cost {
+background: url("../images/round-box.png") no-repeat scroll 0 0 #EEEEEE;
+border: none;
+padding-top: 10px;
+height: 35px;
+border-radius: 18px 18px 18px 18px;
+left: 15px;
+margin-left: 138px;
+position: relative;
+top: -23px;
+width: 160px;
+text-align: center;
+color: #6AAE25;
+background-repeat: no-repeat;
+}
+
+.view-innerpage-popular .view-content .views-row .views-field-field-popular-titles {
+border-radius: 20px;
+height: 40px;
+width: 467px;
+background-color: #EC99A3;
+font-size: 14px;
+color: #ffffff;
+line-height: 40px;
+text-align: center;
+clear: both;
+position: absolute;
+margin-top: -18px;
+}
+
+.view-innerpage-popular .view-content .views-row .views-field-field-popular-below {
+color: #C5C5C5;
+background: url('../images/frattamaggiore-icon.png');
+background-repeat: no-repeat;
+}
+/**************************css for innerpage popular******************************/
+
+
+/*dropdown*/
+#dropdown-login .form-actions .form-submit {
+margin-top: 30px !important;
+}
+
+
+/*ajaxlogin css*/
+#ajaxlogin-error .error a
+{
+display: none;
+}
+/*ajaxlogin css*/
+
+/****************facebook alignment*****************/
+
+#block-fboauth-login {
+width: 100%;
+background-color: #CED7E8;
+margin: 0 auto;
+text-align: center;
+
+height: 114px;
+}
+
+#block-fboauth-login a {
+width: 100%;
+background-color: #CED7E8;
+margin: 0 auto;
+vertical-align: middle;
+text-align: center;
+overflow: auto;
+position: relative;
+top: 35%;
+}
+
+#block-fboauth-login a img{
+
+
+}
+
+/****************facebook alignment*****************/
+/************logout alignment*************/
+
+#block-dropdown-login-login-dropdown {
+
+margin-top: 41px !important;
+}
+
+/************logout alignment*************/
+
+#dropdown-login .form-actions .form-submit {
+ margin-bottom: 25PX;
+}
+
+#dropdown-login .logout {
+ 
+width: 230px;
+}
+
+#ajax_link
+{
+	position: absolute;
+	margin-top: 66px;
+	text-decoration: none;
+	margin-left: 45px;
+	color: #B6B6B6;
+	font-size: 12px;
+	font-style: italic;
+}
+
+#dropdown-login .form-actions .form-submit {
+margin-top: 24px !important;
+}
+
+.form-item label {
+margin-top: 10px;
+}
+
+.page-node-82 #wrapper_traveller
+{
+ width: 100%;
+ background-color: #6BAF24;
+ height: 100px;
+ box-shadow: inset 0px -24px 8px -12px #458407;
+ moz-box-shadow: inset 0px -24px 8px -12px #458407;
+ -webkit-box-shadow: inset 0px -24px 8px -12px #458407;
+}
+#quicktabs-container-userpage_tab #block-traveller-traveller-form {
+height: 244px;
+}
+
+.page-node-81 #wrapper_accommodation
+{
+ width: 100%;
+ background-color: #6BAF24;
+ height: 116px;
+ box-shadow: inset 0px -24px 8px -12px #458407;
+ moz-box-shadow: inset 0px -24px 8px -12px #458407;
+ -webkit-box-shadow: inset 0px -24px 8px -12px #458407;
+}
+
+#block-fboauth-login a img {
+content: url(http://crtvecode.com/bbnew/sites/all/themes/bbitaly1/images/facebook_connect.png) no-repeat scroll 0 0 transparent;
+
+}
+
+.page-node-79 #content .title .fbtext
+{
+width: 270px;
+ margin: 0 auto;
+ font-size: 25px;
+ color: #95A9B2;
+ padding: 25px;
+}
+
+.page-node-79 #content .title .fbtext2
+{
+ font-size: 14px;
+ background-color: #CED7E8;
+ padding-left: 705px;
+ color: #626864;
+}
+
+#block-fboauth-login a {
+	top: 5%; 
+	}
+
+
+.page-node-79 #content .title .fbtext3
+{
+	font-size: 11px;
+	background-color: #CED7E8;
+	color: #707480;
+	position: absolute;
+	left: 638px;
+	top: 288px;
+	font-weight: normal;
+}
+
+#bbitalysearch-form .form-select {
+	color:#94a7b0;
+	font-size:14px;
+	font-weight:bold;
+	font-family:Arial, Helvetica, sans-serif;
+}
+
+#bbitalysearch-form .messages {
+	margin-top:70px;
+	position:absolute;
+}
+
+#page-title {
+	width:100%;
+}
+
+#page-title .fbtext2 {
+	width: 100%;
+	margin: 0 auto;
+	padding: 0 !important;
+	text-align: center;
+}
+
+#page-title .fbtext3 {
+	left:0px !important;
+	margin-left:40% !important;
+}

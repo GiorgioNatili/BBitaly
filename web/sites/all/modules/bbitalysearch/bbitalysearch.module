@@ -22,17 +22,20 @@ function bbitalysearch_form($form, &$form_state) {
 	$form['location'] = array(
 		'#type' => 'textfield',
 		'#required' => TRUE,
+		'#attributes' =>array('placeholder' => t('cerca la localita')),
 		'#prefix'=>'<div id="bbitalysearch-form">',
 	);
 
 	$form['datefrom'] = array(
 		'#type' => 'textfield',
-		'#required' => TRUE
+		'#required' => TRUE,
+		'#attributes' =>array('placeholder' => t('check-in'),'class'=>array('fromdate')),
 	);
 
 	$form['dateto'] = array(
 		'#type' => 'textfield',
-		'#required' => TRUE
+		'#required' => TRUE,
+		'#attributes' =>array('placeholder' => t('check-out'),'class'=>array('todate')),
 	);
 
 	$form['nopersons']=array(
@@ -45,7 +48,8 @@ function bbitalysearch_form($form, &$form_state) {
 			4=>t('4'),
 			5=>t('5'),
 			6=>t('6'),
-			7=>t('7')
+			7=>t('7'),
+			8=>t('8')
 		)
 	);
 
@@ -65,23 +69,34 @@ function bbitalysearch_form($form, &$form_state) {
 
 function bbitalysearch_form_callback($form, &$form_state){
 	if(!empty($form_state['executed'])){
+		$location=$form_state['values']['location'];
+		$from=$form_state['values']['datefrom'];
+		$to=$form_state['values']['dateto'];
+		
 	$commands = array();
 
 		/*** suggested itinerary *****/
-		$itinerarystring="<div id='itineraryresults' class='views-row'>".t('Search Results for ').$form_state['values']['location']."<br>";
+		$itinerarystring="<div id='itineraryresults' class='views-row'>";
+		$result = db_query("SELECT * FROM {node} n, {field_data_field_iti_from} f,{field_data_field_iti_image} i,{field_data_field_iti_to} t,{field_data_field_iti_structure_book} b,{field_data_field_structure_book} bk,{field_data_field_address1} a,file_managed fm where n.type=:type and f.entity_id=n.nid and i.entity_id=n.nid and field_iti_image_fid=fm.fid and t.entity_id=n.nid and b.entity_id=n.nid and  a.entity_id=n.nid and a.field_address1_value='$location' and f.field_iti_from_value='$from' and t.field_iti_to_value='$to' and bk.entity_id=n.nid", array(':type' =>'suggested_itinerary'));
 		
-		$result = db_query("SELECT * FROM {node} n, {field_data_field_iti_from} f,{field_data_field_iti_image} i,{ field_data_field_iti_to} t,{field_data_field_iti_structure_book} b,{field_data_field_structure_book} bk,file_managed fm where n.type=:type and f.entity_id=n.nid and i.entity_id=n.nid and field_iti_image_fid=fm.fid and t.entity_id=n.nid and b.entity_id=n.nid and bk.entity_id=n.nid", array(':type' => 'suggested_itinerary'));
 		if ($result) {
+			if ($result->rowCount() > 0) {
 			while ($row = $result->fetchAssoc()) {
 				$itinerarystring .= "<div class='views-row'>".
-												"<div class='views-field-field-iti-image'><img src='http://crtvecode.com/bbnew/sites/default/files/".$row['filename']."'/></div>".
-												"<div class='views-field-title'>".$row['title']."</div>".
-												"<div class='views-field-field-iti-from'>"."<span class='from-txt'>".t('from:')."</span>".$row['field_iti_from_value']."</div>".
-												"<div class='views-field-field-iti-to'>"."<span class='to-txt'>".t('to:')."</span>".$row['field_iti_to_value']."</div>".
-												"<div class='views-field-field-iti-structure-book'>".$row['field_iti_structure_book_value']."</div>".
-												"<div class='views-field-field-structure-book'>".$row['field_structure_book_value']."</div>".
-										"</div>";
+							"<div class='views-field-field-iti-image'><img src='http://crtvecode.com/bbnew/sites/default/files/".$row['filename']."'/></div>".
+							"<div class='views-field-title'>".$row['title']."</div>".
+							"<div class='views-field-field-iti-from'>"."<span class='from-txt'>".t('from:')."</span>".$row['field_iti_from_value']."</div>".
+							"<div class='views-field-field-iti-to'>"."<span class='to-txt'>".t('to:')."</span>".$row['field_iti_to_value']."</div>".
+							"<div class='views-field-field-iti-structure-book'>".$row['field_iti_structure_book_value']."</div>".
+							"<div class='views-field-field-structure-book'>".$row['field_structure_book_value']."</div><div class='views-field views-field-view-node'><span class='field-content'><a href='/bbnew/iti-002'>view</a></span></div>".
+					"</div>";
 			}
+			} else {
+				$itinerarystring .= '<div class="views-row">no search results found for itinerari</div>';
+			}
+		}
+		else{		
+				$itinerarystring .= '<div class="views-row">search not found</div>';
 		}
 		$itinerarystring .= '</div>';
 
@@ -91,14 +106,14 @@ function bbitalysearch_form_callback($form, &$form_state){
 
 
 		/*** evidence *****/
-	$evidencestring ="<div id='evidenceresults'>".t('Search Results for ').$form_state['values']['location']."<br>";
+	$evidencestring ="<div id='evidenceresults'>";
 	
-	
-	
+		$result2 = db_query("SELECT * FROM {node} n1, {field_data_field_evidence_cost} f, {field_data_field_evidence_image} i1,{field_data_field_evidence_heart} h, {field_data_field_evidence_below_titles} t,{field_data_field_address1} aa,{field_data_field_iti_from} fd,{ field_data_field_iti_to} td,{file_managed} fm where n1.type = :type and i1.entity_id=n1.nid and i1.field_evidence_image_fid=fm.fid and f.entity_id=n1.nid and h.entity_id=n1.nid and aa.entity_id=n1.nid and aa.field_address1_value='$location' and fd.entity_id=n1.nid and td.entity_id=n1.nid and fd.field_iti_from_value='$from' and td.field_iti_to_value='$to' and t.entity_id=n1.nid", array(':type' => 'evidence'));
+		
 
-		$result2 = db_query("SELECT * FROM {node} n1, {field_data_field_evidence_cost} f, {field_data_field_evidence_image} i1,{field_data_field_evidence_heart} h, {field_data_field_evidence_below_titles} t, {file_managed} fm where n1.type = :type and i1.entity_id=n1.nid and i1.field_evidence_image_fid=fm.fid and f.entity_id=n1.nid and h.entity_id=n1.nid and t.entity_id=n1.nid", array(':type' => 'evidence'));
 		if ($result2) {
 			$i=0;
+			if ($result2->rowCount() > 0) {
 			while ($row2 = $result2->fetchAssoc()) {
 				if($i==0)
 				{
@@ -114,10 +129,13 @@ function bbitalysearch_form_callback($form, &$form_state){
 				}
 				
 			}
+			} else {
+				$evidencestring .= '<div class="view-content">no search results found for evidence</div>';
+			}
 		}
 		
 		else{
-				return 'search is not successful';
+				$evidencestring .= 'search is not successful';
 		}
 		
 		$evidencestring .= '</div>';
@@ -129,14 +147,15 @@ function bbitalysearch_form_callback($form, &$form_state){
 		/************************************/
 		
 			/*** Popular *****/
-	$popularstring ="<div id='popularresults'>".t('Search Results for ').$form_state['values']['location']."<br>";
+	$popularstring ="<div id='popularresults'>";
 	
 	
 	
 
-		$result3 = db_query("SELECT * FROM {node} n, { field_data_field_popular_images} i,{field_data_field_popular_heart} h, {field_data_field_popular_below} t,{ field_data_field_popular_titles} f, {file_managed} fm where n.type = :type and i.entity_id=n.nid and i.field_popular_images_fid=fm.fid and h.entity_id=n.nid and t.entity_id=n.nid and f.entity_id=n.nid", array(':type' =>'popular'));
+		$result3 = db_query("SELECT * FROM {node} n,{ field_data_field_popular_images} i,{field_data_field_popular_heart} h, {field_data_field_popular_below} t,{ field_data_field_popular_titles} f,{field_data_field_address1} a,{field_data_field_iti_from} fd,{field_data_field_iti_to} td ,{file_managed} fm where n.type =:type and i.entity_id=n.nid and i.field_popular_images_fid=fm.fid and h.entity_id=n.nid and a.entity_id=n.nid and td.entity_id=n.nid and fd.entity_id=n.nid and fd.field_iti_from_value='$from' and td.field_iti_to_value='$to' and a.field_address1_value='$location' and t.entity_id=n.nid and f.entity_id=n.nid", array(':type' =>'popular'));
 		if ($result3) {
 			$i=0;
+			if ($result3->rowCount() > 0){
 			while ($row2 = $result3->fetchAssoc()) {
 				if($i==0)
 				{
@@ -160,11 +179,13 @@ function bbitalysearch_form_callback($form, &$form_state){
 					$i=0;
 				}
 			}
+			}else{
+						$popularstring .= '<div class="view-content">no search results found for popular</div>';
+			}
 		}
-		
-/*else{
-				return 'search is not successful';
-		}*/
+		else{
+				$popularstring .= 'search is not successful';
+		}
 		
 		$popularstring .= '</div>';
 		$commands[] = ajax_command_replace('.view-popular-tab',$popularstring);
@@ -174,8 +195,8 @@ function bbitalysearch_form_callback($form, &$form_state){
 
 		/************************************/
 
-		//$form_state['input'] = array();
-		//$form_state['rebuild'] = TRUE;
+		$form_state['input'] = array();
+		$form_state['rebuild'] = TRUE;
 
 
 		$commands[] = ajax_command_replace('#bbitalysearch-form', drupal_render($form));
@@ -185,10 +206,22 @@ function bbitalysearch_form_callback($form, &$form_state){
 }
  
 function bbitalysearch_form_validate($form, &$form_state) {
+	
 	if ($form_state['values']['location'] == "") {
 		form_set_error('Location : ', t('Location is empty'));
+	} else if ($form_state['values']['datefrom'] == "") {
+		form_set_error('datefrom : ', t('checin date is empty'));
+	} else if ($form_state['values']['dateto'] == "") {
+		form_set_error('dateto : ', t('checkout date is empty'));
+	} else if ($form_state['values']['nopersons'] == "") {
+		form_set_error('nopersons : ', t('number of persons is empty'));
 	}
-        
+
+	$df = date('dd/mm/yyyy', strtotime($form_state['values']['datefrom']));
+	$dt = date('dd/mm/yyyy', strtotime($form_state['values']['dateto']));
+	if ($df > $dt) {
+		form_set_error('Dates : ', t('checkin date should be lesser than checkout date'));
+	}
 }
 
 function bbitalysearch_form_submit($form, &$form_state) {

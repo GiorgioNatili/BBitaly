@@ -80,6 +80,28 @@
  * @ingroup themeable
  */
 ?>
+
+<?php
+
+//print $node->nid;
+
+if($node->nid==82 || $node->nid==81)
+{
+	/*print $user->uid."<br/>";
+	print $user->name."<br/>";
+	print $user->mail."<br/>";*/
+	//print_r($user);
+	//global $user; 
+	if(!$user->uid)
+	{
+		//print "session not exists";
+		drupal_goto('user/'); 
+		//header('Location: /user/login')); 
+		//exit; 
+	} 
+}
+?>
+
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
 
   <?php print $user_picture; ?>
@@ -95,8 +117,8 @@
       <?php print $submitted; ?>
     </div>
   <?php endif; ?>
-
   <div class="content"<?php print $content_attributes; ?>>
+
     <?php
       // We hide the comments and links now so that we can render them later.
       hide($content['comments']);
