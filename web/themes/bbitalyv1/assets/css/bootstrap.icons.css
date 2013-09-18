@@ -1,0 +1,30 @@
+.icon-facebook,
+.icon-googleplus,
+.icon-twitter,
+.icon-pinterest {
+	background-image:url(../img/glyphicons-extra.png);
+	background-repeat: no-repeat;
+	height: 25px;
+}
+.icon-facebook.icon-white,
+.icon-googleplus.icon-white,
+.icon-twitter.icon-white,
+.icon-pinterest.icon-white {
+	background-image:url(../img/glyphicons-extra-white.png);
+}
+.icon-facebook {
+    background-position: 0 0;
+	width: 12px;
+}
+.icon-googleplus {
+	background-position: -22px 0;
+	width: 26px;
+}
+.icon-twitter {
+	background-position: -58px 0;
+	width: 20px;
+}
+.icon-pinterest {
+	background-position: -88px 0;
+	width: 20px;
+}

@@ -11,6 +11,7 @@ return array(
 
 	// preloading 'log' component
 	'preload'=>array('log'),
+        'theme' => 'bbitalyv1',
 
 	// autoloading model and component classes
 	'import'=>array(
