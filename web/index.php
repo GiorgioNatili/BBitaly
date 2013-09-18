@@ -30,7 +30,7 @@ if ( $_SERVER['BBENV'] == ENV_DEVELOPMENT) {
     /// Path to Yii Core.
     $yii='/usr/src/yii-1.1.14.f0fee9/framework/yii.php';
 
-    $environment = ENV_STAGING;
+    $environment = ENV_PRODUCTION;
 }
 
 

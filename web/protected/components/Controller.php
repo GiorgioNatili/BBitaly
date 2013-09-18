@@ -20,4 +20,14 @@ class Controller extends CController
 	 * for more details on how to specify this property.
 	 */
 	public $breadcrumbs=array();
+        
+    protected function afterRender($view, &$output){
+        Yii::app()->facebook->addJsCallback('FB.Event.subscribe(\'auth.login\', function () {
+             window.location = window.location+"/user/facebook";
+        });');
+        Yii::app()->facebook->initJs($output); // this initializes the Facebook JS SDK on all pages
+
+        return parent::afterRender($view, $output);
+    }
+
 }
