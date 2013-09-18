@@ -1,4 +1,3 @@
-
 <section>
 <!-- InstanceBeginEditable name="EditRegionSection" -->
 	<div class="container">

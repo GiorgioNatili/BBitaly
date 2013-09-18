@@ -36,7 +36,7 @@ $asset = $theme.'/assets/';
     <div class="navbar">
       <div class="navbar-inner">
         <div class="container">
-            <a href="index.html" class="brand"><img src="<?php echo $asset ?>img/bb_logo.png" alt="bbitaly" /></a>
+            <a href="/" class="brand"><img src="<?php echo $asset ?>img/bb_logo.png" alt="bbitaly" /></a>
             <div class="nav-mid">
                 <ul class="nav">
                     <li><a href="#"><i class="icon-user"></i> Log In</a></li>
@@ -57,7 +57,9 @@ $asset = $theme.'/assets/';
       </div>
     </div>
 </header><!-- HEADER - END -->
-<?php echo $content ?>
+<div>
+    <?php echo $content ?>
+</div>
 <footer>
 	<div class="container">
     	<div class="row">
