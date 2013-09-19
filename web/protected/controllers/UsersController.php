@@ -122,6 +122,80 @@ class UsersController extends Controller
 	}
         
         public function actionJoin() {
+            $error = $this->getRequest()->getParam('error');
+            $error_code = $this->getRequest()->getParam('error_code');
+            if ( isset($error)
+                    && isset($error_code)) {
+                
+                if ( $error_code == 200)
+                    $this->setFlash ('error', 'To continue with BBitaly, we need you to join us via Facebook.');
+            }
+            
+            $code = $this->getRequest()->getParam('code');
+            if ( isset($code)) {
+                $fb = Yii::app()->facebook;
+                $token = $fb->getAccessToken();
+                $fb->setAccessToken($token);
+                $fbid = $fb->getUser();
+                if ( isset ($fbid) ) {
+                    $user = Users::model()->findByAttributes(array(
+                        'extra' => $fbid,
+                        'source' => Users::SOURCE_FACEBOOK
+                    ));
+                    if ( is_null($user)) {
+                        // Signup.
+                        $info = $fb->api('/me?fields=email,first_name,last_name,location');
+                        if ( !empty($info)) {
+                            // Lets insert.
+                            
+                            $time = time();
+                            $user = new \Users;
+                            $user->first_name = $info['first_name'];
+                            $user->last_name = $info['last_name'];
+                            $user->email = $info['email'];
+                            $user->source = Users::SOURCE_FACEBOOK;
+                            $user->extra = $fbid;
+                            $user->status = 1;
+                            $user->created_on = $time;
+                            $user->updated_on = $time;
+                            
+                            //echo '<pre>'; print_r($user); exit;
+                            
+                            if ( !$user->save()) {
+                                // Raise error.
+                                echo 'unable to insert'; exit;
+                                $this->redirect('/');
+                            }
+                            
+                            // Saved. Lets assign him a role.
+                            Yii::app()->authManager->assign(Users::ROLE_TRAVELER, $user->id);
+                            
+                            $fb->api('/me/feed', 'POST',
+                                array(
+                                  'link' => 'www.bbitaly.com',
+                                  'message' => 'Hey! Im now using BBItaly. Its your turn to try now!'
+                             ));
+                        } else {
+                            // Failed to get info from facebook.
+                            $this->setFlash('error', 'We are unable to connect your facebook profile at the moment. Please try later.');
+                            $this->redirect('/');
+                        }
+                    }
+                    
+                    $identity = new FacebookUserIdentity($user->extra, Users::SOURCE_FACEBOOK);
+                    $identity->authenticate();
+
+                    if ( $identity->errorCode === UserIdentity::ERROR_NONE ) {
+                        Yii::app()->user->login($identity);
+                        $this->setFlash('success', 'Welcome Abroad! You are now surfing experience of BBitaly!');
+                        $this->redirect('/');
+                    }
+                }
+            }
+
+            if ( !Yii::app()->user->isGuest )
+                $this->redirect('/');
+            
             $this->render('join', array(
                 'model' => new \Users
             ));

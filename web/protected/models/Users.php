@@ -24,6 +24,17 @@
  */
 class Users extends CActiveRecord
 {
+    
+    const SOURCE_FACEBOOK = 'facebook';
+    
+    const SOURCE_BBITALY = 'bbitaly';
+    
+    const ROLE_ADMIN = 'admin';
+    
+    const ROLE_TRAVELER = 'traveler';
+    
+    const ROLE_OWNER = 'owner';
+    
 	/**
 	 * @return string the associated database table name
 	 */
@@ -40,7 +51,7 @@ class Users extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('first_name, last_name, email, password, source, created_on, updated_on', 'required'),
+			array('first_name, last_name, email, source, created_on, updated_on', 'required'),
 			array('status', 'numerical', 'integerOnly'=>true),
 			array('first_name, last_name', 'length', 'max'=>40),
 			array('email', 'length', 'max'=>50),
