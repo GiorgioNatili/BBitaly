@@ -10,8 +10,8 @@
  * @property string $favorited_on
  *
  * The followings are the available model relations:
- * @property Users $user
  * @property Property $property
+ * @property Users $user
  */
 class Favorites extends CActiveRecord
 {
@@ -48,8 +48,8 @@ class Favorites extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'user' => array(self::BELONGS_TO, 'Users', 'user_id'),
 			'property' => array(self::BELONGS_TO, 'Property', 'property_id'),
+			'user' => array(self::BELONGS_TO, 'Users', 'user_id'),
 		);
 	}
 

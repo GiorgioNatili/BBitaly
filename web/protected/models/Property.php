@@ -9,6 +9,7 @@
  * @property integer $type
  * @property integer $people_min
  * @property integer $people_max
+ * @property double $base_price
  * @property string $address
  * @property string $city
  * @property string $zip_code
@@ -42,15 +43,16 @@ class Property extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, type, people_min, people_max, uid', 'required'),
+			array('title, type, people_min, people_max, base_price, uid', 'required'),
 			array('type, people_min, people_max, cover_image, uid', 'numerical', 'integerOnly'=>true),
+			array('base_price', 'numerical'),
 			array('title', 'length', 'max'=>50),
 			array('address', 'length', 'max'=>100),
 			array('city', 'length', 'max'=>40),
 			array('zip_code, created_on', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, title, type, people_min, people_max, address, city, zip_code, cover_image, uid, created_on', 'safe', 'on'=>'search'),
+			array('id, title, type, people_min, people_max, base_price, address, city, zip_code, cover_image, uid, created_on', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -82,6 +84,7 @@ class Property extends CActiveRecord
 			'type' => 'Type',
 			'people_min' => 'People Min',
 			'people_max' => 'People Max',
+			'base_price' => 'Base Price',
 			'address' => 'Address',
 			'city' => 'City',
 			'zip_code' => 'Zip Code',
@@ -114,6 +117,7 @@ class Property extends CActiveRecord
 		$criteria->compare('type',$this->type);
 		$criteria->compare('people_min',$this->people_min);
 		$criteria->compare('people_max',$this->people_max);
+		$criteria->compare('base_price',$this->base_price);
 		$criteria->compare('address',$this->address,true);
 		$criteria->compare('city',$this->city,true);
 		$criteria->compare('zip_code',$this->zip_code,true);

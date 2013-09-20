@@ -19,11 +19,11 @@ $asset = $theme.'/assets/';
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="<?php echo $asset ?>css/bootstrap-theme.min.css">
-
-    <!-- Latest compiled and minified JavaScript -->
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
     <script src="<?php echo $asset ?>js/jquery-1.8.2.js"></script>
     <script src="<?php echo $asset ?>js/bootstrap.min.js"></script>
     <script src="<?php echo $asset ?>js/bootstrap.custom.js"></script>
+    <script src="<?php echo $asset ?>js/gmap3.min.js"></script>
 
     <!--[if lt IE 9]>  
     <script src="js/html5.js"></script>  
@@ -36,8 +36,9 @@ $asset = $theme.'/assets/';
     <div class="navbar">
       <div class="navbar-inner">
         <div class="container">
-            <a href="index.html" class="brand"><img src="<?php echo $asset ?>img/bb_logo.png" alt="bbitaly" /></a>
+            <a href="/" class="brand"><img src="<?php echo $asset ?>img/bb_logo.png" alt="bbitaly" /></a>
             <div class="nav-mid">
+                <!--
                 <ul class="nav">
                     <li><a href="#"><i class="icon-user"></i> Log In</a></li>
                     <li><a href="#"><i class="icon-pencil"></i> Register</a></li>
@@ -49,6 +50,31 @@ $asset = $theme.'/assets/';
                         </ul>	
                     </li>
                 </ul>
+                -->
+                
+                <?php
+                
+                $this->widget('zii.widgets.CMenu', array(
+                    'skin' => 'bbitalyv1',
+                    'encodeLabel'=>false,
+                    'htmlOptions' => array('class' =>'nav'),
+                    'items'=>array(
+                        array('label' => (Yii::app()->user->getState('info') instanceof \Users ? sprintf('Welcome, %s', Yii::app()->user->getState('info')->first_name) : ''), 'visible'=> ! Yii::app()->user->isGuest ),
+                        array('label' => '<i class="icon-user"></i> Logout','url' => '/site/logout', 'visible'=> ! Yii::app()->user->isGuest ),
+                        array('label'=>'<i class="icon-user"></i> Log In', 'url'=>array('#'), 'visible'=>Yii::app()->user->isGuest),
+                        array('label'=>'<i class="icon-pencil"></i> Register', 'url'=>array('users/join'), 'visible'=>Yii::app()->user->isGuest),
+                        array(
+                            'itemOptions ' => array('class' => 'dropdown'),
+                            'label' => 'llanguage', 
+                            'template' =>
+                                '<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-flag"></i> select language</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">langugae 1</a></li>
+                                    <li><a href="#">langugae 2</a></li>
+                                </ul>	'),
+                    ),
+                ));
+                ?>
             </div>
             <div class="social-share pull-right">
                 <a href="#"><img src="<?php echo $asset ?>img/bb_social-links.png" alt="" /></a>
@@ -57,6 +83,23 @@ $asset = $theme.'/assets/';
       </div>
     </div>
 </header><!-- HEADER - END -->
+<?php
+$flashes = Yii::app()->user->getFlashes();
+if ( $flashes ):
+?>
+<div style="padding: 10px;">
+    <?php
+            foreach( $flashes as $key => $message) { ?>
+                <div class="alert alert-block alert-<?php echo $key ?>">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <h4><?php echo ucfirst($key) ?></h4>
+                    <?php echo $message ?>
+                </div>
+        <?php    }
+        ?>
+</div>
+
+<?php endif; ?>
 <?php echo $content ?>
 <footer>
 	<div class="container">

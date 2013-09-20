@@ -29,5 +29,13 @@ class Controller extends CController
 
         return parent::afterRender($view, $output);
     }
+    
+    public function getRequest() {
+        return Yii::app()->request;
+    }
+    
+    public function setFlash($key, $message) {
+        Yii::app()->user->setFlash($key, $message);
+    }
 
 }

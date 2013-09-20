@@ -5,6 +5,8 @@
  *
  * The followings are the available columns in table 'users':
  * @property integer $id
+ * @property string $first_name
+ * @property string $last_name
  * @property string $email
  * @property string $password
  * @property string $source
@@ -22,6 +24,17 @@
  */
 class Users extends CActiveRecord
 {
+    
+    const SOURCE_FACEBOOK = 'facebook';
+    
+    const SOURCE_BBITALY = 'bbitaly';
+    
+    const ROLE_ADMIN = 'admin';
+    
+    const ROLE_TRAVELER = 'traveler';
+    
+    const ROLE_OWNER = 'owner';
+    
 	/**
 	 * @return string the associated database table name
 	 */
@@ -38,8 +51,9 @@ class Users extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('email, password, source, created_on, updated_on', 'required'),
+			array('first_name, last_name, email, source, created_on, updated_on', 'required'),
 			array('status', 'numerical', 'integerOnly'=>true),
+			array('first_name, last_name', 'length', 'max'=>40),
 			array('email', 'length', 'max'=>50),
 			array('password', 'length', 'max'=>64),
 			array('source', 'length', 'max'=>8),
@@ -47,7 +61,7 @@ class Users extends CActiveRecord
 			array('created_on, updated_on', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, email, password, source, extra, status, created_on, updated_on', 'safe', 'on'=>'search'),
+			array('id, first_name, last_name, email, password, source, extra, status, created_on, updated_on', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -74,6 +88,8 @@ class Users extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+			'first_name' => 'First Name',
+			'last_name' => 'Last Name',
 			'email' => 'Email',
 			'password' => 'Password',
 			'source' => 'Source',
@@ -103,6 +119,8 @@ class Users extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
+		$criteria->compare('first_name',$this->first_name,true);
+		$criteria->compare('last_name',$this->last_name,true);
 		$criteria->compare('email',$this->email,true);
 		$criteria->compare('password',$this->password,true);
 		$criteria->compare('source',$this->source,true);

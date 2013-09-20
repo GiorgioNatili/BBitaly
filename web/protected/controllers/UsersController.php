@@ -6,7 +6,7 @@ class UsersController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/column1';
 
 	/**
 	 * @return array action filters
@@ -40,6 +40,9 @@ class UsersController extends Controller
 				'actions'=>array('admin','delete'),
 				'users'=>array('admin'),
 			),
+                        array('allow',
+                                'actions' => array('join'),
+                                'users' => array('*')),
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),
@@ -117,6 +120,160 @@ class UsersController extends Controller
 		if(!isset($_GET['ajax']))
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
+        
+        
+        public function actionJoin() {
+            
+            /*********************************************************
+             *          Custom Authentication
+             **********************************************************/
+            $type = $this->getRequest()->getParam('_t');
+            if ( isset ($type) ) {
+                // Good. Custom signup. Check for role.
+                
+                if ( $type == Users::ROLE_OWNER || $type == Users::ROLE_TRAVELER ) {
+                    // Roles are OK. Lets create.
+                    $transaction = Yii::app()->db->beginTransaction();
+                    try {
+                        $user = new Users;
+                        $time = time();
+                        $password = $_POST['Users']['password'];
+                        $user->attributes = $_POST['Users'];
+                        $user->password = sha1($password);
+                        $user->source = Users::SOURCE_BBITALY;
+                        $user->created_on = $time;
+                        $user->updated_on = $time;
+                        
+                        if ( ! $user->save() )
+                            throw new Exception ("Unable to create a new user!", 002);
+                        
+                        // Ok, now time to assign role.
+                        Yii::app()->authManager->assign($type, $user->id);
+                        
+                        // Im Good. Log me in.
+                        $identity = new \UserIdentity($user->email, $password);
+                        $identity->authenticate();
+                        if ( $identity->errorCode === UserIdentity::ERROR_NONE ) {
+                            Yii::app()->user->login($identity);
+                        } else {
+                            throw new Exception("Unable to Login after Signup!", 004);
+                        }
+                        
+                        
+                        if ( isset($_POST['Property'])) {
+                            // Lets Insert Property and redirect to property/:id
+                            $property = new Property;
+                            $property->attributes = $_POST['Property'];
+                            $property->type = 0; // Remove this field.
+                            $property->created_on = $time;
+                            $property->uid = $user->id;
+                            // property.type needs to be implemented.
+                            if ( ! $property->save() )
+                                throw new Exception ("Unable to create a new property!", 003);
+                            
+                            
+                            $transaction->commit();
+                            $this->setFlash('success', 'Welcome Abroad! Please modify your property information.');
+                            $this->redirect('/property/update/'.$property->id);
+                        }
+                        
+                        $transaction->commit();
+                        $this->setFlash('success', 'Welcome Abroad! You are now surfing experience of BBitaly!');                        
+                        $this->redirect('/');
+                        
+                    } catch (Exception $ex) {
+                        $transaction->rollBack();
+                        throw $ex;
+                    }
+                } else {
+                    // Invalid Activity.
+                    throw new InvalidActivityException;
+                }
+                
+            }
+            
+            /*********************************************************
+             *          Facebook Authentication
+             **********************************************************/
+            $error = $this->getRequest()->getParam('error');
+            $error_code = $this->getRequest()->getParam('error_code');
+            if ( isset($error)
+                    && isset($error_code)) {
+                
+                if ( $error_code == 200)
+                    $this->setFlash ('error', 'To continue with BBitaly, we need you to join us via Facebook.');
+            }
+            
+            $code = $this->getRequest()->getParam('code');
+            if ( isset($code)) {
+                $fb = Yii::app()->facebook;
+                $token = $fb->getAccessToken();
+                $fb->setAccessToken($token);
+                $fbid = $fb->getUser();
+                if ( isset ($fbid) ) {
+                    $user = Users::model()->findByAttributes(array(
+                        'extra' => $fbid,
+                        'source' => Users::SOURCE_FACEBOOK
+                    ));
+                    if ( is_null($user)) {
+                        // Signup.
+                        $info = $fb->api('/me?fields=email,first_name,last_name,location');
+                        if ( !empty($info)) {
+                            // Lets insert.
+                            
+                            $time = time();
+                            $user = new \Users;
+                            $user->first_name = $info['first_name'];
+                            $user->last_name = $info['last_name'];
+                            $user->email = $info['email'];
+                            $user->source = Users::SOURCE_FACEBOOK;
+                            $user->extra = $fbid;
+                            $user->status = 1;
+                            $user->created_on = $time;
+                            $user->updated_on = $time;
+                            
+                            //echo '<pre>'; print_r($user); exit;
+                            
+                            if ( !$user->save()) {
+                                // Raise error.
+                                echo 'unable to insert'; exit;
+                                $this->redirect('/');
+                            }
+                            
+                            // Saved. Lets assign him a role.
+                            Yii::app()->authManager->assign(Users::ROLE_TRAVELER, $user->id);
+                            
+                            $fb->api('/me/feed', 'POST',
+                                array(
+                                  'link' => 'www.bbitaly.com',
+                                  'message' => 'Hey! Im now using BBItaly. Its your turn to try now!'
+                             ));
+                        } else {
+                            // Failed to get info from facebook.
+                            $this->setFlash('error', 'We are unable to connect your facebook profile at the moment. Please try later.');
+                            $this->redirect('/');
+                        }
+                    }
+                    
+                    $identity = new FacebookUserIdentity($user->extra, Users::SOURCE_FACEBOOK);
+                    $identity->authenticate();
+
+                    if ( $identity->errorCode === UserIdentity::ERROR_NONE ) {
+                        Yii::app()->user->login($identity);
+                        $this->setFlash('success', 'Welcome Abroad! You are now surfing experience of BBitaly!');
+                        $this->redirect('/');
+                    }
+                }
+            }
+
+            if ( !Yii::app()->user->isGuest )
+                $this->redirect('/');
+            
+            $this->render('join', array(
+                'model' => new \Users,
+                'property' => new Property
+            ));
+        }
 
 	/**
 	 * Lists all models.
