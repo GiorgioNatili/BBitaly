@@ -1,9 +1,10 @@
 <section>
 <!-- InstanceBeginEditable name="EditRegionSection" -->
-	<div class="container">
+	<div class="container home-searchbar">
     	<div class="searchbar">
         	<h1>Il tuo bed and breakfast in Italia! </h1>
             <p class="lead">Il tuo bed and breakfast in Italia!</p>
+            <form method="GET" action="/search">
             <div class="search">
             	<div class="row">
                     <div class="span5">
@@ -43,6 +44,7 @@
                     </div>
                 </div>
             </div>
+            </form>
         </div>
     </div>
 	<div class="carousel bb-carousel" id="myCarousel">
