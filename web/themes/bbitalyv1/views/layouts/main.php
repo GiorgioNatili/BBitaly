@@ -38,29 +38,15 @@ $asset = $theme.'/assets/';
         <div class="container">
             <a href="/" class="brand"><img src="<?php echo $asset ?>img/bb_logo.png" alt="bbitaly" /></a>
             <div class="nav-mid">
-                <!--
-                <ul class="nav">
-                    <li><a href="#"><i class="icon-user"></i> Log In</a></li>
-                    <li><a href="#"><i class="icon-pencil"></i> Register</a></li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-flag"></i> select language</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">langugae 1</a></li>
-                            <li><a href="#">langugae 2</a></li>
-                        </ul>	
-                    </li>
-                </ul>
-                -->
                 
                 <?php
-                
                 $this->widget('zii.widgets.CMenu', array(
                     'skin' => 'bbitalyv1',
                     'encodeLabel'=>false,
                     'htmlOptions' => array('class' =>'nav'),
                     'items'=>array(
-                        array('label' => (Yii::app()->user->getState('info') instanceof \Users ? sprintf('Welcome, %s', Yii::app()->user->getState('info')->first_name) : ''), 'visible'=> ! Yii::app()->user->isGuest ),
-                        array('label' => '<i class="icon-user"></i> Logout','url' => '/site/logout', 'visible'=> ! Yii::app()->user->isGuest ),
+                        array('label' => '<i class="icon-briefcase"></i> Account','url' => '/users/update/'. Yii::app()->user->id, 'visible'=> ! Yii::app()->user->isGuest ),
+                        array('label' => '<i class="icon-lock"></i> Logout','url' => '/site/logout', 'visible'=> ! Yii::app()->user->isGuest ),
                         array('label'=>'<i class="icon-user"></i> Log In', 'url'=>array('#'), 'visible'=>Yii::app()->user->isGuest),
                         array('label'=>'<i class="icon-pencil"></i> Register', 'url'=>array('users/join'), 'visible'=>Yii::app()->user->isGuest),
                         array(

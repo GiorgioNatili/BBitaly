@@ -1,70 +1,73 @@
-<?php
-/* @var $this UsersController */
-/* @var $model Users */
-/* @var $form CActiveForm */
-?>
-
-<div class="form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'users-form',
-	// Please note: When you enable ajax validation, make sure the corresponding
-	// controller action is handling ajax validation correctly.
-	// There is a call to performAjaxValidation() commented in generated controller code.
-	// See class documentation of CActiveForm for details on this.
-	'enableAjaxValidation'=>false,
-)); ?>
-
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
-
-	<?php echo $form->errorSummary($model); ?>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'email'); ?>
-		<?php echo $form->textField($model,'email',array('size'=>50,'maxlength'=>50)); ?>
-		<?php echo $form->error($model,'email'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'password'); ?>
-		<?php echo $form->passwordField($model,'password',array('size'=>60,'maxlength'=>64)); ?>
-		<?php echo $form->error($model,'password'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'source'); ?>
-		<?php echo $form->textField($model,'source',array('size'=>8,'maxlength'=>8)); ?>
-		<?php echo $form->error($model,'source'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'extra'); ?>
-		<?php echo $form->textField($model,'extra',array('size'=>30,'maxlength'=>30)); ?>
-		<?php echo $form->error($model,'extra'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'status'); ?>
-		<?php echo $form->textField($model,'status'); ?>
-		<?php echo $form->error($model,'status'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'created_on'); ?>
-		<?php echo $form->textField($model,'created_on',array('size'=>20,'maxlength'=>20)); ?>
-		<?php echo $form->error($model,'created_on'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'updated_on'); ?>
-		<?php echo $form->textField($model,'updated_on',array('size'=>20,'maxlength'=>20)); ?>
-		<?php echo $form->error($model,'updated_on'); ?>
-	</div>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
-	</div>
-
-<?php $this->endWidget(); ?>
-
-</div><!-- form -->
+<section>
+<!-- InstanceBeginEditable name="EditRegionSection" -->
+    <div class="personal-container container">
+        <?php $form=$this->beginWidget('CActiveForm', array(
+                'id'=>'owner-form'
+        )); ?>
+    	<div class="row">
+        	<div class="span12">
+				<ul class="form-list">
+                    <li class="fields info-account">
+                        <h2 class="legend">info account</h2>
+                    </li>
+                    <li class="fields set2">
+                        <div class="field">
+                            <?php echo $form->labelEx($model,'first_name'); ?>
+                            <div class="input-box">
+                                <?php echo $form->textField($model,'first_name', array('class' => 'input-field x-medium')); ?>
+                            </div>
+                            <?php echo $form->error($model,'first_name'); ?>
+                        </div>
+                        <div class="field">
+                            <?php echo $form->labelEx($model,'last_name'); ?>
+                            <div class="input-box">
+                                <?php echo $form->textField($model,'last_name', array('class' => 'input-field x-medium')); ?>
+                            </div>
+                            <?php echo $form->error($model,'last_name'); ?>
+                        </div>
+                    </li>
+                    <li class="fields set2">
+                        <div class="field">
+                            <?php echo $form->labelEx($model,'email'); ?>
+                            <div class="input-box">
+                                <?php echo $form->textField($model,'email', array('class' => 'input-field x-medium')); ?>
+                            </div>
+                            <?php echo $form->error($model,'email'); ?>
+                        </div>
+                        <div class="field">
+                            <label class="required" for="Users_password">Password <span class="required">*</span></label>
+                            <div class="input-box">
+                                <input type="password" placeholder="Enter New Password.." class="input-field x-medium" style="height: 30px;" />
+                            </div>
+                            <?php echo $form->error($model,'password'); ?>
+                        </div>
+                    </li>
+                </ul>
+                <div class="form-action text-center">
+                    <div class="button-sets">
+                        <button class="button">
+                            <span>
+                                <span>
+                                    Save Changes
+                                </span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php $this->endWidget(); ?>
+    </div>
+<!-- InstanceEndEditable -->
+    <div class="breadcrumbs">
+	    <ul class="container">
+		    <li>
+            	<a href="#">Home</a>
+                <span>/</span>
+			</li>
+		    <li>
+            	<strong>Active</strong>
+			</li>
+	    </ul>
+    </div>
+</section><!-- SECTION - END -->
