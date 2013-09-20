@@ -20,27 +20,25 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="traveller">
                     <?php $form=$this->beginWidget('CActiveForm', array(
-                            'id'=>'login-form',
-                            'enableClientValidation'=>true,
-                            'clientOptions'=>array(
-                                    'validateOnSubmit'=>true,
-                            ),
+                            'id'=>'traveler-form'
                     )); ?>
                     <div class="tab-wrap">
                         <ul class="form-list">
                             <li class="fields set2">
-                                
+                                <input type="hidden" name="_t" value="<?php echo Users::ROLE_TRAVELER ?>" />
                                 <div class="field">
                                     <?php echo $form->labelEx($model,'first_name'); ?>
                                     <div class="input-box">
                                         <?php echo $form->textField($model,'first_name', array('class' => 'input-field medium')); ?>
                                     </div>
+                                    <?php echo $form->error($model,'first_name'); ?>
                                 </div>
                                 <div class="field">
                                     <?php echo $form->labelEx($model,'last_name'); ?>
                                     <div class="input-box">
                                         <?php echo $form->textField($model,'last_name', array('class' => 'input-field medium')); ?>
                                     </div>
+                                    <?php echo $form->error($model,'last_name'); ?>
                                 </div>
                             </li>
                             <li class="fields set2">
@@ -49,6 +47,7 @@
                                     <div class="input-box">
                                         <?php echo $form->textField($model,'email', array('class' => 'input-field medium')); ?>
                                     </div>
+                                    <?php echo $form->error($model,'email'); ?>
                                 </div>
                                 <div class="field">
                                     <label>Confirm your e-mail</label>
@@ -57,6 +56,23 @@
                                     </div>
                                 </div>
                             </li>
+                            
+                            <li class="fields set2">
+                                <div class="field">
+                                    <label class="required" for="Users_password">Password <span class="required">*</span></label>
+                                    <div class="input-box">
+                                        <?php echo $form->passwordField($model,'password', array('class' => 'input-field medium')); ?>
+                                    </div>
+                                    <?php echo $form->error($model,'password'); ?>
+                                </div>
+                                <div class="field">
+                                    <label>Confirm Password</label>
+                                    <div class="input-box">
+                                        <input type="password"  class="input-field medium" value="" />
+                                    </div>
+                                </div>
+                            </li>
+                            
                             <li class="fields">
                                 <div class="note-accept">
                                     <div class="input-box">
@@ -88,37 +104,37 @@
                 </div>
                 <div class="tab-pane" id="property_owner">
                     <?php $form=$this->beginWidget('CActiveForm', array(
-                        'id'=>'login-form',
-                        'enableClientValidation'=>true,
-                        'clientOptions'=>array(
-                                'validateOnSubmit'=>true,
-                        ),
-                )); ?>
+                            'id'=>'owner-form'
+                    )); ?>
                     <div class="tab-wrap">
+                        <input type="hidden" name="_t" value="<?php echo Users::ROLE_OWNER ?>" />
                     	<ul class="form-list">
                         	<li class="fields info-account">
                             	<h2 class="legend">info account</h2>
                             </li>
                             <li class="fields set2">
                                 <div class="field">
-                                    <label>Name</label>
+                                    <?php echo $form->labelEx($model,'first_name'); ?>
                                     <div class="input-box">
-                                        <input type="text" class="input-field medium" value="" />
+                                        <?php echo $form->textField($model,'first_name', array('class' => 'input-field medium')); ?>
                                     </div>
+                                    <?php echo $form->error($model,'first_name'); ?>
                                 </div>
                                 <div class="field">
-                                    <label>Surname</label>
+                                    <?php echo $form->labelEx($model,'last_name'); ?>
                                     <div class="input-box">
-                                        <input type="text" class="input-field medium" value="" />
+                                        <?php echo $form->textField($model,'last_name', array('class' => 'input-field medium')); ?>
                                     </div>
+                                    <?php echo $form->error($model,'last_name'); ?>
                                 </div>
                             </li>
                             <li class="fields set2">
                                 <div class="field">
-                                    <label>E-mail</label>
+                                    <?php echo $form->labelEx($model,'email'); ?>
                                     <div class="input-box">
-                                        <input type="text" class="input-field medium" value="" />
+                                        <?php echo $form->textField($model,'email', array('class' => 'input-field medium')); ?>
                                     </div>
+                                    <?php echo $form->error($model,'email'); ?>
                                 </div>
                                 <div class="field">
                                     <label>Confirm your e-mail</label>
@@ -127,17 +143,36 @@
                                     </div>
                                 </div>
                             </li>
+                            
+                            <li class="fields set2">
+                                <div class="field">
+                                    <label class="required" for="Users_password">Password <span class="required">*</span></label>
+                                    <div class="input-box">
+                                        <?php echo $form->passwordField($model,'password', array('class' => 'input-field medium')); ?>
+                                    </div>
+                                    <?php echo $form->error($model,'password'); ?>
+                                </div>
+                                <div class="field">
+                                    <label>Confirm Password</label>
+                                    <div class="input-box">
+                                        <input type="password"  class="input-field medium" value="" />
+                                    </div>
+                                </div>
+                            </li>
+                            
                             <li class="fields information-structure">
                             	<h2 class="legend">information structure</h2>
                             </li>
+                            
                             <li class="fields">
-	                            <div class="field">
-                                    <label>Property name</label>
+                                <div class="field">
+                                    <?php echo $form->labelEx($property,'title'); ?>
                                     <div class="input-box">
-                                        <input type="text" class="input-field large" value="" />
+                                        <?php echo $form->textField($property,'title', array('class' => 'input-field medium')); ?>
                                     </div>
+                                    <?php echo $form->error($property,'title'); ?>
                                 </div>
-							</li>
+                            </li>
                             <li class="fields set4">
                                 <div class="field">
                                     <label>Type of establishment</label>
@@ -148,36 +183,52 @@
                                     </div>
                                 </div>
                                 <div class="field">
-                                    <label>Minimum No. of people</label>
+                                    <?php echo $form->labelEx($property,'people_min'); ?>
                                     <div class="input-box">
-                                        <input type="text" class="input-field small" value="" />
+                                        <?php echo $form->textField($property,'people_min', array('class' => 'input-field x-small')); ?>
                                     </div>
+                                    <?php echo $form->error($property,'people_min'); ?>
                                 </div>
                                 <div class="field">
-                                    <label>Max people</label>
+                                    <?php echo $form->labelEx($property,'people_max'); ?>
                                     <div class="input-box">
-                                        <input type="text" class="input-field small" value="" />
+                                        <?php echo $form->textField($property,'people_max', array('class' => 'input-field x-small')); ?>
                                     </div>
+                                    <?php echo $form->error($property,'people_max'); ?>
                                 </div>
                                 <div class="field">
-                                    <label>Base Price</label>
+                                    <?php echo $form->labelEx($property,'base_price'); ?>
                                     <div class="input-box">
-                                        <input type="text" class="input-field x-small" value="" />
+                                        <?php echo $form->textField($property,'base_price', array('class' => 'input-field x-small')); ?>
                                     </div>
+                                    <?php echo $form->error($property,'base_price'); ?>
                                 </div>
                             </li>
                             <li class="fields set2 adresses">
                             	<div class="field">
-                                	<h2>Address</h2>
+                                    <h2>Address</h2>
                                     <p>Enter the address of your business.</p>
-                                    <label>Address</label>
                                     <div class="input-box">
-                                        <input type="text" class="input-field medium" value="" />
+                                        <?php echo $form->textField($property,'address', array('class' => 'input-field medium', 'placeholder' => 'Street Info etc.')); ?>
+                                        <?php echo $form->error($property,'address'); ?>
+                                    </div>
+                                    <div class="input-box">
+                                        <?php echo $form->textField($property,'city', array('class' => 'input-field medium', 'placeholder' => 'City..')); ?>
+                                        <?php echo $form->error($property,'city'); ?>
+                                    </div>
+                                    <div class="input-box">
+                                        <?php echo $form->textField($property,'zip_code', array('class' => 'input-field medium', 'placeholder' => 'Zip Code..')); ?>
+                                        <?php echo $form->error($property,'zip_code'); ?>
                                     </div>
                                 </div>
                                 <div class="field">
-                                	<div class="map">Map</div>
+                                	<div class="map" id="quick-map">Map</div>
                                 </div>
+                                <script type="text/javascript">
+                                    jQuery(document).ready(function() {
+                                       $('#quick-map') .gmap3();
+                                    });
+                                </script>
                             </li>
                             <li class="fields">
                                 <div class="note-accept">

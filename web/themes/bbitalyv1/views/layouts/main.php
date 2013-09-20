@@ -19,11 +19,11 @@ $asset = $theme.'/assets/';
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="<?php echo $asset ?>css/bootstrap-theme.min.css">
-
-    <!-- Latest compiled and minified JavaScript -->
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
     <script src="<?php echo $asset ?>js/jquery-1.8.2.js"></script>
     <script src="<?php echo $asset ?>js/bootstrap.min.js"></script>
     <script src="<?php echo $asset ?>js/bootstrap.custom.js"></script>
+    <script src="<?php echo $asset ?>js/gmap3.min.js"></script>
 
     <!--[if lt IE 9]>  
     <script src="js/html5.js"></script>  
@@ -36,7 +36,7 @@ $asset = $theme.'/assets/';
     <div class="navbar">
       <div class="navbar-inner">
         <div class="container">
-            <a href="index.html" class="brand"><img src="<?php echo $asset ?>img/bb_logo.png" alt="bbitaly" /></a>
+            <a href="/" class="brand"><img src="<?php echo $asset ?>img/bb_logo.png" alt="bbitaly" /></a>
             <div class="nav-mid">
                 <!--
                 <ul class="nav">

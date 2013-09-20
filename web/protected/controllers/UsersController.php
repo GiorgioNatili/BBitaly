@@ -121,7 +121,80 @@ class UsersController extends Controller
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
         
+        
         public function actionJoin() {
+            
+            /*********************************************************
+             *          Custom Authentication
+             **********************************************************/
+            $type = $this->getRequest()->getParam('_t');
+            if ( isset ($type) ) {
+                // Good. Custom signup. Check for role.
+                
+                if ( $type == Users::ROLE_OWNER || $type == Users::ROLE_TRAVELER ) {
+                    // Roles are OK. Lets create.
+                    $transaction = Yii::app()->db->beginTransaction();
+                    try {
+                        $user = new Users;
+                        $time = time();
+                        $password = $_POST['Users']['password'];
+                        $user->attributes = $_POST['Users'];
+                        $user->password = sha1($password);
+                        $user->source = Users::SOURCE_BBITALY;
+                        $user->created_on = $time;
+                        $user->updated_on = $time;
+                        
+                        if ( ! $user->save() )
+                            throw new Exception ("Unable to create a new user!", 002);
+                        
+                        // Ok, now time to assign role.
+                        Yii::app()->authManager->assign($type, $user->id);
+                        
+                        // Im Good. Log me in.
+                        $identity = new \UserIdentity($user->email, $password);
+                        $identity->authenticate();
+                        if ( $identity->errorCode === UserIdentity::ERROR_NONE ) {
+                            Yii::app()->user->login($identity);
+                        } else {
+                            throw new Exception("Unable to Login after Signup!", 004);
+                        }
+                        
+                        
+                        if ( isset($_POST['Property'])) {
+                            // Lets Insert Property and redirect to property/:id
+                            $property = new Property;
+                            $property->attributes = $_POST['Property'];
+                            $property->type = 0; // Remove this field.
+                            $property->created_on = $time;
+                            $property->uid = $user->id;
+                            // property.type needs to be implemented.
+                            if ( ! $property->save() )
+                                throw new Exception ("Unable to create a new property!", 003);
+                            
+                            
+                            $transaction->commit();
+                            $this->setFlash('success', 'Welcome Abroad! Please modify your property information.');
+                            $this->redirect('/property/update/'.$property->id);
+                        }
+                        
+                        $transaction->commit();
+                        $this->setFlash('success', 'Welcome Abroad! You are now surfing experience of BBitaly!');                        
+                        $this->redirect('/');
+                        
+                    } catch (Exception $ex) {
+                        $transaction->rollBack();
+                        throw $ex;
+                    }
+                } else {
+                    // Invalid Activity.
+                    throw new InvalidActivityException;
+                }
+                
+            }
+            
+            /*********************************************************
+             *          Facebook Authentication
+             **********************************************************/
             $error = $this->getRequest()->getParam('error');
             $error_code = $this->getRequest()->getParam('error_code');
             if ( isset($error)
@@ -197,7 +270,8 @@ class UsersController extends Controller
                 $this->redirect('/');
             
             $this->render('join', array(
-                'model' => new \Users
+                'model' => new \Users,
+                'property' => new Property
             ));
         }
 

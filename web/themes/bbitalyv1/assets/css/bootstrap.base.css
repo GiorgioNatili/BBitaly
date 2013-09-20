@@ -113,7 +113,7 @@
   .login-register-tab .tab-pane .tab-wrap .adresses p {
     font-family: Georgia, "Times New Roman", Times, serif; }
   .login-register-tab .tab-pane .tab-wrap .map {
-    height: 120px;
+    height: 200px;
     margin: 0 5px 5px 0; }
 
 .success-tab .nav-tabs li.active {
@@ -190,13 +190,13 @@
     font-size: 18px;
     font-weight: bold;
     color: #94a7b0; }
-  .form-list input[type=text] {
+  .form-list input[type=text],input[type=password] {
     height: 30px; }
     .form-list input[type=text].large {
       width: 910px; }
     .form-list input[type=text].x-large {
       width: 700px; }
-    .form-list input[type=text].medium {
+    .form-list input[type=text],input[type=password].medium {
       width: 435px; }
     .form-list input[type=text].x-medium {
       width: 275px; }
