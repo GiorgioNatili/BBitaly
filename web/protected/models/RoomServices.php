@@ -10,8 +10,8 @@
  * @property string $created_on
  *
  * The followings are the available model relations:
- * @property Services $service
  * @property Room $room
+ * @property Services $service
  */
 class RoomServices extends CActiveRecord
 {
@@ -48,8 +48,8 @@ class RoomServices extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'service' => array(self::BELONGS_TO, 'Services', 'service_id'),
 			'room' => array(self::BELONGS_TO, 'Room', 'room_id'),
+			'service' => array(self::BELONGS_TO, 'Services', 'service_id'),
 		);
 	}
 

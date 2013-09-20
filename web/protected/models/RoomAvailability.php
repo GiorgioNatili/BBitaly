@@ -16,8 +16,8 @@
  * @property string $created_on
  *
  * The followings are the available model relations:
- * @property RoomBookings $booking
  * @property Room $room
+ * @property RoomBookings $booking
  */
 class RoomAvailability extends CActiveRecord
 {
@@ -55,8 +55,8 @@ class RoomAvailability extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'booking' => array(self::BELONGS_TO, 'RoomBookings', 'booking_id'),
 			'room' => array(self::BELONGS_TO, 'Room', 'room_id'),
+			'booking' => array(self::BELONGS_TO, 'RoomBookings', 'booking_id'),
 		);
 	}
 

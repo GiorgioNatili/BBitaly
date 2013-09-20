@@ -12,8 +12,8 @@
  *
  * The followings are the available model relations:
  * @property RoomAvailability[] $roomAvailabilities
- * @property Users $user
  * @property Room $room
+ * @property Users $user
  */
 class RoomBookings extends CActiveRecord
 {
@@ -51,8 +51,8 @@ class RoomBookings extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'roomAvailabilities' => array(self::HAS_MANY, 'RoomAvailability', 'booking_id'),
-			'user' => array(self::BELONGS_TO, 'Users', 'user_id'),
 			'room' => array(self::BELONGS_TO, 'Room', 'room_id'),
+			'user' => array(self::BELONGS_TO, 'Users', 'user_id'),
 		);
 	}
 
