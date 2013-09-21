@@ -4,6 +4,7 @@
 ?>
 
 
+
 <section>
 <!-- InstanceBeginEditable name="EditRegionSection" -->
     <div class="container">
@@ -37,16 +38,5 @@
         </table>
     </div>
 <!-- InstanceEndEditable -->
-    <div class="breadcrumbs">
-	    <ul class="container">
-		    <li>
-            	<a href="#">Home</a>
-                <span>/</span>
-			</li>
-		    <li>
-            	<strong>Active</strong>
-			</li>
-	    </ul>
-    </div>
 </section><!-- SECTION - END -->
 

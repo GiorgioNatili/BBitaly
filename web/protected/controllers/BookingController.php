@@ -122,6 +122,7 @@ class BookingController extends Controller
 	 */
 	public function actionIndex()
 	{
+            $this->breadcrumbs = array('Bookings');
 		$dataProvider=new CActiveDataProvider('RoomBookings');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,

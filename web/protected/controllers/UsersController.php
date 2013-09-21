@@ -90,17 +90,29 @@ class UsersController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-            $this->layout = '//layouts/column1';
+            
+            // No bullshits. You can only update your profile.
+            if ( !Yii::app()->user->checkAccess('admin')) {
+                // Not a admin.
+                if ( $id !== Yii::app()->user->id ) {
+                    throw new IllegalProfileUpdateException;
+                }
+            }
             $model=$this->loadModel($id);
 
             // Uncomment the following line if AJAX validation is needed
             // $this->performAjaxValidation($model);
+            
+            $destination = $this->getRequest()->getParam('destination');
 
             if(isset($_POST['Users']))
             {
                     $model->attributes=$_POST['Users'];
-                    if($model->save())
-                            $this->redirect(array('view','id'=>$model->id));
+                    if($model->save()) {
+                        $this->setFlash('success', 'Your Profile information has been updated successfully!');
+                        $this->redirect(isset($destination) ? $destination : array('view','id'=>$model->id));
+                    }
+                            
             }
 
             $this->render('update',array(
