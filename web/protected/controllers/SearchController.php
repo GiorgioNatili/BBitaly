@@ -2,6 +2,9 @@
 
 class SearchController extends Controller
 {
+    
+    public $layout = '//layouts/clean';
+    
 	public function actionIndex()
 	{
 		$this->render('index');
