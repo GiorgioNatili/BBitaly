@@ -90,21 +90,22 @@ class UsersController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-		$model=$this->loadModel($id);
+            $this->layout = '//layouts/column1';
+            $model=$this->loadModel($id);
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+            // Uncomment the following line if AJAX validation is needed
+            // $this->performAjaxValidation($model);
 
-		if(isset($_POST['Users']))
-		{
-			$model->attributes=$_POST['Users'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
-		}
+            if(isset($_POST['Users']))
+            {
+                    $model->attributes=$_POST['Users'];
+                    if($model->save())
+                            $this->redirect(array('view','id'=>$model->id));
+            }
 
-		$this->render('update',array(
-			'model'=>$model,
-		));
+            $this->render('update',array(
+                    'model'=>$model,
+            ));
 	}
 
 	/**
@@ -123,6 +124,8 @@ class UsersController extends Controller
         
         
         public function actionJoin() {
+            
+            $this->layout = '//layouts/clean';
             
             /*********************************************************
              *          Custom Authentication
@@ -194,7 +197,7 @@ class UsersController extends Controller
             
             /*********************************************************
              *          Facebook Authentication
-             **********************************************************/
+             *********************************************************/
             $error = $this->getRequest()->getParam('error');
             $error_code = $this->getRequest()->getParam('error_code');
             if ( isset($error)
@@ -210,7 +213,7 @@ class UsersController extends Controller
                 $token = $fb->getAccessToken();
                 $fb->setAccessToken($token);
                 $fbid = $fb->getUser();
-                if ( isset ($fbid) ) {
+                if ( $fbid > 0 ) {
                     $user = Users::model()->findByAttributes(array(
                         'extra' => $fbid,
                         'source' => Users::SOURCE_FACEBOOK
@@ -263,6 +266,10 @@ class UsersController extends Controller
                         $this->setFlash('success', 'Welcome Abroad! You are now surfing experience of BBitaly!');
                         $this->redirect('/');
                     }
+                } else {
+                    $this->redirect(Yii::app()->facebook->getLoginUrl(array(
+                        'scopes' => 'email, publish_actions, publish_stream, share_item, status_update, user_location'
+                    )));
                 }
             }
 
