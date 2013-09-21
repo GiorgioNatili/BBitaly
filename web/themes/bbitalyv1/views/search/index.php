@@ -1,16 +1,10 @@
 <section>
 <!-- InstanceBeginEditable name="EditRegionSection" -->
 	<div class="header-banner">
-            <div class="header-img header-map" style="width: 100%; height: 400px;">
-        	
+    	<div class="header-img header-map">
+        	<img src="img/bb_listing-map.jpg" alt="" />
         </div>
-            <script>
-                jQuery(document).ready(function() {
-                   $('#header-map').gmap3();
-                });
-            </script>
     </div><!-- BANNER - END -->
-
     <div class="search-container">
 	    <div class="container">
             <div class="searchbar">
@@ -56,7 +50,6 @@
             </div>
         </div>
     </div><!-- SEARCH - END -->
-
     <div class="filter-container">
     	<div class="filter container">
         	<div class="row">
@@ -87,26 +80,25 @@
                 <div class="span3">
                 	<div class="label-text pull-left">Fascia di prezzo:</div>
                 	<div class="price-range pull-left">
-                    	<img src="<?php echo Yii::app()->theme->baseUrl ?>/assets/img/bb_range-sldie.png" alt="" />
+                    	<img src="img/bb_range-sldie.png" alt="" />
                     </div>
                 </div>
                 <div class="span3">
                 	<div class="label-text pull-left">Raggio di ricerca:</div>
                 	<div class="search-radius pull-left">
-                		<img src="<?php echo Yii::app()->theme->baseUrl ?>/assets/img/bb_range-sldie.png" alt="" />
+                		<img src="img/bb_range-sldie.png" alt="" />
                     </div>
                 </div>
             </div>
         </div>
     </div><!-- FILTER - END -->
-    
 	<div class="container result-view">
-    	<ul class="result-listing">
+    	<ul class="list-view">
         	<li class="item">
             	<div class="row">
                     <div class="span3">
                         <div class="img">
-                            <img src="<?php echo Yii::app()->theme->baseUrl ?>/assets/img/bb_list-img-1.jpg" alt="" />
+                            <img src="img/bb_list-img-1.jpg" alt="" />
                         </div>
                     </div>
                     <div class="span7">
@@ -140,7 +132,7 @@
             	<div class="row">
                     <div class="span3">
                         <div class="img">
-                            <img src="<?php echo Yii::app()->theme->baseUrl ?>/assets/img/bb_list-img-1.jpg" alt="" />
+                            <img src="img/bb_list-img-1.jpg" alt="" />
                         </div>
                     </div>
                     <div class="span7">
@@ -174,7 +166,7 @@
             	<div class="row">
                     <div class="span3">
                         <div class="img">
-                            <img src="<?php echo Yii::app()->theme->baseUrl ?>/assets/img/bb_list-img-1.jpg" alt="" />
+                            <img src="img/bb_list-img-1.jpg" alt="" />
                         </div>
                     </div>
                     <div class="span7">
@@ -208,7 +200,7 @@
             	<div class="row">
                     <div class="span3">
                         <div class="img">
-                            <img src="<?php echo Yii::app()->theme->baseUrl ?>/assets/img/bb_list-img-1.jpg" alt="" />
+                            <img src="img/bb_list-img-1.jpg" alt="" />
                         </div>
                     </div>
                     <div class="span7">
@@ -242,7 +234,7 @@
             	<div class="row">
                     <div class="span3">
                         <div class="img">
-                            <img src="<?php echo Yii::app()->theme->baseUrl ?>/assets/img/bb_list-img-1.jpg" alt="" />
+                            <img src="img/bb_list-img-1.jpg" alt="" />
                         </div>
                     </div>
                     <div class="span7">
@@ -276,7 +268,7 @@
             	<div class="row">
                     <div class="span3">
                         <div class="img">
-                            <img src="<?php echo Yii::app()->theme->baseUrl ?>/assets/img/bb_list-img-1.jpg" alt="" />
+                            <img src="img/bb_list-img-1.jpg" alt="" />
                         </div>
                     </div>
                     <div class="span7">
@@ -306,12 +298,12 @@
                     </div>
                 </div>
             </li><!-- LIST ITEM - END -->
-        </ul>
+        </ul><!-- LISIT VIEW - END -->
         <div class="row browseBar">
         	<div class="span12">
             	<a class="more" href="#">Sfoglia altri contenuti... <br><i class="icon-arrow-down"></i></a>
             </div>
-        </div>
+        </div><!-- BROWSE MORE - END -->
     </div>
 <!-- InstanceEndEditable -->
     <div class="breadcrumbs">

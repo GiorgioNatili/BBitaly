@@ -87,6 +87,21 @@ if ( $flashes ):
 
 <?php endif; ?>
 <?php echo $content ?>
+<div class="breadcrumbs">
+    <ul class="container">
+        <li>
+            <a href="#">Home</a>
+            <span>/</span>
+        </li>
+        <?php 
+        if ( isset($this->breadcrumbs) ):
+            foreach ($this->breadcrumbs as $breadcrumb ): ?>
+                <strong><?php echo $breadcrumb ?></strong>
+            <?php endforeach;
+        endif;
+        ?>
+    </ul>
+</div>
 <footer>
 	<div class="container">
     	<div class="row">

@@ -2,9 +2,7 @@
 /* @var $this FavoritesController */
 /* @var $dataProvider CActiveDataProvider */
 
-$this->breadcrumbs=array(
-	'Favorites',
-);
+
 
 $this->menu=array(
 	array('label'=>'Create Favorites', 'url'=>array('create')),
@@ -28,15 +26,5 @@ $this->menu=array(
         </div><!-- BROWSE MORE - END -->
 	</div>
 <!-- InstanceEndEditable -->
-    <div class="breadcrumbs">
-	    <ul class="container">
-		    <li>
-            	<a href="#">Home</a>
-                <span>/</span>
-			</li>
-		    <li>
-            	<strong>Active</strong>
-			</li>
-	    </ul>
-    </div>
+    
 </section><!-- SECTION - END -->
