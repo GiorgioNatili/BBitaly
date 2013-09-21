@@ -37,11 +37,13 @@ class PropertyController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'roles'=>array(Users::ROLE_ADMIN),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),
+                    array('allow',
+                        'roles' => array(Users::ROLE_ADMIN))
 		);
 	}
 
@@ -86,6 +88,8 @@ class PropertyController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+            
+            
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed

@@ -90,6 +90,14 @@ class UsersController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+            
+            // No bullshits. You can only update your profile.
+            if ( !Yii::app()->user->checkAccess('admin')) {
+                // Not a admin.
+                if ( $id !== Yii::app()->user->id ) {
+                    throw new IllegalProfileUpdateException;
+                }
+            }
             $model=$this->loadModel($id);
 
             // Uncomment the following line if AJAX validation is needed
