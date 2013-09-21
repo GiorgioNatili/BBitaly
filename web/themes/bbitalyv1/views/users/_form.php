@@ -6,7 +6,8 @@
         )); ?>
     	<div class="row">
         	<div class="span12">
-				<ul class="form-list">
+                <ul class="form-list">
+                    <?php echo Statics::destination('/users/update/'. Yii::app()->user->id); ?>
                     <li class="fields info-account">
                         <h2 class="legend">info account</h2>
                     </li>
