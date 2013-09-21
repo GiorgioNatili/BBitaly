@@ -125,6 +125,8 @@ class UsersController extends Controller
         
         public function actionJoin() {
             
+            $this->layout = '//layouts/clean';
+            
             /*********************************************************
              *          Custom Authentication
              **********************************************************/
@@ -195,7 +197,7 @@ class UsersController extends Controller
             
             /*********************************************************
              *          Facebook Authentication
-             **********************************************************/
+             *********************************************************/
             $error = $this->getRequest()->getParam('error');
             $error_code = $this->getRequest()->getParam('error_code');
             if ( isset($error)
@@ -211,7 +213,7 @@ class UsersController extends Controller
                 $token = $fb->getAccessToken();
                 $fb->setAccessToken($token);
                 $fbid = $fb->getUser();
-                if ( isset ($fbid) ) {
+                if ( $fbid > 0 ) {
                     $user = Users::model()->findByAttributes(array(
                         'extra' => $fbid,
                         'source' => Users::SOURCE_FACEBOOK
@@ -264,6 +266,10 @@ class UsersController extends Controller
                         $this->setFlash('success', 'Welcome Abroad! You are now surfing experience of BBitaly!');
                         $this->redirect('/');
                     }
+                } else {
+                    $this->redirect(Yii::app()->facebook->getLoginUrl(array(
+                        'scopes' => 'email, publish_actions, publish_stream, share_item, status_update, user_location'
+                    )));
                 }
             }
 
