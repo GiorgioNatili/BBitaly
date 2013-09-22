@@ -2,6 +2,7 @@
 /target
 catalog.xml
 bbitaly.sql
+.htaccess
 
 # Package Files #
 *.jar

@@ -5,11 +5,9 @@ defined('ENV_STAGING') or define('ENV_STAGING','staging');
 defined('ENV_PRODUCTION') or define('ENV_PRODUCTION','production');
 
 $environment = ENV_DEVELOPMENT;
+$yii='./yii-1.1.14.f0fee9/framework/yii.php';
 
 if ( $_SERVER['BBENV'] == ENV_DEVELOPMENT) {
-
-    /// Path to Yii Core.
-    $yii='/usr/src/yii-1.1.14.f0fee9/framework/yii.php';
 
     $environment = ENV_DEVELOPMENT;
 
@@ -19,8 +17,7 @@ if ( $_SERVER['BBENV'] == ENV_DEVELOPMENT) {
 } else if ( $_SERVER['BBENV'] == ENV_STAGING ) {
 
     /// Path to Yii Core.
-    $yii='/usr/src/yii-1.1.14.f0fee9/framework/yii.php';
-
+   
     defined('YII_DEBUG') or define('YII_DEBUG',true);
 
     defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
@@ -28,8 +25,6 @@ if ( $_SERVER['BBENV'] == ENV_DEVELOPMENT) {
     $environment = ENV_STAGING;
 } else if ( $_SERVER['BBENV'] == ENV_PRODUCTION ) {
     /// Path to Yii Core.
-    $yii='/httpdocs/yii-1.1.14.f0fee9/framework/yii.php';
-
     $environment = ENV_PRODUCTION;
 }
 
