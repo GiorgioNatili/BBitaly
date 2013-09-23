@@ -177,9 +177,16 @@
                                 <div class="field">
                                     <label>Type of establishment</label>
                                     <div class="input-box">
-                                        <select class="selectbox x-medium">
-                                        	<option>Type</option>
-                                        </select>
+                                        <?php 
+                                        echo $form->dropDownList(
+                                                $property,
+                                                'type',
+                                                Statics::getEstablishments(),
+                                                array(
+                                                    'class' => 'selecbox x-medium'
+                                                )
+                                                );
+                                        ?>
                                     </div>
                                 </div>
                                 <div class="field">
@@ -209,15 +216,15 @@
                                     <h2>Address</h2>
                                     <p>Enter the address of your business.</p>
                                     <div class="input-box">
-                                        <?php echo $form->textField($property,'address', array('class' => 'input-field medium', 'placeholder' => 'Street Info etc.')); ?>
+                                        <?php echo $form->textField($property,'address', array('class' => 'input-field medium fAddr', 'placeholder' => 'Street Info etc.')); ?>
                                         <?php echo $form->error($property,'address'); ?>
                                     </div>
                                     <div class="input-box">
-                                        <?php echo $form->textField($property,'city', array('class' => 'input-field medium', 'placeholder' => 'City..')); ?>
+                                        <?php echo $form->textField($property,'city', array('class' => 'input-field medium fCity', 'placeholder' => 'City..')); ?>
                                         <?php echo $form->error($property,'city'); ?>
                                     </div>
                                     <div class="input-box">
-                                        <?php echo $form->textField($property,'zip_code', array('class' => 'input-field medium', 'placeholder' => 'Zip Code..')); ?>
+                                        <?php echo $form->textField($property,'zip_code', array('class' => 'input-field medium fZipCode', 'placeholder' => 'Zip Code..')); ?>
                                         <?php echo $form->error($property,'zip_code'); ?>
                                     </div>
                                 </div>
@@ -227,6 +234,28 @@
                                 <script type="text/javascript">
                                     jQuery(document).ready(function() {
                                        $('#quick-map') .gmap3();
+                                       $('.fZipCode').blur(function(e) {
+                                           var _a = $('.fAddr').val()
+                                               , _c = $('.fCity').val()
+                                               , _z = e.target.value
+                                               , _f = '';
+                                               
+                                           _f += ( typeof _a !== 'undefined' && _a.length > 0 ) ? _a : '';
+                                           _f += ( typeof _z !== 'undefined' && _z.length > 0 ) ? ', '+_z : '';
+                                           _f += ( typeof _c !== 'undefined' && _c.length > 0 ) ? ' '+_c : '';
+                                           // Time to append country for accurate results
+                                           _f += ' Italy';
+                                           $("#quick-map").gmap3({
+                                            marker:{
+                                              address: _f
+                                            },
+                                            map:{
+                                              options:{
+                                                zoom: 14
+                                              }
+                                            }
+                                          });
+                                       });
                                     });
                                 </script>
                             </li>
