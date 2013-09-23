@@ -47,7 +47,36 @@ $asset = $theme.'/assets/';
                     'items'=>array(
                         array('label' => '<i class="icon-briefcase"></i> Account','url' => '/users/update/'. Yii::app()->user->id, 'visible'=> ! Yii::app()->user->isGuest ),
                         array('label' => '<i class="icon-lock"></i> Logout','url' => '/site/logout', 'visible'=> ! Yii::app()->user->isGuest ),
-                        array('label'=>'<i class="icon-user"></i> Log In', 'url'=>array('#'), 'visible'=>Yii::app()->user->isGuest),
+                        array('label' => '','template'=> 
+                            '<a href="#"
+                            id="popover_login" 
+                            data-placement="bottom" 
+                            rel="popover" 
+                            data-html="true" '.
+                            'data-content=\'<ul class="form-list">'.
+                            '<form method="POST" action="/site/login">'.
+                            '<li>
+                                <label>email</label>
+                                <div class="input-box">
+                                    <input type="text" placeholder="Email?" name="LoginForm[email]" class="input-field small" value="" />
+                                </div>
+                            </li>
+                            <li>
+                                <label>password</label>
+                                <div class="input-box">
+                                    <input type="password" placeholder="Your Password?" name="LoginForm[password]" class="input-field small" />
+                                </div>
+                            </li>
+                            <li class="a-center">
+                                <div class="button-sets">
+                                    <button class="button login-btn" type="submit">
+                                        <span><span>accedi</span></span>
+                                    </button>
+                                </div>
+                                <p><a href="#">hai dimenticato la password?</a></p>
+                            </li>'.
+                            '</form></ul>\'><i class="icon-user"></i> Accedi</a>'
+                        ,'itemOptions' => array('class' => 'popover-login'), 'visible'=>Yii::app()->user->isGuest),
                         array('label'=>'<i class="icon-pencil"></i> Register', 'url'=>array('users/join'), 'visible'=>Yii::app()->user->isGuest),
                         array(
                             'itemOptions ' => array('class' => 'dropdown'),
@@ -62,6 +91,7 @@ $asset = $theme.'/assets/';
                 ));
                 ?>
             </div>
+            
             <div class="social-share pull-right">
                 <a href="#"><img src="<?php echo $asset ?>img/bb_social-links.png" alt="" /></a>
             </div>
