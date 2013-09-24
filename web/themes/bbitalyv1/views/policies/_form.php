@@ -4,49 +4,52 @@
 /* @var $form CActiveForm */
 ?>
 
-<div class="form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'policies-form',
-	// Please note: When you enable ajax validation, make sure the corresponding
-	// controller action is handling ajax validation correctly.
-	// There is a call to performAjaxValidation() commented in generated controller code.
-	// See class documentation of CActiveForm for details on this.
-	'enableAjaxValidation'=>false,
-)); ?>
-
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
-
-	<?php echo $form->errorSummary($model); ?>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>50,'maxlength'=>50)); ?>
-		<?php echo $form->error($model,'name'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'description'); ?>
-		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
-		<?php echo $form->error($model,'description'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'status'); ?>
-		<?php echo $form->textField($model,'status'); ?>
-		<?php echo $form->error($model,'status'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'created_on'); ?>
-		<?php echo $form->textField($model,'created_on',array('size'=>20,'maxlength'=>20)); ?>
-		<?php echo $form->error($model,'created_on'); ?>
-	</div>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
-	</div>
-
-<?php $this->endWidget(); ?>
-
-</div><!-- form -->
+<section>
+<!-- InstanceBeginEditable name="EditRegionSection" -->
+    <div class="personal-container container">
+        <?php $form=$this->beginWidget('CActiveForm', array(
+                'id'=>'owner-form'
+        )); ?>
+    	<div class="row">
+        	<div class="span12">
+                <ul class="form-list">
+                    <li class="fields info-account">
+                        <h2 class="legend">Create Policy</h2>
+                    </li>
+                    <li class="fields set2">
+                        <div class="field">
+                            <?php echo $form->labelEx($model,'name'); ?>
+                            <div class="input-box">
+                                <?php echo $form->textField($model,'name', array('class' => 'input-field x-medium')); ?>
+                            </div>
+                            <?php echo $form->error($model,'name'); ?>
+                        </div>
+                    </li>
+                    <li class="fields set2">
+                        
+                        <div class="field">
+                            <?php echo $form->labelEx($model,'description'); ?>
+                            <div class="input-box">
+                                <?php echo $form->textArea($model,'description', array('class' => 'input-field x-large')); ?>
+                            </div>
+                            <?php echo $form->error($model,'description'); ?>
+                        </div>
+                    </li>
+                </ul>
+                <div class="form-action text-center">
+                    <div class="button-sets">
+                        <button class="button">
+                            <span>
+                                <span>
+                                    <?php echo $model->isNewRecord ? 'Create Policy' : 'Update Policty' ?>
+                                </span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php $this->endWidget(); ?>
+    </div>
+<!-- InstanceEndEditable -->
+</section><!-- SECTION - END -->

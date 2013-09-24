@@ -37,7 +37,7 @@ class Policies extends CActiveRecord
 			array('created_on', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, description, status, created_on', 'safe', 'on'=>'search'),
+			array('name, description', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -88,8 +88,6 @@ class Policies extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('description',$this->description,true);
-		$criteria->compare('status',$this->status);
-		$criteria->compare('created_on',$this->created_on,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

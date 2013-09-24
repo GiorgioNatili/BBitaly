@@ -127,6 +127,7 @@ if ( $flashes ):
         if ( isset($this->breadcrumbs) ):
             foreach ($this->breadcrumbs as $breadcrumb ): ?>
                 <strong><?php echo $breadcrumb ?></strong>
+                <span>/</span>
             <?php endforeach;
         endif;
         ?>

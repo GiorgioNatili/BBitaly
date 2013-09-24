@@ -9,6 +9,9 @@
  * @property string $lang_english
  * @property string $lang_german
  * @property string $lang_portugese
+ * @property string $lang_neapolitan
+ * @property string $lang_french
+ * @property string $lang_spanish
  * @property string $created_on
  *
  * The followings are the available model relations:
@@ -32,12 +35,12 @@ class Descriptions extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('lang_italian, created_on', 'required'),
+			array('lang_italian, lang_neapolitan, lang_french, lang_spanish, created_on', 'required'),
 			array('created_on', 'length', 'max'=>20),
 			array('lang_english, lang_german, lang_portugese', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, lang_italian, lang_english, lang_german, lang_portugese, created_on', 'safe', 'on'=>'search'),
+			array('id, lang_italian, lang_english, lang_german, lang_portugese, lang_neapolitan, lang_french, lang_spanish, created_on', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,6 +67,9 @@ class Descriptions extends CActiveRecord
 			'lang_english' => 'Lang English',
 			'lang_german' => 'Lang German',
 			'lang_portugese' => 'Lang Portugese',
+			'lang_neapolitan' => 'Lang Neapolitan',
+			'lang_french' => 'Lang French',
+			'lang_spanish' => 'Lang Spanish',
 			'created_on' => 'Created On',
 		);
 	}
@@ -91,6 +97,9 @@ class Descriptions extends CActiveRecord
 		$criteria->compare('lang_english',$this->lang_english,true);
 		$criteria->compare('lang_german',$this->lang_german,true);
 		$criteria->compare('lang_portugese',$this->lang_portugese,true);
+		$criteria->compare('lang_neapolitan',$this->lang_neapolitan,true);
+		$criteria->compare('lang_french',$this->lang_french,true);
+		$criteria->compare('lang_spanish',$this->lang_spanish,true);
 		$criteria->compare('created_on',$this->created_on,true);
 
 		return new CActiveDataProvider($this, array(

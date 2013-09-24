@@ -6,7 +6,7 @@ class PropertyController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/column1';
 
 	/**
 	 * @return array action filters
@@ -65,6 +65,7 @@ class PropertyController extends Controller
 	public function actionCreate()
 	{
 		$model=new Property;
+                $policies = Policies::model()->findAllByAttributes(array('status' => 1));
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -77,7 +78,8 @@ class PropertyController extends Controller
 		}
 
 		$this->render('create',array(
-			'model'=>$model,
+                    'model'=>$model,
+                    'policies' => $policies
 		));
 	}
 
@@ -88,23 +90,24 @@ class PropertyController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+            $policies = Policies::model()->findAllByAttributes(array('status' => 1));
+            $model=$this->loadModel($id);
             
-            
-		$model=$this->loadModel($id);
+            //echo "<pre>";            print_r($model->descRelations); exit;
+            // Uncomment the following line if AJAX validation is needed
+            // $this->performAjaxValidation($model);
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+            if(isset($_POST['Property']))
+            {
+                    $model->attributes=$_POST['Property'];
+                    if($model->save())
+                            $this->redirect(array('view','id'=>$model->id));
+            }
 
-		if(isset($_POST['Property']))
-		{
-			$model->attributes=$_POST['Property'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
-		}
-
-		$this->render('update',array(
-			'model'=>$model,
-		));
+            $this->render('update',array(
+                'model'=>$model,
+                'policies' => $policies
+            ));
 	}
 
 	/**

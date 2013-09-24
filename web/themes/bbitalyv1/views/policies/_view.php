@@ -3,27 +3,12 @@
 /* @var $data Policies */
 ?>
 
-<div class="view">
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id'=>$data->id)); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('name')); ?>:</b>
-	<?php echo CHtml::encode($data->name); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('description')); ?>:</b>
-	<?php echo CHtml::encode($data->description); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('status')); ?>:</b>
-	<?php echo CHtml::encode($data->status); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('created_on')); ?>:</b>
-	<?php echo CHtml::encode($data->created_on); ?>
-	<br />
-
-
-</div>
+<tr>
+    <td class="first">
+        <h5><?php echo ucfirst($data->name) ?></h5>
+    </td>
+    <td><p><?php echo substr($data->description, 1,100) ?>...</p></td>
+    <td class="last">
+        <a href="/policies/update/<?php echo $data->id ?>">Update</a>
+    </td>
+</tr>
