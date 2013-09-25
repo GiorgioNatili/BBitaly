@@ -129,10 +129,20 @@ class PropertyController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Property');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
+		//$dataProvider=new CActiveDataProvider('Property');
+            if ( Yii::app()->user->checkAccess('admin')) {
+                $dataProvider=new CActiveDataProvider('Property');
+            } else if ( Yii::app()->user->checkAccess('owner')) {
+                $dataProvider=new CActiveDataProvider('Property', array(
+                    'criteria' => new CDbCriteria(array(
+                        'condition' => 'uid = '.$this->getUser()->id
+                    ))
+                ));
+            }
+            
+            $this->render('index',array(
+                'dataProvider'  =>  $dataProvider,
+            ));
 	}
 
 	/**
