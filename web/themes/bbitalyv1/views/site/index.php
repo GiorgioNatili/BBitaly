@@ -129,7 +129,7 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="suggested_itinerary">
-                	<ul class="itinierary-list">
+                    <ul class="itinierary-list">
                     	<li class="item col2-set">
                             <div class="col1">
                                 <div class="img"><img src="<?php echo Yii::app()->theme->baseUrl ?>/assets/img/suggested-itinerary-img1.jpg" alt="" /></div>
@@ -170,18 +170,15 @@
                             </div>
                         </li>
                     </ul>
-                </div>
-                <div class="tab-pane" id="featured_bb">.2..</div>
-                <div class="tab-pane" id="most_popular">.31..</div>
-            </div>
-		</div><!-- HOME TAB - END -->
-        <div class="row browseBar">
-        	<div class="span12">
-            	<a href="#" class="more bg-blue">Browse other content <br><i class="icon-arrow-down"></i></a>
-            </div>
+                    <div class="row browseBar">
+                    <div class="span12">
+                        <a href="#" class="more bg-blue">Browse other content <br><i class="icon-arrow-down"></i></a>
+                    </div>
         </div><!-- BROWSE MORE -->
-        <div class="container">
-        	<ul class="quick-list green-list row">
+                </div>
+                <div class="tab-pane" id="featured_bb">
+                    <!-- Featured -->
+                    <ul class="quick-list green-list row">
             	<li class="span6 box">
                 	<div class="img b20-4s">
                     	<img src="<?php echo Yii::app()->theme->baseUrl ?>/assets/img/bb_list-img-1.jpg" alt="" />
@@ -235,13 +232,14 @@
                     <p><i class="icon-arrow-down"></i> Frattamaggiore localita molto lunga / Napoli</p>
                 </li>
             </ul>
-        </div><!-- LIST CONTAINER - END -->
         <div class="row browseBar">
         	<div class="span12">
             	<a href="#" class="more bg-green">Browse other content <br><i class="icon-arrow-down"></i></a>
             </div>
         </div><!-- BROWSE MORE -->
-        <div class="container">
+                </div>
+                <div class="tab-pane" id="most_popular">
+                    <div class="container">
         	<ul class="quick-list red-list row">
             	<li class="span6 box">
                 	<div class="bb-like-heart">
@@ -315,6 +313,11 @@
             	<a href="#" class="more bg-red">Browse other content <br><i class="icon-arrow-down"></i></a>
             </div>
         </div><!-- BROWSE MORE -->
+                </div>
+            </div>
+		</div><!-- HOME TAB - END -->
+        
+        
     </div>
     <!-- InstanceEndEditable -->
 </section><!-- SECTION - END -->
