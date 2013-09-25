@@ -1,3 +1,4 @@
+
 <?php
 /* @var $this PropertyController */
 /* @var $model Property */
@@ -93,20 +94,69 @@
                             </li>
                             <li class="fields set2">
                                 <div class="field">
-                                    <h2>indirizzo</h2>
-                                    <p>Insirisci l'indirizzo della tua struttura.</p>
-                                    <label>Indirizzo</label>                                    
+                                    <h2>Address</h2>
+                                    <p>Enter the address of your business.</p>
                                     <div class="input-box">
-                                        <?php echo $form->textField($model,'address', array('class' => 'input-field medium text-left')); ?>
-                                        <?php echo $form->textField($model,'city', array('class' => 'input-field medium text-left')); ?>
-                                        <?php echo $form->textField($model,'zip_code', array('class' => 'input-field medium text-left')); ?>
+                                        <?php echo $form->textField($model,'address', array('class' => 'input-field medium fAddr', 'placeholder' => 'Street Info etc.')); ?>
+                                        <?php echo $form->error($model,'address'); ?>
+                                    </div>
+                                    <div class="input-box">
+                                        <?php echo $form->textField($model,'city', array('class' => 'input-field medium fCity', 'placeholder' => 'City..')); ?>
+                                        <?php echo $form->error($model,'city'); ?>
+                                    </div>
+                                    <div class="input-box">
+                                        <?php echo $form->textField($model,'zip_code', array('class' => 'input-field medium fZipCode', 'placeholder' => 'Zip Code..')); ?>
+                                        <?php echo $form->error($model,'zip_code'); ?>
                                     </div>
                                 </div>
                                 <div class="field">
-                                    <div class="map">
-                                        map
-                                    </div>
+                                	<div class="map" id="quick-map">Map</div>
                                 </div>
+                                <script type="text/javascript">
+                                    jQuery(document).ready(function() {
+                                       $('#quick-map').gmap3(
+                                               <?php
+                                               if ( $model->isNewRecord === false ) : ?>
+                                                  {
+                                                    marker:{
+                                                      address: "<?php echo $model->address.' '. $model->zip_code.', '. $model->city.' Italy' ?>"
+                                                    },
+                                                    map:{
+                                                      options:{
+                                                        zoom: 14
+                                                      }
+                                                    }
+                                                }
+                                               <?php else: ?>
+                                                   {}
+                                               <?php endif; ?>
+                                        );
+                                       $('.fZipCode').blur(function(e) {
+                                           console.log("Blur..");
+                                           var _a = $('.fAddr').val()
+                                               , _c = $('.fCity').val()
+                                               , _z = e.target.value
+                                               , _f = '';
+                                               
+                                           _f += ( typeof _a !== 'undefined' && _a.length > 0 ) ? _a : '';
+                                           _f += ( typeof _z !== 'undefined' && _z.length > 0 ) ? ', '+_z : '';
+                                           _f += ( typeof _c !== 'undefined' && _c.length > 0 ) ? ' ,'+_c : '';
+                                           // Time to append country for accurate results
+                                           _f += ', Italy';
+                                           console.log(_f);
+                                           $("#quick-map").gmap3({
+                                            marker:{
+                                              address: _f
+                                            },
+                                            map:{
+                                              options:{
+                                                zoom: 14
+                                              }
+                                            }
+                                          });
+                                       });
+                                    });
+                                </script>
                             </li>
                         </ul>
                     </div>
@@ -177,6 +227,66 @@
                                     <li>
                                     	<div class="img">
 	                                    	<a href="#">&nbsp;</a>
+                                        </div>
+                                        <div class="hover">
+                                        	<a href="#" class="thumb-edit">Edit</a>
+                                            <a href="#" class="thumb-delete">Delete</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                    	<div class="img">
+	                                    	<a href="#">&nbsp;</a>
+                                        </div>
+                                        <div class="hover">
+                                        	<a href="#" class="thumb-edit">Edit</a>
+                                            <a href="#" class="thumb-delete">Delete</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                                <ul class="thumb-list">
+                                	<li>
+                                    	<div class="img">
+	                                    	<a href="#"><img src="<?php echo Yii::app()->theme->baseUrl ?>/assets/img/bb_list-img-1.jpg" /></a>
+                                        </div>
+                                        <div class="hover">
+                                        	<a href="#" class="thumb-edit">Edit</a>
+                                            <a href="#" class="thumb-delete">Delete</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                    	<div class="img">
+	                                    	<a href="#">&nbsp;</a>
+                                        </div>
+                                        <div class="hover">
+                                        	<a href="#" class="thumb-edit">Edit</a>
+                                            <a href="#" class="thumb-delete">Delete</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                    	<div class="img">
+	                                    	<a href="#">&nbsp;</a>
+                                        </div>
+                                        <div class="hover">
+                                        	<a href="#" class="thumb-edit">Edit</a>
+                                            <a href="#" class="thumb-delete">Delete</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                    	<div class="img">
+	                                    	<a href="#">&nbsp;</a>
+                                        </div>
+                                        <div class="hover">
+                                        	<a href="#" class="thumb-edit">Edit</a>
+                                            <a href="#" class="thumb-delete">Delete</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                                <ul class="thumb-list">
+                                	<li>
+                                    	<div class="img">
+	                                    	<a href="#"><img src="<?php echo Yii::app()->theme->baseUrl ?>/assets/img/bb_list-img-1.jpg" /></a>
                                         </div>
                                         <div class="hover">
                                         	<a href="#" class="thumb-edit">Edit</a>
