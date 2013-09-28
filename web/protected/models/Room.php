@@ -17,13 +17,13 @@
  * @property string $host_ip
  *
  * The followings are the available model relations:
- * @property DescRelation[] $descRelations
- * @property ImagesRelation[] $imagesRelations
+ * @property Descriptions[] $descriptions
+ * @property Images[] $images
  * @property Policies $policy0
  * @property Property $property
  * @property RoomAvailability[] $roomAvailabilities
  * @property RoomBookings[] $roomBookings
- * @property RoomServices[] $roomServices
+ * @property ServicesEntity[] $servicesEntities
  */
 class Room extends CActiveRecord
 {
@@ -62,13 +62,13 @@ class Room extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'descRelations' => array(self::HAS_MANY, 'DescRelation', 'room_id'),
-			'imagesRelations' => array(self::HAS_MANY, 'ImagesRelation', 'room_id'),
+			'descriptions' => array(self::HAS_MANY, 'Descriptions', 'room_id'),
+			'images' => array(self::HAS_MANY, 'Images', 'room_id'),
 			'policy0' => array(self::BELONGS_TO, 'Policies', 'policy'),
 			'property' => array(self::BELONGS_TO, 'Property', 'property_id'),
 			'roomAvailabilities' => array(self::HAS_MANY, 'RoomAvailability', 'room_id'),
 			'roomBookings' => array(self::HAS_MANY, 'RoomBookings', 'room_id'),
-			'roomServices' => array(self::HAS_MANY, 'RoomServices', 'room_id'),
+			'servicesEntities' => array(self::HAS_MANY, 'ServicesEntity', 'room_id'),
 		);
 	}
 

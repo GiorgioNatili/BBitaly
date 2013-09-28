@@ -41,5 +41,9 @@ class Controller extends CController
     public function getUser() {
         return Yii::app()->user;
     }
+    
+    public function getAssetsUrl() {
+        return Yii::app()->theme->baseUrl.'/assets/';
+    }
 
 }

@@ -22,5 +22,14 @@ class Statics {
         
         return (func_num_args() > 0 ? $set[func_get_arg(0)] : $set);
     }
+    
+    static function getSalutations() {
+        return array(
+            1   => 'Mr.',
+            2   => 'Ms.',
+            3   => 'Mrs.',
+            4   => 'Dr.'
+        );
+    }
 }
 ?>

@@ -697,7 +697,7 @@ ul.list-view {
     background-color: white;
     position: relative;
     float: left;
-    margin: 0 0 20px 20px;
+    margin: 0 0 0 20px;
     width: 140px;
     height: 90px; }
     .photo-gallery .thumb-list li .img a {
@@ -728,7 +728,7 @@ ul.list-view {
       display: block; }
 .photo-gallery .thumb-nav {
   background: url(../img/bb_thumb-nav-bg.png) no-repeat;
-  margin: 0 auto;
+  margin: 20px auto 0;
   width: 200px;
   height: 30px; }
   .photo-gallery .thumb-nav .thumb-prev {
@@ -822,6 +822,30 @@ button.login-btn {
   button.login-btn span {
     font-size: 18px;
     font-weight: normal; }
+button.booking-btn {
+  min-width: 420px;
+  height: 80px;
+  padding: 20px;
+  background: #ededed;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #6ab023 0%, #6ab023 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #6ab023), color-stop(100%, #6ab023));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #6ab023 0%, #6ab023 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #6ab023 0%, #6ab023 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #6ab023 0%, #6ab023 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #6ab023 0%, #6ab023 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$top', endColorstr='$bottom',GradientType=0 );
+  /* IE6-9 */
+  border: 1px solid #5f9e1f;
+  border-radius: 15px;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px; }
 
 a.button {
   border-radius: 5px;
@@ -1075,3 +1099,211 @@ textarea {
     .policy-list li p {
       font-size: 16px;
       color: #666666; }
+
+.itinerary-container .banner {
+  margin-bottom: 20px; }
+
+.itinerary-list {
+  margin: 0;
+  padding: 0; }
+  .itinerary-list .item {
+    background-color: #e6f5fc;
+    border: 3px solid transparent;
+    border-radius: 20px;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    position: relative; }
+    .itinerary-list .item .itinerary-block {
+      position: relative;
+      border: 0;
+      margin: 0;
+      border-radius: 15px;
+      -moz-border-radius: 15px;
+      -webkit-border-radius: 15px; }
+      .itinerary-list .item .itinerary-block .img {
+        height: 115px;
+        text-align: center;
+        background: white; }
+    .itinerary-list .item .itinerary-content {
+      padding: 20px; }
+    .itinerary-list .item h2 {
+      font-size: 26px;
+      font-weight: bold; }
+    .itinerary-list .item h4 {
+      color: #94a7b0;
+      margin-bottom: 3px; }
+    .itinerary-list .item .info {
+      padding: 10px 10px 0 20px;
+      font-size: 16px; }
+      .itinerary-list .item .info p {
+        margin-bottom: 5px; }
+    .itinerary-list .item .description {
+      position: relative;
+      margin-bottom: 25px;
+      padding-right: 20px; }
+    .itinerary-list .item .map {
+      height: 330px;
+      margin-bottom: 25px; }
+    .itinerary-list .item .edit-link {
+      position: absolute;
+      right: 0;
+      top: 10px; }
+    .itinerary-list .item .itinerary-block .edit-link {
+      right: 20px;
+      top: 40px; }
+    .itinerary-list .item .medium {
+      width: 390px;
+      margin-bottom: 4px; }
+    .itinerary-list .item .large {
+      width: 880px; }
+    .itinerary-list .item:hover {
+      background-color: #CCECF9;
+      border-color: #009EE0;
+      box-shadow: 0 0 5px 0 #555555; }
+    .itinerary-list .item.i-expand .itinerary-block, .itinerary-list .item.i-edit .itinerary-block {
+      border-bottom-left-radius: 0;
+      -moz-border-radius-bottomleft: 0;
+      -webkit-border-bottom-left-radius: 0; }
+      .itinerary-list .item.i-expand .itinerary-block .img-edit, .itinerary-list .item.i-edit .itinerary-block .img-edit {
+        height: 105px;
+        border: 5px solid #99d8f3;
+        border-top-left-radius: 15px;
+        -moz-border-radius-topleft: 15px;
+        -webkit-border-top-left-radius: 15px;
+        -moz-box-shadow: inset 0 0 30px #cccccc;
+        -webkit-box-shadow: inset 0 0 30px #cccccc;
+        box-shadow: inset 0 0 30px #cccccc; }
+
+.itinerary-stages ul {
+  background: url(../img/bb_itinierary-stages-line.jpg) repeat-y 10px 0;
+  margin-bottom: 25px;
+  padding-bottom: 5px; }
+  .itinerary-stages ul li {
+    overflow: hidden;
+    background: none;
+    border: 0;
+    margin: 0 0 10px; }
+    .itinerary-stages ul li .count {
+      background: url(../img/bb_itinierary-stages-count.png) no-repeat;
+      height: 28px;
+      width: 21px;
+      float: left;
+      margin: 9px 10px 0 0;
+      color: white;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      line-height: 22px;
+      font-family: Arial,Helvetica,sans-serif; }
+    .itinerary-stages ul li .outcome {
+      font-weight: bold;
+      font-size: 16px;
+      color: #94a7b0;
+      height: 24px;
+      line-height: 22px;
+      padding: 8px 5px 8px 15px;
+      margin-left: 31px;
+      background: white;
+      border: 1px solid #cccccc;
+      border-radius: 30px;
+      -moz-border-radius: 30px;
+      -webkit-border-radius: 30px; }
+      .itinerary-stages ul li .outcome .name,
+      .itinerary-stages ul li .outcome .date,
+      .itinerary-stages ul li .outcome .day,
+      .itinerary-stages ul li .outcome .name {
+        padding-right: 10px;
+        margin-right: 10px;
+        float: left;
+        border-right: 1px solid #d4dcdf;
+        overflow: hidden;
+        height: 24px; }
+      .itinerary-stages ul li .outcome .delete {
+        float: left; }
+      .itinerary-stages ul li .outcome .name {
+        width: 425px; }
+      .itinerary-stages ul li .outcome .date {
+        width: 130px; }
+      .itinerary-stages ul li .outcome .day {
+        width: 60px; }
+    .itinerary-stages ul li.add-outcome .outcome {
+      border: 0;
+      color: white;
+      float: left;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      height: 42px; }
+      .itinerary-stages ul li.add-outcome .outcome a {
+        display: block;
+        background: #009ee0;
+        padding: 10px 0;
+        color: white;
+        text-decoration: none;
+        border-radius: 30px;
+        -moz-border-radius: 30px;
+        -webkit-border-radius: 30px; }
+        .itinerary-stages ul li.add-outcome .outcome a:hover {
+          background: #66c5ec; }
+      .itinerary-stages ul li.add-outcome .outcome .name {
+        border: 0;
+        padding: 0;
+        margin: 0;
+        height: 42px; }
+
+.jcarousel-skin-tango .jcarousel-container {
+  width: 668px;
+  padding: 0; }
+.jcarousel-skin-tango .jcarousel-clip {
+  overflow: hidden; }
+.jcarousel-skin-tango .jcarousel-item {
+  width: 140px;
+  height: 90px;
+  margin: 0 20px 0 0 !important; }
+  .jcarousel-skin-tango .jcarousel-item:first-child {
+    margin-left: 0; }
+.jcarousel-skin-tango .jcarousel-item-placeholder {
+  background: #fff;
+  color: #000; }
+.jcarousel-skin-tango .jcarousel-next {
+  position: absolute;
+  bottom: -46px;
+  right: 240px;
+  width: 15px;
+  height: 22px;
+  cursor: pointer;
+  background: transparent url(../img/next-horizontal.png) no-repeat -44px 0; }
+  .jcarousel-skin-tango .jcarousel-next:hover, .jcarousel-skin-tango .jcarousel-next:focus {
+    background-position: -30px 0; }
+  .jcarousel-skin-tango .jcarousel-next.active {
+    background-position: -15px 0; }
+.jcarousel-skin-tango .jcarousel-next-disabled,
+.jcarousel-skin-tango .jcarousel-next-disabled:hover,
+.jcarousel-skin-tango .jcarousel-next-disabled:focus,
+.jcarousel-skin-tango .jcarousel-next-disabled:active {
+  cursor: default;
+  background-position: 0 0; }
+.jcarousel-skin-tango .jcarousel-prev {
+  position: absolute;
+  bottom: -46px;
+  left: 246px;
+  width: 15px;
+  height: 22px;
+  cursor: pointer;
+  background: transparent url(../img/prev-horizontal.png) no-repeat 0 0; }
+  .jcarousel-skin-tango .jcarousel-prev:hover, .jcarousel-skin-tango .jcarousel-prev:focus {
+    background-position: -15px 0; }
+  .jcarousel-skin-tango .jcarousel-prev.active {
+    background-position: -30px 0; }
+.jcarousel-skin-tango .jcarousel-prev-disabled,
+.jcarousel-skin-tango .jcarousel-prev-disabled:hover,
+.jcarousel-skin-tango .jcarousel-prev-disabled:focus,
+.jcarousel-skin-tango .jcarousel-prev-disabled:active {
+  cursor: default;
+  background-position: -45px 0; }
+
+.no-thumbnails .jcarousel-prev,
+.no-thumbnails .jcarousel-next {
+  display: none !important; }

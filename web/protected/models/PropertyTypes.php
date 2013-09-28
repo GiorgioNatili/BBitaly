@@ -1,26 +1,23 @@
 <?php
 
 /**
- * This is the model class for table "policies".
+ * This is the model class for table "property_types".
  *
- * The followings are the available columns in table 'policies':
+ * The followings are the available columns in table 'property_types':
  * @property integer $id
  * @property string $name
- * @property string $description
- * @property integer $status
- * @property string $created_on
  *
  * The followings are the available model relations:
- * @property Room[] $rooms
+ * @property Property[] $properties
  */
-class Policies extends CActiveRecord
+class PropertyTypes extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'policies';
+		return 'property_types';
 	}
 
 	/**
@@ -31,13 +28,11 @@ class Policies extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, description', 'required'),
-			array('status', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>50),
-			array('created_on', 'length', 'max'=>20),
+			array('name', 'required'),
+			array('name', 'length', 'max'=>30),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, description, status, created_on', 'safe', 'on'=>'search'),
+			array('id, name', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -49,7 +44,7 @@ class Policies extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'rooms' => array(self::HAS_MANY, 'Room', 'policy'),
+			'properties' => array(self::HAS_MANY, 'Property', 'type'),
 		);
 	}
 
@@ -61,9 +56,6 @@ class Policies extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
-			'description' => 'Description',
-			'status' => 'Status',
-			'created_on' => 'Created On',
 		);
 	}
 
@@ -87,9 +79,6 @@ class Policies extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('description',$this->description,true);
-		$criteria->compare('status',$this->status);
-		$criteria->compare('created_on',$this->created_on,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -100,7 +89,7 @@ class Policies extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Policies the static model class
+	 * @return PropertyTypes the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

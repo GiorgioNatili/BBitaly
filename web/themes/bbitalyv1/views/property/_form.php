@@ -178,19 +178,35 @@
                                         <li class=""><a data-toggle="tab" href="#language-pane7"><img src="<?php echo Yii::app()->theme->baseUrl ?>/assets/img/bb_flag-7.png" alt="" /></a></li>
                                     </ul>
                                     <div class="tab-content">
-                                            <?php $counter = 1; if ( isset($model->descRelations) && array_key_exists(0, $model->descRelations)): ?>
-                                                <?php foreach ($model->descRelations[0]->desc->attributes as $lang => $value): ?>
-                                                    <?php if (substr($lang, 0,4) == 'lang'): ?>
-                                                        <div class="tab-pane <?php echo $counter === 1 ? 'active' : '' ?>" id="language-pane<?php echo $counter++ ?>">
-                                                            <div class="desc">
-                                                                <div class="input-box">
-                                                                    <?php  echo $form->textArea($model->descRelations[0]->desc,$lang, array('class' => 'input-field x-large text-left')); ?>
-                                                                </div>
+                                        <?php //echo "<pre>"; print_r($model->descriptions); exit; ?>
+                                        <?php if (count($model->descriptions) >= 1): ?>
+                                            <?php $counter = 1; foreach ($model->descriptions[0]->attributes as $col => $val): ?>
+                                                <?php if (substr($col, 0,4) == 'lang'): ?>
+                                                    <div class="tab-pane <?php echo $counter === 1 ? 'active' : '' ?>" id="language-pane<?php echo $counter++ ?>">
+                                                        <div class="desc">
+                                                            <div class="input-box">
+                                                                <?php echo $form->textArea($model->descriptions[0],$col, array('class' => 'input-field x-large text-left')); ?>
                                                             </div>
                                                         </div>
-                                                    <?php endif; ?>
-                                                <?php endforeach; ?>
-                                            <?php endif; ?>
+                                                    </div>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                        <?php $counter = 1; 
+                                            if ( !empty($property_description)):
+                                            foreach ($property_description->attributes as $col => $val): 
+                                                if (substr($col, 0,4) == 'lang'): ?>
+                                                <div class="tab-pane <?php echo $counter == 1 ? 'active' : '' ?>" id="language-pane<?php echo $counter++ ?>">
+                                                    <div class="desc">
+                                                        <div class="input-box">
+                                                            <input type="text" name="Description[<?php echo $col ?>]" class="input-field x-large text-left" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        <?php endif;
+                                        endif;?>
                                     </div>
                                 </div>
                             </div>
@@ -311,13 +327,40 @@
                 <div class="tab-pane" id="account_tab_pane3">
                 	<div class="account-content">
                     	<div class="property-detail">
-                        	<div class="photo-gallery">
+                            <div class="photo-gallery">
                             	<h2 class="legend">photogallery</h2>
                                 <p>Inserisci le altre immagini della tua struttura per completare la photogallery</p>
-                                <ul class="thumb-list">
+                                <ul class="thumb-list jcarousel-skin-tango jcarousel-horizontal">
                                 	<li>
                                     	<div class="img">
-	                                    	<a href="#"><img src="<?php echo Yii::app()->theme->baseUrl ?>/assets/img/bb_list-img-1.jpg" /></a>
+                                            <a href="#"><img src="<?php echo $this->getAssetsUrl() ?>img/bb_list-img-1.jpg" /></a>
+                                        </div>
+                                        <div class="hover">
+                                        	<a href="#" class="thumb-edit">Edit</a>
+                                            <a href="#" class="thumb-delete">Delete</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                    	<div class="img">
+	                                    	<a href="#">&nbsp;</a>
+                                        </div>
+                                        <div class="hover">
+                                        	<a href="#" class="thumb-edit">Edit</a>
+                                            <a href="#" class="thumb-delete">Delete</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                    	<div class="img">
+	                                    	<a href="#">&nbsp;</a>
+                                        </div>
+                                        <div class="hover">
+                                        	<a href="#" class="thumb-edit">Edit</a>
+                                            <a href="#" class="thumb-delete">Delete</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                    	<div class="img">
+	                                    	<a href="#">&nbsp;</a>
                                         </div>
                                         <div class="hover">
                                         	<a href="#" class="thumb-edit">Edit</a>
@@ -353,14 +396,7 @@
                                     </li>
                                 </ul>
                                 <div class="clearfix"></div>
-                                <div class="thumb-nav">
-                                    <div class="thumb-next">
-                                    	<a href="#"><i class="icon-home icon-white"></i></a>
-                                    </div>
-                                    <div class="thumb-prev">
-                                    	<a href="#"><i class="icon-home icon-white"></i></a>
-                                    </div>
-                                </div>
+                                <div class="thumb-nav">&nbsp;</div>
                             </div>
                             <hr/>
                             <ul class="form-list">
@@ -371,20 +407,27 @@
                             	<li class="fields set3">
                                     <div class="field">
                                         <label>Nr. minimo di persone</label>
-                                        <div class="input-box">
-                                            <input type="text" class="input-field small" value="99">
+                                        <div
+                                            class="input-box">
+                                            <?php echo $form->textField($room,'people_min', array('class' => 'input-field small')); ?>
                                         </div>
                                     </div>
                                     <div class="field">
                                         <label>Nr. massimo di persone</label>
                                         <div class="input-box">
-                                            <input type="text" class="input-field small" value="99">
+                                            <?php echo $form->textField($room,'people_max', array('class' => 'input-field small')); ?>
                                         </div>
                                     </div>
                                     <div class="field">
-                                        <label>Prezzo base della camera</label>
+                                        <label>Prezzo base</label>
                                         <div class="input-box">
-                                            <input type="text" class="input-field small" value="999,00">
+                                            <?php echo $form->textField($room,'price', array('class' => 'input-field x-small')); ?>
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label>Total Rooms</label>
+                                        <div class="input-box">
+                                            <input type="text" name="total_rooms" value="<?php echo $model->isNewRecord ? 1 : 10 ?>" class="input-field x-small text-right" maxlength="3" />
                                         </div>
                                     </div>
                                 </li>
@@ -395,85 +438,41 @@
 							<div class="languages-pills" id="languages-pills">
                                 <div  class="tab-pane">
                                     <ul class="nav nav-pills">
-                                        <li class="active"><a data-toggle="tab" href="#language-pane1"><img src="<?php echo Yii::app()->theme->baseUrl ?>/assets/img/bb_flag-1.png" alt="" /></a></li>
-                                        <li class=""><a data-toggle="tab" href="#language-pane2"><img src="<?php echo Yii::app()->theme->baseUrl ?>/assets/img/bb_flag-2.png" alt="" /></a></li>
-                                        <li class=""><a data-toggle="tab" href="#language-pane3"><img src="<?php echo Yii::app()->theme->baseUrl ?>/assets/img/bb_flag-3.png" alt="" /></a></li>
-                                        <li class=""><a data-toggle="tab" href="#language-pane4"><img src="<?php echo Yii::app()->theme->baseUrl ?>/assets/img/bb_flag-4.png" alt="" /></a></li>
-                                        <li class=""><a data-toggle="tab" href="#language-pane5"><img src="<?php echo Yii::app()->theme->baseUrl ?>/assets/img/bb_flag-5.png" alt="" /></a></li>
-                                        <li class=""><a data-toggle="tab" href="#language-pane6"><img src="<?php echo Yii::app()->theme->baseUrl ?>/assets/img/bb_flag-6.png" alt="" /></a></li>
-                                        <li class=""><a data-toggle="tab" href="#language-pane7"><img src="<?php echo Yii::app()->theme->baseUrl ?>/assets/img/bb_flag-7.png" alt="" /></a></li>
+                                        <li class="active"><a data-toggle="tab" href="#room-desc-1"><img src="<?php echo Yii::app()->theme->baseUrl ?>/assets/img/bb_flag-1.png" alt="" /></a></li>
+                                        <li class=""><a data-toggle="tab" href="#room-desc-2"><img src="<?php echo Yii::app()->theme->baseUrl ?>/assets/img/bb_flag-2.png" alt="" /></a></li>
+                                        <li class=""><a data-toggle="tab" href="#room-desc-3"><img src="<?php echo Yii::app()->theme->baseUrl ?>/assets/img/bb_flag-3.png" alt="" /></a></li>
+                                        <li class=""><a data-toggle="tab" href="#room-desc-4"><img src="<?php echo Yii::app()->theme->baseUrl ?>/assets/img/bb_flag-4.png" alt="" /></a></li>
+                                        <li class=""><a data-toggle="tab" href="#room-desc-5"><img src="<?php echo Yii::app()->theme->baseUrl ?>/assets/img/bb_flag-5.png" alt="" /></a></li>
+                                        <li class=""><a data-toggle="tab" href="#room-desc-6"><img src="<?php echo Yii::app()->theme->baseUrl ?>/assets/img/bb_flag-6.png" alt="" /></a></li>
+                                        <li class=""><a data-toggle="tab" href="#room-desc-7"><img src="<?php echo Yii::app()->theme->baseUrl ?>/assets/img/bb_flag-7.png" alt="" /></a></li>
                                     </ul>
                                     <div class="tab-content">
-                                        <div class="tab-pane active" id="language-pane1">
-                                            <div class="desc">
-                                                <div class="input-box">
-                                                    <input type="text" class="input-field x-large" value="" />
+                                        <?php //echo "<pre>"; print_r($model->rooms[0]->descriptions[0]->attributes); exit; ?>
+                                        <?php if (count($model->descriptions) >= 1): ?>
+                                            <?php $counter = 1; foreach ($model->descriptions[0]->attributes as $col => $val): ?>
+                                                <?php if (substr($col, 0,4) == 'lang'): ?>
+                                                    <div class="tab-pane <?php echo $counter === 1 ? 'active' : '' ?>" id="room-desc-<?php echo $counter++ ?>">
+                                                        <div class="desc">
+                                                            <div class="input-box">
+                                                                <?php echo $form->textField($model->descriptions[0],$col, array('class' => 'input-field x-large text-left')); ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                            <?php $counter = 1; foreach ($room_desc->attributes as $col => $val): 
+                                                if (substr($col, 0,4) == 'lang'): ?>
+                                                <div class="tab-pane <?php echo $counter == 1 ? 'active' : '' ?>" id="room-desc-<?php echo $counter++ ?>">
+                                                    <div class="desc">
+                                                        <div class="input-box">
+                                                            <input type="text" name="Room[Description][<?php echo $col ?>]" class="input-field x-large text-left" />
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="input-box">
-                                                    <textarea class="x-large">&nbsp;</textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane" id="language-pane2">
-                                            <div class="desc">
-                                                <div class="input-box">
-                                                    <input type="text" class="input-field x-large" value="" />
-                                                </div>
-                                                <div class="input-box">
-                                                    <textarea class="x-large">&nbsp;</textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane" id="language-pane3">
-                                            <div class="desc">
-                                                <div class="input-box">
-                                                    <input type="text" class="input-field x-large" value="" />
-                                                </div>
-                                                <div class="input-box">
-                                                    <textarea class="x-large">&nbsp;</textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane" id="language-pane4">
-                                            <div class="desc">
-                                                <div class="input-box">
-                                                    <input type="text" class="input-field x-large" value="" />
-                                                </div>
-                                                <div class="input-box">
-                                                    <textarea class="x-large">&nbsp;</textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane" id="language-pane5">
-                                            <div class="desc">
-                                                <div class="input-box">
-                                                    <input type="text" class="input-field x-large" value="" />
-                                                </div>
-                                                <div class="input-box">
-                                                    <textarea class="x-large">&nbsp;</textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane" id="language-pane6">
-                                            <div class="desc">
-                                                <div class="input-box">
-                                                    <input type="text" class="input-field x-large" value="" />
-                                                </div>
-                                                <div class="input-box">
-                                                    <textarea class="x-large">&nbsp;</textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane" id="language-pane7">
-                                            <div class="desc">
-                                                <div class="input-box">
-                                                    <input type="text" class="input-field x-large" value="" />
-                                                </div>
-                                                <div class="input-box">
-                                                    <textarea class="x-large">&nbsp;</textarea>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
@@ -728,7 +727,7 @@
                             <?php foreach ($policies as $policy): ?>
                                 <li>
                                     <div class="input-box">
-                                        <button type="button" value="0" class="btn btn-radio" data-toggle="button">&nbsp;</button>
+                                        <button onclick="choosePolicy(this)"  type="button" <?php  ?> value="<?php echo $policy->id ?>" class="btn btn-radio <?php echo (($model->isNewRecord === false) && ($model->rooms[0]->policy == $policy->id) ? 'active' : '')?>" data-toggle="button">&nbsp;</button>
                                     </div>
                                     <div class="desc-box">
                                         <h2><?php echo $policy->name ?></h2>
@@ -736,6 +735,7 @@
                                     </div>
                                 </li>
                             <?php endforeach; ?>
+                                <input type="hidden" name="Room[policy]" id="fPolicy"  />
                         </ul>
                         <hr/>
                         <ul class="policy-list btn-group" data-toggle="buttons-checkbox">
@@ -762,9 +762,7 @@
                                 <div class="field">
                                     <label>Selezione</label>
                                     <div class="input-box">
-                                        <select class="selectbox medium">
-                                            <option>nome della selezione</option>
-                                        </select>
+                                        <?php echo $form->dropDownList($billing,'salutation', Statics::getSalutations(), array('class' => 'selectbox medium')) ?>
                                     </div>
                                 </div>
                             </li>
@@ -772,13 +770,13 @@
                                 <div class="field">
                                     <label>Nome</label>
                                     <div class="input-box">
-                                        <input type="text" value="Lorem ipsum dolor sit amet" class="input-field medium">
+                                        <?php echo $form->textField($billing,'first_name', array('class' => 'input-field medium')); ?>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <label>Cognome</label>
                                     <div class="input-box">
-                                        <input type="text" value="Lorem ipsum dolor sit amet" class="input-field medium">
+                                        <?php echo $form->textField($billing,'last_name', array('class' => 'input-field medium')); ?>
                                     </div>
                                 </div>
                             </li>
@@ -786,13 +784,13 @@
                                 <div class="field">
                                     <label>Email</label>
                                     <div class="input-box">
-                                        <input type="text" value="Lorem ipsum dolor sit amet" class="input-field medium">
+                                        <?php echo $form->textField($billing,'email', array('class' => 'input-field medium')); ?>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <label>Citta</label>
                                     <div class="input-box">
-                                        <input type="text" value="Lorem ipsum dolor sit amet" class="input-field medium">
+                                        <?php echo $form->textField($billing,'city', array('class' => 'input-field medium')); ?>
                                     </div>
                                 </div>
                             </li>
@@ -800,13 +798,13 @@
                                 <div class="field">
                                     <label>Indirizzo</label>
                                     <div class="input-box">
-                                        <input type="text" value="Lorem ipsum dolor sit amet" class="input-field medium">
+                                        <?php echo $form->textField($billing,'address', array('class' => 'input-field medium')); ?>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <label>Cap / zip code</label>
                                     <div class="input-box">
-                                        <input type="text" value="Lorem ipsum dolor sit amet" class="input-field medium">
+                                        <?php echo $form->textField($billing,'zip_code', array('class' => 'input-field medium')); ?>
                                     </div>
                                 </div>
                             </li>
@@ -843,6 +841,17 @@
                                     <label>Iban</label>
                                     <div class="input-box">
                                         <input type="text" value="Lorem ipsum dolor sit amet" class="input-field medium">
+                                    </div>
+                                </div>
+                                <div class="form-action text-center">
+                                    <div class="button-sets">
+                                        <button class="button">
+                                            <span>
+                                                <span>
+                                                    Create Property
+                                                </span>
+                                            </span>
+                                        </button>
                                     </div>
                                 </div>
                             </li>

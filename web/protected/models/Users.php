@@ -17,6 +17,7 @@
  *
  * The followings are the available model relations:
  * @property AuthItem[] $authItems
+ * @property Billing[] $billings
  * @property Favorites[] $favorites
  * @property Itinerary[] $itineraries
  * @property Property[] $properties
@@ -24,17 +25,15 @@
  */
 class Users extends CActiveRecord
 {
+        const SOURCE_FACEBOOK = 'facebook';
     
-    const SOURCE_FACEBOOK = 'facebook';
-    
-    const SOURCE_BBITALY = 'bbitaly';
-    
-    const ROLE_ADMIN = 'admin';
-    
-    const ROLE_TRAVELER = 'traveler';
-    
-    const ROLE_OWNER = 'owner';
-    
+        const SOURCE_BBITALY = 'bbitaly';
+
+        const ROLE_ADMIN = 'admin';
+
+        const ROLE_TRAVELER = 'traveler';
+
+        const ROLE_OWNER = 'owner';
 	/**
 	 * @return string the associated database table name
 	 */
@@ -51,13 +50,12 @@ class Users extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('first_name, last_name, email, source, created_on, updated_on', 'required'),
+			array('first_name, email, source, created_on, updated_on', 'required'),
 			array('status', 'numerical', 'integerOnly'=>true),
-			array('first_name, last_name', 'length', 'max'=>40),
+			array('first_name, last_name, extra', 'length', 'max'=>30),
 			array('email', 'length', 'max'=>50),
 			array('password', 'length', 'max'=>64),
 			array('source', 'length', 'max'=>8),
-			array('extra', 'length', 'max'=>30),
 			array('created_on, updated_on', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -74,6 +72,7 @@ class Users extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'authItems' => array(self::MANY_MANY, 'AuthItem', 'AuthAssignment(userid, itemname)'),
+			'billings' => array(self::HAS_MANY, 'Billing', 'user_id'),
 			'favorites' => array(self::HAS_MANY, 'Favorites', 'user_id'),
 			'itineraries' => array(self::HAS_MANY, 'Itinerary', 'uid'),
 			'properties' => array(self::HAS_MANY, 'Property', 'uid'),
