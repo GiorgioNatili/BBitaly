@@ -2,20 +2,13 @@
 /* @var $this PropertyController */
 /* @var $model Property */
 
-$this->breadcrumbs=array(
-	'Properties'=>array('index'),
-	$model->title=>array('view','id'=>$model->id),
-	'Update',
-);
+//echo "<pre>"; print_r($billing); exit;
 
-$this->menu=array(
-	array('label'=>'List Property', 'url'=>array('index')),
-	array('label'=>'Create Property', 'url'=>array('create')),
-	array('label'=>'View Property', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Property', 'url'=>array('admin')),
-);
-?>
-
-<h1>Update Property <?php echo $model->id; ?></h1>
-
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+$this->renderPartial('_form', array(
+    'model'=>$model,
+    'policies' => $policies,
+    'property_description' => $property_description,
+    'room_desc' => $room_description,
+    'billing'   => $billing,
+    'room'  => $room
+)); ?>

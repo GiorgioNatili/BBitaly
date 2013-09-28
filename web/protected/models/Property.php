@@ -9,21 +9,24 @@
  * @property integer $type
  * @property integer $people_min
  * @property integer $people_max
- * @property double $base_price
  * @property string $address
  * @property string $city
  * @property string $zip_code
  * @property integer $cover_image
+ * @property double $base_price
  * @property integer $uid
  * @property string $created_on
  *
  * The followings are the available model relations:
- * @property DescRelation[] $descRelations
+ * @property Billing $billing
+ * @property Descriptions[] $descriptions
  * @property Favorites[] $favorites
- * @property ImagesRelation[] $imagesRelations
+ * @property Images[] $images
  * @property Images $coverImage
+ * @property PropertyTypes $type0
  * @property Users $u
  * @property Room[] $rooms
+ * @property ServicesEntity[] $servicesEntities
  */
 class Property extends CActiveRecord
 {
@@ -52,7 +55,7 @@ class Property extends CActiveRecord
 			array('zip_code, created_on', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, title, type, people_min, people_max, base_price, address, city, zip_code, cover_image, uid, created_on', 'safe', 'on'=>'search'),
+			array('id, title, type, people_min, people_max, address, city, zip_code, cover_image, base_price, uid, created_on', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,12 +67,15 @@ class Property extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'descRelations' => array(self::HAS_MANY, 'DescRelation', 'property_id'),
+			'billing' => array(self::BELONGS_TO, 'Billing', 'property_id'),
+			'descriptions' => array(self::HAS_MANY, 'Descriptions', 'property_id'),
 			'favorites' => array(self::HAS_MANY, 'Favorites', 'property_id'),
-			'imagesRelations' => array(self::HAS_MANY, 'ImagesRelation', 'property_id'),
+			'images' => array(self::HAS_MANY, 'Images', 'property_id'),
 			'coverImage' => array(self::BELONGS_TO, 'Images', 'cover_image'),
+			'type0' => array(self::BELONGS_TO, 'PropertyTypes', 'type'),
 			'u' => array(self::BELONGS_TO, 'Users', 'uid'),
 			'rooms' => array(self::HAS_MANY, 'Room', 'property_id'),
+			'servicesEntities' => array(self::HAS_MANY, 'ServicesEntity', 'property_id'),
 		);
 	}
 
@@ -84,11 +90,11 @@ class Property extends CActiveRecord
 			'type' => 'Type',
 			'people_min' => 'People Min',
 			'people_max' => 'People Max',
-			'base_price' => 'Base Price',
 			'address' => 'Address',
 			'city' => 'City',
 			'zip_code' => 'Zip Code',
 			'cover_image' => 'Cover Image',
+			'base_price' => 'Base Price',
 			'uid' => 'Uid',
 			'created_on' => 'Created On',
 		);
@@ -117,11 +123,11 @@ class Property extends CActiveRecord
 		$criteria->compare('type',$this->type);
 		$criteria->compare('people_min',$this->people_min);
 		$criteria->compare('people_max',$this->people_max);
-		$criteria->compare('base_price',$this->base_price);
 		$criteria->compare('address',$this->address,true);
 		$criteria->compare('city',$this->city,true);
 		$criteria->compare('zip_code',$this->zip_code,true);
 		$criteria->compare('cover_image',$this->cover_image);
+		$criteria->compare('base_price',$this->base_price);
 		$criteria->compare('uid',$this->uid);
 		$criteria->compare('created_on',$this->created_on,true);
 
@@ -140,4 +146,5 @@ class Property extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
 }

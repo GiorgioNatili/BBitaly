@@ -1,6 +1,4 @@
 <?php 
-$theme = Yii::app()->theme->baseUrl; 
-$asset = $theme.'/assets/';
 
 ?>
 <!DOCTYPE html>
@@ -13,17 +11,19 @@ $asset = $theme.'/assets/';
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="<?php echo $asset ?>css/bootstrap.min.css" media="screen">
-    <link rel="stylesheet" href="<?php echo $asset ?>css/bootstrap.base.css" media="screen">
-	<link rel="stylesheet" href="<?php echo $asset ?>css/bootstrap.icons.css" media="screen">
+    <link rel="stylesheet" href="<?php echo $this->getAssetsUrl() ?>css/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="<?php echo $this->getAssetsUrl() ?>css/bootstrap.base.css" media="screen">
+	<link rel="stylesheet" href="<?php echo $this->getAssetsUrl() ?>css/bootstrap.icons.css" media="screen">
 
     <!-- Optional theme -->
-    <link rel="stylesheet" href="<?php echo $asset ?>css/bootstrap-theme.min.css">
+    <!-- <link rel="stylesheet" href="<?php echo $this->getAssetsUrl() ?>css/bootstrap-theme.min.css"> -->
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
-    <script src="<?php echo $asset ?>js/jquery-1.8.2.js"></script>
-    <script src="<?php echo $asset ?>js/bootstrap.min.js"></script>
-    <script src="<?php echo $asset ?>js/bootstrap.custom.js"></script>
-    <script src="<?php echo $asset ?>js/gmap3.min.js"></script>
+    <script src="<?php echo $this->getAssetsUrl() ?>js/jquery-1.8.2.js"></script>
+    <script src="<?php echo $this->getAssetsUrl() ?>js/bootstrap.min.js"></script>
+    <script src="<?php echo $this->getAssetsUrl() ?>js/jquery.bootstrap.wizard.js"></script>
+    <script src="<?php echo $this->getAssetsUrl() ?>js/jquery.jcarousel.min.js"></script>
+    <script src="<?php echo $this->getAssetsUrl() ?>js/bootstrap.custom.js"></script>
+    <script src="<?php echo $this->getAssetsUrl() ?>js/gmap3.min.js"></script>
 
     <!--[if lt IE 9]>  
     <script src="js/html5.js"></script>  
@@ -36,7 +36,7 @@ $asset = $theme.'/assets/';
     <div class="navbar">
       <div class="navbar-inner">
         <div class="container">
-            <a href="/" class="brand"><img src="<?php echo $asset ?>img/bb_logo.png" alt="bbitaly" /></a>
+            <a href="/" class="brand"><img src="<?php echo $this->getAssetsUrl() ?>img/bb_logo.png" alt="bbitaly" /></a>
             <div class="nav-mid">
                 
                 <?php
@@ -82,18 +82,26 @@ $asset = $theme.'/assets/';
                             'itemOptions ' => array('class' => 'dropdown'),
                             'label' => 'llanguage', 
                             'template' =>
-                                '<a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-flag"></i> select language</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">langugae 1</a></li>
-                                    <li><a href="#">langugae 2</a></li>
-                                </ul>	'),
+                                '<ul class="nav nav-language">
+                	<li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        	<span class="county-flag"><img src="'.$this->getAssetsUrl().'img/icons/bb_country-flag1.jpg" alt="flag" /></span>
+                        	<i class="icon-flag"></i> 
+                            select language      
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">langugae 1</a></li>
+                            <li><a href="#">langugae 2</a></li>
+                        </ul>	
+                    </li>
+                </ul>'),
                     ),
                 ));
                 ?>
             </div>
             
             <div class="social-share pull-right">
-                <a href="#"><img src="<?php echo $asset ?>img/bb_social-links.png" alt="" /></a>
+                <a href="#"><img src="<?php echo $this->getAssetsUrl() ?>img/bb_social-links.png" alt="" /></a>
             </div>
         </div>
       </div>
@@ -127,6 +135,7 @@ if ( $flashes ):
         if ( isset($this->breadcrumbs) ):
             foreach ($this->breadcrumbs as $breadcrumb ): ?>
                 <strong><?php echo $breadcrumb ?></strong>
+                <span>/</span>
             <?php endforeach;
         endif;
         ?>

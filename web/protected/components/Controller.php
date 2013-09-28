@@ -37,5 +37,13 @@ class Controller extends CController
     public function setFlash($key, $message) {
         Yii::app()->user->setFlash($key, $message);
     }
+    
+    public function getUser() {
+        return Yii::app()->user;
+    }
+    
+    public function getAssetsUrl() {
+        return Yii::app()->theme->baseUrl.'/assets/';
+    }
 
 }

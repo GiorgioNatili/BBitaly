@@ -11,13 +11,24 @@ class Statics {
     }
     
     static function getEstablishments() {
-        return array(
+        $set = array(
             0   => 'Bed and breakfast',
             1   => 'House',
             2   => 'Holiday Home',
             3   => 'Residence',
             4   => 'Farms',
             5   => 'Hostels'
+        );
+        
+        return (func_num_args() > 0 ? $set[func_get_arg(0)] : $set);
+    }
+    
+    static function getSalutations() {
+        return array(
+            1   => 'Mr.',
+            2   => 'Ms.',
+            3   => 'Mrs.',
+            4   => 'Dr.'
         );
     }
 }

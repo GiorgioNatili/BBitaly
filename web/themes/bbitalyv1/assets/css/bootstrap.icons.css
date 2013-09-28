@@ -28,3 +28,90 @@
 	background-position: -88px 0;
 	width: 20px;
 }
+.icon-user,
+.icon-edit,
+.icon-flag {
+	background:url(../img/icons/bb_user.png) no-repeat 0 0;
+	width: 22px;
+	height: 22px;
+	margin: -6px 5px 0 0;
+}
+.icon-edit {
+	background-image:url(../img/icons/bb_edit.png);
+}
+.icon-flag {
+	background-image:url(../img/icons/bb_flag.png);
+	margin-right: 0;
+}
+.icon-checkin,
+.icon-checkout {
+	background:url(../img/icons/bb_checkin.png) no-repeat 0 0;
+	width: 25px;
+	height: 18px;
+	margin-left: 10px;
+	margin-top: -1px;
+}
+.icon-checkout {
+	background-image:url(../img/icons/bb_checkout.png);
+}
+.icon-users {
+	background:url(../img/icons/bb_users.png) no-repeat 0 0;
+	width: 25px;
+	height: 16px;
+	margin-left: 10px;
+}
+.icon-price {
+	background:url(../img/icons/bb_price.png) no-repeat 0 0;
+	width: 24px;
+	height: 25px;
+	margin-right: 5px;
+}
+.icon-favourite {
+	background:url(../img/icons/bb_favourite.png) no-repeat 0 0;
+	width: 28px;
+	height: 25px;
+	margin-right: 5px;
+}
+.icon-favourite-big {
+	background:url(../img/icons/bb_favourite2.png) no-repeat 0 0;
+	width: 78px;
+	height: 71px;
+}
+.icon-tab-itinerary {
+	background:url(../img/icons/bb_tab-itinerary.png) no-repeat 0 0;
+	width: 32px;
+	height: 36px;
+	margin-right: 10px;
+}
+.nav-tabs .active .icon-tab-itinerary {
+	background-image:url(../img/icons/bb_tab-itinerary-active.png);
+}
+.icon-tab-featured {
+	background:url(../img/icons/bb_tab-featured.png) no-repeat 0 0;
+	width: 35px;
+	height: 36px;
+	margin-right: 10px;
+}
+.nav-tabs .active .icon-tab-featured {
+	background-image:url(../img/icons/bb_tab-featured-active.png);
+}
+.icon-tab-popular {
+	background:url(../img/icons/bb_tab-popular.png) no-repeat 0 0;
+	width: 35px;
+	height: 36px;
+	margin-right: 10px;
+}
+.nav-tabs .active .icon-tab-popular {
+	background-image:url(../img/icons/bb_tab-popular-active.png);
+}
+.icon-location {
+	background:url(../img/icons/bb_location.png) no-repeat 0 0;
+	width: 14px;
+	height: 16px;
+}
+.icon-arrow-down {
+	background:url(../img/icons/bb_arrow-down.png) no-repeat 0 0;
+	width: 42px;
+	height: 24px;
+	margin-top: 12px;
+}
