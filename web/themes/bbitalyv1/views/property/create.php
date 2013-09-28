@@ -2,17 +2,11 @@
 /* @var $this PropertyController */
 /* @var $model Property */
 
-$this->breadcrumbs=array(
-	'Properties'=>array('index'),
-	'Create',
-);
-
-$this->menu=array(
-	array('label'=>'List Property', 'url'=>array('index')),
-	array('label'=>'Manage Property', 'url'=>array('admin')),
-);
-?>
-
-<h1>Create Property</h1>
-
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+$this->renderPartial('_form', array(
+    'model'=>$model,
+    'policies' => $policies,
+    'property_description' => $property_description,
+    'room_desc' => $room_description,
+    'billing'   => $billing,
+    'room'  => $room
+)); ?>

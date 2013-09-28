@@ -2,19 +2,31 @@
 /* @var $this PoliciesController */
 /* @var $dataProvider CActiveDataProvider */
 
-$this->breadcrumbs=array(
-	'Policies',
-);
-
-$this->menu=array(
-	array('label'=>'Create Policies', 'url'=>array('create')),
-	array('label'=>'Manage Policies', 'url'=>array('admin')),
-);
 ?>
 
-<h1>Policies</h1>
-
-<?php $this->widget('zii.widgets.CListView', array(
-	'dataProvider'=>$dataProvider,
-	'itemView'=>'_view',
-)); ?>
+<section>
+<!-- InstanceBeginEditable name="EditRegionSection" -->
+    <div class="container">
+    	<table class="data-table" cellpadding="0" cellspacing="0" width="100%">
+        	<colgroup>
+            	<col />
+                <col />
+                <col />
+            </colgroup>
+            <thead>
+            	<tr>
+                    <th class="first">Name</th>
+                    <th>Description</th>
+                    <th class="last pull-center">&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $this->widget('zii.widgets.CListView', array(
+                        'dataProvider'=>$dataProvider,
+                        'itemView'=>'_view',
+                )); ?>
+            </tbody>
+        </table>
+    </div>
+<!-- InstanceEndEditable -->
+</section><!-- SECTION - END --

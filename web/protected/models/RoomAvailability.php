@@ -123,4 +123,5 @@ class RoomAvailability extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
 }

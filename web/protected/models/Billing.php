@@ -5,6 +5,9 @@
  *
  * The followings are the available columns in table 'billing':
  * @property integer $id
+ * @property integer $user_id
+ * @property integer $property_id
+ * @property integer $salutation
  * @property string $first_name
  * @property string $last_name
  * @property string $email
@@ -12,6 +15,10 @@
  * @property string $address
  * @property string $zip_code
  * @property string $created_on
+ *
+ * The followings are the available model relations:
+ * @property Property $property
+ * @property Users $user
  */
 class Billing extends CActiveRecord
 {
@@ -31,8 +38,8 @@ class Billing extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, first_name, last_name, email, city, address, zip_code', 'required'),
-			array('id', 'numerical', 'integerOnly'=>true),
+			array('user_id, property_id, salutation, first_name, last_name, email, city, address, zip_code', 'required'),
+			array('user_id, property_id, salutation', 'numerical', 'integerOnly'=>true),
 			array('first_name, last_name', 'length', 'max'=>30),
 			array('email', 'length', 'max'=>50),
 			array('city', 'length', 'max'=>40),
@@ -40,7 +47,7 @@ class Billing extends CActiveRecord
 			array('zip_code, created_on', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, first_name, last_name, email, city, address, zip_code, created_on', 'safe', 'on'=>'search'),
+			array('id, user_id, property_id, salutation, first_name, last_name, email, city, address, zip_code, created_on', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -52,6 +59,8 @@ class Billing extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'property' => array(self::BELONGS_TO, 'Property', 'property_id'),
+			'user' => array(self::BELONGS_TO, 'Users', 'user_id'),
 		);
 	}
 
@@ -62,6 +71,9 @@ class Billing extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+			'user_id' => 'User',
+			'property_id' => 'Property',
+			'salutation' => 'Salutation',
 			'first_name' => 'First Name',
 			'last_name' => 'Last Name',
 			'email' => 'Email',
@@ -91,6 +103,9 @@ class Billing extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
+		$criteria->compare('user_id',$this->user_id);
+		$criteria->compare('property_id',$this->property_id);
+		$criteria->compare('salutation',$this->salutation);
 		$criteria->compare('first_name',$this->first_name,true);
 		$criteria->compare('last_name',$this->last_name,true);
 		$criteria->compare('email',$this->email,true);

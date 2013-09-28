@@ -179,14 +179,30 @@ class UsersController extends Controller
                             // Lets Insert Property and redirect to property/:id
                             $property = new Property;
                             $property->attributes = $_POST['Property'];
-                            $property->type = 0; // Remove this field.
                             $property->created_on = $time;
                             $property->uid = $user->id;
+                            $property->validate();
                             // property.type needs to be implemented.
                             if ( ! $property->save() )
                                 throw new Exception ("Unable to create a new property!", 003);
                             
-                            
+                            $rooms = $_POST['total_rooms'] >= 0 ? $_POST['total_rooms'] : 1;
+                            for ($k = 1; $k <= $rooms; $k++) {
+                                $room = new Room;
+                                $room->property_id = $property->id;
+                                $room->title = $property->title.' - Room # '. $k;
+                                $room->people_min = $property->people_min;
+                                $room->people_max = $property->people_max;
+                                $room->price = $property->base_price;
+                                $room->policy = 1;
+                                $room->created_on = $time;
+                                $room->updated_on = $time;
+                                $room->host_ip = $_SERVER['REMOTE_ADDR'];
+                                $room->validate();
+                                if ( !$room->save())
+                                    throw new Exception ("Unable to create room # ". $k, 004);
+                                
+                            }
                             $transaction->commit();
                             $this->setFlash('success', 'Welcome Abroad! Please modify your property information.');
                             $this->redirect('/property/update/'.$property->id);
@@ -230,6 +246,7 @@ class UsersController extends Controller
                         'extra' => $fbid,
                         'source' => Users::SOURCE_FACEBOOK
                     ));
+                    $transaction = Yii::app()->db->beginTransaction();
                     if ( is_null($user)) {
                         // Signup.
                         $info = $fb->api('/me?fields=email,first_name,last_name,location');
@@ -247,6 +264,7 @@ class UsersController extends Controller
                             $user->created_on = $time;
                             $user->updated_on = $time;
                             
+                            $user->validate();
                             //echo '<pre>'; print_r($user); exit;
                             
                             if ( !$user->save()) {
@@ -263,8 +281,11 @@ class UsersController extends Controller
                                   'link' => 'www.bbitaly.com',
                                   'message' => 'Hey! Im now using BBItaly. Its your turn to try now!'
                              ));
+                            
+                            $transaction->commit();
                         } else {
                             // Failed to get info from facebook.
+                            $transaction->rollback();
                             $this->setFlash('error', 'We are unable to connect your facebook profile at the moment. Please try later.');
                             $this->redirect('/');
                         }
@@ -288,9 +309,15 @@ class UsersController extends Controller
             if ( !Yii::app()->user->isGuest )
                 $this->redirect('/');
             
+            $property_types = array();
+            foreach (Yii::app()->db->createCommand('SELECT * FROM property_types')->queryAll() as $row) {
+                $property_types[$row['id']] = $row['name'];
+            }
+            
             $this->render('join', array(
                 'model' => new \Users,
-                'property' => new Property
+                'property' => new Property,
+                'property_types' => $property_types
             ));
         }
 

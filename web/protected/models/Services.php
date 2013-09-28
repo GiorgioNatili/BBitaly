@@ -5,13 +5,14 @@
  *
  * The followings are the available columns in table 'services':
  * @property integer $id
+ * @property integer $parent_id
  * @property string $name
  * @property string $icon
- * @property integer $status
  * @property string $created_on
  *
  * The followings are the available model relations:
- * @property RoomServices[] $roomServices
+ * @property ServicesEntityChild[] $servicesEntityChildren
+ * @property ServicesEntityParent[] $servicesEntityParents
  */
 class Services extends CActiveRecord
 {
@@ -31,13 +32,13 @@ class Services extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, icon, created_on', 'required'),
-			array('status', 'numerical', 'integerOnly'=>true),
+			array('name, created_on', 'required'),
+			array('parent_id', 'numerical', 'integerOnly'=>true),
 			array('name, icon', 'length', 'max'=>50),
 			array('created_on', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, icon, status, created_on', 'safe', 'on'=>'search'),
+			array('id, parent_id, name, icon, created_on', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -49,7 +50,8 @@ class Services extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'roomServices' => array(self::HAS_MANY, 'RoomServices', 'service_id'),
+			'servicesEntityChildren' => array(self::HAS_MANY, 'ServicesEntityChild', 'service_id'),
+			'servicesEntityParents' => array(self::HAS_MANY, 'ServicesEntityParent', 'service_id'),
 		);
 	}
 
@@ -60,9 +62,9 @@ class Services extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+			'parent_id' => 'Parent',
 			'name' => 'Name',
 			'icon' => 'Icon',
-			'status' => 'Status',
 			'created_on' => 'Created On',
 		);
 	}
@@ -86,9 +88,9 @@ class Services extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
+		$criteria->compare('parent_id',$this->parent_id);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('icon',$this->icon,true);
-		$criteria->compare('status',$this->status);
 		$criteria->compare('created_on',$this->created_on,true);
 
 		return new CActiveDataProvider($this, array(

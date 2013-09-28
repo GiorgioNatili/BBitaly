@@ -181,7 +181,7 @@
                                         echo $form->dropDownList(
                                                 $property,
                                                 'type',
-                                                Statics::getEstablishments(),
+                                                $property_types,
                                                 array(
                                                     'class' => 'selecbox x-medium'
                                                 )
@@ -209,6 +209,12 @@
                                         <?php echo $form->textField($property,'base_price', array('class' => 'input-field x-small')); ?>
                                     </div>
                                     <?php echo $form->error($property,'base_price'); ?>
+                                </div>
+                                <div class="field">
+                                    <label>Total Rooms *</label>
+                                    <div class="input-box">
+                                        <input type="text" name="total_rooms" class="input-field x-small" />
+                                    </div>
                                 </div>
                             </li>
                             <li class="fields set2 adresses">
@@ -284,17 +290,5 @@
                 </div>
             </div>
         </div>
-    </div>
-<!-- InstanceEndEditable -->
-    <div class="breadcrumbs">
-	    <ul class="container">
-		    <li>
-            	<a href="#">Home</a>
-                <span>/</span>
-			</li>
-		    <li>
-            	<strong>Active</strong>
-			</li>
-	    </ul>
     </div>
 </section><!-- SECTION - END -->

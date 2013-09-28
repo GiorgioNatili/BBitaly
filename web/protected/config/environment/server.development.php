@@ -9,7 +9,7 @@ return array(
 	// application components
 	'components'=>array(
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=bbitaly_v1',
+			'connectionString' => 'mysql:host=localhost;dbname=bbitaly_v1.2',
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => 'admin123',
