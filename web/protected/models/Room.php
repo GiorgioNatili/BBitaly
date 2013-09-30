@@ -17,7 +17,7 @@
  * @property string $host_ip
  *
  * The followings are the available model relations:
- * @property Descriptions[] $descriptions
+ * @property Descriptions $descriptions
  * @property Images[] $images
  * @property Policies $policy0
  * @property Property $property
@@ -62,7 +62,7 @@ class Room extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'descriptions' => array(self::HAS_MANY, 'Descriptions', 'room_id'),
+			'descriptions' => array(self::HAS_ONE, 'Descriptions', 'room_id'),
 			'images' => array(self::HAS_MANY, 'Images', 'room_id'),
 			'policy0' => array(self::BELONGS_TO, 'Policies', 'policy'),
 			'property' => array(self::BELONGS_TO, 'Property', 'property_id'),
@@ -137,4 +137,14 @@ class Room extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        protected function beforeSave() {
+            if ( $this->isNewRecord )
+                $this->created_on = time();
+            
+            $this->updated_on = time();
+            $this->host_ip = $_SERVER['REMOTE_ADDR'];
+            
+            return parent::beforeSave();
+        }
 }

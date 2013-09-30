@@ -14,12 +14,13 @@
  * @property string $zip_code
  * @property integer $cover_image
  * @property double $base_price
+ * @property integer $available_rooms
  * @property integer $uid
  * @property string $created_on
  *
  * The followings are the available model relations:
  * @property Billing $billing
- * @property Descriptions[] $descriptions
+ * @property Descriptions $descriptions
  * @property Favorites[] $favorites
  * @property Images[] $images
  * @property Images $coverImage
@@ -46,8 +47,8 @@ class Property extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, type, people_min, people_max, base_price, uid', 'required'),
-			array('type, people_min, people_max, cover_image, uid', 'numerical', 'integerOnly'=>true),
+			array('title, type, people_min, people_max, base_price,available_rooms, uid', 'required'),
+			array('type, people_min, people_max, cover_image, available_rooms, uid', 'numerical', 'integerOnly'=>true),
 			array('base_price', 'numerical'),
 			array('title', 'length', 'max'=>50),
 			array('address', 'length', 'max'=>100),
@@ -67,8 +68,8 @@ class Property extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'billing' => array(self::BELONGS_TO, 'Billing', 'property_id'),
-			'descriptions' => array(self::HAS_MANY, 'Descriptions', 'property_id'),
+			'billing' => array(self::HAS_ONE, 'Billing', 'property_id'),
+			'descriptions' => array(self::HAS_ONE, 'Descriptions', 'property_id'),
 			'favorites' => array(self::HAS_MANY, 'Favorites', 'property_id'),
 			'images' => array(self::HAS_MANY, 'Images', 'property_id'),
 			'coverImage' => array(self::BELONGS_TO, 'Images', 'cover_image'),
@@ -95,6 +96,7 @@ class Property extends CActiveRecord
 			'zip_code' => 'Zip Code',
 			'cover_image' => 'Cover Image',
 			'base_price' => 'Base Price',
+                        'available_rooms' => 'Available Rooms',
 			'uid' => 'Uid',
 			'created_on' => 'Created On',
 		);
@@ -128,6 +130,7 @@ class Property extends CActiveRecord
 		$criteria->compare('zip_code',$this->zip_code,true);
 		$criteria->compare('cover_image',$this->cover_image);
 		$criteria->compare('base_price',$this->base_price);
+                $criteria->compare('available_rooms',$this->available_rooms);
 		$criteria->compare('uid',$this->uid);
 		$criteria->compare('created_on',$this->created_on,true);
 
@@ -146,5 +149,11 @@ class Property extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        protected function beforeSave() {
+            if ( $this->isNewRecord )
+                $this->created_on = time();
+            return parent::beforeSave();
+        }
         
 }

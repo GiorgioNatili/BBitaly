@@ -14,6 +14,7 @@
 	// There is a call to performAjaxValidation() commented in generated controller code.
 	// See class documentation of CActiveForm for details on this.
 	'enableAjaxValidation'=>false,
+        'htmlOptions' => array('enctype' => 'multipart/form-data')
 )); ?>
     <div class="container account-container">
     	<div class="row account-tabbable" id="account_tabbable">
@@ -178,35 +179,17 @@
                                         <li class=""><a data-toggle="tab" href="#language-pane7"><img src="<?php echo Yii::app()->theme->baseUrl ?>/assets/img/bb_flag-7.png" alt="" /></a></li>
                                     </ul>
                                     <div class="tab-content">
-                                        <?php //echo "<pre>"; print_r($model->descriptions); exit; ?>
-                                        <?php if (count($model->descriptions) >= 1): ?>
-                                            <?php $counter = 1; foreach ($model->descriptions[0]->attributes as $col => $val): ?>
-                                                <?php if (substr($col, 0,4) == 'lang'): ?>
-                                                    <div class="tab-pane <?php echo $counter === 1 ? 'active' : '' ?>" id="language-pane<?php echo $counter++ ?>">
-                                                        <div class="desc">
-                                                            <div class="input-box">
-                                                                <?php echo $form->textArea($model->descriptions[0],$col, array('class' => 'input-field x-large text-left')); ?>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>
-                                        <?php else: ?>
-                                        <?php $counter = 1; 
-                                            if ( !empty($property_description)):
-                                            foreach ($property_description->attributes as $col => $val): 
-                                                if (substr($col, 0,4) == 'lang'): ?>
-                                                <div class="tab-pane <?php echo $counter == 1 ? 'active' : '' ?>" id="language-pane<?php echo $counter++ ?>">
+                                        <?php $counter = 1; foreach ($property_description->attributes as $col => $val): ?>
+                                            <?php if (substr($col, 0,4) == 'lang'): ?>
+                                                <div class="tab-pane <?php echo $counter === 1 ? 'active' : '' ?>" id="language-pane<?php echo $counter++ ?>">
                                                     <div class="desc">
                                                         <div class="input-box">
-                                                            <input type="text" name="Description[<?php echo $col ?>]" class="input-field x-large text-left" />
+                                                            <textarea name="Descriptions[<?php echo $col ?>]" <?php echo $col == 'lang_italian' ? 'required': '' ?> class="input-field x-large text-left"><?php echo $val ?></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>
-                                        <?php endif;
-                                        endif;?>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
                                     </div>
                                 </div>
                             </div>
@@ -215,9 +198,15 @@
                             	<h2 class="legend">photogallery</h2>
                             	<div class="thumb-main">
                                 	<div class="img">
-                                    	<input type="file" class="avator" />
-                                        <p>inserisci un'immagine di copertina <br>(max 2MB)</p>
-                                    </div>
+                                             <?php if ( isset ($model->cover_image)): ?>
+                                            <img src="<?php echo Bucket::load($model->coverImage->img_name) ?>" />
+                                             <?php endif; ?>
+                                            
+                                        </div>
+                                </div>
+                                <div class="thumb-main">
+                                    <?php echo $form->fileField($model, 'cover_image', array('class' => 'avatar')); ?>
+                                            <p>inserisci un'immagine di copertina <br>(max 2MB)</p>
                                 </div>
                                 <hr class="dotted"/>
                                 <p>Inserisci le altre immagini della tua struttura per completare la photogallery</p>
@@ -425,11 +414,20 @@
                                         </div>
                                     </div>
                                     <div class="field">
-                                        <label>Total Rooms</label>
+                                        <label>Available Rooms</label>
                                         <div class="input-box">
-                                            <input type="text" name="total_rooms" value="<?php echo $model->isNewRecord ? 1 : 10 ?>" class="input-field x-small text-right" maxlength="3" />
+                                            <?php echo $form->textField($model,'available_rooms', array('class' => 'input-field x-small text-right', 'maxlength' => 3)); ?>
                                         </div>
                                     </div>
+                                    <?php
+                                    if ( $model->isNewRecord === FALSE): ?>
+                                        <div class="field">
+                                            <label>Rooms Instances</label>
+                                            <div class="input-box">
+                                                <input type="text" name="Room[instances]" readonly class="input-field x-small text-right" value="<?php echo $cRoom ?>" />
+                                            </div>
+                                        </div>
+                                    <?php endif;?>
                                 </li>
                             </ul>
                             <hr class="dotted"/>
@@ -447,32 +445,17 @@
                                         <li class=""><a data-toggle="tab" href="#room-desc-7"><img src="<?php echo Yii::app()->theme->baseUrl ?>/assets/img/bb_flag-7.png" alt="" /></a></li>
                                     </ul>
                                     <div class="tab-content">
-                                        <?php //echo "<pre>"; print_r($model->rooms[0]->descriptions[0]->attributes); exit; ?>
-                                        <?php if (count($model->descriptions) >= 1): ?>
-                                            <?php $counter = 1; foreach ($model->descriptions[0]->attributes as $col => $val): ?>
-                                                <?php if (substr($col, 0,4) == 'lang'): ?>
-                                                    <div class="tab-pane <?php echo $counter === 1 ? 'active' : '' ?>" id="room-desc-<?php echo $counter++ ?>">
-                                                        <div class="desc">
-                                                            <div class="input-box">
-                                                                <?php echo $form->textField($model->descriptions[0],$col, array('class' => 'input-field x-large text-left')); ?>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>
-                                        <?php else: ?>
-                                            <?php $counter = 1; foreach ($room_desc->attributes as $col => $val): 
-                                                if (substr($col, 0,4) == 'lang'): ?>
-                                                <div class="tab-pane <?php echo $counter == 1 ? 'active' : '' ?>" id="room-desc-<?php echo $counter++ ?>">
+                                        <?php $counter = 1; foreach ($room_desc->attributes as $col => $val): ?>
+                                            <?php if (substr($col, 0,4) == 'lang'): ?>
+                                                <div class="tab-pane <?php echo $counter === 1 ? 'active' : '' ?>" id="room-desc-<?php echo $counter++ ?>">
                                                     <div class="desc">
                                                         <div class="input-box">
-                                                            <input type="text" name="Room[Description][<?php echo $col ?>]" class="input-field x-large text-left" />
+                                                            <input type="text" <?php echo $col == 'lang_italian' ? 'required': '' ?> name="Room[Description][<?php echo $col ?>]" value="<?php echo $val ?>" class="input-field x-large text-left" />
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>
-                                        <?php endif; ?>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
                                     </div>
                                 </div>
                             </div>
@@ -735,7 +718,7 @@
                                     </div>
                                 </li>
                             <?php endforeach; ?>
-                                <input type="hidden" name="Room[policy]" id="fPolicy"  />
+                                <input type="hidden" name="Room[policy]" id="fPolicy" value="<?php echo $model->isNewRecord ? 0 : $model->rooms[0]->policy ?>"  />
                         </ul>
                         <hr/>
                         <ul class="policy-list btn-group" data-toggle="buttons-checkbox">
@@ -762,7 +745,7 @@
                                 <div class="field">
                                     <label>Selezione</label>
                                     <div class="input-box">
-                                        <?php echo $form->dropDownList($billing,'salutation', Statics::getSalutations(), array('class' => 'selectbox medium')) ?>
+                                        <?php echo $form->dropDownList($billing,'salutation', Statics::getSalutations(), array('class' => 'selectbox medium','required' => 'required')) ?>
                                     </div>
                                 </div>
                             </li>
@@ -770,13 +753,13 @@
                                 <div class="field">
                                     <label>Nome</label>
                                     <div class="input-box">
-                                        <?php echo $form->textField($billing,'first_name', array('class' => 'input-field medium')); ?>
+                                        <?php echo $form->textField($billing,'first_name', array('class' => 'input-field medium','required' => 'required')); ?>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <label>Cognome</label>
                                     <div class="input-box">
-                                        <?php echo $form->textField($billing,'last_name', array('class' => 'input-field medium')); ?>
+                                        <?php echo $form->textField($billing,'last_name', array('class' => 'input-field medium','required' => 'required')); ?>
                                     </div>
                                 </div>
                             </li>
@@ -784,13 +767,13 @@
                                 <div class="field">
                                     <label>Email</label>
                                     <div class="input-box">
-                                        <?php echo $form->textField($billing,'email', array('class' => 'input-field medium')); ?>
+                                        <?php echo $form->textField($billing,'email', array('class' => 'input-field medium','required' => 'required')); ?>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <label>Citta</label>
                                     <div class="input-box">
-                                        <?php echo $form->textField($billing,'city', array('class' => 'input-field medium')); ?>
+                                        <?php echo $form->textField($billing,'city', array('class' => 'input-field medium','required' => 'required')); ?>
                                     </div>
                                 </div>
                             </li>
@@ -798,13 +781,13 @@
                                 <div class="field">
                                     <label>Indirizzo</label>
                                     <div class="input-box">
-                                        <?php echo $form->textField($billing,'address', array('class' => 'input-field medium')); ?>
+                                        <?php echo $form->textField($billing,'address', array('class' => 'input-field medium','required' => 'required')); ?>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <label>Cap / zip code</label>
                                     <div class="input-box">
-                                        <?php echo $form->textField($billing,'zip_code', array('class' => 'input-field medium')); ?>
+                                        <?php echo $form->textField($billing,'zip_code', array('class' => 'input-field medium','required' => 'required')); ?>
                                     </div>
                                 </div>
                             </li>
@@ -848,7 +831,7 @@
                                         <button class="button">
                                             <span>
                                                 <span>
-                                                    Create Property
+                                                    <?php echo $model->isNewRecord ? 'Create Property' : "Update Property" ?>
                                                 </span>
                                             </span>
                                         </button>
