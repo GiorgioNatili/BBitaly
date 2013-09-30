@@ -11,3 +11,6 @@ bbitaly.sql
 .DS_Store
 .idea/
 nbproject/
+
+web/protected/config/environment/server.production.php
+web/.htaccess
