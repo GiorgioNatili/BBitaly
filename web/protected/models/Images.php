@@ -130,4 +130,10 @@ class Images extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        protected function beforeSave() {
+            
+            $this->uploaded_on = time();
+            return parent::beforeSave();
+        }
 }

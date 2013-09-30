@@ -139,4 +139,10 @@ class Descriptions extends CActiveRecord
             
             return $desc;
         }
+        
+        protected function beforeSave() {
+            
+            $this->created_on = time();
+            return parent::beforeSave();
+        }
 }

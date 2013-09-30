@@ -3,6 +3,8 @@
 defined('ENV_DEVELOPMENT') or define('ENV_DEVELOPMENT','development');
 defined('ENV_STAGING') or define('ENV_STAGING','staging');
 defined('ENV_PRODUCTION') or define('ENV_PRODUCTION','production');
+define('DOC_ROOT', __DIR__);
+define('DS',DIRECTORY_SEPARATOR);
 
 $environment = ENV_DEVELOPMENT;
 $yii='./yii-1.1.14.f0fee9/framework/yii.php';

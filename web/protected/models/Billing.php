@@ -129,4 +129,9 @@ class Billing extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        protected function beforeSave() {
+            $this->created_on = time();
+            return parent::beforeSave();
+        }
 }
