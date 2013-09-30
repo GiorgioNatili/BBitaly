@@ -149,7 +149,7 @@ class PropertyController extends Controller
                     'model'=>$model,
                     'policies' => $policies,
                     'property_description' => new Descriptions,
-                    'room_description'  => new Descriptions,
+                    'room_desc'  => new Descriptions,
                     'room'  => new Room,
                     'billing' => new Billing
 		));
@@ -165,15 +165,125 @@ class PropertyController extends Controller
             $policies = Policies::model()->findAllByAttributes(array('status' => 1));
             $model=$this->loadModel($id);
             
-            //echo "<pre>";            print_r($model->descRelations); exit;
             // Uncomment the following line if AJAX validation is needed
             // $this->performAjaxValidation($model);
 
             if(isset($_POST['Property']))
             {
+                $transaction = Yii::app()->db->beginTransaction();
+                
+                $updated_on = time();
+                try {
+                    $cover_image = CUploadedFile::getInstance($model,'cover_image');
+                    unset($_POST['Property']['cover_image']);
                     $model->attributes=$_POST['Property'];
-                    if($model->save())
-                            $this->redirect(array('view','id'=>$model->id));
+                    
+                    // Handling cover image for now.
+                    if ( !isset ($_FILES['Property']['error']['cover_image']) === true) {
+                        //echo "<pre>"; print_r($_FILES); exit;
+                        $bucket = new Bucket($cover_image);
+                        // Before Setting cover, insert image first.
+                        $image = new Images;
+                        $image->type = Entity::ENTITY_PROPERTY;
+                        $image->property_id = $model->id;
+                        $image->is_cover = 1;
+                        $image->img_mime = $cover_image->type;
+                        $image->img_name = $bucket->getFileName();
+                        $image->img_size = $cover_image->size;
+                        $image->status = 1;
+                        $image->uploaded_on = time();
+                        $image->save();
+                        $cover_image->saveAs($bucket->getMovePath());
+                        $model->cover_image = $image->id;
+                    }
+                     
+                    if( $model->save()) {
+                        $prop_desc = $model->descriptions;
+                        $prop_desc->attributes = $_POST['Descriptions'];
+                         // Property Description updated.
+                        if ( $prop_desc->save()) {
+                            $rooms_data = $_POST['Room'];
+                            $instances = $rooms_data['instances'];
+                            unset($rooms_data['instances']);
+                            // See How many rooms has to be created.
+                            if ( $model->available_rooms > $instances) {
+                                // More rooms are available then instances.
+                                $to_create = $model->available_rooms - $instances;
+                                // New number of rooms counted. Lets insert them.
+                                for ($j = 1; $j <= $to_create; $j++) {
+                                    //Insert!
+                                    $room = new Room;
+                                    $room->attributes = $rooms_data;
+                                    $room->property_id = $model->id;
+                                    $room->title = $model->title.' - Room # '. $instances+1;
+                                    $room->created_on = $updated_on;
+                                    $room->updated_on = $updated_on;
+                                    $room->host_ip = $_SERVER['REMOTE_ADDR'];
+                                    if ( $room->save() ) {
+                                        // Time to create description
+                                        $description = new Descriptions;
+                                        $description->attributes = $_POST['Room']['Description'];
+                                        $description->type = Entity::ENTITY_ROOM;
+                                        $description->room_id = $room->id;
+                                        if ( !$description->save() ) {
+                                            // Unable to save room desc.
+                                            $transaction->rollback();
+                                            echo "<pre>"; print_r($description); exit;
+                                        }
+                                    } else {
+                                        // Unable to create Room.
+                                        $transaction->rollback();
+                                        echo "<pre>"; print_r($room); exit;
+                                    }
+                                }
+                            }
+
+                            $rooms_data['updated_on'] = $updated_on;
+                            // Lets acknowledge all rooms.
+                            Room::model()->updateAll(
+                                    $rooms_data,
+                                    'property_id = '. $model->id
+                            );
+                            $room_desc = $_POST['Room']['Description'];
+                            // All descriptions updated.
+                            Descriptions::model()->updateAll(
+                                    $room_desc,
+                                    'property_id = '. $model->id
+                            );
+
+                            $billing = $model->billing;
+                            if ( null === $billing )
+                                $billing = new Billing;
+
+                            $billing->attributes = $_POST['Billing'];
+                            $billing->user_id = $model->uid;
+                            $billing->property_id = $model->id;
+                            if ( $billing->save() ) {
+                                // All good. Go back.
+                                $transaction->commit();
+                                $this->setFlash('success', 'Your property has been updated successfully!');
+                                $this->redirect('/property');
+                            } else {
+                                // Unable to save billing info.
+                                $transaction->rollback();
+                                echo "<pre>"; print_r($billing); exit;
+                            }
+                        } else {
+                            // Unable to save property desc.
+                            $transaction->rollback();
+                            echo "<pre>"; print_r($prop_desc); exit;
+                        }
+
+                    } else {
+                        // Unabel to save property.
+                        $transaction->rollback();
+                        $model->validate();
+                        echo "<pre> ---"; print_r($model); exit;
+                    }
+                        
+                } catch (Exception $ex) {
+                    throw $ex;
+                }
             }
             
             $billing = Billing::model()->findByAttributes(array(
@@ -190,11 +300,14 @@ class PropertyController extends Controller
                     'type'  => Entity::ENTITY_PROPERTY,
                     'property_id'   => $model->id
                 )),
-                'room_description' => Descriptions::model()->getDescription(array(
+                'room_desc' => Descriptions::model()->getDescription(array(
                     'type'  => Entity::ENTITY_ROOM,
                     'room_id'   => $model->id
                 )),
                 'room'  => Room::model()->findByAttributes(array(
+                    'property_id'   => $model->id
+                )),
+                'cRoom' => Room::model()->countByAttributes(array(
                     'property_id'   => $model->id
                 )),
                 'billing' => $billing
