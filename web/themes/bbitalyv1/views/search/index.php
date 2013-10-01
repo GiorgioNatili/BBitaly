@@ -1,8 +1,11 @@
+<?php $this->breadcrumbs = array(
+    'search'
+); ?>
 <section>
 <!-- InstanceBeginEditable name="EditRegionSection" -->
 	<div class="header-banner">
     	<div class="header-img header-map">
-        	<img src="img/bb_listing-map.jpg" alt="" />
+        	<img src="<?php echo $this->getAssetsUrl() ?>img/bb_listing-map.jpg" alt="" />
         </div>
     </div><!-- BANNER - END -->
     <div class="search-container">
@@ -80,13 +83,13 @@
                 <div class="span3">
                 	<div class="label-text pull-left">Fascia di prezzo:</div>
                 	<div class="price-range pull-left">
-                    	<img src="img/bb_range-sldie.png" alt="" />
+                    	<img src="<?php echo $this->getAssetsUrl() ?>img/bb_range-sldie.png" alt="" />
                     </div>
                 </div>
                 <div class="span3">
                 	<div class="label-text pull-left">Raggio di ricerca:</div>
                 	<div class="search-radius pull-left">
-                		<img src="img/bb_range-sldie.png" alt="" />
+                		<img src="<?php echo $this->getAssetsUrl() ?>img/bb_range-sldie.png" alt="" />
                     </div>
                 </div>
             </div>
@@ -98,7 +101,7 @@
             	<div class="row">
                     <div class="span3">
                         <div class="img">
-                            <img src="img/bb_list-img-1.jpg" alt="" />
+                            <img src="<?php echo $this->getAssetsUrl() ?>img/bb_list-img-1.jpg" alt="" />
                         </div>
                     </div>
                     <div class="span7">
@@ -132,7 +135,7 @@
             	<div class="row">
                     <div class="span3">
                         <div class="img">
-                            <img src="img/bb_list-img-1.jpg" alt="" />
+                            <img src="<?php echo $this->getAssetsUrl() ?>img/bb_list-img-1.jpg" alt="" />
                         </div>
                     </div>
                     <div class="span7">
@@ -166,7 +169,7 @@
             	<div class="row">
                     <div class="span3">
                         <div class="img">
-                            <img src="img/bb_list-img-1.jpg" alt="" />
+                            <img src="<?php echo $this->getAssetsUrl() ?>img/bb_list-img-1.jpg" alt="" />
                         </div>
                     </div>
                     <div class="span7">
@@ -200,7 +203,7 @@
             	<div class="row">
                     <div class="span3">
                         <div class="img">
-                            <img src="img/bb_list-img-1.jpg" alt="" />
+                            <img src="<?php echo $this->getAssetsUrl() ?>img/bb_list-img-1.jpg" alt="" />
                         </div>
                     </div>
                     <div class="span7">
@@ -234,7 +237,7 @@
             	<div class="row">
                     <div class="span3">
                         <div class="img">
-                            <img src="img/bb_list-img-1.jpg" alt="" />
+                            <img src="<?php echo $this->getAssetsUrl() ?>img/bb_list-img-1.jpg" alt="" />
                         </div>
                     </div>
                     <div class="span7">
@@ -268,7 +271,7 @@
             	<div class="row">
                     <div class="span3">
                         <div class="img">
-                            <img src="img/bb_list-img-1.jpg" alt="" />
+                            <img src="<?php echo $this->getAssetsUrl() ?>img/bb_list-img-1.jpg" alt="" />
                         </div>
                     </div>
                     <div class="span7">
@@ -304,17 +307,5 @@
             	<a class="more" href="#">Sfoglia altri contenuti... <br><i class="icon-arrow-down"></i></a>
             </div>
         </div><!-- BROWSE MORE - END -->
-    </div>
-<!-- InstanceEndEditable -->
-    <div class="breadcrumbs">
-	    <ul class="container">
-		    <li>
-            	<a href="#">Home</a>
-                <span>/</span>
-			</li>
-		    <li>
-            	<strong>Active</strong>
-			</li>
-	    </ul>
     </div>
 </section><!-- SECTION - END -->
