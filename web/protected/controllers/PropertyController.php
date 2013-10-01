@@ -74,43 +74,62 @@ class PropertyController extends Controller
 
 		if(isset($_POST['Property']))
 		{
+                    //echo "<pre>"; print_r($_POST); exit;
                     // Lets insert
                     $transaction = Yii::app()->db->beginTransaction();
                     $time = time();
                     try {
                         $model->attributes=$_POST['Property'];
+                        $cover_image = CUploadedFile::getInstance($model,'cover_image');
+                        unset($_POST['Property']['cover_image']);
+                        $model->attributes=$_POST['Property'];
+                        if ( ($_FILES['Property']['error']['cover_image']) === 0) {
+                            $bucket = new Bucket($cover_image);
+                            // Before Setting cover, insert image first.
+                            $image = new Images;
+                            $image->type = Entity::ENTITY_PROPERTY;
+                            $image->property_id = $model->id;
+                            $image->is_cover = 1;
+                            $image->img_mime = $cover_image->type;
+                            $image->img_name = $bucket->getFileName();
+                            $image->img_size = $cover_image->size;
+                            $image->status = 1;
+                            $image->uploaded_on = time();
+                            $image->save();
+                            $cover_image->saveAs($bucket->getMovePath());
+                            $model->cover_image = $image->id;
+                        }
                         $model->created_on = $time;
                         $model->uid = $this->getUser()->id;
                         // Property
-                        if ( $model->validate() === true 
+                        if ( $model->validate()
                                 && $model->save() ) {
                             
+                            // We got a property Id. Bind it on image cover.
+                            $image->property_id = $model->id;
+                            $image->save();
                             $pdesc = new Descriptions();
                             $pdesc->attributes = $_POST['Descriptions'];
                             $pdesc->type = Entity::ENTITY_PROPERTY;
                             $pdesc->property_id = $model->id;
                             $pdesc->created_on = $time;
                             // Property Description
-                            if ( $pdesc->validate() === true
+                            if ( $pdesc->validate()
                                     && $pdesc->save() ) {
                                 
                                 // Lets Insert room.
                                 // See, how many rooms are there
-                                $total_rooms = $_POST['total_rooms'];
-                                $total_rooms = $total_rooms > 0 ? $total_rooms : 1;
-                                for ($j = 1; $j <= $total_rooms; $j++) {
+                                $availableRooms = $_POST['Property']['available_rooms'] > 0 ? $_POST['Property']['available_rooms'] : 1;
+                                for ($j = 1; $j <= $availableRooms; $j++) {
                                     $rdesc = new Descriptions;
                                     $room = new Room;
                                     $rdesc->attributes = $_POST['Room']['Description'];
-                                    //unset($_POST['Room']['Description']);
-                                    //echo '<pre>'; print_r($_POST); exit;
                                     $room->attributes = $_POST['Room'];
                                     $room->title = $model->title.' - Room # '. $j;
                                     $room->property_id = $model->id;
                                     $room->created_on = $time;
                                     $room->updated_on = $time;
                                     $room->host_ip = $_SERVER['REMOTE_ADDR'];
-                                    $room->validate();
                                     if ( $room->validate()
                                             && $room->save() ) {
                                         
@@ -120,7 +139,13 @@ class PropertyController extends Controller
                                         
                                         if ( $rdesc->validate() ) {
                                             $rdesc->save();
+                                        } else {
+                                            $transaction->rollback();
+                                            echo 'room desc failed';
                                         }
+                                    } else {
+                                        $transaction->rollback();
+                                        echo 'room failed';
                                     }
                                 }
                                 $billing = new Billing();
@@ -134,6 +159,9 @@ class PropertyController extends Controller
                                     $this->setFlash('success', 'Congratulations! Your property has been created successfully!');
                                     $transaction->commit();
                                     $this->redirect('/property');
+                                } else {
+                                    $transaction->rollback();
+                                    echo 'billing failed';
                                 }
                                 
                             }
@@ -177,10 +205,8 @@ class PropertyController extends Controller
                     $cover_image = CUploadedFile::getInstance($model,'cover_image');
                     unset($_POST['Property']['cover_image']);
                     $model->attributes=$_POST['Property'];
-                    
                     // Handling cover image for now.
-                    if ( !isset ($_FILES['Property']['error']['cover_image']) === true) {
-                        //echo "<pre>"; print_r($_FILES); exit;
+                    if ( ($_FILES['Property']['error']['cover_image']) === 0) {
                         $bucket = new Bucket($cover_image);
                         // Before Setting cover, insert image first.
                         $image = new Images;
@@ -192,6 +218,8 @@ class PropertyController extends Controller
                         $image->img_size = $cover_image->size;
                         $image->status = 1;
                         $image->uploaded_on = time();
+                        // Time to deactivate old cover.
+                        $model->deactivateCover();
                         $image->save();
                         $cover_image->saveAs($bucket->getMovePath());
                         $model->cover_image = $image->id;
@@ -246,9 +274,12 @@ class PropertyController extends Controller
                             );
                             $room_desc = $_POST['Room']['Description'];
                             // All descriptions updated.
+                            $criteria = new CDbCriteria();
+                            $roomIds = Property::model()->getRoomsIds($model->id);
+                            $criteria->addInCondition('room_id', $roomIds);
                             Descriptions::model()->updateAll(
                                     $room_desc,
-                                    'property_id = '. $model->id
+                                    $criteria
                             );
 
                             $billing = $model->billing;
@@ -292,6 +323,14 @@ class PropertyController extends Controller
             
             if ( empty ($billing) )
                 $billing = new Billing;
+            
+            /*
+           $room_desc = Descriptions::model()->getDescription(array(
+                    'type'  => Entity::ENTITY_ROOM,
+                    'room_id'   => $model->id
+                ));
+           */
+            $room_desc = Property::model()->findByPk($model->id);
 
             $this->render('update',array(
                 'model'=>$model,
@@ -300,10 +339,7 @@ class PropertyController extends Controller
                     'type'  => Entity::ENTITY_PROPERTY,
                     'property_id'   => $model->id
                 )),
-                'room_desc' => Descriptions::model()->getDescription(array(
-                    'type'  => Entity::ENTITY_ROOM,
-                    'room_id'   => $model->id
-                )),
+                'room_desc' => $room_desc->rooms[0]->descriptions,
                 'room'  => Room::model()->findByAttributes(array(
                     'property_id'   => $model->id
                 )),

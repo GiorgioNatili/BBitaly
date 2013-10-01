@@ -2,7 +2,7 @@
 /* @var $this PropertyController */
 /* @var $model Property */
 
-//echo "<pre>"; print_r($room); exit;
+//echo "<pre>"; print_r($room_desc); exit;
 
 $this->renderPartial('_form', array(
     'model'=>$model,

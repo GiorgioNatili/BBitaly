@@ -150,7 +150,27 @@ class Property extends CActiveRecord
 		return parent::model($className);
 	}
         
-        protected function beforeSave() {
+        public function getRoomsIds($id) {
+            $rooms = Room::model()
+                    ->findAllByAttributes(array(
+                        'property_id' => $id
+                    ));
+            $roomIds = array();
+            foreach ($rooms as $room) {
+                $roomIds[] = $room->id;
+            }
+            return $roomIds;
+
+        }
+        
+        public function deactivateCover() {
+            Images::model()
+                    ->updateAll(array(
+                        'status' => 0
+                    ), 'property_id = '. $this->id.' AND is_cover = 1');
+        }
+
+                protected function beforeSave() {
             if ( $this->isNewRecord )
                 $this->created_on = time();
             return parent::beforeSave();
