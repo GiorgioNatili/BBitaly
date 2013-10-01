@@ -5,43 +5,45 @@
         	<h1>Il tuo bed and breakfast in Italia! </h1>
             <p class="lead">Il tuo bed and breakfast in Italia!</p>
             <div class="search">
-            	<div class="row">
-                    <div class="span5">
-                        <input type="text" placeholder="Search a place" class="search-query">
+                <form method="GET" action="/search">
+                    <div class="row">
+                        <div class="span5">
+                            <input type="text" placeholder="Search a place" class="search-query">
+                        </div>
+                        <div class="span7">
+                            <div class="search-option pull-right">
+                                    <button class="btn btn-search" type="submit"><i class="icon-search icon-white"></i></button>
+                            </div>
+                            <div class="search-option pull-right">
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">number of people <i class="icon-users"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">date 1</a></li>
+                                        <li><a href="#">date 2</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="search-option pull-right">
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">check-out <i class="icon-checkout"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">date 1</a></li>
+                                        <li><a href="#">date 2</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="search-option pull-right">
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">check-in <i class="icon-checkin"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">date 1</a></li>
+                                        <li><a href="#">date 2</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="span7">
-                    	<div class="search-option pull-right">
-                        	<button class="btn btn-search" type="submit"><i class="icon-search icon-white"></i></button>
-                        </div>
-                        <div class="search-option pull-right">
-                            <div class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">number of people <i class="icon-users"></i></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">date 1</a></li>
-                                    <li><a href="#">date 2</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="search-option pull-right">
-                            <div class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">check-out <i class="icon-checkout"></i></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">date 1</a></li>
-                                    <li><a href="#">date 2</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    	<div class="search-option pull-right">
-                            <div class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">check-in <i class="icon-checkin"></i></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">date 1</a></li>
-                                    <li><a href="#">date 2</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
