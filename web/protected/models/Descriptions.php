@@ -134,8 +134,7 @@ class Descriptions extends CActiveRecord
         
         public function getDescription($criteria) {
             $desc = $this->findByAttributes($criteria);
-            if ( empty($desc)) 
-                return new Descriptions;
+            
             
             return $desc;
         }

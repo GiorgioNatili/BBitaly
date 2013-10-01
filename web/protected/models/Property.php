@@ -150,6 +150,19 @@ class Property extends CActiveRecord
 		return parent::model($className);
 	}
         
+        public function getRoomsIds($id) {
+            $rooms = Room::model()
+                    ->findAllByAttributes(array(
+                        'property_id' => $id
+                    ));
+            $roomIds = array();
+            foreach ($rooms as $room) {
+                $roomIds[] = $room->id;
+            }
+            return $roomIds;
+
+        }
+        
         protected function beforeSave() {
             if ( $this->isNewRecord )
                 $this->created_on = time();

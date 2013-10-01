@@ -177,10 +177,10 @@ class PropertyController extends Controller
                     $cover_image = CUploadedFile::getInstance($model,'cover_image');
                     unset($_POST['Property']['cover_image']);
                     $model->attributes=$_POST['Property'];
-                    
+                    //echo "<pre>"; print_r($_FILES); exit;
                     // Handling cover image for now.
-                    if ( !isset ($_FILES['Property']['error']['cover_image']) === true) {
-                        //echo "<pre>"; print_r($_FILES); exit;
+                    if ( ($_FILES['Property']['error']['cover_image']) === 0) {
+                        //echo "<pre> ---"; print_r($_FILES); exit;
                         $bucket = new Bucket($cover_image);
                         // Before Setting cover, insert image first.
                         $image = new Images;
@@ -246,9 +246,12 @@ class PropertyController extends Controller
                             );
                             $room_desc = $_POST['Room']['Description'];
                             // All descriptions updated.
+                            $criteria = new CDbCriteria();
+                            $roomIds = Property::model()->getRoomsIds($model->id);
+                            $criteria->addInCondition('room_id', $roomIds);
                             Descriptions::model()->updateAll(
                                     $room_desc,
-                                    'property_id = '. $model->id
+                                    $criteria
                             );
 
                             $billing = $model->billing;
@@ -292,6 +295,14 @@ class PropertyController extends Controller
             
             if ( empty ($billing) )
                 $billing = new Billing;
+            
+            /*
+           $room_desc = Descriptions::model()->getDescription(array(
+                    'type'  => Entity::ENTITY_ROOM,
+                    'room_id'   => $model->id
+                ));
+           */
+            $room_desc = Property::model()->findByPk($model->id);
 
             $this->render('update',array(
                 'model'=>$model,
@@ -300,10 +311,7 @@ class PropertyController extends Controller
                     'type'  => Entity::ENTITY_PROPERTY,
                     'property_id'   => $model->id
                 )),
-                'room_desc' => Descriptions::model()->getDescription(array(
-                    'type'  => Entity::ENTITY_ROOM,
-                    'room_id'   => $model->id
-                )),
+                'room_desc' => $room_desc->rooms[0]->descriptions,
                 'room'  => Room::model()->findByAttributes(array(
                     'property_id'   => $model->id
                 )),
