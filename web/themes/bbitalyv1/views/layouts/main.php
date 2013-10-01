@@ -13,8 +13,8 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="<?php echo $this->getAssetsUrl() ?>css/bootstrap.min.css" media="screen">
     <link rel="stylesheet" href="<?php echo $this->getAssetsUrl() ?>css/bootstrap.base.css" media="screen">
-	<link rel="stylesheet" href="<?php echo $this->getAssetsUrl() ?>css/bootstrap.icons.css" media="screen">
-
+    <link rel="stylesheet" href="<?php echo $this->getAssetsUrl() ?>css/bootstrap.icons.css" media="screen">
+    
     <!-- Optional theme -->
     <!-- <link rel="stylesheet" href="<?php echo $this->getAssetsUrl() ?>css/bootstrap-theme.min.css"> -->
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
@@ -22,6 +22,7 @@
     <script src="<?php echo $this->getAssetsUrl() ?>js/bootstrap.min.js"></script>
     <script src="<?php echo $this->getAssetsUrl() ?>js/jquery.bootstrap.wizard.js"></script>
     <script src="<?php echo $this->getAssetsUrl() ?>js/jquery.jcarousel.min.js"></script>
+    <script src="<?php echo $this->getAssetsUrl() ?>js/dropzone.js"></script>
     <script src="<?php echo $this->getAssetsUrl() ?>js/bootstrap.custom.js"></script>
     <script src="<?php echo $this->getAssetsUrl() ?>js/gmap3.min.js"></script>
 
