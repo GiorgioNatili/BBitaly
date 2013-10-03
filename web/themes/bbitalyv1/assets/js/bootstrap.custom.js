@@ -8,11 +8,6 @@ $(function () {
     $('#account_tabbable').bootstrapWizard({'tabClass': 'account-tabs'});
 	
 	$('.jcarousel-horizontal').jcarousel({scroll:1});
-        
-    
+	
+	$('.datepicker').datepicker()
 });
-
-function choosePolicy(i) {
-    var $ins = $(i);
-    $('#fPolicy').val($ins.val());
-}

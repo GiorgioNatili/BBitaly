@@ -63,6 +63,8 @@ class ItineraryController extends Controller
 	public function actionCreate()
 	{
 		$model=new Itinerary;
+                
+                echo "<pre>"; print_r($_POST); exit;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
