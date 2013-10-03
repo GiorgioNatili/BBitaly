@@ -64,27 +64,6 @@
                             </script>
                             <div class="itinerary-stages">
                                 <ul class="outcome-list" id="itin-loc-list">
-                                    <li>
-                                    	<div class="count">2</div>
-                                        <div class="outcome">
-                                            <div class="name">
-                                            	<input type="text" class="inut-field medium" value="" />
-                                            </div>
-                                            <div class="date">
-                                            	<i class="icon-flag"></i> 
-                                                <input type="text" class="inut-field small datepicker" value="" />
-                                            </div>
-                                            <div class="date">
-                                            	<i class="icon-flag"></i> 
-                                                <input type="text" class="inut-field small datepicker" value="" />
-											</div>
-                                            <div class="day">
-                                            	<i class="icon-flag"></i> 
-                                                <input type="text" class="inut-field x-small" value="" maxlength="3" />
-                                            </div>
-                                            <div class="delete"><a href="#"><i class="icon-delete"></i></a></div>
-                                        </div>
-                                    </li>
                                     <li class="add-outcome"  id="itin-loc-list-end">
                                     	<div class="count">+</div>
                                         <div class="outcome">
