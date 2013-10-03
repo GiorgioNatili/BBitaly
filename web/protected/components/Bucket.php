@@ -22,7 +22,7 @@ class Bucket {
     }
     
     public static function load($filename) {
-        return '/bucket'.DS.self::_findDir($filename, true).DS. $filename;
+        return '/bucket/'.self::_findDir($filename, true).DS. $filename;
     }
 
 

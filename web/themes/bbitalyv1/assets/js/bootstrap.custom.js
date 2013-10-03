@@ -9,7 +9,9 @@ $(function () {
 	
 	$('.jcarousel-horizontal').jcarousel({scroll:1});
 	
-	$('.datepicker').datepicker();
+	$('.datepicker').datepicker({
+            autoclose: true
+        });
         
         $('#add-location').click(function() {
             var sno = $('.itin-count').size() + 1;
@@ -36,7 +38,9 @@ $(function () {
                 +    '</div>'
                 + '</li>'
             );
-                $('.datepicker').datepicker();
+                $('.datepicker').datepicker({
+                    autoclose: true
+                });
         });
 });
 

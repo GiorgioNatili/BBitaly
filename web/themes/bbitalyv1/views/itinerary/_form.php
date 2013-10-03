@@ -11,6 +11,9 @@
 	// There is a call to performAjaxValidation() commented in generated controller code.
 	// See class documentation of CActiveForm for details on this.
 	'enableAjaxValidation'=>false,
+        'htmlOptions' => array(
+            'enctype' => 'multipart/form-data',
+        ),
 )); ?>
 
 <section>
@@ -24,7 +27,7 @@
                         	<div class="edit-link passed"><a href="#"><i class="icon-flag"></i> </a></div>
                             <div class="col1">
                                 <div class="img img-edit" id="iti-cover-img">
-                                    <input type="file" name="cover" />
+                                    <?php echo CHtml::activeFileField($model, 'cover_image'); ?>  
                                 </div>
                             </div>
                             <div class="col2">
@@ -34,7 +37,13 @@
                                         <?php echo $form->textField($model,'name',array('size'=>50,'required' => 'required','maxlength'=>50,'placeholder' => 'Itinerary Name..','class' => 'input-field medium')); ?>
                                         <?php echo $form->error($model,'name'); ?>
                                     </div>
-                                    <p>dal:<strong>02/02/0202</strong> al:<strong>02/02/0202</strong></p>
+                                    <p>
+                                        <div class="input-daterange" id="datepicker">
+                                            <strong>dal:<?php echo $form->textField($model,'date_from',array('required' => 'required','class' => 'input-field x-small datepicker')); ?>
+                                            <span class="add-on">to</span>
+                                            <?php echo $form->textField($model,'date_to',array('required' => 'required','class' => 'input-field x-small datepicker')); ?>
+                                        </div>
+                                </p>
                                     <p><strong>999</strong> strutture prenotate/ 99 citta</p>
                                 </div>
                             </div>
