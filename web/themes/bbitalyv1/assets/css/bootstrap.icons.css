@@ -48,8 +48,8 @@
 	background:url(../img/icons/bb_checkin.png) no-repeat 0 0;
 	width: 25px;
 	height: 18px;
-	margin-left: 10px;
-	margin-top: -1px;
+/*	margin-left: 10px;
+	margin-top: -1px;*/
 }
 .icon-checkout {
 	background-image:url(../img/icons/bb_checkout.png);
@@ -58,13 +58,18 @@
 	background:url(../img/icons/bb_users.png) no-repeat 0 0;
 	width: 25px;
 	height: 16px;
-	margin-left: 10px;
+/*	margin-left: 10px;*/
+}
+.icon-days {
+	background:url(../img/icons/bb_days.png) no-repeat 0 0;
+	width: 24px;
+	height: 21px;
 }
 .icon-price {
 	background:url(../img/icons/bb_price.png) no-repeat 0 0;
 	width: 24px;
 	height: 25px;
-	margin-right: 5px;
+/*	margin-right: 5px;*/
 }
 .icon-favourite {
 	background:url(../img/icons/bb_favourite.png) no-repeat 0 0;
@@ -114,4 +119,91 @@
 	width: 42px;
 	height: 24px;
 	margin-top: 12px;
+}
+
+
+.menu-nav .icon-account,
+.menu-nav .icon-favorites,
+.menu-nav .icon-itinerary,
+.menu-nav .icon-booking,
+.menu-nav .icon-accommodations,
+.menu-nav .icon-availability,
+.menu-nav .icon-invoices,
+.menu-nav .icon-property,
+.menu-nav .icon-room,
+.menu-nav .icon-financials,
+.menu-nav .icon-policy { width: 50px; height: 50px; background-repeat: no-repeat; background-position:0 0; background-image: url(../img/icons/bb_menu-nav-icons.png); }
+.menu-nav .icon-account { background-position: -50px 0;}
+.menu-nav .icon-favorites { background-position: -100px 0;}
+.menu-nav .icon-itinerary { background-position: -150px 0;}
+.menu-nav .icon-booking { background-position: -200px 0;}
+.menu-nav .icon-accommodations { background-position: -250px 0;}
+.menu-nav .icon-availability { background-position: -300px 0;}
+.menu-nav .icon-invoices { background-position: -350px 0;}
+.menu-nav .icon-property { background-position: -400px 0;}
+.menu-nav .icon-room { background-position: -450px 0;}
+.menu-nav .icon-financials { background-position: -500px 0;}
+.menu-nav .icon-policy { background-position: -550px 0;}
+
+.icon-delete {
+	background:url(../img/icons/bb_icon-delete.png) no-repeat;
+	width: 31px;
+	height: 31px;
+	margin: -4px 0 0 20px;
+}
+.icon-tick-green {
+	background:url(../img/icons/bb_icon-tick-green.png) no-repeat;
+	width: 49px;
+	height: 38px;
+	margin: 0;
+}
+.icon-edit-blue {
+	background:url(../img/icons/bb_icon-edit-blue.png) no-repeat;
+	width: 30px;
+	height: 30px;
+}
+.icon-tick {
+	background:url(../img/icons/bb_icon-tick.png) no-repeat;
+	width: 21px;
+	height: 21px;
+	margin-left: 5px;
+}
+.icon-cross {
+	background:url(../img/icons/bb_icon-cross.png) no-repeat;
+	width: 21px;
+	height: 21px;
+	margin-left: 5px;
+}
+.icon-edit-btn {
+	background:url(../img/icons/bb_icon-edit-btn.png) no-repeat;
+	width: 16px;
+	height: 16px;
+	margin-right: 10px;
+}
+.icon-download-btn {
+	background:url(../img/icons/bb_icon-download-btn.png) no-repeat;
+	width: 16px;
+	height: 16px;
+	margin-right: 10px;
+}
+.icon-success-big {
+	background:url(../img/icons/bb_icon-sucess-big.png) no-repeat;
+	width: 150px;
+	height: 148px;
+	margin-bottom: 10px;
+}
+.icon-note {
+	background:url(../img/icons/bb_icon-note.png) no-repeat;
+	width: 40px;
+	height: 29px;
+}
+.icon-note-green {
+	background:url(../img/icons/bb_icon-note-green.png) no-repeat;
+	width: 40px;
+	height: 29px;
+}
+.icon-next-step {
+	background:url(../img/icons/bb_icon-next-step.png) no-repeat;
+	width: 20px;
+	height: 20px;
 }
