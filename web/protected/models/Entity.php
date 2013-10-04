@@ -18,6 +18,9 @@ class Entity extends CActiveRecord
     const ENTITY_PROPERTY = 1;
     
     const ENTITY_ROOM = 2;
+    
+    const ENTITY_ITINERARY = 3;
+    
 	/**
 	 * @return string the associated database table name
 	 */

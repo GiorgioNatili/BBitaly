@@ -3,16 +3,8 @@
 /* @var $model Itinerary */
 
 $this->breadcrumbs=array(
-	'Itineraries'=>array('index'),
+	'Itineraries',
 	'Create',
 );
 
-$this->menu=array(
-	array('label'=>'List Itinerary', 'url'=>array('index')),
-	array('label'=>'Manage Itinerary', 'url'=>array('admin')),
-);
-?>
-
-<h1>Create Itinerary</h1>
-
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+$this->renderPartial('_form', array('model'=>$model)); ?>
