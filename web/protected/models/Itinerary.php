@@ -38,7 +38,7 @@ class Itinerary extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, description, cover_image, date_from, date_to, uid, created_on, updated_on, host_ip', 'required'),
+			array('name, description, date_from, date_to, uid, created_on, updated_on, host_ip', 'required'),
 			array('cover_image, uid', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>50),
 			array('date_from, date_to, created_on, updated_on, host_ip', 'length', 'max'=>20),

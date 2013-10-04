@@ -69,6 +69,10 @@ class ItineraryController extends Controller
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
+                
+                /*
+                 * create new entity type in db bamed "Itinerary"
+                 */
 
 		if(isset($_POST['Itinerary']))
 		{
@@ -103,7 +107,7 @@ class ItineraryController extends Controller
                     $model->created_on = $time;
                     $model->updated_on = $time;
                     $model->host_ip = $_SERVER['REMOTE_ADDR'];
-                    echo "<pre>"; print_r($_POST); exit;
+                    //echo "<pre>"; print_r($_POST); exit;
                     if($model->save()) {
                         $image->itinerary_id = $model->id;
                         $image->save();
@@ -130,7 +134,7 @@ class ItineraryController extends Controller
                         $this->redirect('/itinerary');
                     } else {
                         $transaction->rollback();
-                        echo "<pre>"; print_r($model); exit;
+                        echo "<pre>--"; print_r($model); exit;
                     }
                             
 		}
