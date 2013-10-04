@@ -63,9 +63,6 @@ class ItineraryController extends Controller
 	public function actionCreate()
 	{
 		$model=new Itinerary;
-                
-                //echo strtotime($_POST['Location'][1]['from']);
-                
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -73,7 +70,6 @@ class ItineraryController extends Controller
                 /*
                  * create new entity type in db bamed "Itinerary"
                  */
-
 		if(isset($_POST['Itinerary']))
 		{
                     $time = time();
@@ -95,7 +91,7 @@ class ItineraryController extends Controller
                         $image->img_size = $coverImage->size;
                         $image->status = 1;
                         $image->uploaded_on = time();
-                        //$image->save();
+                        $image->save();
                         $coverImage->saveAs($bucket->getMovePath());
                         $model->cover_image = $image->id;
                     }
@@ -107,38 +103,39 @@ class ItineraryController extends Controller
                     $model->created_on = $time;
                     $model->updated_on = $time;
                     $model->host_ip = $_SERVER['REMOTE_ADDR'];
-                    //echo "<pre>"; print_r($_POST); exit;
                     if($model->save()) {
                         $image->itinerary_id = $model->id;
                         $image->save();
                         /**
                          * @todo Implement single query multiple insert.
                          */
-                        if ( isset($_POST['Location'])) {
+                        if ( !empty($_POST['Location'])) {
                             foreach ($_POST['Location'] as $loc) {
                                 $location = new ItineraryLocations;
                                 $location->itinerary_id = $model->id;
+                                $location->name = $loc['name'];
                                 $location->date_from = strtotime($loc['from']);
                                 $location->date_to = strtotime($loc['to']);
                                 $location->persons = $loc['people'];
                                 $location->status = 1;
                                 $location->created_on = $time;
-                                $location->save();
+                                if ( !$location->save()) {
+                                    $transaction->rollback();
+                                    echo 'cannot insert location';
+                                    echo "<pre>"; print_r($location); exit;
+                                }
+                                
                             }
                         }
-                        
-                        
                         
                         $transaction->commit();
                         $this->setFlash('success','Your itinerary has been created successfully!');
                         $this->redirect('/itinerary');
                     } else {
                         $transaction->rollback();
-                        echo "<pre>--"; print_r($model); exit;
                     }
-                            
 		}
-
+                
 		$this->render('create',array(
 			'model'=>$model,
 		));

@@ -7,6 +7,7 @@
  * @property integer $id
  * @property integer $itinerary_id
  * @property string $date_from
+ * @property string $name
  * @property string $date_to
  * @property integer $persons
  * @property integer $status
@@ -33,12 +34,13 @@ class ItineraryLocations extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('itinerary_id, date_from, date_to, persons', 'required'),
+			array('itinerary_id, date_from, name, date_to, persons', 'required'),
 			array('itinerary_id, persons, status', 'numerical', 'integerOnly'=>true),
 			array('date_from, date_to, created_on', 'length', 'max'=>20),
+			array('name', 'length', 'max'=>30),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, itinerary_id, date_from, date_to, persons, status, created_on', 'safe', 'on'=>'search'),
+			array('id, itinerary_id, date_from, name, date_to, persons, status, created_on', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,6 +65,7 @@ class ItineraryLocations extends CActiveRecord
 			'id' => 'ID',
 			'itinerary_id' => 'Itinerary',
 			'date_from' => 'Date From',
+			'name' => 'Name',
 			'date_to' => 'Date To',
 			'persons' => 'Persons',
 			'status' => 'Status',
@@ -91,6 +94,7 @@ class ItineraryLocations extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('itinerary_id',$this->itinerary_id);
 		$criteria->compare('date_from',$this->date_from,true);
+		$criteria->compare('name',$this->name,true);
 		$criteria->compare('date_to',$this->date_to,true);
 		$criteria->compare('persons',$this->persons);
 		$criteria->compare('status',$this->status);
