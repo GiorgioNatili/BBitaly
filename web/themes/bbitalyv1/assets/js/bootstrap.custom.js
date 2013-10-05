@@ -70,15 +70,11 @@ function enableOffer(r,i) {
 }
 
 function changeMonth(idf, room_id) {
-    var cur_month = $('#'+idf).attr('data-month')
-        , next_month = cur_month === 12 ? 1 : cur_month + 1
-        , cur_year = $('#'+idf).attr('data-year')
-        , next_year = cur_month === 12 ? cur_year + 1 : cur_year;
-        
-    $.ajax({
-        url: '/availability/_calendar?room='+room_id+'&month='+next_month+'&year='+next_year,
-        success: function(data) {
-            console.log(data);
-        }
-    });
+    var cur_month = parseInt($('#'+idf).attr('data-month'))
+        , next_month = cur_month === 12 ? 1 : (cur_month) + 1
+        , cur_year = parseInt($('#'+idf).attr('data-year'))
+        , next_year = cur_month === 12 ? parseInt(cur_year) + 1 : cur_year;
+        console.log('/availability/_calendar?room='+room_id+'&month='+next_month+'&year='+next_year);
+    
+    $('.cal-container-'+room_id).load('/availability/_calendar?room='+room_id+'&month='+next_month+'&year='+next_year);
 }

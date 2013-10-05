@@ -35,7 +35,7 @@
     </div>
     <div class="collapse" id="availability_<?php echo $index ?>">
         <div class="availability-content">
-            <div class="calendar-container">
+            <div class="calendar-container cal-container-<?php echo $data->id ?>">
                 <?php echo $this->drawCalendar($data,date('m'), date('Y')) ?>
             </div>
             <div class="actions a-center">
