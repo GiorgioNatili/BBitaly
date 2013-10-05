@@ -36,12 +36,6 @@
     <div class="collapse" id="availability_<?php echo $index ?>">
         <div class="availability-content">
             <div class="calendar-container">
-                <div class="calendar-nav a-center">
-                    <div class="cnav-right pull-right"><a href="#"><i class="icon-adjust"></i></a></div>
-                    <div class="cnav-left pull-left"><a class="disabled" href="#"><i class="icon-adjust"></i></a></div>
-                    <span class="month">Gennaio</span>
-                    <span class="year">2013</span>
-                </div>
                 <?php echo $this->drawCalendar($data,date('m'), date('Y')) ?>
             </div>
             <div class="actions a-center">

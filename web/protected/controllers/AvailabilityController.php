@@ -32,7 +32,7 @@ class AvailabilityController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'property'),
+				'actions'=>array('create','update', 'property', '_calendar'),
 				'roles'=>array(Users::ROLE_OWNER),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -126,7 +126,13 @@ class AvailabilityController extends Controller
             $days_in_this_week = 1;
             $day_counter = 0;
             $dates_array = array();
-            $calendar = '<div class="main-calendar">';
+            $calendar = '<div class="calendar-nav a-center">'
+                            . '<div class="cnav-right pull-right"><a href="javascript:void(0);" onclick="changeMonth('."'cal_".$room->id."'".', '.$room->id.')"><i class="icon-adjust"></i></a></div>'
+                            . '<div class="cnav-left pull-left"><a class="disabled" href="javascript:void(0);"><i class="icon-adjust"></i></a></div>'
+                            . '<span class="month">'.date('F',  mktime(0,0,0,$month,1,$year)).'</span>'
+                            . '<span class="year">'.$year. '</span>'
+                      . '</div>';
+            $calendar .= '<div class="main-calendar" id="cal_'.$room->id. '" data-year="'.$year.'" data-month="'.$month. '">';
                 $calendar.= '<div class="mc-head c-days">';
                     foreach ($days as $day) {
                         $calendar .= sprintf('<div class="cell">%s</div>', $day);
@@ -171,6 +177,14 @@ class AvailabilityController extends Controller
             $calendar .= '</div>';
             
             return $calendar;
+        }
+        
+        public function action_calendar() {
+            $room = $_GET['room'];
+            $month = $_GET['month'];
+            $year = $_GET['year'];
+            $room = Room::model()->findByPk($room);
+            echo $this->drawCalendar($room, $month, $year);
         }
         
         public function actionProperty($id) {
