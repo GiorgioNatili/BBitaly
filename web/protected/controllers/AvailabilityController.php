@@ -103,6 +103,76 @@ class AvailabilityController extends Controller
 		));
 	}
         
+        /**
+         * Generates HTML for calendar with events.
+         * @param Room $room
+         * @param type $month
+         * @param type $year
+         * @return string
+         */
+        function drawCalendar($room,$month,$year) {
+            $days = array(
+                'domenica',
+                'lunedi',
+                'martedi',
+                'mercoledi',
+                'giovedi',
+                'venerdi',
+                'sabato'
+            );
+            
+            $running_day = date('w',mktime(0,0,0,$month,1,$year));
+            $days_in_month = date('t',mktime(0,0,0,$month,1,$year));
+            $days_in_this_week = 1;
+            $day_counter = 0;
+            $dates_array = array();
+            $calendar = '<div class="main-calendar">';
+                $calendar.= '<div class="mc-head c-days">';
+                    foreach ($days as $day) {
+                        $calendar .= sprintf('<div class="cell">%s</div>', $day);
+                    }
+                $calendar .= '</div>';
+                
+                $calendar .= '<div class="mc-body c-dates">';
+                    // Empty Day padding.
+                    for($x = 0; $x < $running_day; $x++):
+                            $calendar.= '<div class="cell blank">&nbsp;</div>';
+                            $days_in_this_week++;
+                    endfor;
+                    
+                    for($list_day = 1; $list_day <= $days_in_month; $list_day++):
+                            $calendar.= '<div class="cell available">';
+                                    /* add in the day number */
+                                    $calendar.= '<div class="date">'.$list_day.'</div>';
+                                    $calendar .= '<div class="input-box">
+                                                        <input type="hidden" name="Availability['.$room->id. ']['.$list_day. '][is_available]" value="0" />
+                                                        <input type="text" maxlength="3" readonly class="input-field small _offer_' .$room->id.'_'.$list_day. '" name="Availability['.$room->id. ']['.$list_day. '][price]" value="'.$room->price. '" />
+                                                </div>
+                                                <div class="input-box">
+                                                <input type="checkbox" class="checkbox" onclick="enableOffer('.$room->id.', '.$list_day.');">
+                                                <label>Offerta</label>';
+                                    /** QUERY THE DATABASE FOR AN ENTRY FOR THIS DAY !!  IF MATCHES FOUND, PRINT THEM !! **/
+                                    //$calendar.= str_repeat('<p> </p>',2);
+                                $calendar.= '</div>';
+                            $calendar.= '</div>';
+                            if($running_day == 6):
+                                    $running_day = -1;
+                                    $days_in_this_week = 0;
+                            endif;
+                            $days_in_this_week++; $running_day++; $day_counter++;
+                    endfor;
+                    //echo $day_counter; exit;
+                    if($days_in_this_week < 8):
+                        for($x = 1; $x <= (8 - $days_in_this_week); $x++):
+                                $calendar.= '<div class="cell blank">&nbsp;</div>';
+                        endfor;
+                    endif;
+                $calendar .= '</div>';
+            $calendar .= '</div>';
+            
+            return $calendar;
+        }
+        
         public function actionProperty($id) {
             $criteria = new CDbCriteria;
             $criteria->addCondition('property_id = '.$id);
@@ -113,11 +183,41 @@ class AvailabilityController extends Controller
                     )
             );
             
-            //echo "<pre>"; print_r($dataProvider); exit;
+            //$this->drawCalendar(date('m'), date('Y'));
+            
+            /*
+             * $calendar = array();
+            
+            $start = 1;
+            $end = date('t');
+            $month = date('m');
+            $year = date('Y');
+            for ( $i = $start; $i <= $end; $i++) {
+                $date = sprintf('%d-%d-%d', $i, $month, $year);
+                $stamp = strtotime($date);
+                $day = date('D', $stamp);
+                $calendar[$day][] = array(
+                    'day' => $i,
+                    'month' => $month,
+                    'year' => $year
+                );
+            }
+            $sorted = array();
+            // Sorry but our week starts with Monday :-) . Lets sort (manually)
+            $sorted['Mon'] = $calendar['Mon'];
+            $sorted['Tue'] = $calendar['Tue'];
+            $sorted['Wed'] = $calendar['Wed'];
+            $sorted['Thu'] = $calendar['Thu'];
+            $sorted['Fri'] = $calendar['Fri'];
+            $sorted['Sat'] = $calendar['Sat'];
+            $sorted['Sun'] = $calendar['Sun'];
+             */
+            
             $this->render('property',array(
-                'dataProvider'  =>  $dataProvider,
+                'dataProvider'  =>  $dataProvider
             ));
         }
+
 
 	/**
 	 * Deletes a particular model.

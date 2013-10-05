@@ -20,6 +20,7 @@ return array(
 		'application.models.*',
 		'application.components.*',
                 'application.components.exception.*',
+                //'application.extensions.When.*'
 	),
 
 	'modules'=>array(

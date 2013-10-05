@@ -53,3 +53,18 @@ function choosePolicy(i) {
     var $ins = $(i);
     $('#fPolicy').val($ins.val());
 }
+
+$.fn.hasAttr = function(name) {
+    return this.attr(name) !== undefined;
+}
+
+function enableOffer(r,i) {
+    var _c = '._offer_'+r+'_'+i
+    , $elem = $(_c);
+    
+    if ( $elem.hasAttr('readonly')) {
+        $elem.removeAttr('readonly');
+    } else {
+        $elem.attr('readonly','readonly');
+    }
+}

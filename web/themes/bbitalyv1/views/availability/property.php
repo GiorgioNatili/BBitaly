@@ -8,6 +8,8 @@
                     <?php $this->widget('zii.widgets.CListView', array(
                             'dataProvider'=>$dataProvider,
                             'itemView'=>'_calendar',
+                            'viewData' => array(
+                            )
                     )); ?>
                     
                 </ul>
