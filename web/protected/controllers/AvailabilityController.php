@@ -32,8 +32,8 @@ class AvailabilityController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
+				'actions'=>array('create','update', 'property'),
+				'roles'=>array(Users::ROLE_OWNER),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
@@ -102,6 +102,22 @@ class AvailabilityController extends Controller
 			'model'=>$model,
 		));
 	}
+        
+        public function actionProperty($id) {
+            $criteria = new CDbCriteria;
+            $criteria->addCondition('property_id = '.$id);
+            $dataProvider=new CActiveDataProvider(
+                    'Room',
+                    array(
+                        'criteria' => $criteria
+                    )
+            );
+            
+            //echo "<pre>"; print_r($dataProvider); exit;
+            $this->render('property',array(
+                'dataProvider'  =>  $dataProvider,
+            ));
+        }
 
 	/**
 	 * Deletes a particular model.
