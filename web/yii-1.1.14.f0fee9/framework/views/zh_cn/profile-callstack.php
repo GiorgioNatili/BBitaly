@@ -8,6 +8,7 @@
 		<th>步骤</th>
 		<th>时间 (秒)</th>
 	</tr>
+<<<<<<< HEAD
 <?php
 foreach ( $data as $index => $entry ) {
 	$color = ($index % 2) ? '#F5F5F5' : '#FFFFFF';
@@ -16,13 +17,28 @@ foreach ( $data as $index => $entry ) {
 	$time = sprintf ( '%0.5f', $time );
 	$spaces = str_repeat ( '&nbsp;', $level * 8 );
 	
+=======
+<?php
+foreach ( $data as $index => $entry ) {
+	$color = ($index % 2) ? '#F5F5F5' : '#FFFFFF';
+	list ( $proc, $time, $level ) = $entry;
+	$proc = CHtml::encode ( $proc );
+	$time = sprintf ( '%0.5f', $time );
+	$spaces = str_repeat ( '&nbsp;', $level * 8 );
+	
+>>>>>>> def2c902e2605700237265c6ff0100057658fafc
 	echo <<<EOD
 	<tr style="background:{$color}">
 		<td>{$spaces}{$proc}</td>
 		<td align="center">{$time}</td>
 	</tr>
+<<<<<<< HEAD
 EOD;
 }
+=======
+EOD;
+}
+>>>>>>> def2c902e2605700237265c6ff0100057658fafc
 ?>
 </table>
 <!-- end of profiling callstack -->

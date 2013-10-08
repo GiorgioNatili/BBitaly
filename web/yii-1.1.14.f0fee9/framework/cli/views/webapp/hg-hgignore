@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 syntax: glob
 
 syntax: regexp
@@ -5,3 +6,12 @@ syntax: regexp
 ^assets/(?!.*\.hgkeep$).+
 ^protected/runtime/(?!.*\.hgkeep$).+
 ^protected/tests/report/(?!.*\.hgkeep$).+
+=======
+syntax: glob
+
+syntax: regexp
+# ignore all except .hgkeep
+^assets/(?!.*\.hgkeep$).+
+^protected/runtime/(?!.*\.hgkeep$).+
+^protected/tests/report/(?!.*\.hgkeep$).+
+>>>>>>> def2c902e2605700237265c6ff0100057658fafc

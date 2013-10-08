@@ -66,6 +66,7 @@ class ItineraryController extends Controller
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
+<<<<<<< HEAD
 
 		if(isset($_POST['Itinerary']))
 		{
@@ -74,6 +75,78 @@ class ItineraryController extends Controller
 				$this->redirect(array('view','id'=>$model->id));
 		}
 
+=======
+                
+                /*
+                 * create new entity type in db bamed "Itinerary"
+                 */
+		if(isset($_POST['Itinerary']))
+		{
+                    $time = time();
+                    $model->attributes=$_POST['Itinerary'];
+                    $coverImage = CUploadedFile::getInstance($model,'cover_image');
+                    unset($_POST['Itinerary']['cover_image']);
+                    $model->attributes = $_POST['Itinerary'];
+                    $image = new Images;
+                    $transaction = Yii::app()->db->beginTransaction();
+                    if ($_FILES['Itinerary']['error']['cover_image'] == 0) {
+                        // Lets Upload.
+                        $bucket = new Bucket($coverImage);
+                        // Before Setting cover, insert image first.
+                        $image->type = Entity::ENTITY_ITINERARY;
+                        $image->itinerary_id = $model->id;
+                        $image->is_cover = 1;
+                        $image->img_mime = $coverImage->type;
+                        $image->img_name = $bucket->getFileName();
+                        $image->img_size = $coverImage->size;
+                        $image->status = 1;
+                        $image->uploaded_on = time();
+                        $image->save();
+                        $coverImage->saveAs($bucket->getMovePath());
+                        $model->cover_image = $image->id;
+                    }
+                    
+                    // convert string to *nix timestamp
+                    $model->date_from = strtotime($model->date_from);
+                    $model->date_to = strtotime($model->date_to);
+                    $model->uid = $this->getUser()->id;
+                    $model->created_on = $time;
+                    $model->updated_on = $time;
+                    $model->host_ip = $_SERVER['REMOTE_ADDR'];
+                    if($model->save()) {
+                        $image->itinerary_id = $model->id;
+                        $image->save();
+                        /**
+                         * @todo Implement single query multiple insert.
+                         */
+                        if ( !empty($_POST['Location'])) {
+                            foreach ($_POST['Location'] as $loc) {
+                                $location = new ItineraryLocations;
+                                $location->itinerary_id = $model->id;
+                                $location->name = $loc['name'];
+                                $location->date_from = strtotime($loc['from']);
+                                $location->date_to = strtotime($loc['to']);
+                                $location->persons = $loc['people'];
+                                $location->status = 1;
+                                $location->created_on = $time;
+                                if ( !$location->save()) {
+                                    $transaction->rollback();
+                                    echo 'cannot insert location';
+                                    echo "<pre>"; print_r($location); exit;
+                                }
+                                
+                            }
+                        }
+                        
+                        $transaction->commit();
+                        $this->setFlash('success','Your itinerary has been created successfully!');
+                        $this->redirect('/itinerary');
+                    } else {
+                        $transaction->rollback();
+                    }
+		}
+                
+>>>>>>> def2c902e2605700237265c6ff0100057658fafc
 		$this->render('create',array(
 			'model'=>$model,
 		));

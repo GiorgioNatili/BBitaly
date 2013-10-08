@@ -10,7 +10,7 @@ class Bucket {
     
     private $_checkSum = null;
     
-    public function __construct($file, $type=null) {
+    public function __construct($file) {
         if ( $file instanceof CUploadedFile) {
             $md5_file = md5_file($file->tempName);
             $ext = image_type_to_extension(exif_imagetype($file->tempName));
@@ -27,12 +27,11 @@ class Bucket {
                 $this->_dirName = $this->_findDir($md5_file);
                 $this->_absPath = DOC_ROOT.DS.'bucket'.DS.$this->getDirName().DS. $this->getFileName();
             }
-
         }
     }
     
     public static function load($filename) {
-        return '/bucket'.DS.self::_findDir($filename, true).DS. $filename;
+        return '/bucket/'.self::_findDir($filename, true).DS. $filename;
     }
 
 

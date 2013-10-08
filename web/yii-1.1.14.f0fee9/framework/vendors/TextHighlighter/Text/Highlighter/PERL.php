@@ -1,10 +1,16 @@
+<<<<<<< HEAD
 <?php
 /**
+=======
+<?php
+/**
+>>>>>>> def2c902e2605700237265c6ff0100057658fafc
  * Auto-generated class. PERL syntax highlighting
  * 
  * This highlighter is EXPERIMENTAL, so that it may work incorrectly. 
  * Most rules were created by Mariusz Jakubowski, and extended by me.
  * My  knowledge  of  Perl  is  poor,  and  Perl  syntax  seems  too
+<<<<<<< HEAD
  * complicated to me. 
  *
  * PHP version 4 and 5
@@ -51,6 +57,54 @@ class  Text_Highlighter_PERL extends Text_Highlighter
     function __construct($options=array())
     {
 
+=======
+ * complicated to me. 
+ *
+ * PHP version 4 and 5
+ *
+ * LICENSE: This source file is subject to version 3.0 of the PHP license
+ * that is available through the world-wide-web at the following URI:
+ * http://www.php.net/license/3_0.txt.  If you did not receive a copy of
+ * the PHP License and are unable to obtain it through the web, please
+ * send a note to license@php.net so we can mail you a copy immediately.
+ *
+ * @copyright  2004-2006 Andrey Demenev
+ * @license    http://www.php.net/license/3_0.txt  PHP License
+ * @link       http://pear.php.net/package/Text_Highlighter
+ * @category   Text
+ * @package    Text_Highlighter
+ * @version    generated from: : perl.xml,v 1.1 2007/06/03 02:35:28 ssttoo Exp 
+ * @author Mariusz 'kg' Jakubowski <kg@alternatywa.info>
+ * @author Andrey Demenev <demenev@gmail.com>
+ *
+ */
+
+/**
+ * Auto-generated class. PERL syntax highlighting
+ *
+ * @author Mariusz 'kg' Jakubowski <kg@alternatywa.info>
+ * @author Andrey Demenev <demenev@gmail.com>
+ * @category   Text
+ * @package    Text_Highlighter
+ * @copyright  2004-2006 Andrey Demenev
+ * @license    http://www.php.net/license/3_0.txt  PHP License
+ * @version    Release: 0.7.1
+ * @link       http://pear.php.net/package/Text_Highlighter
+ */
+class  Text_Highlighter_PERL extends Text_Highlighter
+{
+    var $_language = 'perl';
+
+    /**
+     *  Constructor
+     *
+     * @param array  $options
+     * @access public
+     */
+    function __construct($options=array())
+    {
+
+>>>>>>> def2c902e2605700237265c6ff0100057658fafc
         $this->_options = $options;
         $this->_regs = array (
             -1 => '/((?m)^(#!)(.*))|((?m)^=\\w+)|(\\{)|(\\()|(\\[)|((use)\\s+([\\w:]*))|([& ](\\w{2,}::)+\\w{2,})|((?Us)\\b(q[wq]\\s*((\\{)|(\\()|(\\[)|(\\<)|([\\W\\S])))(?=(.*)((?(3)\\})(?(4)\\))(?(5)\\])(?(6)\\>)(?(7)\\7))))|((?Us)\\b(q\\s*((\\{)|(\\()|(\\[)|(\\<)|([\\W\\S])))(?=(.*)((?(3)\\})(?(4)\\))(?(5)\\])(?(6)\\>)(?(7)\\7))))|(#.*)|((?x)(s|tr) ([|#~`!@$%^&*-+=\\\\;:\'",.\\/?])  ((\\\\.|[^\\\\])*?) (\\2)((\\\\.|[^\\\\])*?)(\\2[ecgimosx]*))|((?x)(m) ([|#~`!@$%^&*-+=\\\\;:\'",.\\/?])  ((\\\\.|[^\\\\])*?) (\\2[ecgimosx]*))|( \\/)|(\\$#?[1-9\'`@!])|((?i)(\\$#?|[@%*])([a-z1-9_]+::)*([a-z1-9_]+|\\^(?-i)[A-Z]?(?i)))|((?i)\\$([a-z1-9_]+|\\^(?-i)[A-Z]?(?i)))|((?i)(&|\\w+)\'[\\w_\']+\\b)|((?i)(\\{)([a-z1-9]+)(\\}))|((?i)[\\$@%]#?\\{[a-z1-9]+\\})|(`)|(\')|(")|((?i)[a-z_]\\w*)|(\\d*\\.?\\d+)/',
@@ -1327,8 +1381,15 @@ class  Text_Highlighter_PERL extends Text_Highlighter
             'missingreserved' => 'reserved',
             'flowcontrol' => 'reserved',
         );
+<<<<<<< HEAD
         $this->_defClass = 'code';
         $this->_checkDefines();
     }
     
+=======
+        $this->_defClass = 'code';
+        $this->_checkDefines();
+    }
+    
+>>>>>>> def2c902e2605700237265c6ff0100057658fafc
 }

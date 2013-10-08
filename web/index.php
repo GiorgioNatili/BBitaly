@@ -9,8 +9,6 @@ define('DS',DIRECTORY_SEPARATOR);
 $environment = ENV_DEVELOPMENT;
 $yii='./yii-1.1.14.f0fee9/framework/yii.php';
 
-
-
 if ( $_SERVER['BBENV'] == ENV_DEVELOPMENT) {
 
     $environment = ENV_DEVELOPMENT;
@@ -18,6 +16,9 @@ if ( $_SERVER['BBENV'] == ENV_DEVELOPMENT) {
     defined('YII_DEBUG') or define('YII_DEBUG',true);
 
     defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
+  //  defined('YII_DEBUG') or define('YII_DEBUG',true);
+
+    //defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
 } else if ( $_SERVER['BBENV'] == ENV_STAGING ) {
 
     /// Path to Yii Core.

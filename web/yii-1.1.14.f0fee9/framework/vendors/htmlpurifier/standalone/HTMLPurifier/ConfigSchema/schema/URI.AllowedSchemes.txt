@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 URI.AllowedSchemes
 TYPE: lookup
 --DEFAULT--
@@ -15,3 +16,22 @@ prevents XSS attacks from using pseudo-schemes like javascript or mocha.
 There is also support for the <code>data</code> and <code>file</code>
 URI schemes, but they are not enabled by default.
 --# vim: et sw=4 sts=4
+=======
+URI.AllowedSchemes
+TYPE: lookup
+--DEFAULT--
+array (
+  'http' => true,
+  'https' => true,
+  'mailto' => true,
+  'ftp' => true,
+  'nntp' => true,
+  'news' => true,
+)
+--DESCRIPTION--
+Whitelist that defines the schemes that a URI is allowed to have.  This
+prevents XSS attacks from using pseudo-schemes like javascript or mocha.
+There is also support for the <code>data</code> and <code>file</code>
+URI schemes, but they are not enabled by default.
+--# vim: et sw=4 sts=4
+>>>>>>> def2c902e2605700237265c6ff0100057658fafc

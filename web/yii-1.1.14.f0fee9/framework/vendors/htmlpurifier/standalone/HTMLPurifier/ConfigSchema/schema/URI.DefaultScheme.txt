@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 URI.DefaultScheme
 TYPE: string
 DEFAULT: 'http'
@@ -8,3 +9,15 @@ DEFAULT: 'http'
     select the proper object validator when no scheme information is present.
 </p>
 --# vim: et sw=4 sts=4
+=======
+URI.DefaultScheme
+TYPE: string
+DEFAULT: 'http'
+--DESCRIPTION--
+
+<p>
+    Defines through what scheme the output will be served, in order to
+    select the proper object validator when no scheme information is present.
+</p>
+--# vim: et sw=4 sts=4
+>>>>>>> def2c902e2605700237265c6ff0100057658fafc
