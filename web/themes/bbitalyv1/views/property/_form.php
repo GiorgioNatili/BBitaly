@@ -410,7 +410,7 @@
                                     <div class="field">
                                         <label>Prezzo base</label>
                                         <div class="input-box">
-                                            <?php echo $form->textField($room,'price', array('class' => 'input-field x-small')); ?>
+                                            <?php echo $form->textField($room,'price', array('class' => 'input-field x-small', 'maxlength' => 3)); ?>
                                         </div>
                                     </div>
                                     <div class="field">
