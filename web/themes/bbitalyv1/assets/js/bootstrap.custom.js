@@ -53,3 +53,28 @@ function choosePolicy(i) {
     var $ins = $(i);
     $('#fPolicy').val($ins.val());
 }
+
+$.fn.hasAttr = function(name) {
+    return this.attr(name) !== undefined;
+}
+
+function enableOffer(r,i) {
+    var _c = '._offer_'+r+'_'+i
+    , $elem = $(_c);
+    
+    if ( $elem.hasAttr('readonly')) {
+        $elem.removeAttr('readonly');
+    } else {
+        $elem.attr('readonly','readonly');
+    }
+}
+
+function changeMonth(idf, room_id) {
+    var cur_month = parseInt($('#'+idf).attr('data-month'))
+        , next_month = cur_month === 12 ? 1 : (cur_month) + 1
+        , cur_year = parseInt($('#'+idf).attr('data-year'))
+        , next_year = cur_month === 12 ? parseInt(cur_year) + 1 : cur_year;
+        console.log('/availability/_calendar?room='+room_id+'&month='+next_month+'&year='+next_year);
+    
+    $('.cal-container-'+room_id).load('/availability/_calendar?room='+room_id+'&month='+next_month+'&year='+next_year);
+}
