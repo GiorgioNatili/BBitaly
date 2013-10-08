@@ -79,9 +79,9 @@ function nextMonth(idf, room_id) {
 }
 
 function lastMonth(idf, room_id) {
-    var cur_month = (new Date().getMonth()) + 1
+    var cur_month = ((new Date().getMonth()) + 1)
         , attach_month = parseInt($('#'+idf).attr('data-month'))
-        , last_month = cur_month === 12 ? 1 : (cur_month) + 1
+        , last_month = cur_month === 12 ? 1 : (attach_month) - 1
         , cur_year = (new Date().getFullYear())
         , attach_year = parseInt($('#'+idf).attr('data-year'));
     
