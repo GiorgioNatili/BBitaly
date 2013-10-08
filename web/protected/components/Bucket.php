@@ -18,6 +18,15 @@ class Bucket {
             $this->_fileName = $md5_file.$ext;
             $this->_dirName = $this->_findDir($md5_file);
             $this->_absPath = DOC_ROOT.DS.'bucket'.DS.$this->getDirName().DS. $this->getFileName();
+        }else{
+            if($type == 'javascriptfile'){
+                $md5_file = md5_file(urldecode($file['path']));
+                $ext = image_type_to_extension(exif_imagetype(urldecode($file['path'])));
+                $this->_checkSum = $md5_file;
+                $this->_fileName = $md5_file.$ext;
+                $this->_dirName = $this->_findDir($md5_file);
+                $this->_absPath = DOC_ROOT.DS.'bucket'.DS.$this->getDirName().DS. $this->getFileName();
+            }
         }
     }
     

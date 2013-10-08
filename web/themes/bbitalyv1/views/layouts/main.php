@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 ?>
 <!DOCTYPE html>
 <html><!-- InstanceBegin template="/Templates/index.dwt" codeOutsideHTMLIsLocked="false" -->
@@ -22,14 +21,18 @@
     <script src="<?php echo $this->getAssetsUrl() ?>js/bootstrap.min.js"></script>
     <script src="<?php echo $this->getAssetsUrl() ?>js/jquery.bootstrap.wizard.js"></script>
     <script src="<?php echo $this->getAssetsUrl() ?>js/jquery.jcarousel.min.js"></script>
+
     <script src="<?php echo $this->getAssetsUrl() ?>js/bootstrap-datepicker.js"></script>
     <script src="<?php echo $this->getAssetsUrl() ?>js/dropzone.js"></script>
     <script src="<?php echo $this->getAssetsUrl() ?>js/bootstrap.custom.js"></script>
     <script src="<?php echo $this->getAssetsUrl() ?>js/gmap3.min.js"></script>
+    <script src="<?php echo $this->getAssetsUrl() ?>js/jquery.ui.widget.js"></script>
+    <script src="<?php echo $this->getAssetsUrl() ?>js/jquery.fileupload.js"></script>
 
-    <!--[if lt IE 9]>  
-    <script src="js/html5.js"></script>  
-    <![endif]-->  
+
+<!--[if lt IE 9]>
+<script src="js/html5.js"></script>
+<![endif]-->
 <!-- InstanceBeginEditable name="head" -->
 <!-- InstanceEndEditable -->
 </head>

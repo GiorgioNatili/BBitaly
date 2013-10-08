@@ -12,6 +12,14 @@ $this->menu=array(
 );
 ?>
 
+<<<<<<< HEAD
+<h1>Itineraries</h1>
+
+<?php $this->widget('zii.widgets.CListView', array(
+	'dataProvider'=>$dataProvider,
+	'itemView'=>'_view',
+)); ?>
+=======
 <section><!-- MENU TRAVELOR - END -->
     <div class="itinerary-container container">
     	<div class="row">
@@ -33,3 +41,4 @@ $this->menu=array(
         </div>    
     </div>
 </section><!-- SECTION - END -->
+>>>>>>> def2c902e2605700237265c6ff0100057658fafc

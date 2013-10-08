@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 /**
  * Auto-generated class. JAVA syntax highlighting 
@@ -44,6 +45,54 @@ class  Text_Highlighter_JAVA extends Text_Highlighter
     function __construct($options=array())
     {
 
+=======
+<?php
+/**
+ * Auto-generated class. JAVA syntax highlighting 
+ *
+ * PHP version 4 and 5
+ *
+ * LICENSE: This source file is subject to version 3.0 of the PHP license
+ * that is available through the world-wide-web at the following URI:
+ * http://www.php.net/license/3_0.txt.  If you did not receive a copy of
+ * the PHP License and are unable to obtain it through the web, please
+ * send a note to license@php.net so we can mail you a copy immediately.
+ *
+ * @copyright  2004-2006 Andrey Demenev
+ * @license    http://www.php.net/license/3_0.txt  PHP License
+ * @link       http://pear.php.net/package/Text_Highlighter
+ * @category   Text
+ * @package    Text_Highlighter
+ * @version    generated from: : java.xml,v 1.1 2007/06/03 02:35:28 ssttoo Exp 
+ * @author Andrey Demenev <demenev@gmail.com>
+ *
+ */
+
+/**
+ * Auto-generated class. JAVA syntax highlighting
+ *
+ * @author Andrey Demenev <demenev@gmail.com>
+ * @category   Text
+ * @package    Text_Highlighter
+ * @copyright  2004-2006 Andrey Demenev
+ * @license    http://www.php.net/license/3_0.txt  PHP License
+ * @version    Release: 0.7.1
+ * @link       http://pear.php.net/package/Text_Highlighter
+ */
+class  Text_Highlighter_JAVA extends Text_Highlighter
+{
+    var $_language = 'java';
+
+    /**
+     *  Constructor
+     *
+     * @param array  $options
+     * @access public
+     */
+    function __construct($options=array())
+    {
+
+>>>>>>> def2c902e2605700237265c6ff0100057658fafc
         $this->_options = $options;
         $this->_regs = array (
             -1 => '/((?i)\\{)|((?i)\\()|((?i)\\[)|((?i)\\/\\*)|((?i)")|((?i)\')|((?i)\\/\\/)|((?i)[a-z_]\\w*)|((?i)0[xX][\\da-f]+)|((?i)\\d\\d*|\\b0\\b)|((?i)0[0-7]+)|((?i)(\\d*\\.\\d+)|(\\d+\\.\\d*))|((?i)((\\d+|((\\d*\\.\\d+)|(\\d+\\.\\d*)))[eE][+-]?\\d+))/',
@@ -777,8 +826,15 @@ class  Text_Highlighter_JAVA extends Text_Highlighter
             'reserved' => 'reserved',
             'builtin' => 'builtin',
         );
+<<<<<<< HEAD
         $this->_defClass = 'code';
         $this->_checkDefines();
     }
     
+=======
+        $this->_defClass = 'code';
+        $this->_checkDefines();
+    }
+    
+>>>>>>> def2c902e2605700237265c6ff0100057658fafc
 }

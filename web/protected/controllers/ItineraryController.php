@@ -137,7 +137,6 @@ class ItineraryController extends Controller
                         $transaction->rollback();
                     }
 		}
-                
 		$this->render('create',array(
 			'model'=>$model,
 		));

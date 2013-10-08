@@ -3,6 +3,54 @@
 /* @var $data Itinerary */
 ?>
 
+<<<<<<< HEAD
+<div class="view">
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
+	<?php echo CHtml::link(CHtml::encode($data->id), array('view', 'id'=>$data->id)); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('name')); ?>:</b>
+	<?php echo CHtml::encode($data->name); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('description')); ?>:</b>
+	<?php echo CHtml::encode($data->description); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('cover_image')); ?>:</b>
+	<?php echo CHtml::encode($data->cover_image); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('date_from')); ?>:</b>
+	<?php echo CHtml::encode($data->date_from); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('date_to')); ?>:</b>
+	<?php echo CHtml::encode($data->date_to); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('uid')); ?>:</b>
+	<?php echo CHtml::encode($data->uid); ?>
+	<br />
+
+	<?php /*
+	<b><?php echo CHtml::encode($data->getAttributeLabel('created_on')); ?>:</b>
+	<?php echo CHtml::encode($data->created_on); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('updated_on')); ?>:</b>
+	<?php echo CHtml::encode($data->updated_on); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('host_ip')); ?>:</b>
+	<?php echo CHtml::encode($data->host_ip); ?>
+	<br />
+
+	*/ ?>
+
+</div>
+=======
 <li class="item accordion-group">
     <div class="itinerary-block col2-set" data-toggle="collapse" data-parent="#itinerary_accordion" href="#itinerary_two_<?php echo $index ?>">
             <div class="edit-link"><a href="#"><i class="icon-flag"></i> </a></div>
@@ -53,3 +101,4 @@
         </div>
     </div>
 </li>
+>>>>>>> def2c902e2605700237265c6ff0100057658fafc

@@ -113,4 +113,5 @@ $(function(){
 		return ajax.apply(this, arguments);
 	};
 	
+>>>>>>> def2c902e2605700237265c6ff0100057658fafc
 })(jQuery);

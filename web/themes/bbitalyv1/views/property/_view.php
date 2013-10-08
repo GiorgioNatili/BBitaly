@@ -15,7 +15,11 @@
         <td><p><?php echo $data->people_max ?></p></td>
         <td><p class="bb-price">&euro;<?php echo $data->base_price ?></p></td>
         <td class="last">
+<<<<<<< HEAD
+            <a href="/property/update/<?php echo $data->id ?>">Update</a>
+=======
             <a href="/property/update/<?php echo $data->id ?>">Update</a> | 
             <a href="/availability/property/<?php echo $data->id ?>">Availability</a>
+>>>>>>> def2c902e2605700237265c6ff0100057658fafc
         </td>
 </tr>
