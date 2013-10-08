@@ -1,0 +1,44 @@
+
+        <style>
+            .ui-widget-content {border: 1px solid #AAA;background: white;color: #222;position: relative;}
+            .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {border: 1px solid lightGrey;background: #E6E6E6;font-weight: normal;color: #555}
+            .ui-slider-vertical .ui-slider-handle {left: -.3em;margin-left: 0;margin-bottom: -.6em;}
+            .ui-slider-vertical .ui-slider-range {left: 0;width: 100%;}
+            .ui-slider .ui-slider-handle {position: absolute;z-index: 2;width: 1.2em;height: 1.2em;cursor: default;}
+            .ui-slider .ui-slider-range {position: absolute;bottom:0;z-index: 1;font-size: .7em;display: block;border: 0;background-position: 0 0;}
+            .ui-widget-header {border: 1px solid #E78F08;background: #F6A828;color: white;font-weight: bold;}
+        </style>
+        <script>
+            $(function() {
+                $( "#slider" ).slider({
+                    orientation: "vertical",
+                    min:3,
+                    max:30,
+                    step:1,
+                    range: "min",
+                    values: 10,
+                    slide: function( event, ui ) {
+                       console.log( "$" + ui.value );
+                    }
+                });
+                $( "#slider2" ).slider({
+                    orientation: "vertical",
+                    min:3,
+                    max:30,
+                    step:1,
+                    range: true,
+                    values: [ 6, 10 ],
+                    slide: function( event, ui ) {
+                       console.log( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+                    }
+                });
+            });
+        </script>
+        <div class="demo">
+            <div id="slider" style="height: 400px;width: .8em;margin-bottom: 10px;"></div>
+            <div id="slider2" style="height: 400px;width: .8em"></div>
+        </div><!-- End demo -->
+        <div class="demo-description">
+            <p>The basic slider is horizontal and has a single handle that can be moved with the mouse or by using the arrow keys.</p>
+        </div><!-- End demo-description -->
+

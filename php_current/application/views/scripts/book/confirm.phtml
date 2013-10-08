@@ -1,0 +1,17 @@
+<div style="height: 20px;"></div>
+<div class="section ac">
+    <p class="green bold" style="font-size:24px;">
+        <?php echo l('La tua prenotazione è stata effettuata con successo!'); ?>
+        <br />
+        <?php echo l('Sarai contattato a breve per email dal nostro staff!'); ?>
+        <br />
+        <br />
+        <?php echo l('Ti ringraziamo per aver scelto ');?><?php echo $_SERVER['HTTP_HOST']?>
+        <br />
+        <?php echo l('Lo staff')?>
+        <br />
+    </p>
+    <div style="height: 20px;"></div>
+    <a class="button" href="<?php echo $this->url(array('subdomain' => 'www', 'language' => $this->language), null, true) ?>"><?php echo l('Torna alla home') ?></a>
+</div>
+<div style="height: 20px;"></div>

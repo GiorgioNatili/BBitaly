@@ -1,0 +1,43 @@
+<div style="height: 20px;"></div>
+<div id="account" class="ac section">
+    <div class="column float-left">
+        <h3><?php echo l('ripilogo account')?></h3>
+        <p class="font12 font-gray bold"><?php echo $this->currentuser->name?> <?php echo $this->currentuser->surname?></p>
+        <p class="font12 font-gray"><?php echo $this->currentuser->email?></p>
+        <br />
+        <a href="#" data-href="<?php echo $this->url(array('language'=>$this->language,'subdomain'=>'www','controller' =>"account", 'action'=>'update','format' => 'json'),null,true);?>" class="button yellow update"><?php echo l('update')?></a>
+    </div>
+    <div class="column float-left">
+        <h3><?php echo l('prenotazioni')?></h3>
+        <table class="borderCollapsed">
+            <thead>
+                <tr>
+                    <td class="bg-grey font-white border0 width184 bold font12"><?php echo l('nome struttura')?></td>
+                    <td class="bg-grey font-white border0 bold font12"><?php echo l('data')?></td>
+                    <td class="bg-grey font-white border0 bold font12"><?php echo l('prezzo')?></td>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($this->books as $book):?>
+                <tr>
+                    <td class="font12 font-gray">
+                        <div class="bold"><?php echo $book->bedBreakfast->type?> <?php echo $book->bedBreakfast->name?><br /></div>
+                        <div class="font11"><?php echo $book->bedBreakfast->address?></div>
+                    </td>
+                    <td class="font12 font-gray">
+                        <?php
+                        $dateStart = new DateTime(date('Y-m-d', strtotime($book->dateStart)));
+                        $dateEnd = new DateTime(date('Y-m-d', strtotime($book->dateEnd)));
+                        ?>
+                        <?php echo $dateStart->format('d.M.y')?><br />
+                        <?php echo $dateEnd->format('d.M.y')?>
+                    </td>
+                    <td class="bold font12 bg-light-green font-green"><?php echo number_format($book->price,2,'.',',')?>&nbsp;&euro;</td>
+                </tr>
+                <?php endforeach;?>
+            </tbody>
+        </table>
+    </div>
+    <div class="clear"></div>
+</div>
+<div style="height: 20px;"></div>

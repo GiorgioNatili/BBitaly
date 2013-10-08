@@ -1,0 +1,9 @@
+<div>
+    <ul id="<?php echo $this->id; ?>">
+        <?php foreach ($this->photos as $photo): ?>
+            <li style="position:relative" ref="<?php echo $this->imageUrl(array('height' => 94, 'width' => 94, 'src' => $photo->url)) ?>">
+                <?php echo $this->writeImage(array('src' => $photo->url, 'width' => 518, 'height' => 350)) ?>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</div>

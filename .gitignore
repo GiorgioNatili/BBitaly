@@ -1,0 +1,16 @@
+/lib
+/target
+catalog.xml
+bbitaly.sql
+.htaccess
+
+# Package Files #
+*.jar
+*.war
+*.ear
+.DS_Store
+.idea/
+nbproject/
+
+web/protected/config/environment/server.production.php
+web/.htaccess

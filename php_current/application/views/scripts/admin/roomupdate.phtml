@@ -1,0 +1,94 @@
+<script>
+    $(function() {
+        $( "#slider-amount" ).slider({
+            orientation: "vertical",
+            min:1,
+            max:10,
+            step:1,
+            range: "min",
+            values: <?php echo $this->room->amount ?>,
+            create: function(event, ui) {
+                $('#slider-amount .ui-slider-handle').html(<?php echo $this->room->amount ?>);
+            },
+            slide: function( event, ui ) {
+                $('#slider-amount .ui-slider-handle').html(ui.value);
+                $('#amount').val(ui.value);
+            }
+        });
+        $( "#slider-capacity" ).slider({
+            orientation: "vertical",
+            min:3,
+            max:30,
+            step:1,
+            range: true,
+            values: [ <?php echo $this->room->minCapacity ?>, <?php echo $this->room->maxCapacity ?> ],
+            create: function(event, ui) {
+                $('#slider-capacity .ui-slider-handle').eq(0).html(<?php echo $this->room->minCapacity ?>);
+                $('#slider-capacity .ui-slider-handle').eq(1).html(<?php echo $this->room->maxCapacity ?>);
+            },
+            slide: function( event, ui ) {
+                $('#slider-capacity .ui-slider-handle').eq(0).html(ui.values[ 0 ]);
+                $('#mincap').val(ui.values[ 0 ]);
+                $('#slider-capacity .ui-slider-handle').eq(1).html(ui.values[ 1 ]);
+                $('#maxcap').val(ui.values[ 1 ]);
+            }
+        });
+    });
+</script>
+<?php
+echo $this->tabsWriter(array(
+    l('info') => array('class' => 'info', 'active' => true, 'url' => $this->url(array('action' => 'bbupdate'))),
+    l('foto') => array('class' => 'gallery', 'url' => $this->url(array('action' => 'photogallery'))),
+    l('servizi e policy') => array('class' => 'info', 'active' => false, 'url' => $this->url(array('action' => 'updatepolicy'))),
+    l('descrizioni') => array('class' => 'translation', 'active' => false, 'url' => $this->url(array('action' => 'translation'))),
+    l('prezzo') => array('class' => 'translation', 'active' => false, 'url' => $this->url(array('action' => 'translation')))
+))
+?>
+<div id="subTabs">
+    <ul>
+        <li><a href="<?php echo $this->url(array('action'=>'bbupdate'))?>"><?php echo l('info di base') ?></a></li>
+        <li><a href="<?php echo $this->url(array('action'=>'roomupdate'))?>"><?php echo l('info aggiuntive') ?></a></li>
+    </ul>
+    <div class="clear"></div>
+</div>
+<div class="info-container">
+    <?php if ($this->status == 'error'): ?>
+        <?php echo $this->partial('block/error.phtml', array('errors' => $this->errors)); ?>
+    <?php endif; ?>
+    <form class="validate" method="post" action="<?php echo $this->url(array('action' => 'roomupdateprocess')); ?>">
+        <fieldset class="essential">
+            <h2>
+                <?php echo l('Prezzo di base') ?>
+            </h2>
+            <p>
+                <i class="specification"><?php echo l('(inserisci il solo valore numerico. Sul sito i prezzi saranno sempre espressi in euro)')?></i>
+                <input id="defaultprice" class="required" name="defaultprice" type="text" name="#" value="<?php echo $this->room->defaultPrice?>"/>
+                <i class="specification"><?php echo l('Questo prezzo comparirà nella "sezione prezzi" della tua struttura. Per eventuali variazioni legate al periodo potrai sempre effettuare le dovute modifiche nella "sezione prezzi".') ?></i>
+            </p>
+            <br />
+            <h2>
+                <?php echo l('caratteristiche della struttura') ?>
+            </h2>
+            <div id="amount" style="float:left;margin-right: 50px;position: relative">
+<!--                <label for="amount" style="margin-bottom:20px;"><?php echo l('quantità di camere di questo tipo') ?></label>-->
+                <div id="slider-amount" style="width:13px;height:400px;display:none"></div>
+                <input id="amount" class="required" name="amount" type="hidden" value="<?php echo $this->room->amount ?>"/>
+            </div>
+            <div style="float:left;">
+                <label for="maxcap" style="margin-bottom:20px;"><?php echo l('capienza massima di persone') ?></label>
+                <div id="slider-capacity" style="width:13px;height:400px;"></div>
+                <input id="maxcap" class="required" name="maxcap" type="hidden"  value="<?php echo $this->room->maxCapacity ?>"/>
+                <input id="mincap" class="required" name="mincap" type="hidden"  value="<?php echo $this->room->minCapacity ?>"/>
+            </div>
+            <div class="clear"></div>
+
+            <input type="hidden" name="desclang" value="<?php echo $this->currentLang ?>" />
+            <input type="hidden" name="shortDesc" value="<?php echo $this->room->shortDescription ?>" />
+            <input type="hidden" name="generalDesc" value="<?php echo $this->room->generalDescription ?>" />
+            <input type="hidden" name="placeDesc" value="<?php echo $this->room->placeDescription ?>" />
+        </fieldset>
+        <fieldset class="submit lastelement">
+            <input type="submit" value="<?php echo l('invia') ?>"/>
+        </fieldset>
+    </form>
+</div>

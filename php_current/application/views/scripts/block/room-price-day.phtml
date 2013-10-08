@@ -1,0 +1,15 @@
+<?php
+?>
+<div class="calendar-day<?php if($this->price <= 0.0):?> warn-empty<?php endif;?>" <?php if ($this->isBooked):?>style="background-color:#439D2A"<?php endif?>>
+    <p class="day-number" <?php if ($this->isBooked):?>style="color:white"<?php endif?>><?php echo $this->day < 10 ? "0".$this->day : $this->day ?></p>
+<!--    <p class="day-string" <?php if ($this->isBooked):?>style="color:white"<?php endif?>><?php echo $this->translateDay(date("l", mktime(0,0,0, $this->month, $this->day, $this->year)))?></p>-->
+    <p class="day-price" <?php if ($this->isBooked):?>style="color:white"<?php endif?>>
+        <input tabindex="<?php echo $this->day?>" class="text-caldendar <?php if($this->price <= 0.0):?>warn-empty<?php endif;?>" name="price_val[<?php echo $this->day?>]" value="<?php echo $this->price?>" type="text" id="price-<?php echo $this->day?>"/>
+    </p>
+    <?php if ($this->editable):?>
+    <p class="day-offer" style="height: 19px;<?php if ($this->isBooked):?>color:white<?php endif?>">
+        <input <?php if($this->price <= 0.0):?>style="visibility: hidden"<?php endif;?> type="checkbox" name="is_offer[<?php echo $this->day?>]" <?php echo $this->isOffer ? "checked=\"checked\"" : ""?> id="price-<?php echo $this->day?>"/>
+        <label <?php if($this->price <= 0.0):?>style="visibility: hidden"<?php endif;?> for="is_offer[<?php echo $this->day?>]"><?php echo l('offer')?></label>
+    </p>
+    <?php endif;?>
+</div>

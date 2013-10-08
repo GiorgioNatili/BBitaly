@@ -1,0 +1,50 @@
+<?php    
+echo $this->tabsWriter(array(
+    l('info') => array('class' => 'info', 'active' => false, 'url' => $this->url(array('action' => 'bbupdate'))),
+    l('foto') => array('class' => 'gallery', 'url' => $this->url(array('action' => 'photogallery'))),
+    l('servizi e policy') => array('class' => 'info', 'active' => false, 'url' => $this->url(array('action' => 'updatepolicy'))),
+    l('descrizioni') => array('class' => 'translation', 'active' => true, 'url' => $this->url(array('action' => 'translation'))),
+    l('prezzo') => array('class' => 'translation', 'active' => false, 'url' => $this->url(array('action' => 'prices')))
+))
+?>
+<div id="subTabs">
+    <ul>
+        <li><a href="<?php echo $this->url(array('action' => 'translation'))?>"><?php echo l('descrizioni di base') ?></a></li>
+        <li><a href="<?php echo $this->url(array('action' => 'roomtranslation'))?>"><?php echo l('descrizioni aggiuntive') ?></a></li>
+    </ul>
+    <div class="clear"></div>
+</div>
+<h2 class="title"><?php echo l('Traduzioni')?></h2>
+<p style="padding-left:20px;border-bottom:1px solid #a1ce94">
+    <?php echo l('inserisci qui la descrizione della tua struttura ricettiva, nei linguaggi indicati')?>
+</p>
+<?php foreach ($this->data as $lang => $translation): ?>
+    <form class="validate" method="POST" 
+          data-submit-type="ajax" 
+          data-error-container="error_handler" 
+          data-success-message="<?php echo l('informazioni aggiornate con successo')?>" 
+          action="<?php echo $this->url(array('action' => 'translationupdate', 'lang' => $lang,'type'=> $this->type , 'format' => 'json'))?>">
+        <fieldset style="border-bottom: 1px solid #a1ce94">
+            <label>
+                <a class="lang <?php echo $lang?>"><?php echo $lang?></a>
+            </label>
+            <br class="clear"/>
+            <label><?php echo l('room name')?></label>
+            <textarea name="translation[]" class="height100" onkeyup="count($(this),$(this).next().find('.counter'),50)"><?php if (!empty($translation) && !empty($translation->shortDescription)): ?><?php echo $translation->shortDescription ?><?php endif; ?></textarea>
+            <i class="specification"><?php echo l('massimo <span class="counter">50</span> caratteri. Es: "camera matrimoniale delux"') ?></i>
+            <br class="clear"/>
+            <br class="clear"/>
+            <label><?php echo l('place description')?></label>
+            <textarea name="translation[]" class="height100" onkeyup="count($(this),$(this).next().find('.counter'),500)"><?php if (!empty($translation) && !empty($translation->placeDescription)): ?><?php echo $translation->placeDescription ?><?php endif; ?></textarea>
+            <i class="specification"><?php echo l('massimo <span class="counter">500</span> caratteri. Es: "camera molto bella situata al 4° piano della struttura con vista sul mare, doppi servizi e salottino in stile liberty"') ?></i>
+            <br class="clear"/>
+            <br class="clear"/>
+            <label><?php echo l('general description')?></label>
+            <textarea name="translation[]" class="height100" onkeyup="count($(this),$(this).next().find('.counter'),500)"><?php if (!empty($translation) && !empty($translation->generalDescription)): ?><?php echo $translation->generalDescription ?><?php endif; ?></textarea>
+            <i class="specification"><?php echo l('massimo <span class="counter">500</span> caratteri. Es: "panoramica, con vista sul vesuvio"') ?></i>
+            <br class="clear"/>
+            <br class="clear"/>
+            <input type="submit" value="<?php echo l('invia')?>"/>
+        </fieldset>
+    </form>
+<?php endforeach; ?>

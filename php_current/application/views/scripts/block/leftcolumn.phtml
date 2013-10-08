@@ -1,0 +1,17 @@
+<div id="admin_menu" class="clearfix">
+    <ul>
+        <?php $i = 0; ?>
+        <?php foreach ($this->menuitems as $id => $menuitem): ?>
+            <li class="<?php if ($menuitem['active']): ?>active<?php endif; ?> <?php if ($i == (count($this->menuitems)-1)):?>last<?php endif;?>">
+                <?php if (isset($menuitem['url'])):?>
+                    <a id="<?php echo $id ?>" href="<?php echo $menuitem['url'] ?>">
+                <?php else:?>
+                    <a id="<?php echo $id ?>" href="<?php echo $this->url(array('action' => $menuitem['action'], 'rid' => null)) ?>">
+                <?php endif;?>
+                    <?php echo $menuitem['label'] ?>
+                </a>
+            </li>
+            <?php $i++ ?>
+        <?php endforeach; ?>
+    </ul>
+</div>

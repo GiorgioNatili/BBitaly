@@ -1,0 +1,184 @@
+<?php if ($this->search != false): ?>
+<div id="home_top" class="relative top-search">
+    <a id="home_nav_prev" href="#" class="lx-nav"></a>
+    <a id="home_nav_next" href="#" class="rx-nav"></a>
+    <div class="photo-slider relative">
+        <div  class="lx gradient"></div>
+        <div  class="rx gradient"></div>
+        <div class="home-photo">
+            <?php $search = Zend_Json::decode($this->search->text) ?>
+            <?php foreach ($search['photo'] as $data): ?>
+                <div>
+                    <img src="<?php echo $data ?>" width="1380" height="600px;"/>
+                </div>            
+            <?php endforeach; ?>
+        </div>
+    </div>
+    
+</div>
+<div class="paper" style="background:#f7f7f7 url(/images/pattern_paper.png) left bottom repeat-x;min-height:290px;width:100%;">
+    <div class="wrapper">
+        <div class="infocontainer relative">
+            <div class="paragraph"><?php echo html_entity_decode($search['desc']) ?></div>
+            <div id="map-small" class="map-small" data-title="<?php echo $search['title'] ?>" data-address="<?php echo $search['address'] ?>"></div>
+        </div>
+    </div>
+</div>
+<?php else:?>
+    <?php echo $this->maps($this->accomodation, 5) ?>
+<?php endif;?>
+<div class="wrapper">
+    <h4>
+        <?php echo l('Scegli tra le 999 strutture messe a disposizione di BBitaly') ?>
+    </h4>
+    <div id="accomodationlist">
+        <div id="rooms">
+            <div class="roomHolder relative">
+                <div class="room relative">
+                    <div class="photo">
+                        <div class="img-container">
+                            <img src="/upload/170 (1).jpg"/>
+                        </div>
+                    </div>
+                    <div class="room-desc">
+                        <h2>Bed and Breakfast Napoli</h2>
+                        <h3>casa miranapoli</h3>
+                        <div class="clear"></div>
+                        <p>Descrizione breve della struttura lorem ipsum dolor sit amet, consectetuer diam...</p>
+                        <p class="address">
+                            asdasdasd Napoli / Campania - Napoli 
+                        </p>
+                    </div>
+                    <div class="price">
+                        <div class="numeral">9999.99€</div>
+                        <input type="submit" class="book" value="vedi" onclick="document.location.href='http://stanging.bedandbreakfastinitaly.com/it/casavacanza/detail/id/fce8e5f2ab9142db95b7bb23082722a7'"/>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="room relative">
+                    <div class="photo">
+                        <div class="img-container">
+                            <img src="/upload/170 (1).jpg"/>
+                        </div>
+                    </div>
+                    <div class="room-desc">
+                        <h2>Bed and Breakfast Napoli</h2>
+                        <h3>casa miranapoli</h3>
+                        <div class="clear"></div>
+                        <p>Descrizione breve della struttura lorem ipsum dolor sit amet, consectetuer diam...</p>
+                        <p class="address">
+                            asdasdasd Napoli / Campania - Napoli 
+                        </p>
+                    </div>
+                    <div class="price">
+                        <div class="numeral">9999.99€</div>
+                        <input type="submit" class="book" value="vedi"/>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="room relative">
+                    <div class="photo">
+                        <div class="img-container">
+                            <img src="/upload/170 (1).jpg"/>
+                        </div>
+                    </div>
+                    <div class="room-desc">
+                        <h2>Bed and Breakfast Napoli</h2>
+                        <h3>casa miranapoli</h3>
+                        <div class="clear"></div>
+                        <p>Descrizione breve della struttura lorem ipsum dolor sit amet, consectetuer diam...</p>
+                        <p class="address">
+                            asdasdasd Napoli / Campania - Napoli 
+                        </p>
+                    </div>
+                    <div class="price">
+                        <div class="numeral">9999.99€</div>
+                        <input type="submit" class="book" value="vedi"/>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="room relative">
+                    <div class="photo">
+                        <div class="img-container">
+                            <img src="/upload/170 (1).jpg"/>
+                        </div>
+                    </div>
+                    <div class="room-desc">
+                        <h2>Bed and Breakfast Napoli</h2>
+                        <h3>casa miranapoli</h3>
+                        <div class="clear"></div>
+                        <p>Descrizione breve della struttura lorem ipsum dolor sit amet, consectetuer diam...</p>
+                        <p class="address">
+                            asdasdasd Napoli / Campania - Napoli 
+                        </p>
+                    </div>
+                    <div class="price">
+                        <div class="numeral">9999.99€</div>
+                        <input type="submit" class="book" value="vedi"/>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    
+    function initialize() {
+        var styles = [ { "featureType": "poi", "stylers": [ { "visibility": "off" } ] },{ "featureType": "transit", "stylers": [ { "visibility": "off" } ] },{ "featureType": "water", "stylers": [ { "color": "#80cff0" } ] },{ "featureType": "road", "elementType": "labels.text.fill", "stylers": [ { "color": "#ffffff" }, { "visibility": "on" } ] },{ "featureType": "road", "elementType": "labels.text.fill", "stylers": [ { "color": "#ffffff" } ] },{ "featureType": "administrative", "elementType": "labels.text.fill", "stylers": [ { "color": "#ffffff" } ] },{ "featureType": "administrative", "elementType": "labels.text.stroke", "stylers": [ { "visibility": "off" } ] },{ "featureType": "water", "elementType": "labels.text.fill", "stylers": [ { "visibility": "on" }, { "color": "#ffffff" } ] },{ "featureType": "road.local", "elementType": "labels.text.fill", "stylers": [ { "visibility": "on" }, { "color": "#808080" } ] },{ "featureType": "landscape", "stylers": [ { "color": "#dfe5e7" } ] },{ "featureType": "road.highway", "stylers": [ { "color": "#94a7b0" } ] },{ "featureType": "road.highway", "elementType": "labels.text.fill", "stylers": [ { "color": "#ffffff" } ] },{ "featureType": "road.arterial", "stylers": [ { "color": "#bfcad0" } ] },{ "featureType": "road.arterial", "elementType": "labels.text.fill", "stylers": [ { "color": "#ffffff" } ] },{ } ]
+        var title = $("#map-small").attr("data-title");
+        var address = $("#map-small").attr("data-address");
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode( {
+            'address': address
+        }, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                var styledMap = new google.maps.StyledMapType(styles,{name: "Mappa di BBitaly"});
+                var options = {
+                    zoom: 13,
+                    mapTypeId: 'satellite',
+                    center : results[0].geometry.location,
+                    heading: 90,
+                    tilt: 45,
+                    mapTypeControlOptions: {
+                        mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
+                    }
+                }
+                var map = new google.maps.Map(document.getElementById("map-small"), options);
+                map.mapTypes.set("map_style",styledMap);
+                map.setMapTypeId('map_style');
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location,
+                    icon: new google.maps.MarkerImage('/images/placeholder.png',new google.maps.Size(70, 81),new google.maps.Point(0,0),new google.maps.Point(35, 40)),
+                    title:title
+                });
+            } else {
+            }
+        });
+    }
+    
+    function loadScript() {
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyB2WBi6j2nl-M4S4T7v_cqpG0gvMzeYVVI&sensor=false&callback=initialize";
+        document.body.appendChild(script);
+    }
+    
+    $(function(){
+        $('.home-photo').cycle({
+            next:   '#home_nav_next', 
+            prev:   '#home_nav_prev'
+        })
+        $('.savedsearchmenu ul').idTabs();
+        $('#newsearch .datepicker').datepicker();
+        $('#newsearch').bind('mouseenter',function() {
+            $('#newsearch .label').stop().animate({opacity:1});
+        }).bind('mouseleave', function() {
+            $('#newsearch .label').stop().animate({opacity:0});
+        }).on('change', 'select', function(){
+            $(this).val() == 1 ? $(this).prev().html($(this).val()+" persona") : $(this).prev().html($(this).val()+" persone");
+        })
+        loadScript();
+    })
+</script>

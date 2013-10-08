@@ -1,0 +1,38 @@
+<div id="userupdateform">
+    <div class="usericon-green"></div>
+    <form class="validate" id="form" 
+          method="post" 
+          data-submit-type="ajax" 
+          data-error-container="error_handler"
+          data-success-message="<?php echo l('informazioni aggiornate con successo')?>" 
+          action="<?php echo $this->url(array('action' => 'updateprocess', 'format' => 'json'))?>">
+        <fieldset>
+            <p><label><?php echo l('nome') ?>&nbsp;<sup>*</sup></label><input name="name" id="owner_name" type="text" value="<?php echo $this->currentuser->name ?>" class="required"/></p>
+            <p><label><?php echo l('cognome') ?>&nbsp;<sup>*</sup></label><input name="surname" id="owner_surname" type="text" value="<?php echo $this->currentuser->surname ?>" class="required"/></p>
+            <p><label><?php echo l('email') ?>&nbsp;<sup>*</sup></label><input name="email" id="owner_email" type="text" value="<?php echo $this->currentuser->email ?>" class="required email"/></p>
+            <p><label><?php echo l('password') ?></label><input name="password" id="password" type="password" /></p>
+            <p><label><?php echo l('conferma password') ?></label><input name="c_password" id="c_password" type="password" /></p>
+            <p><label><?php echo l('indirizzo') ?><sup>*</sup></label><input name="address" id="owner_address" type="text" value="<?php echo $this->currentuser->address ?>" class="required"/></p>
+            <p>
+                <label><?php echo l('Provincia') ?>&nbsp;<sup>*</sup></label>
+                <select data-source="<?php echo $this->url(array('subdomain' => 'www', 'controller' => 'system', 'action' => 'city'))?>" data-target="owner_city_badge" id="owner_region" name="region" class="required">
+                    <option value="">--</option>
+                    <?php foreach ($this->regions as $region): ?>
+                    <option value="<?php echo $region->id?>" <?php if ($region->id == $this->currentuser->city->region->id):?>selected="selected"<?php endif;?>><?php echo $region->name?></option>
+                    <?php endforeach;?>
+                </select>
+            </p>
+            <p>
+                <label><?php echo l('Comune') ?>&nbsp;<sup>*</sup></label>
+                <select id="owner_city_badge" name="city" class="required">
+                    <option value="">--</option>
+                    <?php foreach ($this->cities as $city): ?>
+                    <option value="<?php echo $city->id?>" <?php if ($city->id == $this->currentuser->city->id):?>selected="selected"<?php endif;?>><?php echo $city->name?></option>
+                    <?php endforeach;?>
+                </select>
+            </p>
+            <p><input type="submit" value="<?php echo l('invia') ?>"/></p>
+            <p><label>*<?php echo l('campi obbligatori')?></label></p>
+        </fieldset>
+    </form>
+</div>

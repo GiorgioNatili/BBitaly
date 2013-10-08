@@ -1,0 +1,43 @@
+<div class="wcenter-outer-container">
+    <div class="wcenter-outer">
+        <div class="wcenter-inner">
+            <div id="stepslist">
+                <ul class="clearfix" data-tab-container="#tabContent">
+                    <li id="contacts" class=""><a href="<?php echo $this->url(array('action' => 'bbupdate')) ?>"><?php echo l('info') ?></a></li>
+                    <li id="contacts" class=""><a href="<?php echo $this->url(array('action' => 'photogallery')) ?>"><?php echo l('foto') ?></a></li>
+                    <li id="contacts" class=""><a href="<?php echo $this->url(array('action' => 'updatepolicy')) ?>"><?php echo l('servizi e policy') ?></a></li>
+                    <li id="contacts" class="active"><a href="<?php echo $this->url(array('action' => 'translation')) ?>"><?php echo l('descrizioni') ?></a></li>
+                    <li id="contacts" class=""><a href="<?php echo $this->url(array('action' => 'prices')) ?>"><?php echo l('prezzo') ?></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="height: 50px"></div>
+<div id="subTabs">
+    <ul>
+        <li><a href="<?php echo $this->url(array('action' => 'translation'))?>"><?php echo l('descrizioni di base') ?></a></li>
+        <li><a href="<?php echo $this->url(array('action' => 'roomtranslation'))?>"><?php echo l('descrizioni aggiuntive') ?></a></li>
+    </ul>
+    <div class="clear"></div>
+</div>
+<h2 class="title"><?php echo l('Traduzioni')?></h2>
+<p style="padding-left:20px;border-bottom:1px solid #a1ce94">
+    <?php echo l('Inserisci qui la descrizione della tua struttura ricettiva, nei linguaggi indicati')?>
+</p>
+<?php foreach ($this->data as $lang => $translation): ?>
+    <form class="validate" method="POST" 
+          data-submit-type="ajax" 
+          data-error-container="error_handler" 
+          data-success-message="<?php echo l('informazioni aggiornate con successo')?>" 
+          action="<?php echo $this->url(array('action' => 'translationupdate', 'lang' => $lang,'type'=> $this->type , 'format' => 'json'))?>">
+        <fieldset style="border-bottom: 1px solid #a1ce94">
+            <label>
+                <a class="lang <?php echo $lang?>"><?php echo $lang?></a>
+            </label>
+            <br class="clear"/>
+            <textarea name="translation[]" class="height100"><?php if (!empty($translation) && !empty($translation->description)): ?><?php echo $translation->description ?><?php endif; ?></textarea>
+            <input type="submit" value="<?php echo l('invia')?>"/>
+        </fieldset>
+    </form>
+<?php endforeach; ?>

@@ -1,0 +1,91 @@
+<!--<h3><?php echo l('Registrazione gratuita') ?></h3>-->
+<div id="owner-form" class="clearfix" style="margin-top:100px;">
+    <div class="title-outer">
+        <div class="title-inner">
+            <h3 class="outTitle"><?php echo l('Registrazione gratuita') ?></h3>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div class="apex"></div>
+    <form id="ownerSignUp" data-send="ajax" method="post" action="<?php echo $this->url(array('action' => 'owneradd', 'controller' => 'user')) ?>" class="flipper">
+        <div class="half-width-column">
+            <p>
+                <label><?php echo l('nome') ?></label>
+                <input placeholder="es: Mario" type="text" name="name" tabindex="1" class="required"/>
+            </p>
+            <p>
+                <label><?php echo l('email') ?></label>
+                <input name="email" placeholder="es:  email@example.com" type="text" value="<?php echo $this->email ?>" class="required email"/>
+            </p>
+            <p>
+                <label><?php echo l('Provincia') ?></label>
+            <p id="region_holder">
+                <select tabindex="5" data-holder="#region_holder" data-source="<?php echo $this->url(array('controller' => 'system', 'action' => 'city')) ?>" data-target="#owner_city" id="owner_region" name="region" class="required">
+                    <option value="">--<?php echo l('Seleziona') ?>--</option>
+                    <?php foreach ($this->regions as $regions): ?>
+                        <option value="<?php echo $regions->id ?>"><?php echo $regions->name ?></option>
+                    <?php endforeach ?>
+                </select>
+            </p>
+            </p>
+            <p>
+                <label><?php echo l('indirizzo') ?></label>
+                <input placeholder="es:  via Roma 21" tabindex="6" type="text" name="address" class="required"/>
+            </p>
+        </div>
+        <div class="half-width-column">
+            <p>
+                <label><?php echo l('cognome') ?></label>
+                <input placeholder="es: Rossi" type="text" name="surname" tabindex="2" class="required"/>
+            </p>
+            <p>
+                <label><?php echo l('Password') ?></label>
+                <input type="password" name="passwd" value="" class="required"/>
+            </p>
+            <p>
+                <label><?php echo l('Città') ?></label>
+            <p id="city_holder">
+                <select tabindex="4" data-holder="#city_holder" id="owner_city" name="city" class="required"></select>
+            </p>
+            </p>
+            <p>
+                <label><?php echo l('recapito telefonico (+39-XXX-XXXXX)') ?></label>
+                <input placeholder="mobile o fisso +39-XXX-XXXXX" tabindex="7" type="text" name="phonenumber" class="required phone"/>
+            </p>
+            </p>
+        </div>
+        <div class="clear"></div>
+        <div class="full-width-column">
+            <label for="priv1">
+                <input type="checkbox" class="required" name="priv1" id="priv1"/>
+                <?php echo l('accetto i termini e condizioni sulla ') ?>
+            </label>
+            <a class="link" target="_blank" href="<?php echo $this->url(array('controller' => 'cms', 'action' => 'privacy')) ?>"><?php echo l('Privacy') ?></a>
+        </div>
+        <div style="margin-top:50px">
+            <input id="send" type="submit" class="centered submit" value="invia la richiesta"/>
+        </div>
+    </form>
+</div>
+<div id="confirm" class="clearfix">
+    <div class="title-outer">
+        <div class="title-inner">
+            <h3 class="outTitle"><?php echo l('Registrazione completata') ?></h3>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div class="apex"></div>
+    <div>
+        <div id="tick_ok"></div>
+        <div class="title">Congratulazioni!</div>
+        <p class="epigraphic">
+            inserisci ora i dati della tua struttura su BBitaly.
+            <br /></p>
+        <br />
+        <br />
+        <a id="next-step" href="<?php echo $this->url(array('controller' => 'admin', 'action' => 'loginprocess')) ?>" class="next-step">vai allo step successivo</a>
+        <br />
+        <br />
+        <p class="note">Riceverai a breve una email con il tuo nome utente e la password per accedere al portale come albergatore.</p>
+    </div>
+</div>

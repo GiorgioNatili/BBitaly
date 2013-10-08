@@ -1,0 +1,102 @@
+<?php
+echo $this->adminLeftcolumn(array(
+    'books' => array(
+        'action' => 'books',
+        'active' => false,
+        'label' => l('Prenotazioni')
+    ),
+    'accomodations' => array(
+        'action' => 'accomodation',
+        'active' => false,
+        'label' => l('I miei annunci')
+    ),
+    'configuration' => array(
+        'action' => 'settings',
+        'active' => true,
+        'label' => l('Configurazioni')
+    )
+));
+?>
+<div class="wcenter-outer-container clearfix">
+    <div class="wcenter-outer">
+        <div class="wcenter-inner">
+            <?php
+            echo $this->adminLeftcolumn(array(
+                'settings' => array(
+                    'action' => 'settings',
+                    'active' => true,
+                    'label' => l('BB in evidenza')
+                ),
+                'seo' => array(
+                    'action' => 'configuration',
+                    'active' => false,
+                    'label' => l('S.E.O.')
+                ),
+                'saved' => array(
+                    'action' => 'savedsearch',
+                    'active' => false,
+                    'label' => l('Ricerche salvate')
+                ),
+                'cms' => array(
+                    'action' => 'cms',
+                    'active' => false,
+                    'label' => l('CMS')
+                )
+            ));
+            ?>
+        </div>
+    </div>
+</div>
+<div class="page superadmin">
+    <table class="full-width-column list">
+        <thead>
+            <tr class="head">
+                <td class="first string content">
+                    <?php echo l('nome') ?>
+                </td>
+                <td class=" content date">
+                    <?php echo l('email') ?>
+                </td>
+                <td class="string content date">
+                    <?php echo l('città') ?>
+                </td>
+                <td class=" content">
+                    <?php echo l('indirizzo') ?>
+                </td>
+                <td class="last  content int">
+                    <?php echo l('operazioni') ?>
+                </td>
+            </tr>
+        </thead>
+        <?php $a = array(); ?>
+        <?php foreach ($this->items as $item): ?>
+            <?php
+            if (!isset($a[$item->id])) :
+                $a[$item->id] = 1;
+                ?>
+                <tr class="datarow borderCollapsed <?php echo @$item->active ? 'inactive' : 'active' ?>">
+                    <?php
+                    $highlighted = "";
+                    if (isset($this->highList[$item->id])) :
+                        $highlighted = 'style="background-color:#439D2A;color:white"';
+                    endif;
+                    ?>
+                    <td <?php echo $highlighted ?> class="first id-<?php echo $item->id ?> bold"><?php echo $item->name ?></td>
+                    <td <?php echo $highlighted ?> class="id-<?php echo $item->id ?> bordered italic"><?php echo $item->contactemail ?></td>
+                    <td <?php echo $highlighted ?> class="id-<?php echo $item->id ?> bordered centered"><?php echo $item->owner->city->region->name ?></td>
+                    <td <?php echo $highlighted ?> class="last id-<?php echo $item->id ?> centered"><?php echo $item->address ?></td>
+                    <td class="centered green">
+        <!--                    <a href="<?php echo $this->url(array('action' => 'actasusr', 'oid' => $item->owner->id)) ?>" title="act as owner"><img src="/images/modifica.png" width="16" height="16"/></a>-->
+        <!--                    <a href="#" title="act as owner"><img src="/images/modifica.png" width="16" height="16"/></a>-->
+                        <br />
+                        <a rel="ajax" rel-method="get" href="<?php echo $this->url(array('action' => 'highlight', 'id' => $item->id)) ?>" title="highlight it">Mostra in home</a>
+                        <br />
+                        <a rel="ajax" rel-method="get" href="<?php echo $this->url(array('action' => 'highlight', 'id' => $item->id)) ?>" title="highlight it">Attiva</a>
+                        <br />
+                        <a href="<?php echo $this->url(array('action' => 'invoices', 'id' => $item->id)) ?>" title="vedi le fatture">Fatture</a>
+                    </td>
+                </tr>
+            <?php endif; ?>
+        <?php endforeach ?>
+    </table>
+</div>

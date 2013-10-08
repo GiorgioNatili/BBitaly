@@ -1,0 +1,25 @@
+
+jQuery.extend(jQuery.validator.messages, {
+       required: "<?php echo l("Campo obbligatorio")?>",
+       remote: "<?php echo l("Controlla questo campo")?>",
+       email: "<?php echo l("Inserisci un indirizzo email valido")?>",
+       url: "<?php echo l("Inserisci un indirizzo web valido")?>",
+       date: "<?php echo l("Inserisci una data valida")?>",
+       dateISO: "<?php echo l("Inserisci una data valida (ISO)")?>",
+       number: "<?php echo l("Inserisci un numero valido")?>",
+       digits: "<?php echo l("Inserisci solo numeri")?>",
+       creditcard: "<?php echo l("Inserisci un numero di carta di credito valido")?>",
+       equalTo: "<?php echo l("Il valore non corrisponde")?>",
+       accept: "<?php echo l("Inserisci un valore con un&apos;estensione valida")?>",
+       maxlength: jQuery.validator.format("<?php echo l("Non inserire pi&ugrave; di {0} caratteri")?>"),
+       minlength: jQuery.validator.format("<?php echo l("Inserisci almeno {0} caratteri")?>"),
+       rangelength: jQuery.validator.format("<?php echo l("Inserisci un valore compreso tra {0} e {1} caratteri")?>"),
+       range: jQuery.validator.format("<?php echo l("Inserisci un valore compreso tra {0} e {1}")?>"),
+       max: jQuery.validator.format("<?php echo l("Inserisci un valore minore o uguale a {0}")?>"),
+       min: jQuery.validator.format("<?php echo l("Inserisci un valore maggiore o uguale a {0}")?>")
+});
+
+var adsolutCoreTranslation = new Array();
+adsolutCoreTranslation["10"] = "<?php echo l('\\"Password\\" e \\"conferma password\\" devono coincidere')?>";
+adsolutCoreTranslation["11"] = "<?php echo l('login fallito')?>";
+adsolutCoreTranslation["401"] = "<?php echo l('Email già in uso')?>";

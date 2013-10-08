@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://static.springframework.org/schema/p"
+       xmlns:aop="http://static.springframework.org/schema/aop"
+       xmlns:tx="http://static.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://static.springframework.org/schema/aop http://static.springframework.org/schema/aop/spring-aop-3.0.xsd
+       http://static.springframework.org/schema/tx http://static.springframework.org/schema/tx/spring-tx-3.0.xsd">
+    
+    
+    <bean id="locationdao" class="it.adsolut.bbitaly.dao.LocationDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+    
+    <bean id="citydao" class="it.adsolut.bbitaly.dao.CityDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+    
+    <bean id="regiondao" class="it.adsolut.bbitaly.dao.RegionDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+    
+    <bean id="countrydao" class="it.adsolut.bbitaly.dao.CountryDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+    
+    <bean id="bedbreakfastdao" class="it.adsolut.bbitaly.dao.BedBreakfastDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+    
+    <bean id="bookdao" class="it.adsolut.bbitaly.dao.BookDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+    
+    <bean id="bookdetaildao" class="it.adsolut.bbitaly.dao.BookDetailDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+    
+    <bean id="photodao" class="it.adsolut.bbitaly.dao.PhotoDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+    
+    <bean id="roomdao" class="it.adsolut.bbitaly.dao.RoomDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+    
+    <bean id="userdao" class="it.adsolut.bbitaly.dao.UserDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+    
+    <bean id="ownerdao" class="it.adsolut.bbitaly.dao.OwnerDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+    
+    <bean id="facilitydao" class="it.adsolut.bbitaly.dao.FacilityDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+    
+    <bean id="policydao" class="it.adsolut.bbitaly.dao.PolicyDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+    
+    <bean id="bbtranslationdao" class="it.adsolut.bbitaly.dao.BbTranslationDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+    
+    <bean id="roomtranslationdao" class="it.adsolut.bbitaly.dao.RoomTranslationDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+    
+    <bean id="bbgallerydao" class="it.adsolut.bbitaly.dao.BbGalleryDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+    
+    <bean id="roomgallerydao" class="it.adsolut.bbitaly.dao.RoomGalleryDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+    
+    <bean id="roompricedao" class="it.adsolut.bbitaly.dao.RoomPriceDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+    
+    <bean id="applicationdao" class="it.adsolut.bbitaly.dao.ApplicationDaoImpl">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+    
+</beans>

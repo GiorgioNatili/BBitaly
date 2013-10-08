@@ -1,0 +1,15 @@
+<?php if (!empty($this->errors)): ?>
+    <div class="error">
+        <ul>
+            <?php foreach ($this->errors as $element => $error_messages): ?>
+                <?php if (is_array($error_messages)):?>
+                    <?php foreach ($error_messages as $error_message): ?>
+                        <li><?php echo $this->translate($error_message) ?></li>
+                    <?php endforeach ?>
+                <?php else:?>
+                    <li><?php echo $this->translate($error_messages) ?></li>
+                <?php endif;?>
+            <?php endforeach ?>
+        </ul>
+    </div>
+<?php endif; ?>

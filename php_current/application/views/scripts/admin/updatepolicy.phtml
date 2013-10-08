@@ -1,0 +1,227 @@
+<div class="wcenter-outer-container">
+    <div class="wcenter-outer">
+        <div class="wcenter-inner">
+            <div id="stepslist">
+                <ul class="clearfix" data-tab-container="#tabContent">
+                    <li id="contacts" class=""><a href="<?php echo $this->url(array('action' => 'bbupdate')) ?>"><?php echo l('info') ?></a></li>
+                    <li id="contacts" class=""><a href="<?php echo $this->url(array('action' => 'photogallery')) ?>"><?php echo l('foto') ?></a></li>
+                    <li id="contacts" class="active"><a href="<?php echo $this->url(array('action' => 'updatepolicy')) ?>"><?php echo l('servizi e policy') ?></a></li>
+                    <li id="contacts" class=""><a href="<?php echo $this->url(array('action' => 'translation')) ?>"><?php echo l('descrizioni') ?></a></li>
+                    <li id="contacts" class=""><a href="<?php echo $this->url(array('action' => 'prices')) ?>"><?php echo l('prezzo') ?></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="height: 50px"></div>
+<div class="info-container" style="width:980px">
+    <?php if ($this->status == 'error'): ?>
+        <?php echo $this->partial('block/error.phtml', array('errors' => $this->errors)); ?>
+    <?php endif; ?>
+    <form class="validate" method="post" action="<?php echo $this->url(array('action' => 'updatepolicy')); ?>">
+        <fieldset class="essential">
+            <p class="description">
+                <?php echo l('In questa sezione potrai modirficare le informazioni essenziali, i servizi e le policy della tua struttura') ?>
+            </p>
+        </fieldset>
+    </form>
+    <form class="validate" method="post" action="<?php echo $this->url(array('action' => 'updatepolicy')); ?>">
+        <fieldset class="essential" style="display:none">
+            <h2>
+                <?php echo l('Informazioni essenziali') ?>
+            </h2>
+            <p>
+                <label><?php echo l('Tipologia struttura') ?></label>
+                <select id="type" name="type" class="required">
+                    <option value="bedbreakfast" <?php echo $this->accomodation->type == 'bedbreakfast' ? 'selected="selected"' : '' ?>><?php echo l('Bed and Breakfast') ?></option>
+                    <option value="hotel" <?php echo $this->accomodation->type == 'hotel' ? 'selected="selected"' : '' ?>><?php echo l('Hotel') ?></option>
+                    <option value="Appartamento" <?php echo $this->accomodation->type == 'Appartamento' ? 'selected="selected"' : '' ?>><?php echo l('Appartamento') ?></option>
+                    <option value="monolocale" <?php echo $this->accomodation->type == 'monolocale' ? 'selected="selected"' : '' ?>><?php echo l('monolocale') ?></option>
+                    <option value="Chalet" <?php echo $this->accomodation->type == 'Chalet' ? 'selected="selected"' : '' ?>><?php echo l('Chalet/baita') ?></option>
+                    <option value="villa" <?php echo $this->accomodation->type == 'villa' ? 'selected="selected"' : '' ?>><?php echo l('Casa/villa') ?></option>
+                    <option value="Dimora_tipica" <?php echo $this->accomodation->type == 'Dimora_tipica' ? 'selected="selected"' : '' ?>><?php echo l('Dimora tipica') ?></option>
+                    <option value="Rustico" <?php echo $this->accomodation->type == 'Rustico' ? 'selected="selected"' : '' ?>><?php echo l('Rustico') ?></option>
+                    <option value="Agriturismo" <?php echo $this->accomodation->type == 'Agriturismo' ? 'selected="selected"' : '' ?>><?php echo l('Agriturismo') ?></option>
+                    <option value="mobil_home" <?php echo $this->accomodation->type == 'mobil_home' ? 'selected="selected"' : '' ?>><?php echo l('Mobil home') ?></option>
+                    <option value="Barca" <?php echo $this->accomodation->type == 'Barca' ? 'selected="selected"' : '' ?>><?php echo l('Barca a vela') ?></option>
+                    <option value="yatch" <?php echo $this->accomodation->type == 'yatch' ? 'selected="selected"' : '' ?>><?php echo l('Yacht') ?></option>
+                </select>
+            </p>
+            <p><label form="assignedname"><?php echo l('Nome del responsabile') ?></label><input id="assignedname" class="required" name="assignedname" type="text" name="#" value="<?php echo $this->accomodation->assignedname ?>" /></p>
+            <p><label for="propertyname"><?php echo l('nome della struttura') ?></label><input name="propertytname" class="required" id="propertytname" type="text" name="#" value="<?php echo $this->accomodation->name ?>"/></p>
+            <p><label for="phonenumber "><?php echo l('numero di telefono') ?></label><input name="phonenumber" class="required" id="phonenumber" type="text" name="#" value="<?php echo $this->accomodation->phone ?>" /></p>
+            <p><label fro="personalemail"><?php echo l('email di contatto') ?></label><input name="personalemail" class="required" id="personalemail" type="text" name="#" value="<?php echo $this->accomodation->contactemail ?>"/></p>
+            <p>
+                <input type="hidden" value="29" name="countryid"/>
+                <label><?php echo l('Provincia') ?></label>
+                <select data-source="<?php echo $this->url(array('subdomain' => 'www', 'controller' => 'system', 'action' => 'city', 'format' => 'json')) ?>" data-target="owner_city" id="owner_region" name="region" class="required">
+                    <option value="">--</option>
+                    <option value="579">Campania - Napoli</option>
+                    <option value="605">Sardegna - Cagliari</option>
+                    <?php foreach ($this->regions as $region): ?>
+                        <option value="<?php echo $region->id ?>" <?php if ($region->id == $this->accomodation->city->region->id): ?>selected="selected"<?php endif; ?>><?php echo $region->name ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </p>
+            <p>
+                <input type="hidden" name="desclang" value="<?php echo $this->currentLang ?>" />
+                <input type="hidden" name="description" value="<?php echo $this->accomodation->description ?>" />
+                <label><?php echo l('Comune') ?>&nbsp;</label>
+                <select id="owner_city" name="cityid" class="required">
+                    <option value="">--</option>
+                    <?php foreach ($this->cities as $city): ?>
+                        <option value="<?php echo $city->id ?>" <?php if ($city->id == $this->accomodation->city->id): ?>selected="selected"<?php endif; ?>><?php echo $city->name ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </p>
+            <p>
+                <label><?php echo l('indirizzo') ?></label>
+                <input name="address" id="owner_address" class="required" type="text"  value="<?php echo $this->accomodation->address ?>" />
+            </p>
+        </fieldset>
+        <fieldset class="facility">
+            <div id="servicesTab" class="tab">
+            <div class="desc">
+                Seleziona i servizi presenti nella tua struttura. Ne hai altri da suggerirci? <a href="mailTo:info@bbitaly.com">clicca qui</a>
+            </div>
+            <div class="clear"></div>
+            <div id="vertTabContLabel" class="verticalTab subtabs" style="floaT:left;width:230px;">
+                <ul>
+                    <li id="vertTabCont3" class="title">
+                        <a href="#tab3" class="selected">
+                            <span class="iconTab3"></span>
+                            Struttura                            </a>
+                    </li>
+                    <li id="vertTabCont4" class="title">
+                        <a href="#tab4">
+                            <span class="iconTab4"></span>
+                            Posti letto                            </a>
+                    </li>
+                    <li id="vertTabCont8" class="title">
+                        <a href="#tab8">
+                            <span class="iconTab8"></span>
+                            Attrezzature                            </a>
+                    </li>
+                    <li id="vertTabCont9" class="title">
+                        <a href="#tab9">
+                            <span class="iconTab9"></span>
+                            Servizi addizionali                            </a>
+                    </li>
+                    <li id="vertTabCont7" class="title">
+                        <a href="#tab7">
+                            <span class="iconTab7"></span>
+                            Sicurezza                            </a>
+                    </li>
+                    <li id="vertTabCont12" class="title">
+                        <a href="#tab12">
+                            <span class="iconTab12"></span>
+                            Posto auto                            </a>
+                    </li>
+                    <li id="vertTabCont14" class="title">
+                        <a href="#tab14">
+                            <span class="iconTab14"></span>
+                            Computer                            </a>
+                    </li>
+                    <li id="vertTabCont11" class="title">
+                        <a href="#tab11">
+                            <span class="iconTab11"></span>
+                            Svago                            </a>
+                    </li>
+                    <li id="vertTabCont1" class="title">
+                        <a href="#tab1" >
+                            <span class="iconTab1"></span>
+                            Piscina                            </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="list info-container" id="vertTabContent" style="width:717px;float:left;padding-left:20px">
+                <?php foreach ($this->facility as $name => $facility): ?>
+                    <?php
+                    switch ($name) {
+                        case 1:
+                            $h = "414";
+                            break;
+                        case 2:
+                            $h = "414";
+                            break;
+                        case 3:
+                            $h = "531";
+                            break;
+                        case 4:
+                            $h = "414";
+                            break;
+                        case 5:
+                            $h = "414";
+                            break;
+                        case 6:
+                            $h = "414";
+                            break;
+                        case 7:
+                            $h = "414";
+                            break;
+                        case 8:
+                            $h = "885";
+                            break;
+                        case 9:
+                            $h = "414";
+                            break;
+                        case 10:
+                            $h = "";
+                            break;
+                        case 11:
+                            $h = "414";
+                            break;
+                        case 12:
+                            $h = "414";
+                            break;
+                        case 13:
+                            $h = "";
+                            break;
+                        case 14:
+                            $h = "414";
+                            break;
+                        case 15:
+                            $h = "";
+                            break;
+                    }
+                    ?>
+                    <div id="tab<?php echo $name ?>" data-height="<?php echo $h ?>" class="verTab">
+                        <?php foreach ($facility as $option): ?>
+                            <span class="inline_input checkbox">
+                                <input class="required" type="checkbox" <?php if ($option['selected']): ?>checked="checked"<?php endif; ?> value="<?php echo $option['id'] ?>" name="facilitiesId[]" />
+                                <label class="forInput"><?php echo $option['name'] ?></label>
+                            </span>
+                        <?php endforeach; ?>
+                        <div class="clear"></div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <div class="clear"></div>
+        </div>
+        </fieldset>
+        <fieldset class="policy">
+            <h2>
+                <?php echo l('Policy') ?>
+            </h2>
+            <?php foreach ($this->policy as $name => $policy): ?>
+                <?php $i = 0 ?>
+                <?php foreach ($policy as $option): ?>
+                    <span class="checkbox" style="width:auto">
+                        <input type="checkbox" <?php if ($option['selected'] || $i == 0): ?>checked="checked"<?php endif; ?> value="<?php echo $option['id'] ?>" name="policyId[]" /><label><?php echo $option['name'] ?></label>
+                    </span>
+                    <br class="clear" />
+                    <?php if (++$i % 2 == 0): ?>
+                        <!--                        <br class="clear" />-->
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            <?php endforeach; ?>
+            </p>
+        </fieldset>
+        <fieldset class="submit">
+            <input type="submit" value="<?php echo l('Invia') ?>"/>
+        </fieldset>
+    </form>
+</div>
+<script type="text/javascript"> 
+    $("fieldset.facility ul").idTabs(); 
+</script>

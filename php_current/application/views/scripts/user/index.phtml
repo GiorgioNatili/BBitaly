@@ -1,0 +1,29 @@
+<div style="height: 20px;"></div>
+<?php if ($this->why != ''): ?>
+    <?php if ($this->why == 'notlogged'): ?>
+        <div class="section ac" style="background: #E8EED2">
+            <img src="/images/alert.png" style="vertical-align: middle;margin-right: 10px"/><?php echo l('Per poter proseguire con la prenotazione devi prima registrarti o loggarti') ?>
+        </div>
+    <?php elseif ($this->why == 'notlogged2'): ?>
+        <div class="section ac" style="background: #E8EED2">
+            <img src="/images/alert.png" style="vertical-align: middle;margin-right: 10px"/><?php echo l('Per poter accedere alla pagina è necessario essere loggati') ?>
+        </div>
+    <?php endif ?>
+<?php endif ?>
+<div class="section ac">
+    <div id="informationcontainer">
+        <div class="float-left" style="margin-right: 26px;">
+            <h3><?php echo l('Sei già registrato? Entra!') ?></h3>
+            <?php echo $this->partial('block/loginform.phtml', array('redirect_url' => $this->redirect_url)); ?>
+        </div>
+        <div class="float-right">
+            <h3><?php echo l('non hai un account? registrati!') ?></h3>
+            <?php echo $this->partial('block/registrationuserform.phtml', array('redirect_url' => $this->redirect_url)); ?>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div style="height: 20px;"></div>

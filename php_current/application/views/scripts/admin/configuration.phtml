@@ -1,0 +1,107 @@
+<?php 
+echo $this->adminLeftcolumn(array(
+    'books' => array(
+        'action' => 'books',
+        'active' => false,
+        'label'  => l('Prenotazioni')
+    ),
+    'accomodations' => array(
+        'action' => 'accomodation',
+        'active' => false,
+        'label'  => l('I miei annunci')
+    ),
+    'configuration' => array(
+        'action' => 'settings',
+        'active' => true,
+        'label'  => l('Configurazioni')
+    )
+));
+?>
+<div class="wcenter-outer-container clearfix">
+    <div class="wcenter-outer">
+        <div class="wcenter-inner">
+            <?php
+            echo $this->adminLeftcolumn(array(
+                'settings' => array(
+                    'action' => 'settings',
+                    'active' => false,
+                    'label' => l('BB in evidenza')
+                ),
+                'seo' => array(
+                    'action' => 'configuration',
+                    'active' => true,
+                    'label' => l('S.E.O.')
+                ),
+                'saved' => array(
+                    'action' => 'savedsearch',
+                    'active' => false,
+                    'label' => l('Ricerche salvate')
+                ),
+                'cms' => array(
+                    'action' => 'cms',
+                    'active' => false,
+                    'label' => l('CMS')
+                )
+            ));
+            ?>
+        </div>
+    </div>
+</div>
+<div class="page info-container">
+    <div class="section">
+        <h2><?php echo l('choose title pattern') ?></h2>
+        <form class="validate" data-submit-type="ajax" method="post" action="<?php echo $this->url(array('action' => 'titleset', 'format' => 'json'))?>" data-success-message="<?php echo l('configuration set!')?>">
+            <p>
+                <label for="pattern"><?php echo l('page') ?></label>
+                <select id="pattern" class="required" name="page" onchange="if($(this).val() != 'profiledsearch'){$('#keyword').show();$('#description').show();}else{$('#keyword').hide();$('#description').hide();}">
+                    <option value="home"><?php echo l('home')?></option>
+                    <option value="profiledsearch"><?php echo l('profiled search')?></option>
+                    <option value="detail"><?php echo l('accomodation detail')?></option>
+                </select>
+            </p>
+            <p>
+                <label for="pattern"><?php echo l('title pattern') ?></label>
+                <input id="pattern" type="text" class="required" name="pattern"/>
+            </p>
+            <p id="keyword">
+                <label for="keyword"><?php echo l('keyword pattern') ?></label>
+                <input id="keyword" type="text" name="keyword"/>
+            </p>
+            <p id="description">
+                <label for="description"><?php echo l('description') ?></label>
+                <textarea id="description" name="description"></textarea>
+            </p>
+            <p>
+                <input type="submit" name="pattern"/>
+            </p>
+            <div class="clear"></div>
+        </form>
+        <div>
+            <br />
+            <br/>
+            <h2><?php echo l('Avalaible placeholder') ?></h2>
+            <br />
+            <ul style="list-style-type: none;">
+                <li style="margin:10px 0;float:left;width:100px;font-weight: bold">{name}</li>
+                <li style="margin:10px 0;float:left;width:400px"><?php echo l('the name of the accomodation')?></li>
+                <li class="clear"></li>
+                <li style="margin:10px 0;float:left;width:100px;font-weight: bold">{district}</li>
+                <li style="margin:10px 0;float:left;width:400px"><?php echo l('the province belongs to the accomodation')?></li>
+                <li class="clear"></li>
+                <li style="margin:10px 0;float:left;width:100px;font-weight: bold">{city}</li>
+                <li style="margin:10px 0;float:left;width:400px"><?php echo l('the city belongs to the accomodation')?></li>
+                <li class="clear"></li>
+                <li style="margin:10px 0;float:left;width:100px;font-weight: bold">{type}</li>
+                <li style="margin:10px 0;float:left;width:400px"><?php echo l('the type of the accomodation')?></li>
+                <li class="clear"></li>
+                <li style="margin:10px 0;float:left;width:100px;font-weight: bold">{sitename}</li>
+                <li style="margin:10px 0;float:left;width:400px"><?php echo l("sitename <b>{$_SERVER['HTTP_HOST']}</b>")?></li>
+                <li class="clear"></li>
+                <li style="margin:10px 0;float:left;width:100px;font-weight: bold">{keyword}</li>
+                <li style="margin:10px 0;float:left;width:400px"><?php echo l("the keyword used for search (only profiled search)")?></li>
+                <li class="clear"></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>

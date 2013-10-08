@@ -1,0 +1,144 @@
+<div id="home_top" class="relative">
+    <a id="home_nav_prev" href="#" class="lx-nav"></a>
+    <a id="home_nav_next" href="#" class="rx-nav"></a>
+    <div class="photo-slider relative">
+        <div  class="lx gradient"></div>
+        <div  class="rx gradient"></div>
+        <div class="home-photo">
+            <div>
+                <img src="/upload/home-slider.jpg" width="1380" height="600px;"/>
+                <div class="price">100,00 &euro;</div>
+                <div class="rating">5,5</div>
+                <div class="name">
+                    Casa Travaglione <br/>
+                    <span>Marano di Napoli / Napoli</span>
+                </div>
+            </div>
+            <div>
+                <img src="/upload/home-slider-2.jpg" width="1380" height="600px;"/>
+                <div class="price">250,00 &euro;</div>
+                <div class="rating">9,9</div>
+                <div class="name">
+                    Casa del magnifico Salvatore il savio<br />
+                    <span>Marano di Napoli vicino Chiaiano </span> / Campania - Napoli
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="newsearch">
+        <div>
+            <span id="claim">Il tuo bed and breakfast in Italia! </span><br />
+            <span id="summary">Qui troverai la vacanza che cercavi tra le 999.000 località e  le 999.000 strutture ricettive.</span><br />
+        </div>
+        <div class=" form clearfix">
+            <form action="#" method="post" class="clearfix">
+                <div class="item inline text"><input autocomplete="off" type="text" name="location" class="location" placeholder="Cerca la località"/></div>
+                <div class="item inline checkin"><input autocomplete="off" type="text" name="checkin" class="datepicker checkin" value="checkin"/></div>
+                <div class="item inline checkout"><input autocomplete="off" type="text" name="checkout" class="datepicker checkout" value="checkout"/></div>
+                <div class="item inline persons">
+                    <div class="holder">
+                        <div class="selectHolder"><?php echo l('Persone') ?></div>
+                        <select autocomplete="off" name="persons">
+                            <?php for ($i = 1; $i <= 60; $i++): ?>
+                                <option value="<?php echo $i ?>"><?php echo $i ?></option>
+                            <?php endfor ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="item submit2">
+                    <input type="submit"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="savedsearchmenucontainer ">
+    <div class="savedsearchmenu clearfix">
+        <ul>
+            <li><a href="#search">Localit&agrave; preferite</a></li>
+            <li><a href="#spotlight">B&amp;B in evidenza</a></li>
+            <li class="last"><a href="#popular">B&amp;B più popolari</a></li>
+        </ul>
+    </div>
+</div>
+<div class="wrapper">
+    <div class="clearfix"></div>
+    <div id="search" class="savedsearchItems">
+        <?php foreach ($this->savedsearch as $index => $search): ?>
+            <?php $saved = Zend_Json::decode($search->text) ?>
+            <div class="searchitem <?php echo ($index + 1) % 3 == 0 ? 'last' : '' ?>">
+                <a href="<?php echo $this->url(array('controller' => 'search', 'keyword' => $saved['keyword'], 'r' => $search->id, 't' => 'b')) ?>" class="title">
+                    <span class="content">
+                        <img src="<?php echo $saved['photo']['cover'] ?>" width="260" height="260" />
+                    </span>
+    <!--                <div class="titlename" style="height:74px;overflow:hidden;position:absolute;bottom:0"><span><?php echo $saved['title'] ?></span></div>-->
+                    <span class="titlename"><?php echo $saved['title'] ?></span>
+                </a>
+            </div>
+            <?php echo ($index + 1) % 3 == 0 ? '<div class="clear"></div>' : '' ?>
+        <?php endforeach; ?>
+    </div>
+    <div id="spotlight" class="savedsearchItems">
+        <?php foreach ($this->highlighted as $index => $search): ?>
+            <div class="searchitem <?php echo ($index + 1) % 3 == 0 ? 'last' : '' ?>">
+                <a href="<?php echo $this->url(array('subdomain' => APPLICATION_SUBDOMAIN, 'action' => 'detail', 'controller' => 'casavacanza', 'id' => $search->id, 'language' => $this->language), null, true) ?>" class="title">
+                    <span class="content">
+                        <img src="<?php echo str_replace(":8090", "", $search->photo) ?>" width="260" height="260" />
+                    </span>
+                    <span class="titlename"><?php echo $search->name ?></span>
+                </a>
+            </div>
+            <?php echo ($index + 1) % 3 == 0 ? '<div class="clear"></div>' : '' ?>
+        <?php endforeach; ?>
+    </div>
+    <div id="popular" class="savedsearchItems">
+        <div class="searchitem">
+            <a href="#" class="title">
+                <span class="content">
+                    <img src="/upload/carnevale.png" width="260" height="260" />
+                </span>
+                <span class="titlename">Carnevale di Venezia</span>
+            </a>
+        </div>
+        <div class="searchitem">
+            <a href="#" class="title">
+                <span class="content">
+                    <img src="/upload/carnevale.png" width="260" height="260" />
+                </span>
+                <span class="titlename">Carnevale di Venezia</span>
+            </a>
+        </div>
+        <div class="searchitem last">
+            <a href="#" class="title">
+                <span class="content">
+                    <img src="/upload/carnevale.png" width="260" height="260" />
+                </span>
+                <span class="titlename">Carnevale di Venezia</span>
+            </a>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<script>
+    $(function(){
+        //        $('#search .searchitem a').on('mouseenter', function() {
+        //            $('.titlename',$(this)).stop(true,true).animate({height:$('.titlename span',$(this)).css('height')})
+        //        }).on('mouseleave', function() {
+        //            $('.titlename',$(this)).stop(true,true).animate({height:37})
+        //            console.log('asd');
+        //        });
+        $('.home-photo').cycle({
+            next:   '#home_nav_next', 
+            prev:   '#home_nav_prev'
+        })
+        $('.savedsearchmenu ul').idTabs();
+        $('#newsearch .datepicker').datepicker();
+        $('#newsearch').bind('mouseenter',function() {
+            $('#newsearch .label').stop().animate({opacity:1});
+        }).bind('mouseleave', function() {
+            $('#newsearch .label').stop().animate({opacity:0});
+        }).on('change', 'select', function(){
+            $(this).val() == 1 ? $(this).prev().html($(this).val()+" persona") : $(this).prev().html($(this).val()+" persone");
+        })
+    })
+</script>

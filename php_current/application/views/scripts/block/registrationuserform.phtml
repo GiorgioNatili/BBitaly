@@ -1,0 +1,45 @@
+<form data-success-message="<?php echo l('iscrizione avvenuta con successo') ?>" 
+      data-error-container="errors" 
+      data-submit-type="ajax" 
+      action="<?php
+echo $this->url(array(
+    'subdomain' => APPLICATION_SUBDOMAIN,
+    'language' => $this->language,
+    'controller' => 'system',
+    'action' => 'adduser',
+    'format' => 'json'), null, true)
+?>" class="validate" id="user_subscr" style="width:457px;" method="POST">
+    <fieldset>
+        <p class="float-left margin-right20 width450 margin-bottom10">
+            <label class="grey text-left capitalize"><?php echo l('name') ?></label>
+            <input type="text" class="required width450 input" name="name"/>
+        </p>
+        <p class="float-left margin-right20  width450 margin-bottom10">
+            <label class="grey text-left capitalize"><?php echo l('surname') ?></label>
+            <input type="text" class="required width450 input" name="surname"/>
+        </p>
+        <p class="float-left margin-right20 width450 margin-bottom10">
+            <label class="grey text-left capitalize"><?php echo l('password') ?></label>
+            <input type="password" class="required width450 input" minlength="8" maxlength="10" name="password"/>
+        </p>
+        <p class="float-left margin-right20 width450 margin-bottom10">
+            <label class="grey text-left capitalize"><?php echo l('confirm password') ?></label>
+            <input type="password" class="required width450 input" name="c_password"/>
+        </p>
+        <p class="float-left margin-right20 width450 margin-bottom10">
+            <label class="grey text-left capitalize"><?php echo l('email') ?></label>
+            <input type="text" class="required width450 email input" name="email"/>
+        </p>
+        <p class="float-left margin-right20 width450 margin-bottom10">
+            <label class="grey text-left capitalize"></label>
+            <input type="hidden" name="redirecturl" value="<?php echo $this->redirect_url?>"/>
+            <input value="<?php echo l('registrati')?>" type="submit" class="submit button required input"/>
+        </p>
+        <div class="clear"></div>
+    </fieldset>
+</form>
+<script>
+    $(function() {
+        $('#user_subscr').validate();
+    })
+</script>

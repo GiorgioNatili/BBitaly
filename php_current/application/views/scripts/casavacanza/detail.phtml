@@ -1,0 +1,409 @@
+<!--<div style="background:red;height:30px;padding:10px 0px;line-height:30px;">modifica;</div>-->
+<div id="save-update" style="position: fixed;top: 0;left: 0;width: 100%;height: 55px;background: #333;z-index: 1000;padding: 15px 0 0 0;box-shadow: 0 3px 10px 7px rgba(0,0,0,0.50);">
+    <div class="wcenter-outer">
+        <div class="wcenter-inner">
+            <input type="submit" value="annulla le modifiche" style=";margin:0 15px 0 0;cursor: pointer;text-shadow: 0 2px 5px rgba(0,0,0,.5);color: white;background: url(/images/save-button-detail-reset.png) repeat-x left center;float: left;width: 200px;height: 40px;font-size: 16px;font-weight: bold;border-radius: 10px;"/>
+            <input type="submit" value="salva tutte le modifiche" style="cursor: pointer;text-shadow: 0 2px 5px rgba(0,0,0,.5);color: white;background: url(/images/save-button-detail.png) repeat-x  left center;float: left;width: 200px;height: 40px;font-size: 16px;font-weight: bold;border-radius: 10px;"/>
+        </div>
+    </div>
+    <div style="position: absolute;bottom: -40px;left: 50%;width: 50px;height: 40px;background: #333;box-shadow: 0 3px 10px 0px rgba(0,0,0,.4);">
+        <a href="#" style="display:block;height:100%;text-indent:-9999px;">chiudi</a>
+    </div>
+</div>
+<?php echo $this->maps(array($this->accomodation), 5, array($this->accomodation->latitude, $this->accomodation->longitude)) ?>
+<div class="wrapper clearfix">
+    <div class="relative">
+        <div class="vezzo">
+            <a href="#" class="arrow left"></a>
+            <a href="#" class="arrow right"></a>
+        </div>
+    </div>
+    <div id="accomodation-detail" class="body">
+        <div id="top-shadow">
+            <span id="shadow-left"></span>
+            <span id="shadow-right"></span>
+        </div>
+        <div id="detail_header" class="row clearfix">
+            <div class="title editable" data-edit-callback="updateBasicInfos" data-edit-href="/form.html" data-edit-type="room" data-edit-id="<?php echo $this->accomodation->id ?>" data-edit-field="name">
+                <h1><?php echo $this->accomodation->type ?> <?php echo $this->accomodation->city->name ?></h1>
+                <h2><?php echo $this->accomodation->name ?></h2>
+                <h3><?php echo $this->accomodation->city->name ?> / <?php echo $this->accomodation->city->region->name ?></h3>
+            </div>
+            <div class="social">
+                <div class="fb-like"><iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fdemo.bbitaly.com%2Fit%2Fcasavacanza%2Fdetail%2Fid%2F34c7dfc594742f60a70c8da10e9b1ed7%23&amp;send=false&amp;layout=box_count&amp;width=450&amp;show_faces=true&amp;font&amp;colorscheme=light&amp;action=like&amp;height=90&amp;appId=233646893428965" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:65px; height:90px;" allowTransparency="true"></iframe></div>
+                <div class="gp-like"><div class="g-plusone" data-size="tall" data-href="https://plus.google.com/u/0/b/103711838752058855961/103711838752058855961/posts"></div></div>
+                <div class="pn-like"><a href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2Fdemo.bbitaly.com%2Fit%2Fcasavacanza%2Fdetail%2Fid%2F34c7dfc594742f60a70c8da10e9b1ed7%23&media=http%3A%2F%2Fdemo.bbitaly.com%2Fit%2Fcasavacanza%2Fdetail%2Fid%2F34c7dfc594742f60a70c8da10e9b1ed7%23&description=asd" class="pin-it-button" count-layout="vertical"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a></div>
+            </div>
+        </div>
+        <div id="detail_body" class="row clearfix">
+            <div class="photo_accomodation editable" data-edit-href="/form.html" data-edit-type="room" data-edit-id="<?php echo $this->accomodation->id ?>" data-edit-field="name">
+                <ul class="photos clearfix">
+                    <li>
+                        <?php foreach ($this->photos as $index => $photo): ?>
+                            <span class="relative <?php if (($index + 1) % 5 == 0): ?>last<?php endif; ?>">
+                                <a rel="lightbox" href="<?php echo str_replace(":8090", "", $photo->url) ?>"></a>
+                                <img width="82" height="82" src="<?php echo str_replace(":8090", "", $photo->url) ?>" />
+                            </span> 
+                            <?php if ((($index + 1) == count($this->photos)) || ($index + 1) % 5 == 0): ?>
+                            </li>
+                            <?php if ((($index + 1) != count($this->photos))): ?>
+                                <li>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                        <?php endforeach ?>
+                </ul>
+                <div class="wcenter-outer-container">
+                    <div class="wcenter-outer">
+                        <div class="wcenter-inner">
+                            <div id="navigator" class="clearfix">
+                                <a href="#" class="photoarrows prev"></a>
+                                <a href="#" class="photoarrows next"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="description editable" data-edit-href="/form.html" data-edit-type="room" data-edit-id="<?php echo $this->accomodation->id ?>" data-edit-field="name">
+                <p>
+                    <?php echo html_entity_decode($this->accomodation->description, ENT_QUOTES) ?>
+                </p>
+            </div>
+            <div class="clear"></div>
+            <form id="book-form" data-submit-type="ajax" action="<?php echo $this->url(array('controller'=>'system','action'=>'checkavailability','format'=>'json'))?>" method="post">
+                <input type="hidden" name="rid" value="" />
+                <div id="newsearch">
+                    <div class="label"><?php echo l('effettua nuova ricerca') ?></div>
+                    <div class="item inline checkin"><input autocomplete="off" type="text" name="checkin" class="datepicker required checkin" placeholder="checkin"/></div>
+                    <div class="item inline checkout"><input autocomplete="off" type="text" name="checkout" class="datepicker required checkout" placeholder="checkout"/></div>
+                    <div class="item inline persons">
+                        <div class="holder">
+                            <div class="selectHolder"><?php echo l('Persone') ?></div>
+                            <select autocomplete="off" name="persons" class="required">
+                                <?php for ($i = 1; $i <= 20; $i++): ?>
+                                    <option value="<?php echo $i ?>"><?php echo $i ?></option>
+                                <?php endfor ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="item submit2">
+                        <input type="submit"/>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div id="rooms">
+                    <div class="roomHolder">
+                        <div class="room relative">
+                            <div class="photo">
+                                <div class="img-container">
+                                    <img src="/upload/170 (1).jpg"/>
+                                </div>
+                            </div>
+                            <div class="room-desc">
+                                <h2>Ciao</h2>
+                                <p>Descrizione breve della struttura lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat voluta...</p>
+                            </div>
+                            <div class="price">
+                                <div class="numeral">9999.99€</div>
+                                <div style="position:relative">
+                                    <input type="button" class="book" name="rid" value="12" style="position: absolute;text-indent: -9999px;opacity:0;left: 18px;top: -3px;"/>
+                                    <span style="font-family:'calibri-bold';cursor: pointer;font-size: 24px;margin: 5px auto 0;width: 140px;height: 35px;background: #6ab023;color: white;text-align: center;line-height: 35px;display: block;border-radius: 10px;">prenota</span>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                            <a class="expander"></a>
+                        </div>
+                        <div class="detail">
+                            <ul>
+                                <li><a class="desc" href="#desc2">Descrizione Camera</a></li>
+                                <li><a class="photogall" href="#photo2">Photogallery</a></li>
+                                <li><a class="calendar last" href="#calendar2">Calendario</a></li>
+                            </ul>
+                            <div class="clear"></div>
+                            <div class="tabs">
+                                <div id="desc2" class="detail-tab">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenitp.
+                                    </p>
+                                </div>
+                                <div id="photo2" class="detail-tab">
+                                    <div class="photobig">
+                                        <div class="photocontainer">
+                                            <img src="/upload/0a4139ac9cb091dd02295b9990fd455c_bedandbreakfast_B&B_Casa_Mira_Napoli.jpg"/>
+                                        </div>
+                                    </div>
+                                    <div class="float-left">
+                                        <div class="photolist">
+                                            <div class="clearfix">
+                                                <span class="relative">
+                                                    <a href="/upload/0a4139ac9cb091dd02295b9990fd455c_bedandbreakfast_B&B_Casa_Mira_Napoli.jpg"></a>
+                                                    <img width="82" height="82" src="/upload/0a4139ac9cb091dd02295b9990fd455c_bedandbreakfast_B&B_Casa_Mira_Napoli.jpg" />
+                                                </span>
+                                                <span class="relative">
+                                                    <a href="/upload/5da17bb69e16fc5b57898b8150fc316a_bedandbreakfast_B&B_Casa_Mira_Napoli.jpg"></a>
+                                                    <img width="82" height="82" src="/upload/5da17bb69e16fc5b57898b8150fc316a_bedandbreakfast_B&B_Casa_Mira_Napoli.jpg" />
+                                                </span>
+                                                <span class="relative last">
+                                                    <a href="/upload/82c7b59ec7066e5d870f904e3dbf1f6d_bedandbreakfast_B&B_Casa_Mira_Napoli.jpg"></a>
+                                                    <img width="82" height="82" src="/upload/82c7b59ec7066e5d870f904e3dbf1f6d_bedandbreakfast_B&B_Casa_Mira_Napoli.jpg" />
+                                                </span>
+                                                <span class="relative">
+                                                    <a href="/upload/88691dc8c7eeb230048506cda8a25dfe_bedandbreakfast_B&B_Casa_Mira_Napoli.jpg"></a>
+                                                    <img width="82" height="82" src="/upload/88691dc8c7eeb230048506cda8a25dfe_bedandbreakfast_B&B_Casa_Mira_Napoli.jpg" />
+                                                </span>
+                                                <span class="relative ">
+                                                    <a href="/upload/a29d55dbe73fd07da5cea23c32c87eed_bedandbreakfast_B&B_Casa_Mira_Napoli.jpg"></a>
+                                                    <img width="82" height="82" src="/upload/a29d55dbe73fd07da5cea23c32c87eed_bedandbreakfast_B&B_Casa_Mira_Napoli.jpg" />
+                                                </span>
+                                                <span class="relative last">
+                                                    <a href="/upload/a29d55dbe73fd07da5cea23c32c87eed_bedandbreakfast_B&B_Casa_Mira_Napoli.jpg"></a>
+                                                    <img width="82" height="82" src="/upload/a29d55dbe73fd07da5cea23c32c87eed_bedandbreakfast_B&B_Casa_Mira_Napoli.jpg" />
+                                                </span>
+                                                <span class="relative ">
+                                                    <a href="/upload/a29d55dbe73fd07da5cea23c32c87eed_bedandbreakfast_B&B_Casa_Mira_Napoli.jpg"></a>
+                                                    <img width="82" height="82" src="/upload/a29d55dbe73fd07da5cea23c32c87eed_bedandbreakfast_B&B_Casa_Mira_Napoli.jpg" />
+                                                </span>
+                                                <span class="relative ">
+                                                    <a href="/upload/a29d55dbe73fd07da5cea23c32c87eed_bedandbreakfast_B&B_Casa_Mira_Napoli.jpg"></a>
+                                                    <img width="82" height="82" src="/upload/a29d55dbe73fd07da5cea23c32c87eed_bedandbreakfast_B&B_Casa_Mira_Napoli.jpg" />
+                                                </span>
+                                                <span class="relative last">
+                                                    <a href="/upload/a29d55dbe73fd07da5cea23c32c87eed_bedandbreakfast_B&B_Casa_Mira_Napoli.jpg"></a>
+                                                    <img width="82" height="82" src="/upload/a29d55dbe73fd07da5cea23c32c87eed_bedandbreakfast_B&B_Casa_Mira_Napoli.jpg" />
+                                                </span>
+                                            </div>
+                                            <div class="clearfix">
+                                                <span class="relative">
+                                                    <a href="/upload/0a4139ac9cb091dd02295b9990fd455c_bedandbreakfast_B&B_Casa_Mira_Napoli.jpg"></a>
+                                                    <img width="82" height="82" src="/upload/0a4139ac9cb091dd02295b9990fd455c_bedandbreakfast_B&B_Casa_Mira_Napoli.jpg" />
+                                                </span>
+                                                <span class="relative">
+                                                    <a href="/upload/5da17bb69e16fc5b57898b8150fc316a_bedandbreakfast_B&B_Casa_Mira_Napoli.jpg"></a>
+                                                    <img width="82" height="82" src="/upload/5da17bb69e16fc5b57898b8150fc316a_bedandbreakfast_B&B_Casa_Mira_Napoli.jpg" />
+                                                </span>
+                                                <span class="relative last">
+                                                    <a href="/upload/82c7b59ec7066e5d870f904e3dbf1f6d_bedandbreakfast_B&B_Casa_Mira_Napoli.jpg"></a>
+                                                    <img width="82" height="82" src="/upload/82c7b59ec7066e5d870f904e3dbf1f6d_bedandbreakfast_B&B_Casa_Mira_Napoli.jpg" />
+                                                </span>
+                                                <span class="relative">
+                                                    <a href="/upload/88691dc8c7eeb230048506cda8a25dfe_bedandbreakfast_B&B_Casa_Mira_Napoli.jpg"></a>
+                                                    <img width="82" height="82" src="/upload/88691dc8c7eeb230048506cda8a25dfe_bedandbreakfast_B&B_Casa_Mira_Napoli.jpg" />
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="clear"></div>
+                                        <div class="wcenter-outer-container">
+                                            <div class="wcenter-outer">
+                                                <div class="wcenter-inner">
+                                                    <div class="photo-detail-navigator clearfix">
+                                                        <a href="#" class="photoarrows prev"></a>
+                                                        <a href="#" class="photoarrows next"></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                                <div id="calendar2" class="calendarTab">
+                                    <div class="calendarbig"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+            <div class="clear"></div>
+            <div id="services">
+                <ul id="servicesTab">
+                    <li calss="first"><a href="#service"><?php echo l('Servizi') ?></a></li>
+                    <li><a href="#policy"><?php echo l('Policy') ?></a></li>
+                    <li><a href="#comments"><?php echo l('Commenti') ?></a></li>
+                </ul>  
+                <div class="clear"></div>
+                <div style="height: 30px;"></div>
+                <div id="service"class="editable" data-edit-href="/form.html" data-edit-type="room" data-edit-id="<?php echo $this->accomodation->id ?>" data-edit-field="name">
+                    <?php foreach ($this->facility as $name => $facility): ?>
+                        <div id="tab<?php echo $name ?>">
+                            <div class="facilityTitle verticalTab">
+                                <?php
+                                switch ($name) {
+                                    case '3':
+                                        $a = '<a href="#tab3" class="selected"><span class="iconTab3"></span>Struttura</a>';
+                                        break;
+                                    case '4':
+                                        $a = '<a href="#tab3" class="selected"><span class="iconTab4"></span>Posti letto</a>';
+                                        break;
+                                    case '8':
+                                        $a = '<a href="#tab3" class="selected"><span class="iconTab8"></span>Attrezzature</a>';
+                                        break;
+                                    case '9':
+                                        $a = '<a href="#tab3" class="selected"><span class="iconTab9"></span>Servizi addizionali</a>';
+                                        break;
+                                    case '7':
+                                        $a = '<a href="#tab3" class="selected"><span class="iconTab7"></span>Sicurezza</a>';
+                                        break;
+                                    case '12':
+                                        $a = '<a href="#tab3" class="selected"><span class="iconTab12"></span>Posto auto</a>';
+                                        break;
+                                    case '14':
+                                        $a = '<a href="#tab3" class="selected"><span class="iconTab14"></span>Computer</a>';
+                                        break;
+                                    case '11':
+                                        $a = '<a href="#tab3" class="selected"><span class="iconTab11"></span>Svago</a>';
+                                        break;
+                                    case '1':
+                                        $a = '<a href="#tab3" class="selected"><span class="iconTab1"></span>Piscina</a>';
+                                        break;
+                                }
+                                echo $a;
+                                ?>
+                            </div>
+                            <div class="clear"></div>
+                            <ul class="facList">
+                                <?php foreach ($facility as $option): ?>
+                                    <li><span><?php echo $option['name'] ?></span></li>
+                                <?php endforeach; ?>
+                            </ul>
+                            <div class="clear"></div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                <div id="policy" class="editable" data-edit-href="/form.html" data-edit-type="room" data-edit-id="<?php echo $this->accomodation->id ?>" data-edit-field="name">
+                    <div class="clear"></div>
+                    <ul class="facList">
+                        <?php if (count($this->policy) > 0): ?>
+                            <?php foreach ($this->policy as $policy): ?>
+                                <?php foreach ($policy as $p): ?>
+                                    <li><span><?php echo $p['name'] ?></span></li>
+                                <?php endforeach; ?>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+                <div id="comments">
+                    <div class="fb-comments" data-href="<?php echo $this->url() ?>" data-width="940" data-num-posts="5"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+<ol id="joyRideTipContent">
+    <li data-id="detail_header" data-text="Next" class="custom" data-options="tipLocation:top">
+        <h2>Stop #1</h2>
+        <p>You can control all the details for you tour stop. Any valid HTML will work inside of Joyride.</p>
+    </li>
+    <li data-class="photo_accomodation" data-button="Next" data-options="tipLocation:right;tipAnimation:fade">
+        <h2>Stop #2</h2>
+        <p>Get the details right by styling Joyride with a custom stylesheet!</p>
+    </li>
+    <li data-class="description" data-button="Next" data-options="tipLocation:top">
+        <h2>Stop #3</h2>
+        <p>It works right aligned.</p>
+    </li>
+    <li data-id="rooms" data-text="Next" class="custom" data-options="tipLocation:top">
+        <h2>Stop #3</h2>
+        <p>It works right aligned.</p>
+    </li>
+    <li data-class="detail .desc" data-text="Next" class="custom" data-options="tipLocation:top">
+        <h2>Stop #3</h2>
+        <p>It works right aligned.</p>
+    </li>
+    <li data-class="detail .photogall" data-text="Next" class="custom" data-options="tipLocation:top">
+        <h2>Stop #3</h2>
+        <p>It works right aligned.</p>
+    </li>
+    <li data-class="detail .calendar" data-text="Next" class="custom" data-options="tipLocation:top">
+        <h2>Stop #3</h2>
+        <p>It works right aligned.</p>
+    </li>
+    <li data-id="servicesTab" data-text="Next" class="custom" data-options="tipLocation:top">
+        <h2>Stop #3</h2>
+        <p>It works right aligned.</p>
+    </li>
+    <li data-text="Next" class="custom" data-options="tipLocation:top">
+        <h2>stop ventordici</h2>
+        <p>quando avrai finito le modifiche...</p>
+    </li>
+    <li data-text="Next" class="custom" data-options="tipLocation:bottom">
+        <h2>clicca sulla linguetta</h2>
+        <p>E salva. Semplice no?</p>
+    </li>
+</ol>
+<script>
+    var callbacks = {
+        updateBasicInfos: function(infos) {
+        }
+    }
+    
+    $(function() {
+        $('#newsearch .datepicker').datepicker();
+        $('#newsearch').bind('mouseenter',function() {
+            $('#newsearch .label').stop().animate({opacity:1});
+        }).bind('mouseleave', function() {
+            $('#newsearch .label').stop().animate({opacity:0});
+        }).on('change', 'select', function(){
+            $(this).val() == 1 ? $(this).prev().html($(this).val()+" persona") : $(this).prev().html($(this).val()+" persone");
+        })
+        $('.roomHolder').on('click','.room',function(e) {
+            $(this).parents('.roomHolder').find('.detail').slideToggle();
+        }).on('click','input[type="submit"]', function(e) {
+            e.stopPropagation();
+        }).on('click','input[type="button"]',function(e) {
+            var form = $(this).parents('form');
+            form.find('input[name="rid"]').val($(this).val());
+            console.log(form,form.valid());
+            if (form.valid()) {
+                form.submit();
+            }
+        })
+        $('.detail-tab .photolist').cycle({ 
+            fx:     'scrollHorz', 
+            speed:  'slow', 
+            timeout: 0, 
+            next:   '.photoarrows.next', 
+            prev:   '.photoarrows.prev' 
+        });
+        $('#detail_body .photos').cycle({ 
+            fx:     'scrollHorz', 
+            speed:  'slow', 
+            timeout: 0, 
+            next:   '#navigator .photoarrows.next', 
+            prev:   '#navigator .photoarrows.prev' 
+        });
+        $('.detail ul').each(function(i, val){
+            $(this).idTabs();
+        })
+        $('ul#servicesTab').idTabs();
+        $('.roomHolder').on('click', '.photolist a', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $(this).parents('.detail-tab').find('.photobig img').attr('src',$(this).attr('href'))
+            return false;
+        })
+        $('.calendarbig').datepicker();
+        $('body').on('click','#save-update a', function() {
+            if ($('#save-update').css('top') == '0px') {
+                $('#save-update').animate({top:'-70px'});
+                return false;
+            } else {
+                $('#save-update').animate({top:'0px'});
+                return false;
+            }
+        })
+    })
+    $(window).load(function() {
+        $('#joyRideTipContent').joyride({
+            postRideCallback: function() {
+                $('#save-update a').trigger('click');
+                $('html,body').scrollTop();
+            },
+            postStepCallback : function (index, tip) {
+                if (index == 3) {
+                    $('.room').eq(0).trigger('click');
+                }
+            }});
+    });
+</script>

@@ -1,0 +1,93 @@
+<?php
+echo $this->adminLeftcolumn(array(
+    'books' => array(
+        'action' => 'books',
+        'active' => false,
+        'label' => l('Prenotazioni')
+    ),
+    'accomodations' => array(
+        'action' => 'accomodation',
+        'active' => true,
+        'label' => l('I miei annunci')
+    ),
+    'configuration' => array(
+        'action' => 'settings',
+        'active' => false,
+        'label' => l('Configurazioni')
+    )
+));
+?>
+<div>
+    <?php if ($this->status == 'error'): ?>
+        <?php echo $this->partial('block/error.phtml', array('errors' => $this->errors)); ?>
+    <?php endif; ?>
+    <form class="validate" method="post" action="<?php echo $this->url(array('action' => 'roomcreateprocess')); ?>">
+        <fieldset class="full-width">
+            <p class="three-cols">
+                <label for="mincap"><?php echo l('capienza minima') ?></label>
+                <input id="mincap" class="required full-width" style="width:100%;" name="mincap" type="text" value="1" />
+                <input name="amount" type="hidden" value="1" />
+            </p>
+            <p class="three-cols">
+                <label for="maxcap"><?php echo l('capienza massima') ?></label>
+                <input id="maxcap" class="required full-width" style="width:100%;" name="maxcap" type="text" />
+            </p>
+            <p class="three-cols last">
+                <label for="defaultprice"><?php echo l('prezzo di base ') ?></label>
+                <span style="position:relative">
+                    <span style="position:absolute;left:10px;top:50%;line-height:38px;margin-top:-19px;font-size: 18px;color: #94a7b0">&euro;</span>
+                    <input id="defaultprice" class="required" style="width:100%;padding-left:25px" name="defaultprice" type="text" name="#" />
+                </span>
+            </p>
+            <div class="clear"></div>
+        </fieldset>
+        <div style="height:35px"></div>
+        <fieldset class="roomdesc">
+<!--            <div id="desc">
+                <div class="descriptions-lang">
+                    <ul>
+                        <?php foreach ($this->langs as $lang): ?>
+                            <li>
+                                <a class="lang <?php echo $lang ?>" href="#<?php echo $lang ?>">
+                                    <?php
+                                    switch ($lang) :
+                                        case "it":
+                                            echo 'italiano';
+                                            break;
+                                        case "en":
+                                            echo "english";
+                                            break;
+                                    endswitch;
+                                    ?>
+                                </a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+            </div>-->
+            <?php /*foreach ($this->langs as $lang):*/ ?>
+            <div id="it">
+                <p>
+                    <label><?php echo l('dai una descrizione breve della camera') ?></label>
+                    <textarea id="shortDesc" class="required full-width-column" name="shortDesc" onkeyup="count($(this),$('#short-counter'),50)"></textarea>
+                    <small class="specification"><?php echo l('massimo <span id="short-counter">50</span> caratteri. Es: "letto matrimoniale delux"') ?></small>
+                </p>
+                <p>
+                    <label><?php echo l('dai una descrizione lunga della camera') ?></label>
+                    <textarea id="placeDesc" class="required full-width-column" name="placeDesc" onkeyup="count($(this),$('#place-counter'),500)"></textarea>
+                    <small class="specification"><?php echo l('massimo <span id="place-counter">500</span> caratteri. Es: "struttura molto bella situata al 4° piano della struttura con vista sul mare, doppi servizi e salottino in stile liberty"') ?></small>
+                </p>
+                <p class="last">
+                    <label><?php echo l('dai una descrizione dell\'esterno della camera') ?></label>
+                    <textarea id="generalDesc" class="required full-width-column" name="generalDesc" onkeyup="count($(this),$('#gen-counter'),500)"></textarea>
+                    <small class="specification"><?php echo l('massimo <span id="gen-counter">500</span> caratteri. Es: "panoramica, con vista sul vesuvio"') ?></small>
+                </p>
+            </div>
+            <?php /*endforeach;*/?>
+        </fieldset>
+        <fieldset class="lastelement full-width-column">
+            <input id="save" type="submit" value="<?php echo l('crea la camera') ?>"/>
+        </fieldset>
+    </form>
+</div>

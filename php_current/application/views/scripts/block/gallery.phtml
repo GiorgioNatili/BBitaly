@@ -1,0 +1,20 @@
+<?php if (!empty($this->photos)): ?>
+    <a href="#" onclick="reorderBbPhoto($('.photo'),'<?php echo $this->id?>','<?php echo $this->type?>')" class="button"><?php echo l('salva le modifiche') ?></a>
+    <div id="gallery-container" class="gallery-container">
+        <?php foreach ($this->photos as $photo): ?>
+            <div id="<?php echo $photo->id ?>" class="photo">
+                <div id="image" class="image">
+                    <?php echo $this->writeImage(array('src' => $photo->url, 'width' => 150, 'height' => 150, 'type' => $this->type)); ?>
+                </div>
+                <div class="options">
+                    <a href="#" data-image-name="<?php echo $this->imageUrl(array('src' => $photo->url, 'width' => 300, 'height' => 300, 'type' => $this->type)); ?>" class="magnify">M</a>
+                    <a data-image-ref="<?php echo $photo->id?>" href="#" class="delete">D</a>
+                    <br class="clear"/>
+                </div>
+            </div>
+        <?php endforeach ?>
+        <div class="clear"></div>
+    </div>
+<?php else: ?>
+    <?php echo $this->partial('block/error.phtml', array('errors' => $this->errors)); ?>
+<?php endif; ?>
