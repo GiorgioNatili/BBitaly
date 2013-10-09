@@ -440,7 +440,7 @@ class PropertyController extends Controller
             'cRoom' => Room::model()->countByAttributes(array(
                 'property_id'   => $model->id
             )),
-            'billing' => $billing
+            'billing' => $billing,
         ));
 
     }
@@ -504,7 +504,7 @@ class PropertyController extends Controller
      */
     public function loadModel($id)
     {
-        $model=Property::model()->findByPk($id);
+        $model=Property::model()->findByPk($id)->with('Images');
         if($model===null)
             throw new CHttpException(404,'The requested page does not exist.');
         return $model;

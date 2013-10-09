@@ -215,17 +215,53 @@
                                <h2 class="legend">photogallery</h2>
                                 <p>Inserisci le altre immagini della tua struttura per completare la photogallery</p>
                                 <ul class="thumb-list jcarousel-skin-tango jcarousel-horizontal">
-                                    <?php for($indx=0; $indx<10; $indx++):?>
-                                    <li>
-                                        <div class="img imgProperty-<?php echo $indx?>">
-                                            <a href="#"></a>
-                                        </div>
-                                        <div class="hover hProperty-<?php echo $indx?>" >
-                                            <a href="#." onclick="triggerClickF('Property',<?php echo $indx;?>)">upload</a>
-                                            <input id="Property-<?php echo $indx; ?>" onclick="a_imgUpload('Property',<?php echo $indx;?>)" class="fileupload" style="display: none" type="file" name="files[]" />
-                                        </div>
-                                    </li>
-                                    <?php endfor; ?>
+                                    <?php 
+                                    // style="left: 0px !important;"
+                                    if ( $model->isNewRecord == false): 
+                                        $images = $model->getImages();
+                                        $count = count($images);
+                                        if ( $count < 10):
+                                            $blank = 10 - $count;
+                                            $j = 0;
+                                            foreach ($images as $image): $j++; ?>
+                                               <li>
+                                                    <div class="img imgProperty-<?php echo $j?>">
+                                                        <a href="#"><img src="<?php echo Bucket::load($image->img_name) ?>" /></a>
+                                                    </div>
+                                                    <div class="hover hProperty-<?php echo $j?>" >
+                                                        <a href="#." onclick="triggerClickF('Property',<?php echo $j;?>)">upload</a>
+                                                        <input id="Property-<?php echo $j; ?>" onclick="a_imgUpload('Property',<?php echo $j;?>)" class="fileupload" style="display: none" type="file" name="files[]" />
+                                                    </div>
+                                                </li> 
+                                    <?php    endforeach;
+                                            for ($k = 1; $k <= $blank; $k++): ?>
+                                                 <li>
+                                                    <div class="img imgProperty-<?php echo $k ?>">
+                                                        <a href="#"></a>
+                                                    </div>
+                                                    <div class="hover hProperty-<?php echo $k ?>" >
+                                                        <a href="#." onclick="triggerClickF('Property',<?php echo $k ?>)">upload</a>
+                                                        <input id="Property-<?php echo $k ?>" onclick="a_imgUpload('Property',<?php echo $k ?>)" class="fileupload" style="display: none" type="file" name="files[]" />
+                                                    </div>
+                                                </li>
+                                     <?php  endfor;
+                                        endif;
+                                        ?>
+                                        
+                                    <?php else: ?>
+                                        <?php for($indx=0; $indx<10; $indx++):?>
+                                        <li>
+                                            <div class="img imgProperty-<?php echo $indx?>">
+                                                <a href="#"></a>
+                                            </div>
+                                            <div class="hover hProperty-<?php echo $indx?>" >
+                                                <a href="#." onclick="triggerClickF('Property',<?php echo $indx;?>)">upload</a>
+                                                <input id="Property-<?php echo $indx; ?>" onclick="a_imgUpload('Property',<?php echo $indx;?>)" class="fileupload" style="display: none" type="file" name="files[]" />
+                                            </div>
+                                        </li>
+                                        <?php endfor; ?>
+                                    <?php endif;
+                                    ?>
 
                                 </ul>
                                 <div class="clearfix"></div>
