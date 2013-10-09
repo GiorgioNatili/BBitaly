@@ -163,6 +163,15 @@ class Property extends CActiveRecord
 
         }
         
+        public function getImages() {
+            return Images::model()
+                    ->findAllByAttributes(array(
+                        'property_id'   => $this->id,
+                        'status'    => 1,
+                        'is_cover' => 0
+                    ));
+        }
+        
         public function deactivateCover() {
             Images::model()
                     ->updateAll(array(
@@ -170,7 +179,7 @@ class Property extends CActiveRecord
                     ), 'property_id = '. $this->id.' AND is_cover = 1');
         }
 
-                protected function beforeSave() {
+        protected function beforeSave() {
             if ( $this->isNewRecord )
                 $this->created_on = time();
             return parent::beforeSave();
