@@ -290,7 +290,6 @@ class PropertyController extends Controller
                             $bucket = new Bucket($imgArr,'javascriptfile');
                             $image = new Images;
                             $image->type = Entity::ENTITY_PROPERTY;
-                            echo $model->id;
                             $image->property_id = $model->id;
                             $image->is_cover = 0;
                             $image->img_mime = $imgArr['type'];

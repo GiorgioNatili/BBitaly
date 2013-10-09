@@ -727,7 +727,7 @@
     function a_imgUpload(type,i){
         'use strict';
         // Change this to the location of your server-side upload handler:
-        var url = '/web/index.php/property/uploadFile';
+        var url = '/property/uploadFile';
         $('#'+type+'-'+i).fileupload({
             url: url,
             dataType: 'json',

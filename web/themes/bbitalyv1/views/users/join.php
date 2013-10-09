@@ -20,7 +20,10 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="traveller">
                     <?php $form=$this->beginWidget('CActiveForm', array(
-                            'id'=>'traveler-form'
+                            'id'=>'traveler-form',
+                            'htmlOptions' => array(
+                                'onsubmit' => "return matchPassword('Users_password','Confirm_Password') && matchEmail('Users_email','Confirm_Email');"
+                            )
                     )); ?>
                     <div class="tab-wrap">
                         <ul class="form-list">
@@ -29,14 +32,14 @@
                                 <div class="field">
                                     <?php echo $form->labelEx($model,'first_name'); ?>
                                     <div class="input-box">
-                                        <?php echo $form->textField($model,'first_name', array('class' => 'input-field medium')); ?>
+                                        <?php echo $form->textField($model,'first_name', array('class' => 'input-field medium', 'required' => 'required')); ?>
                                     </div>
                                     <?php echo $form->error($model,'first_name'); ?>
                                 </div>
                                 <div class="field">
                                     <?php echo $form->labelEx($model,'last_name'); ?>
                                     <div class="input-box">
-                                        <?php echo $form->textField($model,'last_name', array('class' => 'input-field medium')); ?>
+                                        <?php echo $form->textField($model,'last_name', array('class' => 'input-field medium', 'required' => 'required')); ?>
                                     </div>
                                     <?php echo $form->error($model,'last_name'); ?>
                                 </div>
@@ -45,14 +48,14 @@
                                 <div class="field">
                                     <?php echo $form->labelEx($model,'email'); ?>
                                     <div class="input-box">
-                                        <?php echo $form->textField($model,'email', array('class' => 'input-field medium')); ?>
+                                        <?php echo $form->textField($model,'email', array('class' => 'input-field medium', 'required' => 'required')); ?>
                                     </div>
                                     <?php echo $form->error($model,'email'); ?>
                                 </div>
                                 <div class="field">
                                     <label>Confirm your e-mail</label>
                                     <div class="input-box">
-                                        <input type="text" class="input-field medium" value="" />
+                                        <input type="text" id="Confirm_Email" class="input-field medium confirm-email" value="" />
                                     </div>
                                 </div>
                             </li>
@@ -61,14 +64,14 @@
                                 <div class="field">
                                     <label class="required" for="Users_password">Password <span class="required">*</span></label>
                                     <div class="input-box">
-                                        <?php echo $form->passwordField($model,'password', array('class' => 'input-field medium')); ?>
+                                        <?php echo $form->passwordField($model,'password', array('class' => 'input-field medium', 'required' => 'required')); ?>
                                     </div>
                                     <?php echo $form->error($model,'password'); ?>
                                 </div>
                                 <div class="field">
                                     <label>Confirm Password</label>
                                     <div class="input-box">
-                                        <input type="password"  class="input-field medium" value="" />
+                                        <input type="password" id="Confirm_Password" class="input-field medium confirm-password" value="" required />
                                     </div>
                                 </div>
                             </li>
@@ -104,7 +107,10 @@
                 </div>
                 <div class="tab-pane" id="property_owner">
                     <?php $form=$this->beginWidget('CActiveForm', array(
-                            'id'=>'owner-form'
+                            'id'=>'owner-form',
+                            'htmlOptions' => array(
+                                'onsubmit' => "return matchPassword('oUsers_password','oConfirm_Password') && matchEmail('oUsers_Email','oConfirm_Email')"
+                            )
                     )); ?>
                     <div class="tab-wrap">
                         <input type="hidden" name="_t" value="<?php echo Users::ROLE_OWNER ?>" />
@@ -116,14 +122,14 @@
                                 <div class="field">
                                     <?php echo $form->labelEx($model,'first_name'); ?>
                                     <div class="input-box">
-                                        <?php echo $form->textField($model,'first_name', array('class' => 'input-field medium')); ?>
+                                        <?php echo $form->textField($model,'first_name', array('class' => 'input-field medium', 'required' => 'required')); ?>
                                     </div>
                                     <?php echo $form->error($model,'first_name'); ?>
                                 </div>
                                 <div class="field">
                                     <?php echo $form->labelEx($model,'last_name'); ?>
                                     <div class="input-box">
-                                        <?php echo $form->textField($model,'last_name', array('class' => 'input-field medium')); ?>
+                                        <?php echo $form->textField($model,'last_name', array('class' => 'input-field medium', 'required' => 'required')); ?>
                                     </div>
                                     <?php echo $form->error($model,'last_name'); ?>
                                 </div>
@@ -132,30 +138,30 @@
                                 <div class="field">
                                     <?php echo $form->labelEx($model,'email'); ?>
                                     <div class="input-box">
-                                        <?php echo $form->textField($model,'email', array('class' => 'input-field medium')); ?>
+                                        <?php echo $form->textField($model,'email', array('class' => 'input-field medium', 'required' => 'required','id' => 'oUsers_Email')); ?>
                                     </div>
                                     <?php echo $form->error($model,'email'); ?>
                                 </div>
                                 <div class="field">
                                     <label>Confirm your e-mail</label>
                                     <div class="input-box">
-                                        <input type="text" class="input-field medium" value="" />
+                                        <input type="text" class="input-field medium oconfirm-email" id="oConfirm_Email" value="" />
                                     </div>
                                 </div>
                             </li>
                             
                             <li class="fields set2">
                                 <div class="field">
-                                    <label class="required" for="Users_password">Password <span class="required">*</span></label>
+                                    <label class="required" for="oUsers_password">Password <span class="required">*</span></label>
                                     <div class="input-box">
-                                        <?php echo $form->passwordField($model,'password', array('class' => 'input-field medium')); ?>
+                                        <?php echo $form->passwordField($model,'password', array('class' => 'input-field medium', 'required' => 'required', 'id' => 'oUsers_password')); ?>
                                     </div>
                                     <?php echo $form->error($model,'password'); ?>
                                 </div>
                                 <div class="field">
                                     <label>Confirm Password</label>
                                     <div class="input-box">
-                                        <input type="password"  class="input-field medium" value="" />
+                                        <input type="password" id="oConfirm_Password" required class="input-field medium oconfirm-password" value="" />
                                     </div>
                                 </div>
                             </li>
@@ -168,7 +174,7 @@
                                 <div class="field">
                                     <?php echo $form->labelEx($property,'title'); ?>
                                     <div class="input-box">
-                                        <?php echo $form->textField($property,'title', array('class' => 'input-field medium')); ?>
+                                        <?php echo $form->textField($property,'title', array('class' => 'input-field medium', 'required' => 'required')); ?>
                                     </div>
                                     <?php echo $form->error($property,'title'); ?>
                                 </div>
@@ -183,7 +189,8 @@
                                                 'type',
                                                 $property_types,
                                                 array(
-                                                    'class' => 'selecbox x-medium'
+                                                    'class' => 'selecbox x-medium',
+                                                    'required' => 'required'
                                                 )
                                                 );
                                         ?>
@@ -192,28 +199,28 @@
                                 <div class="field">
                                     <?php echo $form->labelEx($property,'people_min'); ?>
                                     <div class="input-box">
-                                        <?php echo $form->textField($property,'people_min', array('class' => 'input-field x-small')); ?>
+                                        <?php echo $form->textField($property,'people_min', array('class' => 'input-field x-small', 'required' => 'required')); ?>
                                     </div>
                                     <?php echo $form->error($property,'people_min'); ?>
                                 </div>
                                 <div class="field">
                                     <?php echo $form->labelEx($property,'people_max'); ?>
                                     <div class="input-box">
-                                        <?php echo $form->textField($property,'people_max', array('class' => 'input-field x-small')); ?>
+                                        <?php echo $form->textField($property,'people_max', array('class' => 'input-field x-small', 'required' => 'required')); ?>
                                     </div>
                                     <?php echo $form->error($property,'people_max'); ?>
                                 </div>
                                 <div class="field">
                                     <?php echo $form->labelEx($property,'base_price'); ?>
                                     <div class="input-box">
-                                        <?php echo $form->textField($property,'base_price', array('class' => 'input-field x-small')); ?>
+                                        <?php echo $form->textField($property,'base_price', array('class' => 'input-field x-small', 'required' => 'required')); ?>
                                     </div>
                                     <?php echo $form->error($property,'base_price'); ?>
                                 </div>
                                 <div class="field">
                                     <label>Total Rooms *</label>
                                     <div class="input-box">
-                                        <input type="text" name="total_rooms" class="input-field x-small" />
+                                        <input type="text" name="total_rooms" required class="input-field x-small" />
                                     </div>
                                 </div>
                             </li>
@@ -222,15 +229,15 @@
                                     <h2>Address</h2>
                                     <p>Enter the address of your business.</p>
                                     <div class="input-box">
-                                        <?php echo $form->textField($property,'address', array('class' => 'input-field medium fAddr', 'placeholder' => 'Street Info etc.')); ?>
+                                        <?php echo $form->textField($property,'address', array('class' => 'input-field medium fAddr', 'placeholder' => 'Street Info etc.', 'required' => 'required')); ?>
                                         <?php echo $form->error($property,'address'); ?>
                                     </div>
                                     <div class="input-box">
-                                        <?php echo $form->textField($property,'city', array('class' => 'input-field medium fCity', 'placeholder' => 'City..')); ?>
+                                        <?php echo $form->textField($property,'city', array('class' => 'input-field medium fCity', 'placeholder' => 'City..', 'required' => 'required')); ?>
                                         <?php echo $form->error($property,'city'); ?>
                                     </div>
                                     <div class="input-box">
-                                        <?php echo $form->textField($property,'zip_code', array('class' => 'input-field medium fZipCode', 'placeholder' => 'Zip Code..')); ?>
+                                        <?php echo $form->textField($property,'zip_code', array('class' => 'input-field medium fZipCode', 'placeholder' => 'Zip Code..', 'required' => 'required')); ?>
                                         <?php echo $form->error($property,'zip_code'); ?>
                                     </div>
                                 </div>

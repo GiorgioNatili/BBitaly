@@ -63,13 +63,13 @@
                             '<li>
                                 <label>email</label>
                                 <div class="input-box">
-                                    <input type="text" placeholder="Email?" name="LoginForm[email]" class="input-field small" value="" />
+                                    <input type="text" placeholder="Email?" required name="LoginForm[email]" class="input-field small" value="" />
                                 </div>
                             </li>
                             <li>
                                 <label>password</label>
                                 <div class="input-box">
-                                    <input type="password" placeholder="Your Password?" name="LoginForm[password]" class="input-field small" />
+                                    <input type="password" placeholder="Your Password?" required name="LoginForm[password]" class="input-field small" />
                                 </div>
                             </li>
                             <li class="a-center">

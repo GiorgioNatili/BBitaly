@@ -7,10 +7,10 @@
             <div class="search">
                 <form method="GET" action="/search">
                     <div class="row">
-                        <div class="span5">
+                        <div class="span4">
                             <input type="text" placeholder="Search a place" class="search-query">
                         </div>
-                        <div class="span7">
+                        <div class="span8">
                             <div class="search-option pull-right">
                                     <button class="btn btn-search" type="submit"><i class="icon-search icon-white"></i></button>
                             </div>
@@ -24,22 +24,12 @@
                                 </div>
                             </div>
                             <div class="search-option pull-right">
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">check-out <i class="icon-checkout"></i></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">date 1</a></li>
-                                        <li><a href="#">date 2</a></li>
-                                    </ul>
-                                </div>
+                                <input type="text" name="checkout" placeholder="checkout" class="datepicker input-field x-small" />
+                                
                             </div>
                             <div class="search-option pull-right">
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">check-in <i class="icon-checkin"></i></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">date 1</a></li>
-                                        <li><a href="#">date 2</a></li>
-                                    </ul>
-                                </div>
+                                <input type="text" name="checkout" placeholder="checkout" class="datepicker input-field x-small" />
+                               
                             </div>
                         </div>
                     </div>
