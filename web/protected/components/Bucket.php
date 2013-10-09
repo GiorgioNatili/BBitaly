@@ -10,7 +10,7 @@ class Bucket {
     
     private $_checkSum = null;
     
-    public function __construct($file) {
+    public function __construct($file, $type = null) {
         if ( $file instanceof CUploadedFile) {
             $md5_file = md5_file($file->tempName);
             $ext = image_type_to_extension(exif_imagetype($file->tempName));
