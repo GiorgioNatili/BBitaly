@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 ?>
 <!DOCTYPE html>
 <html><!-- InstanceBegin template="/Templates/index.dwt" codeOutsideHTMLIsLocked="false" -->
@@ -18,18 +17,22 @@
     <!-- Optional theme -->
     <!-- <link rel="stylesheet" href="<?php echo $this->getAssetsUrl() ?>css/bootstrap-theme.min.css"> -->
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
-    <script src="<?php echo $this->getAssetsUrl() ?>js/jquery-1.8.2.js"></script>
+    <script src="<?php echo $this->getAssetsUrl() ?>js/jquery-1.8.2.min.js"></script>
     <script src="<?php echo $this->getAssetsUrl() ?>js/bootstrap.min.js"></script>
     <script src="<?php echo $this->getAssetsUrl() ?>js/jquery.bootstrap.wizard.js"></script>
     <script src="<?php echo $this->getAssetsUrl() ?>js/jquery.jcarousel.min.js"></script>
+
     <script src="<?php echo $this->getAssetsUrl() ?>js/bootstrap-datepicker.js"></script>
     <script src="<?php echo $this->getAssetsUrl() ?>js/dropzone.js"></script>
     <script src="<?php echo $this->getAssetsUrl() ?>js/bootstrap.custom.js"></script>
     <script src="<?php echo $this->getAssetsUrl() ?>js/gmap3.min.js"></script>
+    <script src="<?php echo $this->getAssetsUrl() ?>js/jquery.ui.widget.js"></script>
+    <script src="<?php echo $this->getAssetsUrl() ?>js/jquery.fileupload.js"></script>
 
-    <!--[if lt IE 9]>  
-    <script src="js/html5.js"></script>  
-    <![endif]-->  
+
+<!--[if lt IE 9]>
+<script src="js/html5.js"></script>
+<![endif]-->
 <!-- InstanceBeginEditable name="head" -->
 <!-- InstanceEndEditable -->
 </head>
@@ -80,14 +83,14 @@
                             '</form></ul>\'><i class="icon-user"></i> Accedi</a>'
                         ,'itemOptions' => array('class' => 'popover-login'), 'visible'=>Yii::app()->user->isGuest),
                         array('label'=>'<i class="icon-pencil"></i> Register', 'url'=>array('users/join'), 'visible'=>Yii::app()->user->isGuest),
-                        array(
-                            'itemOptions ' => array('class' => 'dropdown'),
-                            'label' => 'llanguage', 
-                            'template' =>
-                                '<ul class="nav nav-language">
+                        
+                    ),
+                ));
+                ?>
+                <ul class="nav nav-language">
                 	<li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        	<span class="county-flag"><img src="'.$this->getAssetsUrl().'img/icons/bb_country-flag1.jpg" alt="flag" /></span>
+                        	<span class="county-flag"><img src="<?php echo $this->getAssetsUrl() ?>img/icons/bb_country-flag1.jpg" alt="flag" /></span>
                         	<i class="icon-flag"></i> 
                             select language      
                         </a>
@@ -96,10 +99,7 @@
                             <li><a href="#">langugae 2</a></li>
                         </ul>	
                     </li>
-                </ul>'),
-                    ),
-                ));
-                ?>
+                </ul>
             </div>
             
             <div class="social-share pull-right">
