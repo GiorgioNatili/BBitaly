@@ -177,16 +177,27 @@ class UsersController extends Controller
                         
                         if ( isset($_POST['Property'])) {
                             // Lets Insert Property and redirect to property/:id
+                            $rooms = $_POST['total_rooms'] >= 0 ? $_POST['total_rooms'] : 1;
                             $property = new Property;
                             $property->attributes = $_POST['Property'];
                             $property->created_on = $time;
+                            $property->available_rooms = $rooms;
                             $property->uid = $user->id;
                             $property->validate();
                             // property.type needs to be implemented.
-                            if ( ! $property->save() )
-                                throw new Exception ("Unable to create a new property!", 003);
+                            if ( ! $property->save() ) {
+                            	$transaction->rollback();
+                            	throw new Exception ("Unable to create a new property!", 003);
+                            }
                             
-                            $rooms = $_POST['total_rooms'] >= 0 ? $_POST['total_rooms'] : 1;
+                            $pdesc = new Descriptions();
+                            $pdesc->type = Entity::ENTITY_PROPERTY;
+                            $pdesc->property_id = $property->id;
+                            $pdesc->lang_italian = 'Test di descrizione della proprietà';
+                            $pdesc->lang_english = 'Test property description';
+                            $pdesc->created_on = time();
+                            $pdesc->save();
+                            
                             for ($k = 1; $k <= $rooms; $k++) {
                                 $room = new Room;
                                 $room->property_id = $property->id;
@@ -199,10 +210,21 @@ class UsersController extends Controller
                                 $room->updated_on = $time;
                                 $room->host_ip = $_SERVER['REMOTE_ADDR'];
                                 $room->validate();
-                                if ( !$room->save())
-                                    throw new Exception ("Unable to create room # ". $k, 004);
+                                if ( !$room->save()) {
+                                	$transaction->rollback();
+                                	throw new Exception ("Unable to create room # ". $k, 004);
+                                } else {
+                                    $rdesc = new Descriptions();
+	                            $rdesc->type = Entity::ENTITY_ROOM;
+	                            $rdesc->room_id = $room->id;
+	                            $rdesc->lang_italian = 'Test di descrizione delle camere';
+	                            $rdesc->lang_english = 'Test room description';
+	                            $rdesc->created_on = time();
+	                            $rdesc->save();
+                                }
                                 
                             }
+                            
                             $transaction->commit();
                             $this->setFlash('success', 'Welcome Abroad! Please modify your property information.');
                             $this->redirect('/property/update/'.$property->id);
