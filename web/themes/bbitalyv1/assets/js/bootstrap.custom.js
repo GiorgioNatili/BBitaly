@@ -42,7 +42,28 @@ $(function () {
                     autoclose: true
                 });
         });
+        
+        $(".confirm-email").blur(function() {
+            matchEmail('Users_email','Confirm_Email');
+        });
+        
+        $(".oconfirm-email").blur(function() {
+            matchEmail('oUsers_Email','oConfirm_Email');
+        });
+        
+        $(".confirm-password").blur(function() {
+            matchPassword('Users_password','Confirm_Password');
+        });
+        
+        $(".oconfirm-password").blur(function() {
+            matchPassword('oUsers_password','oConfirm_Password');
+        });
+        
 });
+
+function onOwnerFormSubmit() {
+    
+}
 
 function deleteLocation(i) {
     var $this = $(i);
@@ -92,4 +113,30 @@ function lastMonth(idf, room_id) {
         
         $('.cal-container-'+room_id).load('/availability/_calendar?room='+room_id+'&month='+last_month+'&year='+attach_year);
     }
+}
+
+
+function matchEmail(r,c) {
+    var $r = $('#'+r)
+        , $c = $('#'+c);
+        
+    if ( $c.val() !== $r.val()) {
+        alert('Both Email Addresses does not match!');
+        $r.focus();
+        return false;
+    }
+    return true;
+}
+
+function matchPassword(r,c) {
+    var $r = $('#'+r)
+        , $c = $('#'+c);
+        
+    if ( $c.val() !== $r.val()) {
+        alert('Both Passwords does not match!');
+        $r.focus();
+        return false;
+    }
+    
+    return true;
 }
