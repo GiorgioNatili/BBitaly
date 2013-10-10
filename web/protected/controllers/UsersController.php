@@ -134,10 +134,51 @@ class UsersController extends Controller
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
         
+        public function actionVerify() {
+            if ( !isset($_GET['h']))
+                throw new Exception ("Invalid / malformed URL for account verification", 100);
+            
+            $hash = $_GET['h'];
+            $user = Users::model()
+                    ->findByAttributes(array(
+                        'hash' => $hash
+                    ));
+            
+            // Invalid hash
+            if ( null === $user)
+                throw new InvalidActivationCodeException;
+            
+            // Already Active
+            if ( $user->status == 1)
+                throw new AccountAlreadyActivatedException;
+            
+            // Lets Activate.
+            $user->status = 1;
+            $mail = new PHPMailer;
+            if ( $user->save() ) {
+                // saved. Tell user account is activated.
+                $mail->setFrom('no-reply@bbitaly.com', 'BBItlay');
+                $mail->addAddress($user->email, $user->getFullName());
+                $mail->Subject = 'BBItaly - Congratulations, Account Verified!';
+                $mail->isHTML(true);
+                $mail->Body = 'Dear '. $user->first_name.','
+                        .   '<br /><br />Your account has been verified. You can now surf your experience with BBItaly.'
+                        .   '<br /><br />'
+                        .   'If you have any questions, feel free to contact us at: contact@bbitaly.com'
+                        .   '<br /><br />'
+                        .   'Regards, <br />'
+                        .   '<b>Team BBItaly</b>';
+                $mail->send();
+            } else {
+                throw new Exception("Unable to activate your account. Contact BBItaly Technical department!");
+            }
+        }
+        
         
         public function actionJoin() {
             
             $this->layout = '//layouts/clean';
+            $mail = new PHPMailer;
             
             /*********************************************************
              *          Custom Authentication
@@ -150,12 +191,15 @@ class UsersController extends Controller
                     // Roles are OK. Lets create.
                     $transaction = Yii::app()->db->beginTransaction();
                     try {
+                        $hash = md5(uniqid());
                         $user = new Users;
                         $time = time();
                         $password = $_POST['Users']['password'];
                         $user->attributes = $_POST['Users'];
                         $user->password = sha1($password);
                         $user->source = Users::SOURCE_BBITALY;
+                        $user->status = 0;
+                        $user->hash = $hash;
                         $user->created_on = $time;
                         $user->updated_on = $time;
                         
@@ -164,6 +208,24 @@ class UsersController extends Controller
                         
                         // Ok, now time to assign role.
                         Yii::app()->authManager->assign($type, $user->id);
+                        
+                        // Send an Email.
+                        $link = $this->createUrl('users/verify', array(
+                            'h' => $hash
+                        ));
+                        $mail->setFrom('no-reply@bbitaly.com', 'BBItlay');
+                        $mail->addAddress($user->email, $user->getFullName());
+                        $mail->Subject = 'BBItaly - Account Verification';
+                        $mail->isHTML(true);
+                        $mail->Body = 'Dear '. $user->first_name.','
+                                .   '<br /><br />We welcome you onboard! In order to proceed'
+                                .   ' ahead, please click '
+                                .   '<a href="'.$link.'">Click Here</a>'
+                                .   '<br /><br />'
+                                .   'Regards, <br />'
+                                .   '<b>Team BBItaly</b>';
+                        
+                        $mail->send();
                         
                         // Im Good. Log me in.
                         $identity = new \UserIdentity($user->email, $password);
