@@ -12,6 +12,7 @@
  * @property string $source
  * @property string $extra
  * @property integer $status
+ * @property string $hash
  * @property string $created_on
  * @property string $updated_on
  *
@@ -50,12 +51,13 @@ class Users extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('first_name, email, source, created_on, updated_on', 'required'),
+			array('first_name, email, source, hash, created_on, updated_on', 'required'),
 			array('status', 'numerical', 'integerOnly'=>true),
 			array('first_name, last_name, extra', 'length', 'max'=>30),
 			array('email', 'length', 'max'=>50),
 			array('password', 'length', 'max'=>64),
 			array('source', 'length', 'max'=>8),
+                        array('hash', 'length', 'max'=>32),
 			array('created_on, updated_on', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -143,4 +145,8 @@ class Users extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        public function getFullName() {
+            return sprintf('%s %s', $this->first_name, $this->last_name);
+        }
 }
