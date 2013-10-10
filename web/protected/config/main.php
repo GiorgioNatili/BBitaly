@@ -7,6 +7,7 @@
 // CWebApplication properties can be configured here.
 
 setlocale(LC_MONETARY,"de_DE");
+Yii::import('ext.PHPMailer.phpmailer', true);
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'BBitaly',
