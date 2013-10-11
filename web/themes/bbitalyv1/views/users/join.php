@@ -22,7 +22,7 @@
                     <?php $form=$this->beginWidget('CActiveForm', array(
                             'id'=>'traveler-form',
                             'htmlOptions' => array(
-                                'onsubmit' => "return matchPassword('Users_password','Confirm_Password') && matchEmail('Users_email','Confirm_Email');"
+                                //'onsubmit' => "return matchPassword('Users_password','Confirm_Password') && matchEmail('Users_email','Confirm_Email');"
                             )
                     )); ?>
                     <div class="tab-wrap">
@@ -32,7 +32,13 @@
                                 <div class="field">
                                     <?php echo $form->labelEx($model,'first_name'); ?>
                                     <div class="input-box">
-                                        <?php echo $form->textField($model,'first_name', array('class' => 'input-field medium', 'required' => 'required')); ?>
+                                        <?php echo $form->textField($model,'first_name', 
+                                                array(
+                                                    'class' => 'input-field medium',
+                                                    'required' => '',
+                                                    'message' => "No Empty please!"
+                                                    )
+                                                ); ?>
                                     </div>
                                     <?php echo $form->error($model,'first_name'); ?>
                                 </div>
@@ -55,7 +61,7 @@
                                 <div class="field">
                                     <label>Confirm your e-mail</label>
                                     <div class="input-box">
-                                        <input type="text" id="Confirm_Email" class="input-field medium confirm-email" value="" />
+                                        <input type="text" id="Confirm_Email" class="input-field medium confirm-email" />
                                     </div>
                                 </div>
                             </li>
@@ -79,14 +85,14 @@
                             <li class="fields">
                                 <div class="note-accept">
                                     <div class="input-box">
-                                        <input type="checkbox" class="checkbox" value="" />
+                                        <input type="checkbox" class="checkbox" value=""  required id="t_agreement" />
                                     </div>
                                     <p>I accept the terms of cancellation, the house rules, the <a href="#">terms of repayment</a> and the host's <a href="#">terms of service</a>.</p>
                                 </div>
                             </li>
                             <li class="fields text-center">
                                 <div class="button-sets">
-                                    <button class="button">
+                                    <button class="button" id="tsubmit">
                                         <span>
                                             <span>
                                                 Register

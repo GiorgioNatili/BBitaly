@@ -42,7 +42,8 @@ $(function () {
                     autoclose: true
                 });
         });
-        
+       
+        /*
         $(".confirm-email").blur(function() {
             matchEmail('Users_email','Confirm_Email');
         });
@@ -58,7 +59,51 @@ $(function () {
         $(".oconfirm-password").blur(function() {
             matchPassword('oUsers_password','oConfirm_Password');
         });
+        */
         
+});
+
+
+$(document).ready(function() {
+    console.log("FIred..");
+    $('#traveler-form').isHappy({
+           fields: {
+               "#Users_first_name": {
+                   required: true,
+                   message: 'Please enter your first name.'
+               },
+               '#Users_last_name': {
+                   required: true,
+                   message: 'Please enter your last name'
+               },
+               "#Users_email": {
+                   required: true,
+                   message: "Enter your valid Email.",
+                   test: happy.email
+               },
+               '#Confirm_Email': {
+                   required: true,
+                   message: 'Please match & confirm email',
+                   arg: '#Users_email',
+                   test: happy.cequal
+               },
+               '#Users_password': {
+                   required: true,
+                   message: 'Please enter your password!',  
+               },
+               '#Confirm_Password': {
+                   required: true,
+                   message: "Password doesn't matched!",
+                   arg: '#Users_password',
+                   test: happy.cequal
+               },
+               '#t_agreement': {
+                   required: true,
+                   message: "Please accept terms & conditions!"
+               }
+           },
+           submitButton: '#tsubmit'
+       });
 });
 
 function onOwnerFormSubmit() {
