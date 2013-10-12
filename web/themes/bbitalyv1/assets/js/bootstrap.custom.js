@@ -65,7 +65,7 @@ $(function () {
 
 
 $(document).ready(function() {
-    console.log("FIred..");
+    // Traveler Form.
     $('#traveler-form').isHappy({
            fields: {
                "#Users_first_name": {
@@ -104,6 +104,78 @@ $(document).ready(function() {
            },
            submitButton: '#tsubmit'
        });
+       
+      // Owner Form
+      $('#owner-form').isHappy({
+          submitButton: '#osubmit',
+          fields: {
+              '#ofname': {
+                  required: true,
+                  message: "Your first name is required!"
+               },
+               '#olname': {
+                   required: true,
+                   message: 'Your last name is required!'
+               },
+               '#oemail': {
+                   required: true,
+                   message: 'Please enter a valid email!',
+                   test: happy.email
+               },
+               '#ocemail': {
+                   required: true,
+                   message: 'Please match & confirm email',
+                   arg: '#oemail',
+                   test: happy.cequal
+               },
+               '#opassword': {
+                   required: true,
+                   message: 'Enter your password!',
+               },
+               '#ocpassword': {
+                   required: true,
+                   message: 'Enter & Match your password!',
+                   arg: '#opassword',
+                   test: happy.cequal
+               },
+               '#Property_title': {
+                   required: true,
+                   message: "Property title is required!"
+               },
+               '#Property_people_min': {
+                   required: true,
+                   message: 'Min people?'
+               },
+               '#Property_people_max': {
+                   required: true,
+                   message: 'Max people?'
+               },
+               '#Property_base_price': {
+                   required: true,
+                   message: 'Property price?'
+               },
+               '#total_rooms': {
+                   required: true,
+                   message: 'Total No. of rooms?'
+               },
+               '#Property_address': {
+                   required: true,
+                   message: "Enter the address of property!"
+               },
+               '#Property_city': {
+                   required: true,
+                   message: "Enter the city of property!"
+               },
+               '#Property_zip_code': {
+                   required: true,
+                   message: "What's your property zipcode?"
+               },
+               '#o_agreement': {
+                   required: true,
+                   message: "Please accept terms & conditions!"
+               }
+          }
+      });
 });
 
 function onOwnerFormSubmit() {
