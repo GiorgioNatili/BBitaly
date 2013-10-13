@@ -10,9 +10,9 @@
                     'htmlOptions' => array('class' =>'menu-nav text-center'),
                     'items'=>array(
                         array('label' => '<i class="icon-account"></i><br>dati personali<span class="arrow-up">&nbsp;</span>','url' => '/users/update/'. Yii::app()->user->id, 'visible'=> !Yii::app()->user->isGuest ),
-                        array('label' => '<i class="icon-adjust"></i><br /> Favorites<span class="arrow-up">&nbsp;</span>','url' => '/favorites', 'visible'=> Yii::app()->user->checkAccess('traveler') ),
-                        array('label' => '<i class="icon-adjust"></i><br /> Itinerary<span adjust="arrow-n">&nbsp;</span>','url' => '/itinerary', 'visible'=> Yii::app()->user->checkAccess('traveler') ),
-                        array('label' => '<i class="icon-adjust"></i><br /> Booking<span adjust="arrow-up">&nbsp;</span>','url' => '/booking', 'visible'=> Yii::app()->user->checkAccess('traveler') ),
+                        array('label' => '<i class="icon-favorites"></i><br>Favorites<span class="arrow-up">&nbsp;</span>','url' => '/favorites', 'visible'=> Yii::app()->user->checkAccess('traveler') ),
+                        array('label' => '<i class="icon-itinerary"></i><br>Routes<span class="arrow-up">&nbsp;</span>','url' => '/itinerary', 'visible'=> Yii::app()->user->checkAccess('traveler') ),
+                        array('label' => '<i class="icon-booking"></i><br>Reservations<span class="arrow-up">&nbsp;</span>','url' => '/booking', 'visible'=> Yii::app()->user->checkAccess('traveler') ),
                         array('label' => '<i class="icon-favorites"></i><br>modifica struttura<span class="arrow-up">&nbsp;</span>','url' => '/property', 'visible'=> Yii::app()->user->checkAccess('owner') ),
                         array('label' => '<i class="icon-itinerary"></i><br>prenotazioni<span class="arrow-up">&nbsp;</span>','url' => '/booking', 'visible'=> Yii::app()->user->checkAccess('owner') ),
                         array('label' => '<i class="icon-booking"></i><br>disponibilita<span class="arrow-up">&nbsp;</span>','url' => '/availability', 'visible'=> Yii::app()->user->checkAccess('owner') ),

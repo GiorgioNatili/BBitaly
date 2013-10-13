@@ -127,10 +127,16 @@ class AvailabilityController extends Controller
             $day_counter = 0;
             $dates_array = array();
             $calendar = '<div class="calendar-nav a-center">'
-                            . '<div class="cnav-right pull-right"><a href="javascript:void(0);" onclick="nextMonth('."'cal_".$room->id."'".', '.$room->id.')"><i class="icon-adjust"></i></a></div>'
-                            . '<div class="cnav-left pull-left"><a class="'.(date('m') == $month ? 'classes' : '' ).'" href="javascript:void(0);" onclick="lastMonth('."'cal_".$room->id."'".', '.$room->id.')"><i class="icon-adjust"></i></a></div>'
-                            . '<span class="month">'.date('F',  mktime(0,0,0,$month,1,$year)).'</span>'
-                            . '<span class="year">'.$year. '</span>'
+                            . '<div class="cnav-right pull-right"><a href="javascript:void(0);" onclick="nextMonth('."'cal_".$room->id."'".', '.$room->id.')"><i class="icon-adjust"></i></a></div>';
+                            
+            if ( date('m') == $month )
+                $calendar .= '<div class="cnav-left pull-left"><a class="disabled" href="javascript:void(0);"><i class="icon-adjust"></i></a></div>';
+            else
+                $calendar .= '<div class="cnav-left pull-left"><a class="" href="javascript:void(0);" onclick="lastMonth('."'cal_".$room->id."'".', '.$room->id.')"><i class="icon-adjust"></i></a></div>';
+                
+                    
+                $calendar .= '<span class="month">'.date('F',  mktime(0,0,0,$month,1,$year)).'</span>'
+                    .'<span class="year">'.$year. '</span>'
                       . '</div>';
             $calendar .= '<div class="main-calendar" id="cal_'.$room->id. '" data-year="'.$year.'" data-month="'.$month. '">';
                 $calendar.= '<div class="mc-head c-days">';

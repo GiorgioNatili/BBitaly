@@ -123,5 +123,9 @@ var happy = {
   },
   cequal: function(val1, sec) {
       return (val1 === $(sec).val());
-  }
+  },
+    checked: function(val, sel) {
+        console.log(arguments);
+        return $(sel).is(':checked') === true;
+    }
 };

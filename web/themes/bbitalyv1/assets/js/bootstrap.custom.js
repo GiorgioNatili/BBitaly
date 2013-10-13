@@ -98,8 +98,10 @@ $(document).ready(function() {
                    test: happy.cequal
                },
                '#t_agreement': {
-                   required: true,
-                   message: "Please accept terms & conditions!"
+                   //required: true,
+                   message: "Please accept terms & conditions!",
+                   arg: "#t_agreement",
+                   test: happy.checked
                }
            },
            submitButton: '#tsubmit'
@@ -171,8 +173,10 @@ $(document).ready(function() {
                    message: "What's your property zipcode?"
                },
                '#o_agreement': {
-                   required: true,
-                   message: "Please accept terms & conditions!"
+                   //required: true,
+                   message: "Please accept terms & conditions!",
+                   arg: "#o_agreement",
+                   test: happy.checked
                }
           }
       });
@@ -217,19 +221,15 @@ function nextMonth(idf, room_id) {
 }
 
 function lastMonth(idf, room_id) {
-    var cur_month = ((new Date().getMonth()) + 1)
-        , attach_month = parseInt($('#'+idf).attr('data-month'))
-        , last_month = cur_month === 1 ? 12 : (attach_month) - 1
-        , cur_year = (new Date().getFullYear())
-        , attach_year = parseInt($('#'+idf).attr('data-year'))
-        , last_year = last_month === 12 ? attach_year - 1 : cur_year;
+    var cur_month = parseInt($('#'+idf).attr('data-month'))
+        , now_month = (new Date().getMonth()) +1
+        , last_month = cur_month === 1 ? 12 : (cur_month) - 1
+        , cur_year = parseInt($('#'+idf).attr('data-year'))
+        , last_year = cur_month === 1 ? parseInt(cur_year) - 1 : cur_year;
     
-    console.log('%s, %s, %s ,%s, %s, %s', cur_month, attach_month, cur_year, attach_year,last_year, last_month);
-    if ( cur_month < attach_month 
-            || cur_month > attach_month && cur_year <= attach_year) {
-        
-        $('.cal-container-'+room_id).load('/availability/_calendar?room='+room_id+'&month='+last_month+'&year='+attach_year);
-    }
+    
+        $('.cal-container-'+room_id).load('/availability/_calendar?room='+room_id+'&month='+last_month+'&year='+last_year);
+    
 }
 
 

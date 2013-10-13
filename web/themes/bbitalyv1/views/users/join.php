@@ -85,7 +85,7 @@
                             <li class="fields">
                                 <div class="note-accept">
                                     <div class="input-box">
-                                        <input type="checkbox" class="checkbox" value=""  required id="t_agreement" />
+                                        <input type="checkbox" class="checkbox" name="t_agreement_ok"  id="t_agreement" />
                                     </div>
                                     <p>I accept the terms of cancellation, the house rules, the <a href="#">terms of repayment</a> and the host's <a href="#">terms of service</a>.</p>
                                 </div>
