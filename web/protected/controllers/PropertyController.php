@@ -216,7 +216,8 @@ class PropertyController extends Controller
             'property_description' => new Descriptions,
             'room_desc'  => new Descriptions,
             'room'  => new Room,
-            'billing' => new Billing
+            'billing' => new Billing,
+            'services' => Services::model()->getServices()
         ));
     }
 
@@ -256,6 +257,8 @@ class PropertyController extends Controller
 
         if(isset($_POST['Property']))
         {
+            
+            //echo "<pre>"; print_r($_POST); exit;
             $transaction = Yii::app()->db->beginTransaction();
 
             $updated_on = time();
@@ -441,8 +444,13 @@ class PropertyController extends Controller
                 'property_id'   => $model->id
             )),
             'billing' => $billing,
+            'services' => Services::model()->getServices()
         ));
 
+    }
+    
+    private function persistServices($services) {
+        
     }
 
     /**

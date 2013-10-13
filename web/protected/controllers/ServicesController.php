@@ -6,7 +6,7 @@ class ServicesController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/column1';
 
 	/**
 	 * @return array action filters
@@ -37,7 +37,7 @@ class ServicesController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'roles'=>array(Users::ROLE_ADMIN),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -69,13 +69,33 @@ class ServicesController extends Controller
 
 		if(isset($_POST['Services']))
 		{
-			$model->attributes=$_POST['Services'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+                    //echo "<pre>"; print_r($_POST); exit;
+                    if (isset($_POST['Services']['parent_id'])) {
+                        unset($_POST['Services']['entity']);
+                    }
+                    
+                    $model->attributes=$_POST['Services'];
+                    $model->created_on = time();
+                    
+                    if ($_FILES['Services']['error']['icon'] == 0) {
+                        $icon = CUploadedFile::getInstance($model,'icon');
+                        $path = '/themes/bbitalyv1/assets/img/'. $icon->name;
+                        $icon->saveAs(DOC_ROOT.$path);
+                        $model->icon = $path;
+                    }
+                        
+                    //echo "<pre>"; print_r($model); exit;
+                    if($model->save())
+                            $this->redirect(array('view','id'=>$model->id));
 		}
+                
+                $criteria = new CDbCriteria();
+                $criteria->addCondition('parent_id IS null');
 
 		$this->render('create',array(
 			'model'=>$model,
+                        'entities' => Entity::model()->findAll(),
+                        'parent' => Services::model()->findAll($criteria)
 		));
 	}
 

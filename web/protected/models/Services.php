@@ -108,4 +108,32 @@ class Services extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        public function getServices() {
+            $db = Yii::app()->db;
+            $data = array();
+            // Queried
+            $parent = $db->createCommand(
+                    "SELECT *  FROM `services` WHERE parent_id IS NULL"
+                    )->queryAll();
+            
+            // Pad by id
+//            array_walk($parent, function($value, $key) use ($parent) {
+//                $parent[$value['id']] = $value;
+//            });
+            
+            foreach ($parent as $row) {
+                $data[$row['id']] = $row;
+            }
+            
+            $child = $db->createCommand(
+                    "SELECT *  FROM `services` WHERE parent_id IS NOT NULL"
+                    )->queryAll();
+            
+            foreach ($child as $row) {
+                $data[$row['parent_id']]['child'][] = $row;
+            }
+            
+            return $data;
+        }
 }

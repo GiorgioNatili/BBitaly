@@ -45,5 +45,12 @@ class Controller extends CController
     public function getAssetsUrl() {
         return Yii::app()->theme->baseUrl.'/assets/';
     }
+    
+    public function redirect($url, $terminate = true, $statusCode = 302) {
+        if (isset($_REQUEST['destination']))
+            $url = $_REQUEST['destination'];
+        
+        parent::redirect($url, $terminate, $statusCode);
+    }
 
 }

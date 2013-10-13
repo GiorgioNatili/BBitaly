@@ -11,5 +11,6 @@ $this->renderPartial('_form', array(
     'room_desc' => $room_desc,
     'billing'   => $billing,
     'room'  => $room,
-    'cRoom' => $cRoom
+    'cRoom' => $cRoom,
+    'services' => $services
 )); ?>

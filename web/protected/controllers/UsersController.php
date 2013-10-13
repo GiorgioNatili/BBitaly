@@ -178,7 +178,6 @@ class UsersController extends Controller
         public function actionJoin() {
             
             $this->layout = '//layouts/clean';
-            $mail = new PHPMailer;
             
             /*********************************************************
              *          Custom Authentication
@@ -186,7 +185,6 @@ class UsersController extends Controller
             $type = $this->getRequest()->getParam('_t');
             if ( isset ($type) ) {
                 // Good. Custom signup. Check for role.
-                
                 if ( $type == Users::ROLE_OWNER || $type == Users::ROLE_TRAVELER ) {
                     // Roles are OK. Lets create.
                     $transaction = Yii::app()->db->beginTransaction();
@@ -213,6 +211,8 @@ class UsersController extends Controller
                         $link = $this->createUrl('users/verify', array(
                             'h' => $hash
                         ));
+                        
+                        $mail = new PHPMailer;
                         $mail->setFrom('no-reply@bbitaly.com', 'BBItlay');
                         $mail->addAddress($user->email, $user->getFullName());
                         $mail->Subject = 'BBItaly - Account Verification';
@@ -227,7 +227,8 @@ class UsersController extends Controller
                         
                         $mail->send();
                         
-                        // Im Good. Log me in.
+                        /*
+                         * // Im Good. Log me in.
                         $identity = new \UserIdentity($user->email, $password);
                         $identity->authenticate();
                         if ( $identity->errorCode === UserIdentity::ERROR_NONE ) {
@@ -235,6 +236,7 @@ class UsersController extends Controller
                         } else {
                             throw new Exception("Unable to Login after Signup!", 004);
                         }
+                         */
                         
                         
                         if ( isset($_POST['Property'])) {
@@ -287,19 +289,22 @@ class UsersController extends Controller
                                 
                             }
                             
+                            /*
                             $transaction->commit();
                             $this->setFlash('success', 'Welcome Abroad! Please modify your property information.');
                             $this->redirect('/property/update/'.$property->id);
+                             * 
+                             */
                         }
-                        
-                        $transaction->commit();
-                        $this->setFlash('success', 'Welcome Abroad! You are now surfing experience of BBitaly!');                        
-                        $this->redirect('/');
                         
                     } catch (Exception $ex) {
                         $transaction->rollBack();
                         throw $ex;
                     }
+                    
+                    $transaction->commit();
+                    $this->setFlash('success', 'Welcome Abroad! Please check your email to activate account!');                        
+                    $this->redirect('/');
                 } else {
                     // Invalid Activity.
                     throw new InvalidActivityException;
