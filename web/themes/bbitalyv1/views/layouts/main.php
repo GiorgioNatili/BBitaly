@@ -23,6 +23,7 @@
     <script src="<?php echo $this->getAssetsUrl() ?>js/jquery.jcarousel.min.js"></script>
 
     <script src="<?php echo $this->getAssetsUrl() ?>js/bootstrap-datepicker.js"></script>
+    <script src="<?php echo $this->getAssetsUrl() ?>js/happy.js"></script>
     <script src="<?php echo $this->getAssetsUrl() ?>js/dropzone.js"></script>
     <script src="<?php echo $this->getAssetsUrl() ?>js/bootstrap.custom.js"></script>
     <script src="<?php echo $this->getAssetsUrl() ?>js/gmap3.min.js"></script>

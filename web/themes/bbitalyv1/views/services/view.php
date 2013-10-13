@@ -22,9 +22,10 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
+		'entity',
+		'parent_id',
 		'name',
 		'icon',
-		'status',
 		'created_on',
 	),
 )); ?>

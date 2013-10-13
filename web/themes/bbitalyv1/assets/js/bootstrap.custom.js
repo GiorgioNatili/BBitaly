@@ -42,7 +42,8 @@ $(function () {
                     autoclose: true
                 });
         });
-        
+       
+        /*
         $(".confirm-email").blur(function() {
             matchEmail('Users_email','Confirm_Email');
         });
@@ -58,7 +59,127 @@ $(function () {
         $(".oconfirm-password").blur(function() {
             matchPassword('oUsers_password','oConfirm_Password');
         });
+        */
         
+});
+
+
+$(document).ready(function() {
+    // Traveler Form.
+    $('#traveler-form').isHappy({
+           fields: {
+               "#Users_first_name": {
+                   required: true,
+                   message: 'Please enter your first name.'
+               },
+               '#Users_last_name': {
+                   required: true,
+                   message: 'Please enter your last name'
+               },
+               "#Users_email": {
+                   required: true,
+                   message: "Enter your valid Email.",
+                   test: happy.email
+               },
+               '#Confirm_Email': {
+                   required: true,
+                   message: 'Please match & confirm email',
+                   arg: '#Users_email',
+                   test: happy.cequal
+               },
+               '#Users_password': {
+                   required: true,
+                   message: 'Please enter your password!',  
+               },
+               '#Confirm_Password': {
+                   required: true,
+                   message: "Password doesn't matched!",
+                   arg: '#Users_password',
+                   test: happy.cequal
+               },
+               '#t_agreement': {
+                   //required: true,
+                   message: "Please accept terms & conditions!",
+                   arg: "#t_agreement",
+                   test: happy.checked
+               }
+           },
+           submitButton: '#tsubmit'
+       });
+       
+      // Owner Form
+      $('#owner-form').isHappy({
+          submitButton: '#osubmit',
+          fields: {
+              '#ofname': {
+                  required: true,
+                  message: "Your first name is required!"
+               },
+               '#olname': {
+                   required: true,
+                   message: 'Your last name is required!'
+               },
+               '#oemail': {
+                   required: true,
+                   message: 'Please enter a valid email!',
+                   test: happy.email
+               },
+               '#ocemail': {
+                   required: true,
+                   message: 'Please match & confirm email',
+                   arg: '#oemail',
+                   test: happy.cequal
+               },
+               '#opassword': {
+                   required: true,
+                   message: 'Enter your password!',
+               },
+               '#ocpassword': {
+                   required: true,
+                   message: 'Enter & Match your password!',
+                   arg: '#opassword',
+                   test: happy.cequal
+               },
+               '#Property_title': {
+                   required: true,
+                   message: "Property title is required!"
+               },
+               '#Property_people_min': {
+                   required: true,
+                   message: 'Min people?'
+               },
+               '#Property_people_max': {
+                   required: true,
+                   message: 'Max people?'
+               },
+               '#Property_base_price': {
+                   required: true,
+                   message: 'Property price?'
+               },
+               '#total_rooms': {
+                   required: true,
+                   message: 'Total No. of rooms?'
+               },
+               '#Property_address': {
+                   required: true,
+                   message: "Enter the address of property!"
+               },
+               '#Property_city': {
+                   required: true,
+                   message: "Enter the city of property!"
+               },
+               '#Property_zip_code': {
+                   required: true,
+                   message: "What's your property zipcode?"
+               },
+               '#o_agreement': {
+                   //required: true,
+                   message: "Please accept terms & conditions!",
+                   arg: "#o_agreement",
+                   test: happy.checked
+               }
+          }
+      });
 });
 
 function onOwnerFormSubmit() {
@@ -100,19 +221,15 @@ function nextMonth(idf, room_id) {
 }
 
 function lastMonth(idf, room_id) {
-    var cur_month = ((new Date().getMonth()) + 1)
-        , attach_month = parseInt($('#'+idf).attr('data-month'))
-        , last_month = cur_month === 1 ? 12 : (attach_month) - 1
-        , cur_year = (new Date().getFullYear())
-        , attach_year = parseInt($('#'+idf).attr('data-year'))
-        , last_year = last_month === 12 ? attach_year - 1 : cur_year;
+    var cur_month = parseInt($('#'+idf).attr('data-month'))
+        , now_month = (new Date().getMonth()) +1
+        , last_month = cur_month === 1 ? 12 : (cur_month) - 1
+        , cur_year = parseInt($('#'+idf).attr('data-year'))
+        , last_year = cur_month === 1 ? parseInt(cur_year) - 1 : cur_year;
     
-    console.log('%s, %s, %s ,%s, %s, %s', cur_month, attach_month, cur_year, attach_year,last_year, last_month);
-    if ( cur_month < attach_month 
-            || cur_month > attach_month && cur_year <= attach_year) {
-        
-        $('.cal-container-'+room_id).load('/availability/_calendar?room='+room_id+'&month='+last_month+'&year='+attach_year);
-    }
+    
+        $('.cal-container-'+room_id).load('/availability/_calendar?room='+room_id+'&month='+last_month+'&year='+last_year);
+    
 }
 
 
@@ -139,4 +256,20 @@ function matchPassword(r,c) {
     }
     
     return true;
+}
+
+function addService(i) {
+    var $elem = $(i)
+    
+    if ( $elem.prev().size() === 0) {
+        $elem.before(
+                $('<input />')
+                    .attr('type','hidden')
+                    .attr('name', $elem.attr('data-rel'))
+                    .attr('value',1)
+            )
+    } else {
+        $elem.prev().remove();
+    }
+    //console.log($elem.attr('data-rel'));
 }

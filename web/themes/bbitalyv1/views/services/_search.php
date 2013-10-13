@@ -17,6 +17,16 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->label($model,'entity'); ?>
+		<?php echo $form->textField($model,'entity'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'parent_id'); ?>
+		<?php echo $form->textField($model,'parent_id'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->label($model,'name'); ?>
 		<?php echo $form->textField($model,'name',array('size'=>50,'maxlength'=>50)); ?>
 	</div>
@@ -24,11 +34,6 @@
 	<div class="row">
 		<?php echo $form->label($model,'icon'); ?>
 		<?php echo $form->textField($model,'icon',array('size'=>50,'maxlength'=>50)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'status'); ?>
-		<?php echo $form->textField($model,'status'); ?>
 	</div>
 
 	<div class="row">

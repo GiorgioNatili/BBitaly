@@ -22,7 +22,7 @@
                     <?php $form=$this->beginWidget('CActiveForm', array(
                             'id'=>'traveler-form',
                             'htmlOptions' => array(
-                                'onsubmit' => "return matchPassword('Users_password','Confirm_Password') && matchEmail('Users_email','Confirm_Email');"
+                                //'onsubmit' => "return matchPassword('Users_password','Confirm_Password') && matchEmail('Users_email','Confirm_Email');"
                             )
                     )); ?>
                     <div class="tab-wrap">
@@ -32,7 +32,13 @@
                                 <div class="field">
                                     <?php echo $form->labelEx($model,'first_name'); ?>
                                     <div class="input-box">
-                                        <?php echo $form->textField($model,'first_name', array('class' => 'input-field medium', 'required' => 'required')); ?>
+                                        <?php echo $form->textField($model,'first_name', 
+                                                array(
+                                                    'class' => 'input-field medium',
+                                                    'required' => '',
+                                                    'message' => "No Empty please!"
+                                                    )
+                                                ); ?>
                                     </div>
                                     <?php echo $form->error($model,'first_name'); ?>
                                 </div>
@@ -55,7 +61,7 @@
                                 <div class="field">
                                     <label>Confirm your e-mail</label>
                                     <div class="input-box">
-                                        <input type="text" id="Confirm_Email" class="input-field medium confirm-email" value="" />
+                                        <input type="text" id="Confirm_Email" class="input-field medium confirm-email" />
                                     </div>
                                 </div>
                             </li>
@@ -79,14 +85,14 @@
                             <li class="fields">
                                 <div class="note-accept">
                                     <div class="input-box">
-                                        <input type="checkbox" class="checkbox" value="" />
+                                        <input type="checkbox" class="checkbox" name="t_agreement_ok"  id="t_agreement" />
                                     </div>
                                     <p>I accept the terms of cancellation, the house rules, the <a href="#">terms of repayment</a> and the host's <a href="#">terms of service</a>.</p>
                                 </div>
                             </li>
                             <li class="fields text-center">
                                 <div class="button-sets">
-                                    <button class="button">
+                                    <button class="button" id="tsubmit">
                                         <span>
                                             <span>
                                                 Register
@@ -109,7 +115,7 @@
                     <?php $form=$this->beginWidget('CActiveForm', array(
                             'id'=>'owner-form',
                             'htmlOptions' => array(
-                                'onsubmit' => "return matchPassword('oUsers_password','oConfirm_Password') && matchEmail('oUsers_Email','oConfirm_Email')"
+                                //'onsubmit' => "return matchPassword('oUsers_password','oConfirm_Password') && matchEmail('oUsers_Email','oConfirm_Email')"
                             )
                     )); ?>
                     <div class="tab-wrap">
@@ -122,14 +128,21 @@
                                 <div class="field">
                                     <?php echo $form->labelEx($model,'first_name'); ?>
                                     <div class="input-box">
-                                        <?php echo $form->textField($model,'first_name', array('class' => 'input-field medium', 'required' => 'required')); ?>
+                                        <?php echo $form->textField($model,'first_name', array(
+                                            'class' => 'input-field medium',
+                                            'id' => 'ofname'
+                                            )); ?>
                                     </div>
                                     <?php echo $form->error($model,'first_name'); ?>
                                 </div>
                                 <div class="field">
                                     <?php echo $form->labelEx($model,'last_name'); ?>
                                     <div class="input-box">
-                                        <?php echo $form->textField($model,'last_name', array('class' => 'input-field medium', 'required' => 'required')); ?>
+                                        <?php echo $form->textField($model,'last_name', array(
+                                            'class' => 'input-field medium', 
+                                            'required' => 'required',
+                                            'id' => 'olname'
+                                            )); ?>
                                     </div>
                                     <?php echo $form->error($model,'last_name'); ?>
                                 </div>
@@ -138,14 +151,17 @@
                                 <div class="field">
                                     <?php echo $form->labelEx($model,'email'); ?>
                                     <div class="input-box">
-                                        <?php echo $form->textField($model,'email', array('class' => 'input-field medium', 'required' => 'required','id' => 'oUsers_Email')); ?>
+                                        <?php echo $form->textField($model,'email', array(
+                                            'class' => 'input-field medium', 
+                                            'required' => 'required',
+                                            'id' => 'oemail')); ?>
                                     </div>
                                     <?php echo $form->error($model,'email'); ?>
                                 </div>
                                 <div class="field">
                                     <label>Confirm your e-mail</label>
                                     <div class="input-box">
-                                        <input type="text" class="input-field medium oconfirm-email" id="oConfirm_Email" value="" />
+                                        <input type="text" class="input-field medium oconfirm-email" id="ocemail" value="" />
                                     </div>
                                 </div>
                             </li>
@@ -154,14 +170,14 @@
                                 <div class="field">
                                     <label class="required" for="oUsers_password">Password <span class="required">*</span></label>
                                     <div class="input-box">
-                                        <?php echo $form->passwordField($model,'password', array('class' => 'input-field medium', 'required' => 'required', 'id' => 'oUsers_password')); ?>
+                                        <?php echo $form->passwordField($model,'password', array('class' => 'input-field medium', 'required' => 'required', 'id' => 'opassword')); ?>
                                     </div>
                                     <?php echo $form->error($model,'password'); ?>
                                 </div>
                                 <div class="field">
                                     <label>Confirm Password</label>
                                     <div class="input-box">
-                                        <input type="password" id="oConfirm_Password" required class="input-field medium oconfirm-password" value="" />
+                                        <input type="password" id="ocpassword" required class="input-field medium oconfirm-password" value="" />
                                     </div>
                                 </div>
                             </li>
@@ -174,7 +190,9 @@
                                 <div class="field">
                                     <?php echo $form->labelEx($property,'title'); ?>
                                     <div class="input-box">
-                                        <?php echo $form->textField($property,'title', array('class' => 'input-field medium', 'required' => 'required')); ?>
+                                        <?php echo $form->textField($property,'title', array(
+                                            'class' => 'input-field medium', 
+                                            'required' => 'required')); ?>
                                     </div>
                                     <?php echo $form->error($property,'title'); ?>
                                 </div>
@@ -220,7 +238,7 @@
                                 <div class="field">
                                     <label>Total Rooms *</label>
                                     <div class="input-box">
-                                        <input type="text" name="total_rooms" required class="input-field x-small" />
+                                        <input type="text" id="total_rooms" name="total_rooms" required class="input-field x-small" />
                                     </div>
                                 </div>
                             </li>
@@ -275,14 +293,14 @@
                             <li class="fields">
                                 <div class="note-accept">
                                     <div class="input-box">
-                                        <input type="checkbox" class="checkbox" value="" />
+                                        <input type="checkbox" id="o_agreement" class="checkbox" value="" />
                                     </div>
                                     <p>I accept the terms of cancellation, the house rules, the <a href="#">terms of repayment</a> and the host's <a href="#">terms of service</a>.</p>
                                 </div>
                             </li>
                             <li class="fields text-center">
                                 <div class="button-sets">
-                                    <button class="button">
+                                    <button class="button" id="osubmit">
                                         <span>
                                             <span>
                                                 Register

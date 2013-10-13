@@ -8,5 +8,6 @@ $this->renderPartial('_form', array(
     'property_description' => $property_description,
     'room_desc' => $room_desc,
     'billing'   => $billing,
-    'room'  => $room
+    'room'  => $room,
+    'services' => $services
 )); ?>

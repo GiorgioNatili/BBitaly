@@ -27,6 +27,7 @@ $('.search-form form').submit(function(){
 ?>
 
 <h1>Manage Services</h1>
+<h3><a href="/services/create">Create Service</a></h3>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -46,9 +47,10 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
+		'entity',
+		'parent_id',
 		'name',
 		'icon',
-		'status',
 		'created_on',
 		array(
 			'class'=>'CButtonColumn',
