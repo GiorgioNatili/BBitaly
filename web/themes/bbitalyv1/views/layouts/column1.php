@@ -17,13 +17,15 @@
                         array('label' => '<i class="icon-itinerary"></i><br>prenotazioni<span class="arrow-up">&nbsp;</span>','url' => '/booking', 'visible'=> Yii::app()->user->checkAccess('owner') ),
                         array('label' => '<i class="icon-booking"></i><br>disponibilita<span class="arrow-up">&nbsp;</span>','url' => '/availability', 'visible'=> Yii::app()->user->checkAccess('owner') ),
                         array('label' => '<i class="icon-booking"></i><br>fatture<span class="arrow-up">&nbsp;</span>','url' => '/availability/payroll', 'visible'=> Yii::app()->user->checkAccess('owner') ),
+                        
                         array('label' => '<i class="icon-accommodations"></i><br>struttura<span class="arrow-up">&nbsp;</span>','url' => '/property/admin', 'visible'=> Yii::app()->user->checkAccess('admin') ),
                         array('label' => '<i class="icon-itinerary"></i><br>camera<span class="arrow-up">&nbsp;</span>','url' => '/room/admin', 'visible'=> Yii::app()->user->checkAccess('admin') ),
                         array('label' => '<i class="icon-favorites"></i><br>Favorites<span class="arrow-up">&nbsp;</span>','url' => '/favorites/admin', 'visible'=> Yii::app()->user->checkAccess('admin') ),
                         array('label' => '<i class="icon-itinerary"></i><br>Itinerary<span class="arrow-up">&nbsp;</span>','url' => '/itinerary/admin', 'visible'=> Yii::app()->user->checkAccess('admin') ),
-                        array('label' => '<i class="icon-booking"></i><br>Booking<span class="arrow-up">&nbsp;</span>','url' => '/booking/admin', 'visible'=> Yii::app()->user->checkAccess('admin') ),
-                        array('label' => '<i class="icon-invoices"></i><br>Invoice<span class="arrow-up">&nbsp;</span>','url' => '/availability/payroll', 'visible'=> Yii::app()->user->checkAccess('admin') ),
-                        array('label' => '<i class="icon-accommodations"></i><br>Policy<span class="arrow-up">&nbsp;</span>','url' => '/policies/admin', 'visible'=> Yii::app()->user->checkAccess('admin') ),
+                        array('label' => '<i class="icon-booking"></i><br>Booking<span class="arrow-up">&nbsp;</span>','url' => '/availability/admin', 'visible'=> Yii::app()->user->checkAccess('admin') ),
+                        //array('label' => '<i class="icon-invoices"></i><br>Invoice<span class="arrow-up">&nbsp;</span>','url' => '/availability/payroll', 'visible'=> Yii::app()->user->checkAccess('admin') ),
+                        array('label' => '<i class="icon-invoices"></i><br>Services<span class="arrow-up">&nbsp;</span>','url' => '/services/admin', 'visible'=> Yii::app()->user->checkAccess('admin') ),
+                        array('label' => '<i class="icon-tick-green"></i><br>Policy<span class="arrow-up">&nbsp;</span>','url' => '/policies/admin', 'visible'=> Yii::app()->user->checkAccess('admin') ),
                     ),
                 ));
                 ?>

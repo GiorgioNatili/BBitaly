@@ -257,3 +257,19 @@ function matchPassword(r,c) {
     
     return true;
 }
+
+function addService(i) {
+    var $elem = $(i)
+    
+    if ( $elem.prev().size() === 0) {
+        $elem.before(
+                $('<input />')
+                    .attr('type','hidden')
+                    .attr('name', $elem.attr('data-rel'))
+                    .attr('value',1)
+            )
+    } else {
+        $elem.prev().remove();
+    }
+    //console.log($elem.attr('data-rel'));
+}
