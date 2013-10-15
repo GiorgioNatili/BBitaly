@@ -207,3 +207,39 @@
 	width: 20px;
 	height: 20px;
 }
+.icon-property {
+	background:url(../img/icons/bb_icon-property.png) no-repeat;
+	width: 21px;
+	height: 26px;
+	margin-right: 5px;
+}
+.icon-photo {
+	background:url(../img/icons/bb_icon-photo.png) no-repeat 0 4px;
+	width: 36px;
+	height: 36px;
+}
+.icon-service {
+	background:url(../img/icons/bb_icon-service.png) no-repeat;
+	width: 27px;
+	height: 36px;
+}
+.icon-policy {
+	background:url(../img/icons/bb_icon-policy.png) no-repeat 0 1px;
+	width: 36px;
+	height: 36px;
+}
+.icon-search {
+	background:url(../img/icons/bb_search-icon2.png) no-repeat 0 1px;
+	width: 26px;
+	height: 26px;
+}
+.icon-login {
+	background:url(../img/icons/bb_icon-login.png) no-repeat;
+	width: 28px;
+	height: 30px;
+}
+.icon-register {
+	background:url(../img/icons/bb_icon-register.png) no-repeat;
+	width: 32px;
+	height: 30px;
+}

@@ -7,6 +7,26 @@
  *
  * Designed and built with all the love in the world by @mdo and @fat.
  */
+@font-face {
+	font-family: 'Conv_Calibri';
+	src: url('f../onts/Calibri.eot');
+	src: local('Calibri'),
+		url('../fonts/Calibri.ttf') format('truetype'),
+		url('../fonts/Calibri.svg') format('svg'),
+		url('../fonts/Calibri.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Conv_Calibri-Bold';
+	src: url('../fonts/Calibri-Bold.eot');
+	src: local('Calibri Bold'),
+		url('../fonts/Calibri-Bold.ttf') format('truetype'),
+		url('../fonts/Calibri-Bold.svg') format('svg'),
+		url('../fonts/Calibri-Bold.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
 .clearfix{*zoom:1}
 .clearfix:before,.clearfix:after{display:table;line-height:0;content:""}
 .clearfix:after{clear:both}
@@ -31,7 +51,7 @@ label,select,button,input[type="button"],input[type="reset"],input[type="submit"
 input[type="search"]{-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box;-webkit-appearance:textfield}
 input[type="search"]::-webkit-search-decoration,input[type="search"]::-webkit-search-cancel-button{-webkit-appearance:none}
 textarea{overflow:auto;vertical-align:top}
-@media print{*{color:#000 !important;text-shadow:none !important;background:transparent !important;box-shadow:none !important} a,a:visited{text-decoration:underline} a[href]:after{content:" (" attr(href) ")"} abbr[title]:after{content:" (" attr(title) ")"} .ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""} pre,blockquote{border:1px solid #999;page-break-inside:avoid} thead{display:table-header-group} tr,img{page-break-inside:avoid} img{max-width:100% !important} @page {margin:0.5cm}p,h2,h3{orphans:3;widows:3} h2,h3{page-break-after:avoid}}body{margin:0;font-family:"Calibri","Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;line-height:20px;color:#333333;background-color:#ffffff}
+@media print{*{color:#000 !important;text-shadow:none !important;background:transparent !important;box-shadow:none !important} a,a:visited{text-decoration:underline} a[href]:after{content:" (" attr(href) ")"} abbr[title]:after{content:" (" attr(title) ")"} .ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""} pre,blockquote{border:1px solid #999;page-break-inside:avoid} thead{display:table-header-group} tr,img{page-break-inside:avoid} img{max-width:100% !important} @page {margin:0.5cm}p,h2,h3{orphans:3;widows:3} h2,h3{page-break-after:avoid}}body{margin:0;font-family:"Conv_Calibri","Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;line-height:20px;color:#333333;background-color:#ffffff}
 a{color:#94a7b0;text-decoration:none}
 a:hover,a:focus{color:#94a7b0;text-decoration:underline}
 .img-rounded{-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px}
@@ -135,7 +155,7 @@ a.text-success:hover,a.text-success:focus{color:#356635}
 .text-left{text-align:left}
 .text-right{text-align:right}
 .text-center{text-align:center}
-h1,h2,h3,h4,h5,h6{margin:0 0 10px;font-family:inherit;font-weight:bold;line-height:20px;color:inherit;text-rendering:optimizelegibility}
+h1,h2,h3,h4,h5,h6{margin:0 0 10px;font-family:Conv_Calibri-Bold,Helvetica,Arial,sans-serif;font-weight:normal;line-height:20px;color:inherit;text-rendering:optimizelegibility}
 h1 small,h2 small,h3 small,h4 small,h5 small,h6 small{font-weight:normal;line-height:1;color:#999999}
 h1,h2,h3{line-height:40px}
 h1{font-size:38.5px}
@@ -188,7 +208,7 @@ fieldset{padding:0;margin:0;border:0}
 legend{display:block;width:100%;padding:0;margin-bottom:20px;font-size:21px;line-height:40px;color:#333333;border:0;border-bottom:1px solid #e5e5e5}
 legend small{font-size:15px;color:#999999}
 label,input,button,select,textarea{font-size:14px;font-weight:normal;line-height:20px}
-input,button,select,textarea{font-family:"Calibri","Helvetica Neue",Helvetica,Arial,sans-serif}
+input,button,select,textarea{font-family:"Conv_Calibri","Helvetica Neue",Helvetica,Arial,sans-serif}
 label{display:block;margin-bottom:5px}
 select,textarea,input[type="text"],input[type="password"],input[type="datetime"],input[type="datetime-local"],input[type="date"],input[type="month"],input[type="time"],input[type="week"],input[type="number"],input[type="email"],input[type="url"],input[type="search"],input[type="tel"],input[type="color"],.uneditable-input{display:inline-block;height:20px;padding:4px 6px;margin-bottom:10px;font-size:14px;line-height:20px;color:#94A7B0;vertical-align:middle;}
 input,textarea,.uneditable-input{width:206px}
@@ -683,7 +703,7 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini{*padding-top:1px;*padding-
 .tabbable{*zoom:1}
 .tabbable:before,.tabbable:after{display:table;line-height:0;content:""}
 .tabbable:after{clear:both}
-.tab-content{overflow:auto}
+.tab-content{overflow:/*auto*/ visible;}
 .tabs-below>.nav-tabs,.tabs-right>.nav-tabs,.tabs-left>.nav-tabs{border-bottom:0}
 .tab-content>.tab-pane,.pill-content>.pill-pane{display:none}
 .tab-content>.active,.pill-content>.active{display:block}
@@ -727,7 +747,7 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini{*padding-top:1px;*padding-
 .navbar-form .input-append,.navbar-form .input-prepend{margin-top:5px;white-space:nowrap}
 .navbar-form .input-append input,.navbar-form .input-prepend input{margin-top:0}
 .navbar-search{position:relative;float:left;margin-top:5px;margin-bottom:0}
-.navbar-search .search-query{padding:4px 14px;margin-bottom:0;font-family:"Calibri","Helvetica Neue",Helvetica,Arial,sans-serif;font-size:13px;font-weight:normal;line-height:1;-webkit-border-radius:15px;-moz-border-radius:15px;border-radius:15px}
+.navbar-search .search-query{padding:4px 14px;margin-bottom:0;font-family:"Conv_Calibri","Helvetica Neue",Helvetica,Arial,sans-serif;font-size:13px;font-weight:normal;line-height:1;-webkit-border-radius:15px;-moz-border-radius:15px;border-radius:15px}
 .navbar-static-top{position:static;margin-bottom:0}
 .navbar-static-top .navbar-inner{-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}
 .navbar-fixed-top,.navbar-fixed-bottom{position:fixed;right:0;left:0;z-index:1030;margin-bottom:0}
@@ -739,7 +759,7 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini{*padding-top:1px;*padding-
 .navbar-fixed-top .navbar-inner,.navbar-static-top .navbar-inner{-webkit-box-shadow:0 1px 10px rgba(0,0,0,0.1);-moz-box-shadow:0 1px 10px rgba(0,0,0,0.1);box-shadow:0 1px 10px rgba(0,0,0,0.1)}
 .navbar-fixed-bottom{bottom:0}
 .navbar-fixed-bottom .navbar-inner{-webkit-box-shadow:0 -1px 10px rgba(0,0,0,0.1);-moz-box-shadow:0 -1px 10px rgba(0,0,0,0.1);box-shadow:0 -1px 10px rgba(0,0,0,0.1)}
-.navbar .nav{position:relative;left:0;display:block;float:left;margin:0 10px 0 0}
+.navbar .nav{position:relative;left:0;display:block;float:left;margin:0 9px 0 0}
 .navbar .nav.pull-right{float:right;margin-right:0}
 .navbar .nav>li{float:left}
 .navbar .nav>li>a{float:none;padding:10px 15px 10px;color:#94a7b0;text-decoration:none;text-shadow:0 1px 0 #ffffff; font-weight: bold;}
@@ -977,9 +997,34 @@ a.label:hover,a.label:focus,a.badge:hover,a.badge:focus{color:#ffffff;text-decor
 .navbar .nav {
 	margin-top: 30px;
 }
+.nav-logout,
 .nav-login {
 	width: 245px;
 }
+.nav-logout li:first-child {
+	margin-top: -20px;
+}
+.nav-logout li {
+	clear: left;
+	color: #85969e;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.nav-logout li > a {
+	padding: 0 !important;
+}
+.nav-logout li > a.logout {
+	margin: 5px 0 0;
+	color: #d10019;
+	font-size: 12px;
+	text-shadow: none;
+	font-weight: normal;
+	text-decoration: underline;
+}
+.nav-logout li > a.logout:hover {
+	color: #d10019;
+	text-decoration: none;
+}
+
 .nav-language .dropdown-toggle {
 	background:url(../img/icons/bb_dd.png) no-repeat 50% 100%;
 }
@@ -1014,18 +1059,29 @@ a.label:hover,a.label:focus,a.badge:hover,a.badge:focus{color:#ffffff;text-decor
 	background: linear-gradient(to bottom,  #dbe1e4 0%,#bcc8cd 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dbe1e4', endColorstr='#bcc8cd',GradientType=0 ); /* IE6-9 */
 }
-.social-links a:hover {
-	background: #9ba7c9; /* Old browsers */
-	background: -moz-linear-gradient(top,  #9ba7c9 0%, #475d9b 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#9ba7c9), color-stop(100%,#475d9b)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  #9ba7c9 0%,#475d9b 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  #9ba7c9 0%,#475d9b 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  #9ba7c9 0%,#475d9b 100%); /* IE10+ */
-	background: linear-gradient(to bottom,  #9ba7c9 0%,#475d9b 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9ba7c9', endColorstr='#475d9b',GradientType=0 ); /* IE6-9 */
-	-moz-box-shadow: inset 0 3px 1px 1px #7d88a3;
-	-webkit-box-shadow: inset 0 3px 1px 1px #7d88a3;
-	box-shadow: inset 0 3px 1px 1px #7d88a3;
+.social-links a.social-facebook:hover {
+	background: #1f69b2; 
+	-moz-box-shadow: inset 0 3px 1px 1px #144474;
+	-webkit-box-shadow: inset 0 3px 1px 1px #144474;
+	box-shadow: inset 0 3px 1px 1px #144474;
+}
+.social-links a.social-twitter:hover {
+	background: #43b3e5; 
+	-moz-box-shadow: inset 0 3px 1px 1px #25637f;
+	-webkit-box-shadow: inset 0 3px 1px 1px #25637f;
+	box-shadow: inset 0 3px 1px 1px #25637f;
+}
+.social-links a.social-googleplus:hover {
+	background: #ed4f22; 
+	-moz-box-shadow: inset 0 3px 1px 1px #6a2410;
+	-webkit-box-shadow: inset 0 3px 1px 1px #6a2410;
+	box-shadow: inset 0 3px 1px 1px #6a2410;
+}
+.social-links a.social-pinterest:hover {
+	background: #e21f23; 
+	-moz-box-shadow: inset 0 3px 1px 1px #6b0e10;
+	-webkit-box-shadow: inset 0 3px 1px 1px #6b0e10;
+	box-shadow: inset 0 3px 1px 1px #6b0e10;
 }
 footer {
 	background-color: rgb(228,233,235);
@@ -1109,7 +1165,7 @@ address {
 .carousel-inner .description {
 	position: absolute;
 	bottom: 10px;
-	z-index: 11;
+	z-index: 1;
 	color: #aeaeae;
 }
 .carousel-inner .text {
@@ -1189,6 +1245,20 @@ input.search-query:focus {
 	font-size: 18px;
 	font-weight: bold;
 	color: #c9d3d7;
+	height: 24px;
+	line-height: 24px;
+}
+.search .search-option i {
+	margin-left: 10px;
+}
+.search .search-option i.icon-search {
+	margin:0;
+}
+.search input.medium[type="text"] {
+	width: 72px;
+	border:0;
+	margin:0;
+	box-shadow: none;
 }
 .btn-search {
 	background-image:none;

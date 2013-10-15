@@ -178,6 +178,24 @@ class Property extends CActiveRecord
                         'status' => 0
                     ), 'property_id = '. $this->id.' AND is_cover = 1');
         }
+        
+        /**
+         * 
+         * @param int $user_id  UserId to check existence.
+         * @param int $flag Either search in collection or db.
+         * @param Favorites[] $data   If flag is 1, then data to be used
+         */
+        public function inUserFavorites($user_id, $flag = 1, $data = array()) {
+            if ( $flag === 1) {
+                foreach ($data as $row) {
+                    if ( $row->user_id == $user_id )
+                        return true;
+                }
+                return false;
+            }
+            
+            return false;
+        }
 
         protected function beforeSave() {
             if ( $this->isNewRecord )
