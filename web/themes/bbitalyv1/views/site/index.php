@@ -4,37 +4,42 @@
     	<div class="searchbar">
         	<h1>Il tuo bed and breakfast in Italia! </h1>
             <p class="lead">Il tuo bed and breakfast in Italia!</p>
-            <div class="search">
-                <form method="GET" action="/search">
-                    <div class="row">
-                        <div class="span4">
-                            <input type="text" placeholder="Search a place" class="search-query">
+            <form method="GET" action="search">
+                <div class="search">
+            	<div class="row">
+                    <div class="span5">
+                        <input type="text" name="kw" placeholder="Search a place" class="search-query">
+                    </div>
+                    <div class="span7">
+                    	<div class="search-option pull-right">
+                        	<button class="btn btn-search" type="submit"><i class="icon-search icon-white"></i></button>
                         </div>
-                        <div class="span8">
-                            <div class="search-option pull-right">
-                                    <button class="btn btn-search" type="submit"><i class="icon-search icon-white"></i></button>
+                        <div class="search-option pull-right">
+                            <div class="dropdown">
+                                <a href="#" data-toggle="dropdown" class="dropdown-toggle">persone <i class="icon-users"></i></a>
+                                <input type="hidden" name="people" value="1" />
+                                <ul class="dropdown-menu" id="sq-peopel-selector">
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li><a href="#">6+</a></li>
+                                </ul>
                             </div>
-                            <div class="search-option pull-right">
-                                <div class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">number of people <i class="icon-users"></i></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">date 1</a></li>
-                                        <li><a href="#">date 2</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="search-option pull-right">
-                                <input type="text" name="checkout" placeholder="checkout" class="datepicker input-field x-small" />
-                                
-                            </div>
-                            <div class="search-option pull-right">
-                                <input type="text" name="checkout" placeholder="checkout" class="datepicker input-field x-small" />
-                               
-                            </div>
+                        </div>
+                        <div class="search-option pull-right">
+                            <input type="text" class="inut-field medium datepicker" value="" id="checkout" />
+                            <i class="icon-checkout"></i>
+                        </div>
+                    	<div class="search-option pull-right">
+                            <input type="text" class="inut-field medium datepicker" value="" id="checkin" />
+                            <i class="icon-checkin"></i>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
+            </form>
         </div>
     </div>
 	<div class="carousel bb-carousel" id="myCarousel">

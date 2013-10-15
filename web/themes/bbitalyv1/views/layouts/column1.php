@@ -13,9 +13,10 @@
                         array('label' => '<i class="icon-favorites"></i><br>Favorites<span class="arrow-up">&nbsp;</span>','url' => '/favorites', 'visible'=> Yii::app()->user->checkAccess('traveler') ),
                         array('label' => '<i class="icon-itinerary"></i><br>Itinerary<span class="arrow-up">&nbsp;</span>','url' => '/itinerary', 'visible'=> Yii::app()->user->checkAccess('traveler') ),
                         array('label' => '<i class="icon-booking"></i><br>Reservations<span class="arrow-up">&nbsp;</span>','url' => '/booking', 'visible'=> Yii::app()->user->checkAccess('traveler') ),
+                        
                         array('label' => '<i class="icon-favorites"></i><br>modifica struttura<span class="arrow-up">&nbsp;</span>','url' => '/property', 'visible'=> Yii::app()->user->checkAccess('owner') ),
                         array('label' => '<i class="icon-itinerary"></i><br>prenotazioni<span class="arrow-up">&nbsp;</span>','url' => '/booking', 'visible'=> Yii::app()->user->checkAccess('owner') ),
-                        array('label' => '<i class="icon-booking"></i><br>disponibilita<span class="arrow-up">&nbsp;</span>','url' => '/availability', 'visible'=> Yii::app()->user->checkAccess('owner') ),
+                        //array('label' => '<i class="icon-booking"></i><br>disponibilita<span class="arrow-up">&nbsp;</span>','url' => '/availability', 'visible'=> Yii::app()->user->checkAccess('owner') ),
                         array('label' => '<i class="icon-booking"></i><br>fatture<span class="arrow-up">&nbsp;</span>','url' => '/availability/payroll', 'visible'=> Yii::app()->user->checkAccess('owner') ),
                         
                         array('label' => '<i class="icon-accommodations"></i><br>struttura<span class="arrow-up">&nbsp;</span>','url' => '/property/admin', 'visible'=> Yii::app()->user->checkAccess('admin') ),
