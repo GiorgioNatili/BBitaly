@@ -102,8 +102,10 @@
                             select language      
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">langugae 1</a></li>
-                            <li><a href="#">langugae 2</a></li>
+                            <li><a href="#">Italian</a></li>
+                            <li><a href="#">English</a></li>
+                            <li><a href="#">Spanish</a></li>
+                            <li><a href="#">German</a></li>
                         </ul>	
                     </li>
                 </ul>
