@@ -283,7 +283,7 @@
                         </div>
                         <div class="hover hroom-<?php echo $indx?>" >
                             <a href="#." onclick="triggerClickF('Room',<?php echo $indx;?>)">upload</a>
-                            <input id="room-<?php echo $indx; ?>" onclick="a_imgUpload('Room',<?php echo $indx;?>)" class="fileupload" style="display: none" type="file" name="files[]" />
+                            <input id="Room-<?php echo $indx; ?>" onclick="a_imgUpload('Room',<?php echo $indx;?>)" class="fileupload" style="display: none" type="file" name="files[]" />
                         </div>
                     </li>
                     <?php endfor; ?>
