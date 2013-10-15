@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="<?php echo $this->getAssetsUrl() ?>css/bootstrap.min.css" media="screen">
     <link rel="stylesheet" href="<?php echo $this->getAssetsUrl() ?>css/bootstrap.datepicker.css" media="screen">
     <link rel="stylesheet" href="<?php echo $this->getAssetsUrl() ?>css/bootstrap.base.css" media="screen">
+    <link rel="stylesheet" href="<?php echo $this->getAssetsUrl() ?>css/bootstrap.slider.css" media="screen">
     <link rel="stylesheet" href="<?php echo $this->getAssetsUrl() ?>css/bootstrap.icons.css" media="screen">
     <!-- Optional theme -->
     <!-- <link rel="stylesheet" href="<?php echo $this->getAssetsUrl() ?>css/bootstrap-theme.min.css"> -->
@@ -23,12 +24,17 @@
     <script src="<?php echo $this->getAssetsUrl() ?>js/jquery.jcarousel.min.js"></script>
 
     <script src="<?php echo $this->getAssetsUrl() ?>js/bootstrap-datepicker.js"></script>
+    <script src="<?php echo $this->getAssetsUrl() ?>js/bootstrap-lightbox.min.js"></script>
+    <script src="<?php echo $this->getAssetsUrl() ?>js/bootstrap-image-gallery.min.js"></script>
+    <script src="<?php echo $this->getAssetsUrl() ?>js/bootstrap-slider.js"></script>
+    <script src="<?php echo $this->getAssetsUrl() ?>js/bootstrap-fileupload.min.js"></script>
     <script src="<?php echo $this->getAssetsUrl() ?>js/happy.js"></script>
-    <script src="<?php echo $this->getAssetsUrl() ?>js/dropzone.js"></script>
     <script src="<?php echo $this->getAssetsUrl() ?>js/bootstrap.custom.js"></script>
     <script src="<?php echo $this->getAssetsUrl() ?>js/gmap3.min.js"></script>
     <script src="<?php echo $this->getAssetsUrl() ?>js/jquery.ui.widget.js"></script>
-    <script src="<?php echo $this->getAssetsUrl() ?>js/jquery.fileupload.js"></script>
+    <script>
+        var USER_ID = '<?php echo Yii::app()->user->id ?>'
+    </script>
 
 
 <!--[if lt IE 9]>

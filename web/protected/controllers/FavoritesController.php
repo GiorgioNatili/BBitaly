@@ -39,6 +39,10 @@ class FavoritesController extends Controller
 				'actions'=>array('admin','delete'),
 				'roles'=>array(Users::ROLE_ADMIN),
 			),
+                        array('allow',
+                            'actions' => array('remove'),
+                            'roles' => array(Users::ROLE_TRAVELER)
+                        ),
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),
@@ -66,12 +70,30 @@ class FavoritesController extends Controller
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
+                
 
 		if(isset($_POST['Favorites']))
 		{
 			$model->attributes=$_POST['Favorites'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+                        $model->favorited_on = time();
+			if($model->save()) {
+                            if ( isset($_GET['ajax'])) {
+                                echo json_encode(
+                                        array(
+                                            'is_success'    => 1,
+                                            'response'  => $model->id
+                                        )
+                                    );
+                                Yii::app()->end();
+                            }
+                            
+                            /**
+                             * @TODO    Redirect somewhere if non-ajax favorite
+                             */
+                            $this->redirect(array('view','id'=>$model->id));
+                        }
+                        
+                        
 		}
 
 		$this->render('create',array(
@@ -110,12 +132,25 @@ class FavoritesController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+            $this->loadModel($id)->delete();
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+            if(!isset($_GET['ajax']))
+                    $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
+        
+        public function actionremove() {
+                // Ajax based.
+            Favorites::model()
+                    ->findByAttributes(array(
+                        'property_id' => $_POST['property_id'],
+                        'user_id' => $_POST['user_id']
+                    ))->delete();
+
+            echo json_encode(array('is_success' => 1));
+            Yii::app()->end();
+
+        }
 
 	/**
 	 * Lists all models.
