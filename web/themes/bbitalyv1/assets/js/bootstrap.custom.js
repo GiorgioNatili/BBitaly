@@ -77,24 +77,6 @@ $(function () {
                     autoclose: true
                 });
         });
-       
-        /*
-        $(".confirm-email").blur(function() {
-            matchEmail('Users_email','Confirm_Email');
-        });
-        
-        $(".oconfirm-email").blur(function() {
-            matchEmail('oUsers_Email','oConfirm_Email');
-        });
-        
-        $(".confirm-password").blur(function() {
-            matchPassword('Users_password','Confirm_Password');
-        });
-        
-        $(".oconfirm-password").blur(function() {
-            matchPassword('oUsers_password','oConfirm_Password');
-        });
-        */
         
 });
 
@@ -335,7 +317,7 @@ function addToFavorites(i) {
     });
 }
 
-function removeFromFavorites(i) {
+function removeFromFavorites(i, cb) {
     var $elem = $(i);
     
     $.ajax({
@@ -348,14 +330,19 @@ function removeFromFavorites(i) {
         success: function(data) {
             data = $.parseJSON(data);
             if ( data.is_success === 1) {
-                $elem.attr('onclick','addToFavorites(this);')
-                .attr('title','Add to Favorites!');
-                // Lets +1.
-                var count = parseInt($elem.prev().html());
-                $elem.prev().html(count - 1);
-                $elem.html('+ Favorite');
+                if ( typeof cb === 'function') {
+                    cb(data);
+                } else {
+                    $elem.attr('onclick','addToFavorites(this);')
+                    .attr('title','Add to Favorites!');
+                    // Lets +1.
+                    var count = parseInt($elem.prev().html());
+                    $elem.prev().html(count - 1);
+                    $elem.html('+ Favorite');
+                }
             }
             
+               
         }
     });
 }

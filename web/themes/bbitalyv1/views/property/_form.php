@@ -278,10 +278,10 @@
                 <ul class="thumb-list jcarousel-skin-tango jcarousel-horizontal">
                     <?php for($indx=0; $indx<5; $indx++):?>
                     <li>
-                        <div class="img imgroom-<?php echo $indx?>">
+                        <div class="img imgRoom-<?php echo $indx?>">
                             <a href="#"></a>
                         </div>
-                        <div class="hover hroom-<?php echo $indx?>" >
+                        <div class="hover hRoom-<?php echo $indx?>" >
                             <a href="#." onclick="triggerClickF('Room',<?php echo $indx;?>)">upload</a>
                             <input id="Room-<?php echo $indx; ?>" onclick="a_imgUpload('Room',<?php echo $indx;?>)" class="fileupload" style="display: none" type="file" name="files[]" />
                         </div>
