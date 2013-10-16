@@ -3,7 +3,7 @@
  * @var SearchController $this 
  * @var CActiveDataProvider $dataProvider */
 $this->breadcrumbs = array(
-    'search'
+    'search'    => '/search'
 ); ?>
 <section>
 <!-- InstanceBeginEditable name="EditRegionSection" -->

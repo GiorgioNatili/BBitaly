@@ -11,8 +11,8 @@
         <div class="span7">
             <div class="description">
                     <h3><a href="/property/<?php echo $data->id ?>"><?php echo $data->title ?></a></h3>
-                <p class="lead">Nome della struttura ricettiva, consectetur adipis</p>
-                <p>Descrizione breve della struttura lorem ipsum dolor sit amet, consectetur adipis</p>
+                <!--<p class="lead">Nome della struttura ricettiva, consectetur adipis</p> -->
+                <p><?php echo $data->descriptions->lang_italian ?></p>
                 <p class="location">
                     <i class="icon-location"></i> 
                     <?php echo $data->address.', '. $data->zip_code ?> / <strong><?php echo $data->city ?></strong>
