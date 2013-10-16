@@ -5,17 +5,17 @@
     <div class="row">
         <div class="span3">
             <div class="img">
-                <img src="<?php echo $this->getAssetsUrl() ?>img/bb_list-img-1.jpg" alt="" />
+                <img src="<?php echo  $data->coverImage == null ? $this->getAssetsUrl().'img/bb_list-img-1.jpg' : Bucket::load($data->coverImage->img_name) ?>" alt="" />
             </div>
         </div>
         <div class="span7">
             <div class="description">
-                    <h3><a href="#"><?php echo $data->title ?></a></h3>
-                <p class="lead">Nome della struttura ricettiva, consectetur adipis</p>
-                <p>Descrizione breve della struttura lorem ipsum dolor sit amet, consectetur adipis</p>
+                    <h3><a href="/property/<?php echo $data->id ?>"><?php echo $data->title ?></a></h3>
+                <!--<p class="lead">Nome della struttura ricettiva, consectetur adipis</p> -->
+                <p><?php echo $data->descriptions->lang_italian ?></p>
                 <p class="location">
                     <i class="icon-location"></i> 
-                    Frattamaggiore localita molto lunga / <strong>Napoli</strong>
+                    <?php echo $data->address.', '. $data->zip_code ?> / <strong><?php echo $data->city ?></strong>
                 </p>
             </div>
         </div>
@@ -24,7 +24,7 @@
                     <div class="price-tag text-center">
                     prezzo a partire da
                     <p class="bb-price">
-                        9999,00 &euro;
+                        &euro; <?php echo money_format('%.2n', $data->base_price) ?>
                     </p>
                 </div>
                 <div class="favorite-tag text-left">
