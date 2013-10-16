@@ -7,7 +7,32 @@ class SearchController extends Controller
     
 	public function actionIndex()
 	{
+            $params = array();
             $criteria = new CDbCriteria();
+            // If property type defined
+            if (isset($_GET['establishment']) && $_GET['establishment'] != '*') {
+                $criteria->addCondition('type = :type','OR');
+                $params[':type'] = $_GET['establishment'];
+            }
+            
+            // If keyword defined
+            if ( !empty($_GET['kw'])) {
+                $criteria->addSearchCondition('title', $_GET['kw'],true,'AND');
+            }
+            
+            // Price range filter.
+            if ( isset($_GET['price_range'])) {
+                $values = explode(',', $_GET['price_range']);
+                $criteria->addBetweenCondition('base_price', $values[0], $values[1]);
+                
+            }
+            
+            
+            $criteria->params = array_merge($criteria->params,$params);
+            
+            //echo "<pre>"; print_r($criteria); exit;
+            
+            //$criteria->addSea
             $total = Property::model()->count();
             
             $pages = new CPagination($total);
