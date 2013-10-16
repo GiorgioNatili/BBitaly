@@ -1,5 +1,7 @@
 <?php 
-/** @var CActiveDataProvider $dataProvider */
+/** 
+ * @var SearchController $this 
+ * @var CActiveDataProvider $dataProvider */
 $this->breadcrumbs = array(
     'search'
 ); ?>
@@ -100,16 +102,37 @@ $this->breadcrumbs = array(
     </div><!-- FILTER - END -->
     </form>
     <div class="container result-view">
-    	<ul class="list-view"> 
-            <?php $this->widget('zii.widgets.CListView', array(
+        <ul class="list-view" id="dataset"> 
+            <?php
+            $j = 0;
+            foreach ($records as $row):
+                $this->renderPartial('_item', array(
+                    'data' => $row,
+                    'index' => $j
+                )); $j++;
+            endforeach;
+            
+            $this->widget('ext.yiinfinite-scroll.YiinfiniteScroller', array(
+                'contentSelector' => '#dataset',
+                'itemSelector' => 'li.item',
+                'loadingText' => 'Loading...',
+                'donetext' => 'This is the end... my only friend, the end',
+                'pages' => $pages
+            ));
+            /*
+             *  $this->widget('application.components.widgets.CLazyListView', array(
                     'dataProvider'  =>  $dataProvider,
-                    'itemView'=>'_item',
-                  )); ?>
+                    'itemView'=>'_item', //zii.widgets.CListView
+                  ));
+             */
+            ?>
         </ul><!-- LISIT VIEW - END -->
+        <!--
         <div class="row browseBar">
         	<div class="span12">
             	<a class="more" href="#">Sfoglia altri contenuti... <br><i class="icon-arrow-down"></i></a>
             </div>
         </div><!-- BROWSE MORE - END -->
+        
     </div>
 </section><!-- SECTION - END -->

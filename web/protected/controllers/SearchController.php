@@ -7,15 +7,20 @@ class SearchController extends Controller
     
 	public function actionIndex()
 	{
-            $dataProvider=new CActiveDataProvider('Property');
-            /*
-             * , array(
-                'pagination' => array('pageSize' => 1,),
-            )
-             */
+            $criteria = new CDbCriteria();
+            $total = Property::model()->count();
+            
+            $pages = new CPagination($total);
+            $pages->pageSize = 1;
+            $pages->applyLimit($criteria);
+            
+            $records = Property::model()->findAll($criteria);
+            
+            
             $this->render('index',
                     array(
-			'dataProvider'=>$dataProvider,
+                        'pages' => $pages,
+                        'records' => $records
 		));
 	}
 
