@@ -197,6 +197,17 @@ $(document).ready(function() {
                }
           }
       });
+      
+      // Homepage People selector
+      $('#sq-peopel-selector li').click(function() {
+          $('#hidden_people').val($(this).text());
+      });
+      
+      $("#fil-estb-dd li").click(function() {
+          var $elem = $(this);
+          $('#fil-estb-preview').text($elem.text());
+          $('#hidden_establishment').val($elem.attr('data-value'));
+      });
 });
 
 function onOwnerFormSubmit() {

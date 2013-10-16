@@ -17,7 +17,7 @@
                         <div class="search-option pull-right">
                             <div class="dropdown">
                                 <a href="#" data-toggle="dropdown" class="dropdown-toggle">persone <i class="icon-users"></i></a>
-                                <input type="hidden" name="people" value="1" />
+                                <input type="hidden" name="people" id="hidden_people" value="1" />
                                 <ul class="dropdown-menu" id="sq-peopel-selector">
                                     <li><a href="#">1</a></li>
                                     <li><a href="#">2</a></li>
@@ -29,11 +29,11 @@
                             </div>
                         </div>
                         <div class="search-option pull-right">
-                            <input type="text" class="inut-field medium datepicker" value="" id="checkout" />
+                            <input type="text" class="inut-field medium datepicker" name="checkout" value="" id="checkout" />
                             <i class="icon-checkout"></i>
                         </div>
                     	<div class="search-option pull-right">
-                            <input type="text" class="inut-field medium datepicker" value="" id="checkin" />
+                            <input type="text" class="inut-field medium datepicker" name="checkin" value="" id="checkin" />
                             <i class="icon-checkin"></i>
                         </div>
                     </div>

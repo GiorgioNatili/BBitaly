@@ -29,6 +29,7 @@
     <script src="<?php echo $this->getAssetsUrl() ?>js/bootstrap-slider.js"></script>
     <script src="<?php echo $this->getAssetsUrl() ?>js/bootstrap-fileupload.min.js"></script>
     <script src="<?php echo $this->getAssetsUrl() ?>js/happy.js"></script>
+    <script src="<?php echo $this->getAssetsUrl() ?>js/jquery.infinitescroll.min.js"></script>
     <script src="<?php echo $this->getAssetsUrl() ?>js/bootstrap.custom.js"></script>
     <script src="<?php echo $this->getAssetsUrl() ?>js/gmap3.min.js"></script>
     <script src="<?php echo $this->getAssetsUrl() ?>js/jquery.ui.widget.js"></script>
@@ -102,8 +103,10 @@
                             select language      
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">langugae 1</a></li>
-                            <li><a href="#">langugae 2</a></li>
+                            <li><a href="#">Italian</a></li>
+                            <li><a href="#">English</a></li>
+                            <li><a href="#">Spanish</a></li>
+                            <li><a href="#">German</a></li>
                         </ul>	
                     </li>
                 </ul>
@@ -142,8 +145,8 @@ if ( $flashes ):
         </li>
         <?php 
         if ( isset($this->breadcrumbs) ):
-            foreach ($this->breadcrumbs as $breadcrumb ): ?>
-                <strong><?php echo $breadcrumb ?></strong>
+            foreach ($this->breadcrumbs as $breadcrumb => $link ): ?>
+        <strong><a href="<?php echo $link ?>"><?php echo $breadcrumb ?></a></strong>
                 <span>/</span>
             <?php endforeach;
         endif;
