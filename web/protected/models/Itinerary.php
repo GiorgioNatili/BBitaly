@@ -11,6 +11,7 @@
  * @property string $date_from
  * @property string $date_to
  * @property integer $uid
+ * @property integer $is_suggested
  * @property string $created_on
  * @property string $updated_on
  * @property string $host_ip
@@ -39,12 +40,12 @@ class Itinerary extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name, description, date_from, date_to, uid, created_on, updated_on, host_ip', 'required'),
-			array('cover_image, uid', 'numerical', 'integerOnly'=>true),
+			array('cover_image, uid, is_suggested', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>50),
 			array('date_from, date_to, created_on, updated_on, host_ip', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, description, cover_image, date_from, date_to, uid, created_on, updated_on, host_ip', 'safe', 'on'=>'search'),
+			array('id, name, description, cover_image, date_from, date_to, uid, is_suggested, created_on, updated_on, host_ip', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -75,6 +76,7 @@ class Itinerary extends CActiveRecord
 			'date_from' => 'Date From',
 			'date_to' => 'Date To',
 			'uid' => 'Uid',
+                        'is_suggested' => 'Is Suggested',
 			'created_on' => 'Created On',
 			'updated_on' => 'Updated On',
 			'host_ip' => 'Host Ip',
@@ -106,6 +108,7 @@ class Itinerary extends CActiveRecord
 		$criteria->compare('date_from',$this->date_from,true);
 		$criteria->compare('date_to',$this->date_to,true);
 		$criteria->compare('uid',$this->uid);
+                $criteria->compare('is_suggested',$this->is_suggested);
 		$criteria->compare('created_on',$this->created_on,true);
 		$criteria->compare('updated_on',$this->updated_on,true);
 		$criteria->compare('host_ip',$this->host_ip,true);

@@ -51,6 +51,12 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'people_min',
 		'people_max',
 		'address',
+                array(
+                    'name' => 'is_featured',
+                    'header' => "Featured?",
+                    'filter' => array('0' => 'No','1' => 'Yes'),
+                    'value' => '($data->is_featured == 1) ? ("Yes") : ("No")'
+                ),
 		/*
 		'city',
 		'zip_code',
@@ -59,7 +65,8 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'created_on',
 		*/
 		array(
-			'class'=>'CButtonColumn',
+                    'class'=>'CButtonColumn',
+                    'updateButtonUrl'=>'Yii::app()->createUrl("/property/update", array("id" =>  $data["id"], "destination" => "/property/admin"))',
 		),
 	),
 )); ?>

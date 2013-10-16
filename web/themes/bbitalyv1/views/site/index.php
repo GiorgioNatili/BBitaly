@@ -1,3 +1,39 @@
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        // Load Itineraries
+        
+        // Load Featured BBs
+        $.ajax({
+           url: "/property/ajaxFeatured?offset=0",
+           success: function(data) {
+               // Append here.
+               data = JSON.parse(data);
+               data.map(function(row) {
+                    $('#featured_bb .quick-list').append(
+                        '<li class="span6 box">'
+                       +            '<div class="img b20-4s">'
+                       +                 '<img src="'+row.cover.img_name+'" alt="" />'
+                       +            '</div>'
+                       +            '<div class="info b15-4s">'
+                       +                '<div class="text bb-price"><i class="icon-price"></i> '+row.base_price+' &euro; </div>'
+                       +                 '<div class="text bb-like"><i class="icon-favourite"></i> 69</div>'
+                       +             '</div>'
+                       +             '<div class="desc b15-4s">'
+                       +                 row.title
+                       +             '</div>'
+                       +             '<p><i class="icon-location"></i> Frattamaggiore localita molto lunga / Napoli</p>'
+                       +         '</li>'
+                    );
+               });
+               /*
+                * 
+                */
+           }
+        });
+        
+        // Load Most Popular BBs
+    });
+</script>
 <section>
 <!-- InstanceBeginEditable name="EditRegionSection" -->
 	<div class="container home-searchbar">

@@ -15,6 +15,7 @@
  * @property integer $cover_image
  * @property double $base_price
  * @property integer $available_rooms
+ * @property integer $is_featured
  * @property integer $uid
  * @property string $created_on
  *
@@ -47,8 +48,8 @@ class Property extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, type, people_min, people_max, base_price,available_rooms, uid', 'required'),
-			array('type, people_min, people_max, cover_image, available_rooms, uid', 'numerical', 'integerOnly'=>true),
+			array('title, type, people_min, people_max, base_price, available_rooms, uid', 'required'),
+			array('type, people_min, people_max, cover_image, available_rooms, is_featured, uid', 'numerical', 'integerOnly'=>true),
 			array('base_price', 'numerical'),
 			array('title', 'length', 'max'=>50),
 			array('address', 'length', 'max'=>100),
@@ -56,7 +57,7 @@ class Property extends CActiveRecord
 			array('zip_code, created_on', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, title, type, people_min, people_max, address, city, zip_code, cover_image, base_price, uid, created_on', 'safe', 'on'=>'search'),
+			array('id, title, type, people_min, people_max, address, city, zip_code, cover_image, base_price, is_featured, uid, created_on', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -79,8 +80,16 @@ class Property extends CActiveRecord
 			'servicesEntities' => array(self::HAS_MANY, 'ServicesEntity', 'property_id'),
 		);
 	}
+        
+        public function scopes() {
+            return array(
+                'featured'=>array(
+                    'condition'=>'is_featured = 1',
+                ),
+            );
+        }
 
-	/**
+        /**
 	 * @return array customized attribute labels (name=>label)
 	 */
 	public function attributeLabels()
@@ -131,6 +140,7 @@ class Property extends CActiveRecord
 		$criteria->compare('cover_image',$this->cover_image);
 		$criteria->compare('base_price',$this->base_price);
                 $criteria->compare('available_rooms',$this->available_rooms);
+                $criteria->compare('is_featured',$this->is_featured);
 		$criteria->compare('uid',$this->uid);
 		$criteria->compare('created_on',$this->created_on,true);
 
