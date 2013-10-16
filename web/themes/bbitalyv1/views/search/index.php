@@ -28,7 +28,7 @@ $this->breadcrumbs = array(
                             <div class="search-option pull-right">
                             <div class="dropdown">
                                 <a href="#" data-toggle="dropdown" class="dropdown-toggle">persone <i class="icon-users"></i></a>
-                                <input type="hidden" name="people" id="hidden_people" value="*" />
+                                <input type="hidden" name="people" id="hidden_people" value="<?php echo isset($_GET['people']) ? $_GET['people'] : '*' ?>" />
                                 <ul class="dropdown-menu" id="sq-peopel-selector">
                                     <li><a href="#">1</a></li>
                                     <li><a href="#">2</a></li>

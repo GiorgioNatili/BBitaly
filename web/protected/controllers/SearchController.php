@@ -27,10 +27,14 @@ class SearchController extends Controller
                 
             }
             
+            if ( isset($_GET['people']) && $_GET['people'] != '6+') {
+                $people = $_GET['people'];
+                $criteria->addCondition('people_min <= :people');
+                $criteria->addCondition('people_max >= :people');
+                $params[':people'] = $people;
+            }
             
             $criteria->params = array_merge($criteria->params,$params);
-            
-            //echo "<pre>"; print_r($criteria); exit;
             
             //$criteria->addSea
             $total = Property::model()->count();
