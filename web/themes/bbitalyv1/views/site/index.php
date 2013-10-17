@@ -3,36 +3,45 @@
         // Load Itineraries
         
         // Load Featured BBs
-        $.ajax({
-           url: "/property/ajaxFeatured?offset=0",
-           success: function(data) {
-               // Append here.
-               data = JSON.parse(data);
-               data.map(function(row) {
-                    $('#featured_bb .quick-list').append(
-                        '<li class="span6 box">'
-                       +            '<div class="img b20-4s">'
-                       +                 '<img src="'+row.cover.img_name+'" alt="" />'
-                       +            '</div>'
-                       +            '<div class="info b15-4s">'
-                       +                '<div class="text bb-price"><i class="icon-price"></i> '+row.base_price+' &euro; </div>'
-                       +                 '<div class="text bb-like"><i class="icon-favourite"></i> 69</div>'
-                       +             '</div>'
-                       +             '<div class="desc b15-4s">'
-                       +                 row.title
-                       +             '</div>'
-                       +             '<p><i class="icon-location"></i> Frattamaggiore localita molto lunga / Napoli</p>'
-                       +         '</li>'
-                    );
-               });
-               /*
-                * 
-                */
-           }
-        });
+        loadFeaturedBB(0);
         
         // Load Most Popular BBs
     });
+    function loadFeaturedBB(offset) {
+        offset = (typeof offset === 'undefined' ? loadFeaturedBB.loaded : offset);
+        $.ajax({
+            url: "/property/ajaxFeatured?offset="+offset,
+            success: function(data) {
+                // Append here.
+                data = JSON.parse(data);
+                loadFeaturedBB.total = data.total;
+                delete data.total;
+                if ( typeof loadFeaturedBB.loaded === 'undefined')
+                    loadFeaturedBB.loaded = 0;
+                loadFeaturedBB.loaded += $.getLength(data);
+                $.map(data,function(row) {
+                     $('#featured_bb .quick-list').append(
+                         '<li class="span6 box">'
+                        +            '<div class="img b20-4s">'
+                        +                 '<img src="'+(typeof row.cover.img_name === 'undefined' ? '/themes/bbitalyv1/assets/img/bb_list-img-1.jpg' : row.cover.img_name)+'" alt="" />'
+                        +            '</div>'
+                        +            '<div class="info b15-4s">'
+                        +                '<div class="text bb-price"><i class="icon-price"></i> '+row.base_price+' &euro; </div>'
+                        +                 '<div class="text bb-like"><i class="icon-favourite"></i> '+row.favorites+'</div>'
+                        +             '</div>'
+                        +             '<div class="desc b15-4s">'
+                        +                 row.title
+                        +             '</div>'
+                        +             '<p><i class="icon-location"></i> '+row.address+ ', '+row.zip_code+' / '+ row.city+'</p>'
+                        +         '</li>'
+                     );
+                });
+                if ( loadFeaturedBB.loaded >= loadFeaturedBB.total) {
+                    $('#featured_bb_Bar').remove();
+                }
+            }
+        });
+    }
 </script>
 <section>
 <!-- InstanceBeginEditable name="EditRegionSection" -->
@@ -312,63 +321,11 @@
                 <div class="tab-pane" id="featured_bb">
                 	<div class="container">
                     	<ul class="quick-list green-list row">
-                            <li class="span6 box">
-                                <div class="img b20-4s">
-                                    <img src="<?php echo $this->getAssetsUrl() ?>img/bb_list-img-1.jpg" alt="" />
-                                </div>
-                                <div class="info b15-4s">
-                                    <div class="text bb-price"><i class="icon-price"></i> 999,00 ?</div>
-                                    <div class="text bb-like"><i class="icon-favourite"></i> 69</div>
-                                </div>
-                                <div class="desc b15-4s">
-                                    Nome della struttura ricettiva molto lungo lunghissimo
-                                </div>
-                                <p><i class="icon-location"></i> Frattamaggiore localita molto lunga / Napoli</p>
-                            </li>
-                            <li class="span6 box">
-                                <div class="img b20-4s">
-                                    <img src="<?php echo $this->getAssetsUrl() ?>img/bb_list-img-1.jpg" alt="" />
-                                </div>
-                                <div class="info b15-4s">
-                                    <div class="text bb-price"><i class="icon-price"></i> 999,00 ?</div>
-                                    <div class="text bb-like"><i class="icon-favourite"></i> 69</div>
-                                </div>
-                                <div class="desc b15-4s">
-                                    Nome della struttura ricettiva molto lungo lunghissimo
-                                </div>
-                                <p><i class="icon-location"></i> Frattamaggiore localita molto lunga / Napoli</p>
-                            </li>
-                            <li class="span6 box">
-                                <div class="img b20-4s">
-                                    <img src="<?php echo $this->getAssetsUrl() ?>img/bb_list-img-1.jpg" alt="" />
-                                </div>
-                                <div class="info b15-4s">
-                                    <div class="text bb-price"><i class="icon-price"></i> 999,00 ?</div>
-                                    <div class="text bb-like"><i class="icon-favourite"></i> 69</div>
-                                </div>
-                                <div class="desc b15-4s">
-                                    Nome della struttura ricettiva molto lungo lunghissimo
-                                </div>
-                                <p><i class="icon-location"></i> Frattamaggiore localita molto lunga / Napoli</p>
-                            </li>
-                            <li class="span6 box">
-                                <div class="img b20-4s">
-                                    <img src="<?php echo $this->getAssetsUrl() ?>img/bb_list-img-1.jpg" alt="" />
-                                </div>
-                                <div class="info b15-4s">
-                                    <div class="text bb-price"><i class="icon-price"></i> 999,00 ?</div>
-                                    <div class="text bb-like"><i class="icon-favourite"></i> 69</div>
-                                </div>
-                                <div class="desc b15-4s">
-                                    Nome della struttura ricettiva molto lungo lunghissimo
-                                </div>
-                                <p><i class="icon-location"></i> Frattamaggiore localita molto lunga / Napoli</p>
-                            </li>
                         </ul>
                     </div>
-                    <div class="row browseBar">
+                    <div class="row browseBar" id="featured_bb_Bar" onclick="loadFeaturedBB();">
                         <div class="span12">
-                            <a href="#" class="more bg-green">Browse other content <br><i class="icon-arrow-down"></i></a>
+                            <a href="javascript:void(0);" class="more bg-green">Browse other content <br><i class="icon-arrow-down"></i></a>
                         </div>
                     </div><!-- BROWSE MORE -->
                 </div>

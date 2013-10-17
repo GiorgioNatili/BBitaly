@@ -1,4 +1,13 @@
 $(function () {
+    
+    $.getLength = function(o) {
+        var j = 0;
+        $.map(o, function() {
+            j++;
+        });
+        return j;
+    }
+    
     $('#bbTab a').click(function (e) {
             e.preventDefault();
             $(this).tab('show');

@@ -536,12 +536,16 @@ class PropertyController extends Controller
                 ->featured()
                 ->with('coverImage')
                 ->findAll($criteria);
+        
+        $total = Property::model()->featured()->count();
         $output = array();
+        $output['total'] = $total;
         if (!empty( $data)) {
             $j = 0;
             /** @var Property $row */
             foreach ($data as $row) {
                 $output[$j] = $row->attributes;
+                $output[$j]['favorites'] = count($row->favorites);
                 $output[$j]['cover'] = $row->coverImage !== null ? $row->coverImage->attributes : array();
                 if ( isset($output[$j]['cover']['img_name'])) {
                     $output[$j]['cover']['img_name'] = Bucket::load($output[$j]['cover']['img_name']);
