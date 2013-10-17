@@ -86,8 +86,12 @@ class Property extends CActiveRecord
                 'featured'=>array(
                     'condition'=>'is_featured = 1',
                 ),
+                'popular' => array(
+                    'condition'=>'is_featured = 1',
+                )
             );
         }
+        
 
         /**
 	 * @return array customized attribute labels (name=>label)

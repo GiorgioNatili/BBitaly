@@ -28,7 +28,7 @@ class PropertyController extends Controller
     {
         return array(
             array('allow',  // allow all users to perform 'index' and 'view' actions
-                'actions'=>array('index','view','ajaxFeatured'),
+                'actions'=>array('index','view','ajaxFeatured','ajaxPopular'),
                 'users'=>array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -556,5 +556,47 @@ class PropertyController extends Controller
         
         echo json_encode($output);
         
+    }
+    
+    public function actionajaxPopular() {
+        $offset = isset($_GET['offset']) ? $_GET['offset'] : 0;
+        $output = array();
+        $records = Yii::app()->db->createCommand(
+                "select 
+                    p.*, 
+                    i.img_name, 
+                    (CASE WHEN f.favorites IS NULL THEN 0 WHEN f.favorites >= 0 THEN f.favorites END) as favorites
+                from property p 
+                LEFT JOIN images as i on i.property_id = p.id 
+                LEFT JOIN (select 
+                                property_id, 
+                                count(id) as favorites 
+                            from favorites group by property_id) f on f.property_id = p.id 
+                group by p.id 
+                order by favorites  DESC
+                LIMIT 2 OFFSET {$offset}"
+            )->query()->readAll();
+        $j = 0;        
+        foreach ($records as $row) {
+            $output[$j] = $row;
+            $output[$j]['img_name'] = !empty($row['img_name']) ? Bucket::load($row['img_name']) : null;
+            $j++;
+        }
+        
+        
+        $output['total'] = Yii::app()->db->createCommand(
+                "select 
+                    COUNT(DISTINCT p.id) as totals
+                from property p 
+                LEFT JOIN images as i on i.property_id = p.id 
+                LEFT JOIN (select 
+                                property_id, 
+                                count(id) as favorites 
+                            from favorites group by property_id) f on f.property_id = p.id ")
+                ->query()->readColumn(0);
+        
+        
+        echo json_encode($output);
+        Yii::app()->end();
     }
 }
