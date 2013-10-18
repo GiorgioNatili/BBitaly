@@ -1,6 +1,9 @@
 <script type="text/javascript">
     jQuery(document).ready(function() {
         // Load Itineraries
+        loadSuggestedItinerary(0);
+        
+        // Load Popular BBs
         loadPopularBB(0);
         
         // Load Featured BBs
@@ -8,6 +11,73 @@
         
         // Load Most Popular BBs
     });
+    
+    function loadSuggestedItinerary(offset) {
+        offset = (typeof offset === 'undefined' ? loadSuggestedItinerary.loaded : offset);
+        $.ajax({
+            url: "/itinerary/ajaxSuggested?offset="+offset,
+            success: function(data) {
+                // Append here.
+                data = JSON.parse(data);
+                loadSuggestedItinerary.total = data.total;
+                delete data.total;
+                if ( typeof loadSuggestedItinerary.loaded === 'undefined')
+                    loadSuggestedItinerary.loaded = 0;
+                loadSuggestedItinerary.loaded += $.getLength(data);
+                $.map(data,function(row) {
+                    var html = '<li class="item accordion-group">'
+                         +       '<div class="itinerary-block col2-set" data-toggle="collapse" data-parent="#itinerary_accordion" href="#itinerary_'+row.id+'">'
+                         +           '<div class="col1">'
+                         +               '<div class="img"><img alt="" src="'+(row.cover.img_name)+'"></div>'
+                         +           '</div>'
+                         +           '<div class="col2">'
+                         +              '<div class="info">'
+                         +                  '<h2>'+row.name +'</h2>'
+                         +                   '<p>dal:<strong>'+cleanDate(row.date_from * 1000)+'</strong> al:<strong>'+cleanDate(row.date_to * 1000) +'</strong></p>'
+                         +                   '<p><strong>999</strong> strutture prenotate/ 99 citta</p>'
+                         +               '</div>'
+                         +           '</div>'
+                         +       '</div>'
+                         +       '<div class="collapse" id="itinerary_'+row.id+'">'
+                         +           '<div class="itinerary-content">'
+                         +               '<div class="description">'
+                         +                   '<p>'+row.description +'</p>'
+                         +               '</div>'
+                         +               '<div class="map">'
+                         +                   'Map'
+                         +               '</div>';
+                        if (row.location.length > 0) {
+                            html += ''
+                                +               '<div class="itinerary-stages">'
+                                +                   '<ul class="outcome-list">';
+                            for (var x in row.location) {
+                                html += '<li>'
+                                    +        '<div class="count">1</div>'
+                                    +           '<div class="outcome">'
+                                    +              '<div class="name">'+row.location[x].name +'</div>'
+                                    +              '<div class="date"><i class="icon-flag"></i> '+cleanDate(row.location[x].date_from * 1000)+'</div>'
+                                    +              '<div class="date"><i class="icon-flag"></i> '+cleanDate(row.location[x].date_to * 1000)+'</div>'
+                                    +              '<div class="day"><i class="icon-flag"></i> '+row.location[x].persons+'</div>'
+                                    +           '</div>'
+                                    +   '</li>';
+                            }
+                            html +=                   '</ul>'
+                                +               '</div>';
+                        }
+                 
+                      html +=   '</div>';
+                      html +=       '</div>'
+                      html +=   '</li>';
+                     $('#suggested_itinerary .itinerary-list').append(html);
+                     $('.map').gmap3();
+                });
+                if ( loadSuggestedItinerary.loaded >= loadSuggestedItinerary.total) {
+                    $('#suggested_itinerary_Bar').remove();
+                }
+            }
+        });
+    }
+    
     function loadPopularBB(offset) {
         offset = (typeof offset === 'undefined' ? loadPopularBB.loaded : offset);
         $.ajax({
@@ -21,7 +91,6 @@
                     loadPopularBB.loaded = 0;
                 loadPopularBB.loaded += $.getLength(data);
                 $.map(data,function(row) {
-                    console.log(row);
                      $('#most_popular .quick-list').append(
                          '<li class="span6 box">'
                         +        '<div class="bb-like-heart">'
@@ -209,153 +278,12 @@
                 <div class="tab-pane active" id="suggested_itinerary">
                 	<div class="container">
                         <ul class="itinerary-list" id="itinerary_accordion">
-                            <li class="item accordion-group">
-                                <div class="itinerary-block col2-set" data-toggle="collapse" data-parent="#itinerary_accordion" href="#itinerary_one">
-                                    <div class="col1">
-                                        <div class="img"><img alt="" src="<?php echo $this->getAssetsUrl() ?>img/suggested-itinerary-img1.jpg"></div>
-                                    </div>
-                                    <div class="col2">
-                                        <div class="info">
-                                            <h2>Nome dell'itinerario 001</h2>
-                                            <p>dal:<strong>02/02/0202</strong> al:<strong>02/02/0202</strong></p>
-                                            <p><strong>999</strong> strutture prenotate/ 99 citta</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="collapse" id="itinerary_one">
-                                    <div class="itinerary-content">
-                                        <div class="description">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac libero nisi. Phasellus elit neque, euismod eu tempus ac, molestie et justo. Phasellus aliquam sagittis massa, nec ultricies risus faucibus at. Sed quis magna purus, ut vulputate nunc. Integer fermentum luctus bibendum. Nunc non dui sed leo luctus consequat. Duis aliquet leo massa. Nulla rutrum orci sed tortor molestie cursus.</p>
-                                        </div>
-                                        <div class="map">
-                                            Map
-                                        </div>
-                                        <div class="itinerary-stages">
-                                            <ul class="outcome-list">
-                                                <li>
-                                                    <div class="count">1</div>
-                                                    <div class="outcome">
-                                                        <div class="name">Nome della localit' molto lunga 001</div>
-                                                        <div class="date"><i class="icon-flag"></i> 10/01/2013</div>
-                                                        <div class="date"><i class="icon-flag"></i> 10/01/2013</div>
-                                                        <div class="day"><i class="icon-flag"></i> 10</div>
-                                                        <div class="delete"><a href="#"><i class="icon-flag"></i> D</a></div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="count">2</div>
-                                                    <div class="outcome">
-                                                        <div class="name">Nome della localit' molto lunga 001</div>
-                                                        <div class="date"><i class="icon-flag"></i> 10/01/2013</div>
-                                                        <div class="date"><i class="icon-flag"></i> 10/01/2013</div>
-                                                        <div class="day"><i class="icon-flag"></i> 10</div>
-                                                        <div class="delete"><a href="#"><i class="icon-flag"></i> D</a></div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="count">3</div>
-                                                    <div class="outcome">
-                                                        <div class="name">Nome della localit' molto lunga 001</div>
-                                                        <div class="date"><i class="icon-flag"></i> 10/01/2013</div>
-                                                        <div class="date"><i class="icon-flag"></i> 10/01/2013</div>
-                                                        <div class="day"><i class="icon-flag"></i> 10</div>
-                                                        <div class="delete"><a href="#"><i class="icon-flag"></i> D</a></div>
-                                                    </div>
-                                                </li>
-                                                <li class="add-outcome">
-                                                    <div class="count">+</div>
-                                                    <div class="outcome">
-                                                        <div class="name"><a href="#">Nome della localit' molto lunga 001</a></div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="button-sets a-center">
-                                            <button class="button booking-btn">
-                                                <span>
-                                                    <span><i class="icon-flag"> </i>prenota itinerario</span>
-                                                </span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="item accordion-group">
-                                <div class="itinerary-block col2-set" data-toggle="collapse" data-parent="#itinerary_accordion" href="#itinerary_two">
-                                    <div class="col1">
-                                        <div class="img"><img alt="" src="<?php echo $this->getAssetsUrl() ?>img/suggested-itinerary-img1.jpg"></div>
-                                    </div>
-                                    <div class="col2">
-                                        <div class="info">
-                                            <h2>Nome dell'itinerario 001</h2>
-                                            <p>dal:<strong>02/02/0202</strong> al:<strong>02/02/0202</strong></p>
-                                            <p><strong>999</strong> strutture prenotate/ 99 citta</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="collapse" id="itinerary_two">
-                                    <div class="itinerary-content">
-                                        <div class="description">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac libero nisi. Phasellus elit neque, euismod eu tempus ac, molestie et justo. Phasellus aliquam sagittis massa, nec ultricies risus faucibus at. Sed quis magna purus, ut vulputate nunc. Integer fermentum luctus bibendum. Nunc non dui sed leo luctus consequat. Duis aliquet leo massa. Nulla rutrum orci sed tortor molestie cursus.</p>
-                                        </div>
-                                        <div class="map">
-                                            Map
-                                        </div>
-                                        <div class="itinerary-stages">
-                                            <ul class="outcome-list">
-                                                <li>
-                                                    <div class="count">1</div>
-                                                    <div class="outcome">
-                                                        <div class="name">Nome della localit' molto lunga 001</div>
-                                                        <div class="date"><i class="icon-flag"></i> 10/01/2013</div>
-                                                        <div class="date"><i class="icon-flag"></i> 10/01/2013</div>
-                                                        <div class="day"><i class="icon-flag"></i> 10</div>
-                                                        <div class="delete"><a href="#"><i class="icon-flag"></i> D</a></div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="count">2</div>
-                                                    <div class="outcome">
-                                                        <div class="name">Nome della localit' molto lunga 001</div>
-                                                        <div class="date"><i class="icon-flag"></i> 10/01/2013</div>
-                                                        <div class="date"><i class="icon-flag"></i> 10/01/2013</div>
-                                                        <div class="day"><i class="icon-flag"></i> 10</div>
-                                                        <div class="delete"><a href="#"><i class="icon-flag"></i> D</a></div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="count">3</div>
-                                                    <div class="outcome">
-                                                        <div class="name">Nome della localit' molto lunga 001</div>
-                                                        <div class="date"><i class="icon-flag"></i> 10/01/2013</div>
-                                                        <div class="date"><i class="icon-flag"></i> 10/01/2013</div>
-                                                        <div class="day"><i class="icon-flag"></i> 10</div>
-                                                        <div class="delete"><a href="#"><i class="icon-flag"></i> D</a></div>
-                                                    </div>
-                                                </li>
-                                                <li class="add-outcome">
-                                                    <div class="count">+</div>
-                                                    <div class="outcome">
-                                                        <div class="name"><a href="#">Nome della localit' molto lunga 001</a></div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="button-sets a-center">
-                                            <button class="button booking-btn">
-                                                <span>
-                                                    <span><i class="icon-flag"> </i>prenota itinerario</span>
-                                                </span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
+                            
                         </ul>
                     </div>
-                    <div class="row browseBar">
+                    <div class="row browseBar" id="suggested_itinerary_Bar">
                         <div class="span12">
-                            <a href="#" class="more bg-blue">Browse other content <br><i class="icon-arrow-down"></i></a>
+                            <a href="javascript:void(0);" class="more bg-blue">Browse other content <br><i class="icon-arrow-down"></i></a>
                         </div>
                     </div><!-- BROWSE MORE -->
                 </div>

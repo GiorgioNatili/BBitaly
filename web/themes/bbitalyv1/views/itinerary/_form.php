@@ -57,6 +57,12 @@
                                     <?php echo $form->error($model,'description'); ?>
                                 </div>
                             </div>
+                            <?php if (Yii::app()->user->checkAccess("admin")): ?>
+                            <div class="field">
+                                    <?php echo $form->labelEx($model,'is_suggested'); ?>
+                                    <?php echo $form->dropDownList($model,'is_suggested', array(0 => 'No, No need!', 1 => 'Yes, Featured!'), array('class' => 'selectbox medium')) ?>
+                                </div>
+                            <?php endif; ?>
                             <div class="map" id="route-map">
                                 Map
                             </div>

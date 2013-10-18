@@ -366,3 +366,8 @@ function removeFromFavorites(i, cb) {
         }
     });
 }
+
+function cleanDate(d) {
+    d = new Date(d);
+    return d.getDate() + '/'+(d.getMonth() +1) + "/"+ d.getFullYear()
+}

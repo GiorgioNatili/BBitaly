@@ -45,7 +45,7 @@ class Itinerary extends CActiveRecord
 			array('date_from, date_to, created_on, updated_on, host_ip', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, description, cover_image, date_from, date_to, uid, is_suggested, created_on, updated_on, host_ip', 'safe', 'on'=>'search'),
+			array('id, name, description, uid, is_suggested, created_on, updated_on, host_ip', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,6 +62,14 @@ class Itinerary extends CActiveRecord
 			'itineraryLocations' => array(self::HAS_MANY, 'ItineraryLocations', 'itinerary_id'),
 		);
 	}
+        
+        public function scopes() {
+            return array(
+                'suggested' => array(
+                    'condition' => 'is_suggested = 1'
+                )
+            );
+        }
 
 	/**
 	 * @return array customized attribute labels (name=>label)
@@ -76,7 +84,7 @@ class Itinerary extends CActiveRecord
 			'date_from' => 'Date From',
 			'date_to' => 'Date To',
 			'uid' => 'Uid',
-                        'is_suggested' => 'Is Suggested',
+                        'is_suggested' => 'Suggested?',
 			'created_on' => 'Created On',
 			'updated_on' => 'Updated On',
 			'host_ip' => 'Host Ip',
@@ -104,9 +112,6 @@ class Itinerary extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('description',$this->description,true);
-		$criteria->compare('cover_image',$this->cover_image);
-		$criteria->compare('date_from',$this->date_from,true);
-		$criteria->compare('date_to',$this->date_to,true);
 		$criteria->compare('uid',$this->uid);
                 $criteria->compare('is_suggested',$this->is_suggested);
 		$criteria->compare('created_on',$this->created_on,true);

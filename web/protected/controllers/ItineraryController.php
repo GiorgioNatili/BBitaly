@@ -28,7 +28,7 @@ class ItineraryController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view', 'ajaxSuggested'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -232,4 +232,38 @@ class ItineraryController extends Controller
 			Yii::app()->end();
 		}
 	}
+        
+        public function actionajaxSuggested() {
+          
+           $criteria = new CDbCriteria();
+           $criteria->offset = isset($_GET['offset']) ? $_GET['offset'] : 0;
+           $criteria->limit = 2;
+           $suggested = Itinerary::model()
+                    ->suggested()
+                    ->with('coverImage','itineraryLocations')
+                    ->findAll($criteria);
+
+           $total = Itinerary::model()->suggested()->count();
+            
+           $output = array();
+           $j = 0;
+           foreach ($suggested as $row) {
+               $output[$j] =  $row->attributes;
+               $output[$j]['cover'] = $row->coverImage->attributes;
+               $output[$j]['cover']['img_name'] = Bucket::load($output[$j]['cover']['img_name']);
+               $output[$j]['location'] = array();
+               if (!empty ($row->itineraryLocations)) {
+                   foreach ($row->itineraryLocations as $location) {
+                       $output[$j]['location'][] = $location->attributes;
+                   }
+               }
+               $j++;
+           }
+           
+           $output['total'] = $total;
+           
+           //echo "<pre>"; print_r($output); exit;
+           echo json_encode($output);
+           Yii::app()->end();
+        }
 }

@@ -48,15 +48,12 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'id',
 		'name',
 		'description',
-		'cover_image',
-		'date_from',
-		'date_to',
-		/*
-		'uid',
-		'created_on',
-		'updated_on',
-		'host_ip',
-		*/
+                array(
+                    'name' => 'is_suggested',
+                    'header' => "Suggested?",
+                    'filter' => array('0' => 'No','1' => 'Yes'),
+                    'value' => '($data->is_suggested == 1) ? ("Yes") : ("No")'
+                ),
 		array(
 			'class'=>'CButtonColumn',
 		),
