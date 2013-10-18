@@ -8,7 +8,7 @@
         <div class="facebook-connect text-center">
         	<h4>Connect with facebook</h4>
                 <a href="<?php echo Yii::app()->facebook->getLoginUrl(array(
-                    'scopes' => 'email, publish_actions, publish_stream, share_item, status_update, user_location'
+                    'scope' => 'email, publish_actions, publish_stream, share_item, status_update, user_location'
                 )) ?>">&nbsp;</a>
             <p>We will not publish anything without your permission.</p>
         </div>
