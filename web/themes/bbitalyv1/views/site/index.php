@@ -1,3 +1,158 @@
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        // Load Itineraries
+        loadSuggestedItinerary(0);
+        
+        // Load Popular BBs
+        loadPopularBB(0);
+        
+        // Load Featured BBs
+        loadFeaturedBB(0);
+        
+        // Load Most Popular BBs
+    });
+    
+    function loadSuggestedItinerary(offset) {
+        offset = (typeof offset === 'undefined' ? loadSuggestedItinerary.loaded : offset);
+        $.ajax({
+            url: "/itinerary/ajaxSuggested?offset="+offset,
+            success: function(data) {
+                // Append here.
+                data = JSON.parse(data);
+                loadSuggestedItinerary.total = data.total;
+                delete data.total;
+                if ( typeof loadSuggestedItinerary.loaded === 'undefined')
+                    loadSuggestedItinerary.loaded = 0;
+                loadSuggestedItinerary.loaded += $.getLength(data);
+                $.map(data,function(row) {
+                    var html = '<li class="item accordion-group">'
+                         +       '<div class="itinerary-block col2-set" data-toggle="collapse" data-parent="#itinerary_accordion" href="#itinerary_'+row.id+'">'
+                         +           '<div class="col1">'
+                         +               '<div class="img"><img alt="" src="'+(row.cover.img_name)+'"></div>'
+                         +           '</div>'
+                         +           '<div class="col2">'
+                         +              '<div class="info">'
+                         +                  '<h2>'+row.name +'</h2>'
+                         +                   '<p>dal:<strong>'+cleanDate(row.date_from * 1000)+'</strong> al:<strong>'+cleanDate(row.date_to * 1000) +'</strong></p>'
+                         +                   '<p><strong>999</strong> strutture prenotate/ 99 citta</p>'
+                         +               '</div>'
+                         +           '</div>'
+                         +       '</div>'
+                         +       '<div class="collapse" id="itinerary_'+row.id+'">'
+                         +           '<div class="itinerary-content">'
+                         +               '<div class="description">'
+                         +                   '<p>'+row.description +'</p>'
+                         +               '</div>'
+                         +               '<div class="map">'
+                         +                   'Map'
+                         +               '</div>';
+                        if (row.location.length > 0) {
+                            html += ''
+                                +               '<div class="itinerary-stages">'
+                                +                   '<ul class="outcome-list">';
+                            for (var x in row.location) {
+                                html += '<li>'
+                                    +        '<div class="count">1</div>'
+                                    +           '<div class="outcome">'
+                                    +              '<div class="name">'+row.location[x].name +'</div>'
+                                    +              '<div class="date"><i class="icon-flag"></i> '+cleanDate(row.location[x].date_from * 1000)+'</div>'
+                                    +              '<div class="date"><i class="icon-flag"></i> '+cleanDate(row.location[x].date_to * 1000)+'</div>'
+                                    +              '<div class="day"><i class="icon-flag"></i> '+row.location[x].persons+'</div>'
+                                    +           '</div>'
+                                    +   '</li>';
+                            }
+                            html +=                   '</ul>'
+                                +               '</div>';
+                        }
+                 
+                      html +=   '</div>';
+                      html +=       '</div>'
+                      html +=   '</li>';
+                     $('#suggested_itinerary .itinerary-list').append(html);
+                     $('.map').gmap3();
+                });
+                if ( loadSuggestedItinerary.loaded >= loadSuggestedItinerary.total) {
+                    $('#suggested_itinerary_Bar').remove();
+                }
+            }
+        });
+    }
+    
+    function loadPopularBB(offset) {
+        offset = (typeof offset === 'undefined' ? loadPopularBB.loaded : offset);
+        $.ajax({
+            url: "/property/ajaxPopular?offset="+offset,
+            success: function(data) {
+                // Append here.
+                data = JSON.parse(data);
+                loadPopularBB.total = data.total;
+                delete data.total;
+                if ( typeof loadPopularBB.loaded === 'undefined')
+                    loadPopularBB.loaded = 0;
+                loadPopularBB.loaded += $.getLength(data);
+                $.map(data,function(row) {
+                     $('#most_popular .quick-list').append(
+                         '<li class="span6 box">'
+                        +        '<div class="bb-like-heart">'
+                        +            '<i class="icon-favourite-big"></i>'
+                        +            '<span>'+row.favorites+'</span>'
+                        +        '</div>'
+                        +       '<div class="img b20-4s">'
+                        +           '<img src="'+(row.img_name === null ? '/themes/bbitalyv1/assets/img/bb_list-img-1.jpg' : row.img_name)+'" alt="" />'
+                        +        '</div>'
+                        +        '<div class="info b15-4s">'
+                        +            '<div class="text bb-price"><i class="icon-price"></i> '+row.base_price +' &euro;</div>'
+                        +        '</div>'
+                        +        '<div class="desc b15-4s">'
+                        +            row.title
+                        +        '</div>'
+                        +        '<p><i class="icon-location"></i> '+row.address+ ', '+row.zip_code+' / '+ row.city+'</p>'
+                        +    '</li>'
+                     );
+                });
+                if ( loadPopularBB.loaded >= loadPopularBB.total) {
+                    $('#most_popular_Bar').remove();
+                }
+            }
+        });
+    }
+    
+    function loadFeaturedBB(offset) {
+        offset = (typeof offset === 'undefined' ? loadFeaturedBB.loaded : offset);
+        $.ajax({
+            url: "/property/ajaxFeatured?offset="+offset,
+            success: function(data) {
+                // Append here.
+                data = JSON.parse(data);
+                loadFeaturedBB.total = data.total;
+                delete data.total;
+                if ( typeof loadFeaturedBB.loaded === 'undefined')
+                    loadFeaturedBB.loaded = 0;
+                loadFeaturedBB.loaded += $.getLength(data);
+                $.map(data,function(row) {
+                     $('#featured_bb .quick-list').append(
+                         '<li class="span6 box">'
+                        +            '<div class="img b20-4s">'
+                        +                 '<img src="'+(typeof row.cover.img_name === 'undefined' ? '/themes/bbitalyv1/assets/img/bb_list-img-1.jpg' : row.cover.img_name)+'" alt="" />'
+                        +            '</div>'
+                        +            '<div class="info b15-4s">'
+                        +                '<div class="text bb-price"><i class="icon-price"></i> '+row.base_price+' &euro; </div>'
+                        +                 '<div class="text bb-like"><i class="icon-favourite"></i> '+row.favorites+'</div>'
+                        +             '</div>'
+                        +             '<div class="desc b15-4s">'
+                        +                 row.title
+                        +             '</div>'
+                        +             '<p><i class="icon-location"></i> '+row.address+ ', '+row.zip_code+' / '+ row.city+'</p>'
+                        +         '</li>'
+                     );
+                });
+                if ( loadFeaturedBB.loaded >= loadFeaturedBB.total) {
+                    $('#featured_bb_Bar').remove();
+                }
+            }
+        });
+    }
+</script>
 <section>
 <!-- InstanceBeginEditable name="EditRegionSection" -->
 	<div class="container home-searchbar">
@@ -123,292 +278,35 @@
                 <div class="tab-pane active" id="suggested_itinerary">
                 	<div class="container">
                         <ul class="itinerary-list" id="itinerary_accordion">
-                            <li class="item accordion-group">
-                                <div class="itinerary-block col2-set" data-toggle="collapse" data-parent="#itinerary_accordion" href="#itinerary_one">
-                                    <div class="col1">
-                                        <div class="img"><img alt="" src="<?php echo $this->getAssetsUrl() ?>img/suggested-itinerary-img1.jpg"></div>
-                                    </div>
-                                    <div class="col2">
-                                        <div class="info">
-                                            <h2>Nome dell'itinerario 001</h2>
-                                            <p>dal:<strong>02/02/0202</strong> al:<strong>02/02/0202</strong></p>
-                                            <p><strong>999</strong> strutture prenotate/ 99 citta</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="collapse" id="itinerary_one">
-                                    <div class="itinerary-content">
-                                        <div class="description">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac libero nisi. Phasellus elit neque, euismod eu tempus ac, molestie et justo. Phasellus aliquam sagittis massa, nec ultricies risus faucibus at. Sed quis magna purus, ut vulputate nunc. Integer fermentum luctus bibendum. Nunc non dui sed leo luctus consequat. Duis aliquet leo massa. Nulla rutrum orci sed tortor molestie cursus.</p>
-                                        </div>
-                                        <div class="map">
-                                            Map
-                                        </div>
-                                        <div class="itinerary-stages">
-                                            <ul class="outcome-list">
-                                                <li>
-                                                    <div class="count">1</div>
-                                                    <div class="outcome">
-                                                        <div class="name">Nome della localit' molto lunga 001</div>
-                                                        <div class="date"><i class="icon-flag"></i> 10/01/2013</div>
-                                                        <div class="date"><i class="icon-flag"></i> 10/01/2013</div>
-                                                        <div class="day"><i class="icon-flag"></i> 10</div>
-                                                        <div class="delete"><a href="#"><i class="icon-flag"></i> D</a></div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="count">2</div>
-                                                    <div class="outcome">
-                                                        <div class="name">Nome della localit' molto lunga 001</div>
-                                                        <div class="date"><i class="icon-flag"></i> 10/01/2013</div>
-                                                        <div class="date"><i class="icon-flag"></i> 10/01/2013</div>
-                                                        <div class="day"><i class="icon-flag"></i> 10</div>
-                                                        <div class="delete"><a href="#"><i class="icon-flag"></i> D</a></div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="count">3</div>
-                                                    <div class="outcome">
-                                                        <div class="name">Nome della localit' molto lunga 001</div>
-                                                        <div class="date"><i class="icon-flag"></i> 10/01/2013</div>
-                                                        <div class="date"><i class="icon-flag"></i> 10/01/2013</div>
-                                                        <div class="day"><i class="icon-flag"></i> 10</div>
-                                                        <div class="delete"><a href="#"><i class="icon-flag"></i> D</a></div>
-                                                    </div>
-                                                </li>
-                                                <li class="add-outcome">
-                                                    <div class="count">+</div>
-                                                    <div class="outcome">
-                                                        <div class="name"><a href="#">Nome della localit' molto lunga 001</a></div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="button-sets a-center">
-                                            <button class="button booking-btn">
-                                                <span>
-                                                    <span><i class="icon-flag"> </i>prenota itinerario</span>
-                                                </span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="item accordion-group">
-                                <div class="itinerary-block col2-set" data-toggle="collapse" data-parent="#itinerary_accordion" href="#itinerary_two">
-                                    <div class="col1">
-                                        <div class="img"><img alt="" src="<?php echo $this->getAssetsUrl() ?>img/suggested-itinerary-img1.jpg"></div>
-                                    </div>
-                                    <div class="col2">
-                                        <div class="info">
-                                            <h2>Nome dell'itinerario 001</h2>
-                                            <p>dal:<strong>02/02/0202</strong> al:<strong>02/02/0202</strong></p>
-                                            <p><strong>999</strong> strutture prenotate/ 99 citta</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="collapse" id="itinerary_two">
-                                    <div class="itinerary-content">
-                                        <div class="description">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac libero nisi. Phasellus elit neque, euismod eu tempus ac, molestie et justo. Phasellus aliquam sagittis massa, nec ultricies risus faucibus at. Sed quis magna purus, ut vulputate nunc. Integer fermentum luctus bibendum. Nunc non dui sed leo luctus consequat. Duis aliquet leo massa. Nulla rutrum orci sed tortor molestie cursus.</p>
-                                        </div>
-                                        <div class="map">
-                                            Map
-                                        </div>
-                                        <div class="itinerary-stages">
-                                            <ul class="outcome-list">
-                                                <li>
-                                                    <div class="count">1</div>
-                                                    <div class="outcome">
-                                                        <div class="name">Nome della localit' molto lunga 001</div>
-                                                        <div class="date"><i class="icon-flag"></i> 10/01/2013</div>
-                                                        <div class="date"><i class="icon-flag"></i> 10/01/2013</div>
-                                                        <div class="day"><i class="icon-flag"></i> 10</div>
-                                                        <div class="delete"><a href="#"><i class="icon-flag"></i> D</a></div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="count">2</div>
-                                                    <div class="outcome">
-                                                        <div class="name">Nome della localit' molto lunga 001</div>
-                                                        <div class="date"><i class="icon-flag"></i> 10/01/2013</div>
-                                                        <div class="date"><i class="icon-flag"></i> 10/01/2013</div>
-                                                        <div class="day"><i class="icon-flag"></i> 10</div>
-                                                        <div class="delete"><a href="#"><i class="icon-flag"></i> D</a></div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="count">3</div>
-                                                    <div class="outcome">
-                                                        <div class="name">Nome della localit' molto lunga 001</div>
-                                                        <div class="date"><i class="icon-flag"></i> 10/01/2013</div>
-                                                        <div class="date"><i class="icon-flag"></i> 10/01/2013</div>
-                                                        <div class="day"><i class="icon-flag"></i> 10</div>
-                                                        <div class="delete"><a href="#"><i class="icon-flag"></i> D</a></div>
-                                                    </div>
-                                                </li>
-                                                <li class="add-outcome">
-                                                    <div class="count">+</div>
-                                                    <div class="outcome">
-                                                        <div class="name"><a href="#">Nome della localit' molto lunga 001</a></div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="button-sets a-center">
-                                            <button class="button booking-btn">
-                                                <span>
-                                                    <span><i class="icon-flag"> </i>prenota itinerario</span>
-                                                </span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
+                            
                         </ul>
                     </div>
-                    <div class="row browseBar">
+                    <div class="row browseBar" id="suggested_itinerary_Bar">
                         <div class="span12">
-                            <a href="#" class="more bg-blue">Browse other content <br><i class="icon-arrow-down"></i></a>
+                            <a href="javascript:void(0);" class="more bg-blue">Browse other content <br><i class="icon-arrow-down"></i></a>
                         </div>
                     </div><!-- BROWSE MORE -->
                 </div>
                 <div class="tab-pane" id="featured_bb">
                 	<div class="container">
                     	<ul class="quick-list green-list row">
-                            <li class="span6 box">
-                                <div class="img b20-4s">
-                                    <img src="<?php echo $this->getAssetsUrl() ?>img/bb_list-img-1.jpg" alt="" />
-                                </div>
-                                <div class="info b15-4s">
-                                    <div class="text bb-price"><i class="icon-price"></i> 999,00 ?</div>
-                                    <div class="text bb-like"><i class="icon-favourite"></i> 69</div>
-                                </div>
-                                <div class="desc b15-4s">
-                                    Nome della struttura ricettiva molto lungo lunghissimo
-                                </div>
-                                <p><i class="icon-location"></i> Frattamaggiore localita molto lunga / Napoli</p>
-                            </li>
-                            <li class="span6 box">
-                                <div class="img b20-4s">
-                                    <img src="<?php echo $this->getAssetsUrl() ?>img/bb_list-img-1.jpg" alt="" />
-                                </div>
-                                <div class="info b15-4s">
-                                    <div class="text bb-price"><i class="icon-price"></i> 999,00 ?</div>
-                                    <div class="text bb-like"><i class="icon-favourite"></i> 69</div>
-                                </div>
-                                <div class="desc b15-4s">
-                                    Nome della struttura ricettiva molto lungo lunghissimo
-                                </div>
-                                <p><i class="icon-location"></i> Frattamaggiore localita molto lunga / Napoli</p>
-                            </li>
-                            <li class="span6 box">
-                                <div class="img b20-4s">
-                                    <img src="<?php echo $this->getAssetsUrl() ?>img/bb_list-img-1.jpg" alt="" />
-                                </div>
-                                <div class="info b15-4s">
-                                    <div class="text bb-price"><i class="icon-price"></i> 999,00 ?</div>
-                                    <div class="text bb-like"><i class="icon-favourite"></i> 69</div>
-                                </div>
-                                <div class="desc b15-4s">
-                                    Nome della struttura ricettiva molto lungo lunghissimo
-                                </div>
-                                <p><i class="icon-location"></i> Frattamaggiore localita molto lunga / Napoli</p>
-                            </li>
-                            <li class="span6 box">
-                                <div class="img b20-4s">
-                                    <img src="<?php echo $this->getAssetsUrl() ?>img/bb_list-img-1.jpg" alt="" />
-                                </div>
-                                <div class="info b15-4s">
-                                    <div class="text bb-price"><i class="icon-price"></i> 999,00 ?</div>
-                                    <div class="text bb-like"><i class="icon-favourite"></i> 69</div>
-                                </div>
-                                <div class="desc b15-4s">
-                                    Nome della struttura ricettiva molto lungo lunghissimo
-                                </div>
-                                <p><i class="icon-location"></i> Frattamaggiore localita molto lunga / Napoli</p>
-                            </li>
                         </ul>
                     </div>
-                    <div class="row browseBar">
+                    <div class="row browseBar" id="featured_bb_Bar" onclick="loadFeaturedBB();">
                         <div class="span12">
-                            <a href="#" class="more bg-green">Browse other content <br><i class="icon-arrow-down"></i></a>
+                            <a href="javascript:void(0);" class="more bg-green">Browse other content <br><i class="icon-arrow-down"></i></a>
                         </div>
                     </div><!-- BROWSE MORE -->
                 </div>
                 <div class="tab-pane" id="most_popular">
                 	<div class="container">
                     	<ul class="quick-list red-list row">
-                            <li class="span6 box">
-                                <div class="bb-like-heart">
-                                    <i class="icon-favourite-big"></i>
-                                    <span>185</span>
-                                </div>
-                                <div class="img b20-4s">
-                                    <img src="<?php echo $this->getAssetsUrl() ?>img/bb_list-img-1.jpg" alt="" />
-                                </div>
-                                <div class="info b15-4s">
-                                    <div class="text bb-price"><i class="icon-price"></i> 999,00 ?</div>
-                                </div>
-                                <div class="desc b15-4s">
-                                    Nome della struttura ricettiva molto lungo lunghissimo
-                                </div>
-                                <p><i class="icon-location"></i> Frattamaggiore localita molto lunga / Napoli</p>
-                            </li>
-                            <li class="span6 box">
-                                <div class="bb-like-heart">
-                                    <i class="icon-favourite-big"></i>
-                                    <span>185</span>
-                                </div>
-                                <div class="img b20-4s">
-                                    <img src="<?php echo $this->getAssetsUrl() ?>img/bb_list-img-1.jpg" alt="" />
-                                </div>
-                                <div class="info b15-4s">
-                                    <div class="text bb-price"><i class="icon-price"></i> 999,00 ?</div>
-                                </div>
-                                <div class="desc b15-4s">
-                                    Nome della struttura ricettiva molto lungo lunghissimo
-                                </div>
-                                <p><i class="icon-location"></i> Frattamaggiore localita molto lunga / Napoli</p>
-            
-                            </li>
-                            <li class="span6 box">
-                                <div class="bb-like-heart">
-                                    <i class="icon-favourite-big"></i>
-                                    <span>185</span>
-                                </div>
-                                <div class="img b20-4s">
-                                    <img src="<?php echo $this->getAssetsUrl() ?>img/bb_list-img-1.jpg" alt="" />
-                                </div>
-                                <div class="info b15-4s">
-                                    <div class="text bb-price"><i class="icon-price"></i> 999,00 ?</div>
-                                </div>
-                                <div class="desc b15-4s">
-                                    Nome della struttura ricettiva molto lungo lunghissimo
-                                </div>
-                                <p><i class="icon-location"></i> Frattamaggiore localita molto lunga / Napoli</p>
-                            </li>
-                            <li class="span6 box">
-                                <div class="bb-like-heart">
-                                    <i class="icon-favourite-big"></i>
-                                    <span>185</span>
-                                </div>
-                                <div class="img b20-4s">
-                                    <img src="<?php echo $this->getAssetsUrl() ?>img/bb_list-img-1.jpg" alt="" />
-                                </div>
-                                <div class="info b15-4s">
-                                    <div class="text bb-price"><i class="icon-price"></i> 999,00 ?</div>
-                                </div>
-                                <div class="desc b15-4s">
-                                    Nome della struttura ricettiva molto lungo lunghissimo
-                                </div>
-                                <p><i class="icon-location"></i> Frattamaggiore localita molto lunga / Napoli</p>
-                            </li>
+                            
                         </ul>
                     </div>
-                    <div class="row browseBar">
+                    <div class="row browseBar" id="most_popular_Bar" onclick="loadPopularBB();">
                         <div class="span12">
-                            <a href="#" class="more bg-red">Browse other content <br><i class="icon-arrow-down"></i></a>
+                            <a href="javascript:void(0);" class="more bg-red">Browse other content <br><i class="icon-arrow-down"></i></a>
                         </div>
                     </div><!-- BROWSE MORE -->
                 </div>

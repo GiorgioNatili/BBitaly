@@ -88,6 +88,14 @@
 
                 </div>
             </li>
+            <?php if (Yii::app()->user->checkAccess("admin")): ?>
+                <li class="fields">
+                    <div class="field">
+                        <?php echo $form->labelEx($model,'is_featured'); ?>
+                        <?php echo $form->dropDownList($model,'is_featured', array(0 => 'No, No need!', 1 => 'Yes, Featured!'), array('class' => 'selectbox medium')) ?>
+                    </div>
+                </li>
+            <?php endif; ?>
             <li>
                 <hr/>
             </li>
