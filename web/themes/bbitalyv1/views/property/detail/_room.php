@@ -9,7 +9,7 @@
         </div>
         <div class="info">
                 <div class="bb-price">
-                &euro;<?php echo $data->price ?>
+                &euro;<?php echo $data->price ?> / day
             </div>
             <div class="links">
                 <a href="#" class="booked">prenota</a>

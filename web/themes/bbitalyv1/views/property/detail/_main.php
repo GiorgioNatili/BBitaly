@@ -3,11 +3,24 @@
  * @var Property $data
  */
 ?>
+
+<script>
+    $(document).ready(function() {
+        $('.header-banner').gmap3({
+            map: {
+                options: {
+                    zoom:13,
+                    mapTypeId: google.maps.MapTypeId.ROAD_MAP,
+                    streetViewControl: true
+                }
+            }
+        });
+    });
+</script>
 <section>
 	<div class="detail-container">
 		<div class="header-banner">
             <div class="header-img header-map">
-                <img alt="" src="<?php echo $this->getAssetsUrl() ?>img/bb_map-bg.jpg">
             </div>
         </div>
         <div class="container detail-view">
