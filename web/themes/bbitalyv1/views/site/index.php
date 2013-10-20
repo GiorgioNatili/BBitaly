@@ -92,7 +92,7 @@
                 loadPopularBB.loaded += $.getLength(data);
                 $.map(data,function(row) {
                      $('#most_popular .quick-list').append(
-                         '<li class="span6 box">'
+                         '<li class="span6 box" onclick="window.location = \'property/'+row.id +'\'">'
                         +        '<div class="bb-like-heart">'
                         +            '<i class="icon-favourite-big"></i>'
                         +            '<span>'+row.favorites+'</span>'
@@ -131,7 +131,7 @@
                 loadFeaturedBB.loaded += $.getLength(data);
                 $.map(data,function(row) {
                      $('#featured_bb .quick-list').append(
-                         '<li class="span6 box">'
+                         '<li class="span6 box" onclick="window.location = \'property/'+row.id +'\'">'
                         +            '<div class="img b20-4s">'
                         +                 '<img src="'+(typeof row.cover.img_name === 'undefined' ? '/themes/bbitalyv1/assets/img/bb_list-img-1.jpg' : row.cover.img_name)+'" alt="" />'
                         +            '</div>'

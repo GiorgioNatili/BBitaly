@@ -59,7 +59,8 @@ class PropertyController extends Controller
         $pages = new CPagination($total);
         $pages->pageSize = 1;
         $pages->applyLimit($criteria);
-
+        
+        $criteria->addCondition('property_id = '.$id);
         $records = Room::model()->findAll($criteria);
         
         $this->render('view',array(
