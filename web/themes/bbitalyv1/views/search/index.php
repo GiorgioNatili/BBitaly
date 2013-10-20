@@ -6,7 +6,6 @@ $this->breadcrumbs = array(
     'search'    => '/search'
 ); ?>
 <section>
-<!-- InstanceBeginEditable name="EditRegionSection" -->
 	<div class="header-banner">
     	<div class="header-img header-map">
         	<img src="<?php echo $this->getAssetsUrl() ?>img/bb_listing-map.jpg" alt="" />

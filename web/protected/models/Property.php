@@ -193,6 +193,13 @@ class Property extends CActiveRecord
                     ), 'property_id = '. $this->id.' AND is_cover = 1');
         }
         
+        public function countRooms() {
+            return Room::model()
+                    ->countByAttributes(array(
+                        'property_id' => $this->id
+                    ));
+        }
+        
         /**
          * 
          * @param int $user_id  UserId to check existence.

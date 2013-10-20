@@ -53,8 +53,19 @@ class PropertyController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->loadModel($id);
+        $total = $model->countRooms();
+        $criteria = new CDbCriteria();
+        $pages = new CPagination($total);
+        $pages->pageSize = 1;
+        $pages->applyLimit($criteria);
+
+        $records = Room::model()->findAll($criteria);
+        
         $this->render('view',array(
-            'model'=>$this->loadModel($id),
+            'model'=> $model,
+            'roomPages' => $pages,
+            'rooms' => $records
         ));
     }
 
