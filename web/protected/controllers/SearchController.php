@@ -45,7 +45,6 @@ class SearchController extends Controller
             
             $records = Property::model()->findAll($criteria);
             
-            
             $this->render('index',
                     array(
                         'pages' => $pages,

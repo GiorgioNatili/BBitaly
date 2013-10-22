@@ -18,7 +18,7 @@
     <!-- Optional theme -->
     <!-- <link rel="stylesheet" href="<?php echo $this->getAssetsUrl() ?>css/bootstrap-theme.min.css"> -->
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
-    <script src="<?php echo $this->getAssetsUrl() ?>js/jquery-1.8.2.min.js"></script>
+    <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
     <script src="<?php echo $this->getAssetsUrl() ?>js/bootstrap.min.js"></script>
     <script src="<?php echo $this->getAssetsUrl() ?>js/jquery.bootstrap.wizard.js"></script>
     <script src="<?php echo $this->getAssetsUrl() ?>js/jquery.jcarousel.min.js"></script>

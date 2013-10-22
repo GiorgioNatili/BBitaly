@@ -6,10 +6,8 @@ $this->breadcrumbs = array(
     'search'    => '/search'
 ); ?>
 <section>
-    
     <div class="header-banner">
         <div class="header-img header-map" style="height: 400px;">
-        	
         </div>
     </div><!-- BANNER - END -->
     <form method="GET" action="">

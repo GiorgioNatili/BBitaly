@@ -201,8 +201,10 @@ class UsersController extends Controller
                         $user->created_on = $time;
                         $user->updated_on = $time;
                         
-                        if ( ! $user->save() )
+                        if ( ! $user->save() ) {
+                            $transaction->rollback();
                             throw new Exception ("Unable to create a new user!", 002);
+                        }
                         
                         // Ok, now time to assign role.
                         Yii::app()->authManager->assign($type, $user->id);
@@ -354,11 +356,9 @@ class UsersController extends Controller
                             $user->updated_on = $time;
                             
                             $user->validate();
-                            //echo '<pre>'; print_r($user); exit;
-                            
                             if ( !$user->save()) {
                                 // Raise error.
-                                echo 'unable to insert'; exit;
+                                $transaction->rollback();
                                 $this->redirect('/');
                             }
                             

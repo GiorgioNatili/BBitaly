@@ -28,7 +28,7 @@ class PropertyController extends Controller
     {
         return array(
             array('allow',  // allow all users to perform 'index' and 'view' actions
-                'actions'=>array('index','view'),
+                'actions'=>array('index','view','ajaxFeatured','ajaxPopular'),
                 'users'=>array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -36,7 +36,7 @@ class PropertyController extends Controller
                 'roles' => array(Users::ROLE_OWNER),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
-                'actions'=>array('admin','delete'),
+                'actions'=>array('admin','delete','update'),
                 'roles'=>array(Users::ROLE_ADMIN),
             ),
             array('deny',  // deny all users
@@ -53,8 +53,20 @@ class PropertyController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->loadModel($id);
+        $total = $model->countRooms();
+        $criteria = new CDbCriteria();
+        $pages = new CPagination($total);
+        $pages->pageSize = 1;
+        $pages->applyLimit($criteria);
+        
+        $criteria->addCondition('property_id = '.$id);
+        $records = Room::model()->findAll($criteria);
+        
         $this->render('view',array(
-            'model'=>$this->loadModel($id),
+            'model'=> $model,
+            'roomPages' => $pages,
+            'rooms' => $records
         ));
     }
 
@@ -258,7 +270,7 @@ class PropertyController extends Controller
         if(isset($_POST['Property']))
         {
             
-            //echo "<pre>"; print_r($_POST); exit;
+            
             $transaction = Yii::app()->db->beginTransaction();
 
             $updated_on = time();
@@ -320,9 +332,7 @@ class PropertyController extends Controller
                             file_put_contents($bucket->getMovePath(),fopen(urldecode($imgArr['path']),'r'), FILE_APPEND);
                         }
                     }
-
-
-
+                    
                     $prop_desc = $model->descriptions;
                     $prop_desc->attributes = $_POST['Descriptions'];
                     // Property Description updated.
@@ -353,12 +363,10 @@ class PropertyController extends Controller
                                     if ( !$description->save() ) {
                                         // Unable to save room desc.
                                         $transaction->rollback();
-                                        echo "<pre>"; print_r($description); exit;
                                     }
                                 } else {
                                     // Unable to create Room.
                                     $transaction->rollback();
-                                    echo "<pre>"; print_r($room); exit;
                                 }
                             }
                         }
@@ -394,19 +402,16 @@ class PropertyController extends Controller
                         } else {
                             // Unable to save billing info.
                             $transaction->rollback();
-                            echo "<pre>"; print_r($billing); exit;
                         }
                     } else {
                         // Unable to save property desc.
                         $transaction->rollback();
-                        echo "<pre>"; print_r($prop_desc); exit;
                     }
 
                 } else {
                     // Unabel to save property.
                     $transaction->rollback();
                     $model->validate();
-                    echo "<pre> ---"; print_r($model); exit;
                 }
 
             } catch (Exception $ex) {
@@ -529,5 +534,81 @@ class PropertyController extends Controller
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
+    }
+    
+    /***************************************************
+     *  Ajax Actions
+     ***************************************************/
+    
+    public function actionajaxFeatured() {
+        $criteria = new CDbCriteria();
+        $criteria->offset = isset($_GET['offset']) ? $_GET['offset'] : 0;
+        $criteria->limit = 2;
+        $data = Property::model()
+                ->featured()
+                ->with('coverImage')
+                ->findAll($criteria);
+        
+        $total = Property::model()->featured()->count();
+        $output = array();
+        $output['total'] = $total;
+        if (!empty( $data)) {
+            $j = 0;
+            /** @var Property $row */
+            foreach ($data as $row) {
+                $output[$j] = $row->attributes;
+                $output[$j]['favorites'] = count($row->favorites);
+                $output[$j]['cover'] = $row->coverImage !== null ? $row->coverImage->attributes : array();
+                if ( isset($output[$j]['cover']['img_name'])) {
+                    $output[$j]['cover']['img_name'] = Bucket::load($output[$j]['cover']['img_name']);
+                }
+                $j++;
+            }
+        }
+        
+        echo json_encode($output);
+        
+    }
+    
+    public function actionajaxPopular() {
+        $offset = isset($_GET['offset']) ? $_GET['offset'] : 0;
+        $output = array();
+        $records = Yii::app()->db->createCommand(
+                "select 
+                    p.*, 
+                    i.img_name, 
+                    (CASE WHEN f.favorites IS NULL THEN 0 WHEN f.favorites >= 0 THEN f.favorites END) as favorites
+                from property p 
+                LEFT JOIN images as i on i.property_id = p.id 
+                LEFT JOIN (select 
+                                property_id, 
+                                count(id) as favorites 
+                            from favorites group by property_id) f on f.property_id = p.id 
+                group by p.id 
+                order by favorites  DESC
+                LIMIT 2 OFFSET {$offset}"
+            )->query()->readAll();
+        $j = 0;        
+        foreach ($records as $row) {
+            $output[$j] = $row;
+            $output[$j]['img_name'] = !empty($row['img_name']) ? Bucket::load($row['img_name']) : null;
+            $j++;
+        }
+        
+        
+        $output['total'] = Yii::app()->db->createCommand(
+                "select 
+                    COUNT(DISTINCT p.id) as totals
+                from property p 
+                LEFT JOIN images as i on i.property_id = p.id 
+                LEFT JOIN (select 
+                                property_id, 
+                                count(id) as favorites 
+                            from favorites group by property_id) f on f.property_id = p.id ")
+                ->query()->readColumn(0);
+        
+        
+        echo json_encode($output);
+        Yii::app()->end();
     }
 }

@@ -1,4 +1,13 @@
 $(function () {
+    
+    $.getLength = function(o) {
+        var j = 0;
+        $.map(o, function() {
+            j++;
+        });
+        return j;
+    }
+    
     $('#bbTab a').click(function (e) {
             e.preventDefault();
             $(this).tab('show');
@@ -388,4 +397,9 @@ function removeFromFavorites(i, cb) {
                
         }
     });
+}
+
+function cleanDate(d) {
+    d = new Date(d);
+    return d.getDate() + '/'+(d.getMonth() +1) + "/"+ d.getFullYear()
 }
