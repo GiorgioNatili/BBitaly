@@ -27,7 +27,7 @@ class SearchController extends Controller
                 
             }
             
-            if ( isset($_GET['people']) && $_GET['people'] != '6+') {
+            if ( isset($_GET['people']) && $_GET['people'] != '*') {
                 $people = $_GET['people'];
                 $criteria->addCondition('people_min <= :people');
                 $criteria->addCondition('people_max >= :people');
@@ -40,7 +40,7 @@ class SearchController extends Controller
             $total = Property::model()->count();
             
             $pages = new CPagination($total);
-            $pages->pageSize = 1;
+            $pages->pageSize = 2;
             $pages->applyLimit($criteria);
             
             $records = Property::model()->findAll($criteria);

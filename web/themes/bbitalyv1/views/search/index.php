@@ -6,10 +6,10 @@ $this->breadcrumbs = array(
     'search'    => '/search'
 ); ?>
 <section>
-<!-- InstanceBeginEditable name="EditRegionSection" -->
-	<div class="header-banner">
-    	<div class="header-img header-map">
-        	<img src="<?php echo $this->getAssetsUrl() ?>img/bb_listing-map.jpg" alt="" />
+    
+    <div class="header-banner">
+        <div class="header-img header-map" style="height: 400px;">
+        	
         </div>
     </div><!-- BANNER - END -->
     <form method="GET" action="">
@@ -30,12 +30,9 @@ $this->breadcrumbs = array(
                                 <a href="#" data-toggle="dropdown" class="dropdown-toggle">persone <i class="icon-users"></i></a>
                                 <input type="hidden" name="people" id="hidden_people" value="<?php echo isset($_GET['people']) ? $_GET['people'] : '*' ?>" />
                                 <ul class="dropdown-menu" id="sq-peopel-selector">
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">5</a></li>
-                                    <li><a href="#">6+</a></li>
+                                    <?php for($i = 1; $i <= 20; $i++): ?>
+                                        <li><a href="javascript:void(0);"><?php echo $i ?></a></li>
+                                    <?php endfor; ?>
                                 </ul>
                             </div>
                         </div>
@@ -61,10 +58,7 @@ $this->breadcrumbs = array(
                 	<div class="sort-by pull-left">
                         <div class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#"><strong>Prezzo piu basso</strong></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">value 1</a></li>
-                                <li><a href="#">value 2</a></li>
-                            </ul>
+                            
                         </div>
                     </div>
                 </div>
@@ -89,12 +83,6 @@ $this->breadcrumbs = array(
                 	<div class="label-text pull-left">Fascia di prezzo:</div>
                 	<div class="price-range pull-left">
                             <input type="text" id="sl2" data-slider-value="<?php echo isset($_GET['price_range']) ? sprintf('[%s]',$_GET['price_range']) : '[0,200]' ?>" data-slider-step="50" data-slider-max="1000" data-slider-min="0" name="price_range" value="<?php echo isset($_GET['price_range']) ? $_GET['price_range'] : '0,200' ?>" class="range-slider" style=" width:100px;">
-                    </div>
-                </div>
-                <div class="span3">
-                	<div class="label-text pull-left">Raggio di ricerca:</div>
-                	<div class="price-range pull-left">
-                            <input type="text" id="sl2" data-slider-value="[3,8]" data-slider-step="1" data-slider-max="10" data-slider-min="1" value="" name="radius_range" class="range-slider" style=" width:100px;">
                     </div>
                 </div>
             </div>
@@ -135,4 +123,23 @@ $this->breadcrumbs = array(
         </div><!-- BROWSE MORE - END -->
         
     </div>
+    <script type="text/javascript"> 
+        $(document).ready(function() {
+            $('.header-map').gmap3();
+            window.searchMap = window.searchMap || [] || new Array();
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    registerForSearchMap({
+                        latLng: [position.coords.latitude, position.coords.longitude], 
+                        data: "This is me!",
+                        options: {
+                            icon: "/themes/bbitalyv1/assets/img/bb_map-pointer-big.png"
+                        }
+                    });
+                    searchMapBuild();
+                });
+                
+            }
+        });
+    </script>
 </section><!-- SECTION - END -->

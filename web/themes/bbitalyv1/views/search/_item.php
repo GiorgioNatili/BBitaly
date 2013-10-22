@@ -1,6 +1,16 @@
 <?php 
 /* @var $data Property */
 ?>
+<script type="text/javascript">
+    registerForSearchMap({
+        address: "<?php echo $data->address.', '. $data->zip_code ?> / <?php echo $data->city ?>", 
+        data: "This is me!",
+        is_center: <?php echo $index === 0 ? 1 : 0 ?>,
+        options: {
+            icon: "/themes/bbitalyv1/assets/img/bb_map-pointer.png"
+        }
+    });
+</script>
 <li class="item">
     <div class="row">
         <div class="span3">

@@ -208,7 +208,39 @@ $(document).ready(function() {
           $('#fil-estb-preview').text($elem.text());
           $('#hidden_establishment').val($elem.attr('data-value'));
       });
+      
+      
 });
+
+function searchMapBuild() {
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode({
+        'address': window.searchMapCenter.address
+    }, function(results, status) {
+        if (status === google.maps.GeocoderStatus.OK) {
+            $('.header-map').gmap3({
+                map: {
+                    options: {
+                        center: results[0].geometry.location,
+                        zoom: 10
+                    }
+                },
+                marker: {
+                    values: window.searchMap
+                }
+            });
+        }
+        
+    });
+    
+}
+
+function registerForSearchMap(o) {
+    window.searchMap = window.searchMap || [] || new Array();
+    if ( o.is_center === 1) 
+        window.searchMapCenter = o;
+    window.searchMap.push(o);
+}
 
 function onOwnerFormSubmit() {
     
